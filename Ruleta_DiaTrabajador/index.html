@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Ruleta Profesional</title>
+
+<style>
+body {
+  font-family: Arial;
+  background: #f5f6fa;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  margin-top: 50px;
+}
+
+.form-box {
+  text-align: left;
+  max-width: 320px;
+}
+
+.ruleta-container {
+  position: relative;
+  width: 400px;
+  text-align: center;
+
+  /* ? GLASS EFFECT */
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 20px;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+.puntero {
+  width: 0;
+  height: 0;
+  margin: 0 auto 10px auto;
+  border-left: 18px solid transparent;
+  border-right: 18px solid transparent;
+  border-top: 35px solid #c0c0c0;
+}
+
+button {
+  padding: 12px 25px;
+  background: #0984e3;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:disabled {
+  background: #b2bec3;
+}
+
+input {
+  padding: 10px;
+  width: 200px;
+  margin-bottom: 10px;
+}
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+</head>
+
+<body>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<div class="container">
+
+  <div class="form-box">
+<h2>&iexcl;En Veconinter celebramos tu esfuerzo!</h2> <p class="texto-secundario">Tu compromiso es el motor que nos mueve, y hoy queremos premiarlo.</p> <p class="texto-secundario">Completa tus datos a continuaci&oacute;n para activar la Ruleta Global de Premios y participa.</p> 
+<p class="texto-suerte">&iexcl;Mucha suerte!</p>
+
+    <input type="email" id="correo" placeholder="correo@veconinter.com"><br>
+  </div>
+
+  <div class="ruleta-container">
+    <div class="puntero"></div>
+    <canvas id="canvas" width="400" height="400"></canvas>
+
+    <br><br>
+
+    <button id="btnGirar" onclick="girar()" disabled>Girar</button>
+
+    <h3 id="resultado"></h3>
+  </div>
+
+</div>
+
+<script>
+
+const FLOW_URL = "https://default65bbe6da35e94c18993bee2c16cb7e.64.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/088fa85180d547c99c22d5f8358be79a/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=4ArVIE-vzPZBDUTsEFZQ6-ZwIZHKIm7CWKvjNY2AtVo";
+
+// PREMIOS
+const premios = [
+  "Premio 5","Premio 1","Premio 2",
+  "Premio 3","Premio 4","Premio 6"
+];
+
+const mensajesPremios = {
+  "Premio 5": "El equipo de GH te contactar&aacute; para coordinar la entrega de tu premio",
+  "Premio 1": "El equipo de GH te contactar&aacute; para coordinar la entrega de tu premio",
+  "Premio 2": "El equipo de GH te contactar&aacute; para coordinar la entrega de tu premio",
+  "Premio 3": "El equipo de GH te contactar&aacute; para coordinar la entrega de tu premio",
+  "Premio 4": "El equipo de GH te contactar&aacute; para coordinar la entrega de tu premio",
+  "Premio 6": "El equipo de GH te contactar&aacute; para coordinar la entrega de tu premio"
+};
+
+const colores = ["#0B1F3B","#0F2A4A","#134074","#1E40AF","#2563EB","#3B82F6","#38BDF8","#0EA5E9","#0284C7","#164E63","#0F172A"];
+
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+let girando = false;
+let angulo = 0;
+let intentos = 0; // ? AQUí (global)
+let usuarioBloqueado = false;
+
+// DIBUJAR RULETA
+function dibujarRuleta() {
+  const total = premios.length;
+  const anguloSector = (2 * Math.PI) / total;
+
+  for (let i = 0; i < total; i++) {
+    ctx.beginPath();
+    ctx.fillStyle = colores[i];
+    ctx.moveTo(200,200);
+    ctx.arc(200,200,200,i*anguloSector,(i+1)*anguloSector);
+    ctx.fill();
+
+    ctx.strokeStyle = "#fff";
+    ctx.stroke();
+
+    ctx.save();
+    ctx.translate(200,200);
+    ctx.rotate(i * anguloSector + anguloSector/2);
+    ctx.fillStyle = "#fff";
+    ctx.textAlign = "center";
+    ctx.font = "bold 14px Arial";
+    ctx.fillText(premios[i], 100, 0);
+    ctx.restore();
+  }
+}
+dibujarRuleta();
+
+// VALIDACION INPUT
+const correoInput = document.getElementById("correo");
+const btnGirar = document.getElementById("btnGirar");
+
+async function validarCampos() {
+  const correo = correoInput.value.trim().toLowerCase();
+
+  const esValido = /^[a-z0-9._%+-]+@veconinter\.com$/.test(correo);
+
+  if (!esValido) {
+    btnGirar.disabled = true;
+    btnGirar.innerText = "Girar";
+    document.getElementById("resultado").innerHTML = "";
+    return;
+  }
+
+  try {
+    const res = await fetch(FLOW_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        correo,
+        identificador: correo,
+        premio: null,
+        validar: true
+      })
+    });
+
+    let data = {};
+    try {
+      data = await res.json();
+    } catch {
+      btnGirar.disabled = true;
+      return;
+    }
+
+    // ?? YA PARTICIPÓ
+    if (data.status === "bloqueado") {
+	  usuarioBloqueado = true;
+      btnGirar.disabled = true;
+      btnGirar.innerText = "Ya participaste";
+
+      document.getElementById("resultado").innerHTML =
+         "<b>Ya participaste </b><br><small>Gracias por formar parte de esta iniciativa</small>";
+
+      return;
+    }
+
+    // ?? SIN PREMIOS
+    if (data.status === "sin_premios") {
+      btnGirar.disabled = true;
+      btnGirar.innerText = "Ruleta finalizada";
+
+      document.getElementById("resultado").innerHTML =
+        "<b>La ruleta ya finalizó</b>";
+
+      return;
+    }
+
+    // ? TODO OK
+    btnGirar.disabled = false;
+    btnGirar.innerText = "Girar";
+    document.getElementById("resultado").innerHTML = "";
+
+  } catch (error) {
+    console.error(error);
+    btnGirar.disabled = true;
+  }
+}
+
+let timeoutValidacion;
+
+correoInput.addEventListener("input", () => {
+
+  usuarioBloqueado = false;
+
+  clearTimeout(timeoutValidacion);
+
+  const correo = correoInput.value.trim().toLowerCase();
+  const esValido = /^[a-z0-9._%+-]+@veconinter\.com$/.test(correo);
+
+  if (!esValido) {
+    btnGirar.disabled = true;
+    btnGirar.innerText = "Girar";
+    return;
+  }
+
+  // ? ACTIVAR BOTÓN INMEDIATAMENTE
+  btnGirar.disabled = true;
+  btnGirar.innerText = "Validando...";
+
+  // ? VALIDACIÓN EN BACKGROUND
+  timeoutValidacion = setTimeout(() => {
+    validarCampos();
+  }, 500); // puedes subirlo a 800–1000ms
+});
+
+function calcularDestino(sectorIndex) {
+  let total = premios.length;
+  let tamanoSector = 360 / total;
+
+  let anguloBase = sectorIndex * tamanoSector;
+  let centroSector = anguloBase + (tamanoSector / 2);
+
+  // Ajuste por puntero arriba
+  let anguloFinal = 360 - centroSector - 90;
+
+  return (3 * 360 + anguloFinal) * (Math.PI / 180);
+}
+
+// GIRAR CON VALIDACION PREVIA
+async function girar(){
+
+if (usuarioBloqueado) {
+  alert("Ya participaste");
+  return;
+}
+
+  if(girando) return;
+  
+  // ?? BLOQUEO INMEDIATO DEL BOTÓN
+girando = true;
+btnGirar.disabled = true;
+btnGirar.innerText = "Girando...";
+btnGirar.style.pointerEvents = "none";
+
+let correo = correoInput.value.trim().toLowerCase();
+let identificador = correo; // ahora el identificador es el correo
+
+  // VALIDAR ANTES
+  try {
+    const res = await fetch(FLOW_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ 
+	   correo,
+       identificador,
+	   premio: null,
+       validar: true })
+    });
+
+    /*const text = await res.text();
+    let data = {};
+    try { data = JSON.parse(text); } catch {}*/
+	const data = await res.json();
+
+if (data.status === "bloqueado") {
+  usuarioBloqueado = true;
+
+  alert("Ya participaste"); // ?? se mantiene
+
+  btnGirar.disabled = true;
+  btnGirar.innerText = "Ya participaste";
+
+  document.getElementById("resultado").innerHTML =
+    "<b>Ya participaste ??</b><br><small>Gracias por formar parte de esta iniciativa</small>";
+
+  return;
+}
+
+// ?? NUEVO: TODOS LOS PREMIOS EN 0
+if (data.status === "sin_premios") {
+  document.getElementById("resultado").innerHTML =
+    "<b>&iexcl;La ruleta ha alcanzado el m&aacute;ximo de participaciones en esta oportunidad!</b>";
+
+  btnGirar.disabled = true;
+  btnGirar.innerText = "Ruleta finalizada";
+  return;
+}
+
+  } catch (e) {
+  console.error(e);
+  alert("Error validando participación");
+  girando = false;
+  btnGirar.disabled = false;
+  btnGirar.innerText = "Girar";
+  btnGirar.style.pointerEvents = "auto";
+  return;
+  }
+
+  // GIRAR
+  intentos = 0; // ? reset correcto (solo una vez)
+ 
+
+let total = premios.length;
+let sectorGanador = Math.floor(Math.random() * total);
+let premio = premios[sectorGanador];
+
+// ? USAR FUNCIóN CENTRALIZADA
+let destino = calcularDestino(sectorGanador);
+
+  let inicio = null;
+
+  function animar(timestamp){
+
+    if(!inicio) inicio = timestamp;
+
+    let progreso = timestamp - inicio;
+    let porcentaje = Math.min(progreso / 2000, 1);
+
+    angulo = destino * porcentaje;
+
+    ctx.clearRect(0,0,400,400);
+    ctx.save();
+    ctx.translate(200,200);
+    ctx.rotate(angulo);
+    ctx.translate(-200,-200);
+    dibujarRuleta();
+    ctx.restore();
+
+    if(porcentaje < 1){
+      requestAnimationFrame(animar);
+    } else {
+
+      girando = false;
+	  btnGirar.style.pointerEvents = "auto";
+	  
+	   // ?? OCULTAR BOTÓN
+       btnGirar.style.display = "none";
+
+      confetti({ particleCount: 150, spread: 90 });
+
+      //document.getElementById("resultado").innerText = "?? " + premio;
+	  let mensajeExtra = mensajesPremios[premio] || "Sin mensaje asignado";
+
+	document.getElementById("resultado").innerHTML =
+"<b>" + premio + "</b><br><small>" + mensajeExtra + "</small>";
+
+      // GUARDAR RESULTADO
+      fetch(FLOW_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          correo,
+          premio,
+          identificador,
+          validar: false
+        })
+      })
+	  .then(res => res.json())
+.then(data => {
+
+  console.log("Respuesta flujo:", data);
+
+// ?? NUEVO: TODOS LOS PREMIOS EN 0 (MUY IMPORTANTE)
+if (data.status === "sin_premios") {
+  document.getElementById("resultado").innerHTML =
+    "<b>&iexcl;La ruleta ha alcanzado el m&aacute;ximo de participaciones en esta oportunidad!</b>";
+
+  btnGirar.disabled = true;
+  btnGirar.innerText = "Ruleta finalizada";
+  return;
+}
+
+  // ?? PREMIO AGOTADO
+if (data.status === "agotado") {
+
+  intentos++;
+
+  console.log("Intento:", intentos);
+
+  if (intentos >= 5) {
+    document.getElementById("resultado").innerHTML =
+      "<b>&iexcl;La ruleta ha alcanzado el m&aacute;ximo de participaciones en esta oportunidad!</b>";
+
+    btnGirar.disabled = true;
+    btnGirar.innerText = "Ruleta finalizada";
+    return;
+  }
+
+  document.getElementById("resultado").innerHTML =
+    "Premio agotado, Buscando otro premio disponible...";
+
+  // ?? REINTENTO CONTROLADO (SIN volver a validar usuario)
+  setTimeout(() => {
+
+    let total = premios.length;
+    let nuevoSector = Math.floor(Math.random() * total);
+    let nuevoPremio = premios[nuevoSector];
+
+    fetch(FLOW_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        correo,
+        premio: nuevoPremio,
+        identificador,
+        validar: false
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+
+      if (data.status === "sin_premios") {
+        document.getElementById("resultado").innerHTML =
+          "<b>&iexcl;La ruleta ha alcanzado el m&aacute;ximo de participaciones en esta oportunidad!</b>";
+
+        btnGirar.disabled = true;
+        btnGirar.innerText = "Ruleta finalizada";
+        return;
+      }
+
+      if (data.status === "agotado") {
+        // ?? vuelve a entrar aquí sin reiniciar intentos
+        return girar(); // ahora sí controlado
+      }
+
+      // ? premio válido
+let mensajeExtra = mensajesPremios[nuevoPremio] || "";
+
+// ?? CALCULAR GIRO CORRECTO
+let nuevoDestino = calcularDestino(nuevoSector);
+
+// ?? ANIMAR NUEVAMENTE LA RULETA
+let inicio2 = null;
+
+function animarNuevo(timestamp) {
+
+  if (!inicio2) inicio2 = timestamp;
+
+  let progreso = timestamp - inicio2;
+  let porcentaje = Math.min(progreso / 1500, 1);
+
+  angulo = nuevoDestino * porcentaje;
+
+  ctx.clearRect(0,0,400,400);
+  ctx.save();
+  ctx.translate(200,200);
+  ctx.rotate(angulo);
+  ctx.translate(-200,-200);
+  dibujarRuleta();
+  ctx.restore();
+
+  if (porcentaje < 1) {
+    requestAnimationFrame(animarNuevo);
+  } else {
+    document.getElementById("resultado").innerHTML =
+      "<b>" + nuevoPremio + "</b><br><small>" + mensajeExtra + "</small>";
+  }
+}
+
+requestAnimationFrame(animarNuevo);
+
+    });
+
+  }, 800);
+
+  return;
+}
+
+  // ?? USUARIO BLOQUEADO (doble seguridad)
+  if (data.status === "bloqueado") {
+    alert("Ya participaste");
+    btnGirar.disabled = true;
+    return;
+  }
+
+  // ? PREMIO OK
+  let mensajeExtra = mensajesPremios[premio] || "";
+
+  /*document.getElementById("resultado").innerHTML =
+    "<b>" + premio + "</b><br><small>" + mensajeExtra + "</small>";*/
+
+})
+.catch(err => console.error(err))
+	  ;
+
+    }
+  }
+
+  requestAnimationFrame(animar);
+}
+
+</script>
+
+</body>
+</html>
