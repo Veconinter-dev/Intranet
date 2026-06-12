@@ -23,7 +23,8 @@ body{
     background:white;
     padding:40px;
     border-radius:12px;
-    width:420px;
+    width: 100%;
+    max-width: 100%;
     text-align:center;
     box-shadow:0 4px 20px rgba(0,0,0,0.15);
 }
@@ -53,39 +54,41 @@ Validando acceso corporativo...
 async function validarAcceso(){
 
     try{
+        // Obtener la IP pública del cliente y permitir solo 38.137.234.131
+        const ipResp = await fetch('https://api.ipify.org?format=json');
+        const ipData = await ipResp.json();
+        const clientIp = ipData && ipData.ip ? ipData.ip : null;
 
-        const response = await fetch(
-        "https://TU_API.azurewebsites.net/api/validar");
+        const allowedIps = ['38.137.234.131', '186.167.5.34', '181.225.48.246', '181.161.66.44', '45.234.61.94', '181.161.94.217', '38.137.234.142'];
 
-        const data = await response.json();
-
-        if(data.permitido === true){
-
-            window.location.href =
-            "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=2ua7Zek1GEyZO-4sFst-ZBpeDAsVsrNFl4nY8f6Ey3hUMlNDRVRXT1U5VEYzSTZJRUZSTzE3RExaMi4u";
-
+        let allowed = false;
+        if (clientIp){
+            // clientIp puede venir como "ip1, ip2" — dividir y comparar usando includes()/some()
+            const parts = clientIp.split(',').map(s => s.trim());
+            if (parts.some(ip => allowedIps.includes(ip))) allowed = true;
+            // Alternativamente, para una comprobación por subcadena:
+            // if (allowedIps.some(a => clientIp.includes(a))) allowed = true;
         }
-        else{
 
-            document.getElementById("titulo")
-            .innerHTML = "Acceso denegado";
-
-            document.getElementById("mensaje")
-            .innerHTML =
-            "El check-in solo puede realizarse dentro de la oficina o conectado mediante VPN corporativa.";
-
+        if (allowed){
+            const embedUrl = "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=2ua7Zek1GEyZO-4sFst-ZBpeDAsVsrNFl4nY8f6Ey3hUMlNDRVRXT1U5VEYzSTZJRUZSTzE3RExaMi4u&embed=true";
+            document.getElementById("titulo").innerHTML = "";
+            document.getElementById("mensaje").innerHTML =
+                `<iframe width="100%" height="1078vh" src="${embedUrl}" frameborder="0" marginwidth="0" marginheight="0" style="border: none; max-width:100%;" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen></iframe>`;
+            return;
         }
+
+        // No autorizado
+        document.getElementById("titulo").innerHTML = "Acceso denegado";
+        document.getElementById("mensaje").innerHTML =
+            "El check-in solo puede realizarse dentro de la oficina.";
 
     }
     catch(error){
-
-        document.getElementById("titulo")
-        .innerHTML = "Error";
-
-        document.getElementById("mensaje")
-        .innerHTML =
-        "No fue posible validar el acceso.";
-
+        // En caso de error al obtener la IP, mostrar mensaje de error genérico
+        document.getElementById("titulo").innerHTML = "Error";
+        document.getElementById("mensaje").innerHTML = "No fue posible validar el acceso.";
+        console.error('validarAcceso error:', error);
     }
 
 }
