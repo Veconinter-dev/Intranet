@@ -1,5 +1,5 @@
-hay forma de colocar el boton de Abrir ClickUp mas pequeño y que quede luego de Año - Mes
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -21,45 +21,49 @@ hay forma de colocar el boton de Abrir ClickUp mas pequeño y que quede luego de
       color: #323130;
     }
 
-    .dashboard {
+    .contenedor {
       max-width: 1500px;
       margin: 0 auto;
       padding: 24px;
     }
 
+    /* =========================
+       ENCABEZADO
+       ========================= */
+
     .encabezado {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 24px;
-      gap: 20px;
+      background: white;
+      border-radius: 10px;
+      padding: 24px 28px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     }
 
-    .titulo {
+    .encabezado h1 {
       margin: 0;
       font-size: 28px;
-      font-weight: 700;
+      font-weight: 600;
       color: #323130;
     }
 
     .subtitulo {
-      margin: 5px 0 0;
-      font-size: 14px;
+      margin-top: 6px;
       color: #605e5c;
+      font-size: 14px;
     }
 
     .conexion {
-      display: flex;
+      margin-top: 14px;
+      display: inline-flex;
       align-items: center;
       gap: 8px;
       font-size: 13px;
-      color: #605e5c;
-      white-space: nowrap;
+      font-weight: 500;
     }
 
     .conexion-punto {
-      width: 10px;
-      height: 10px;
+      width: 9px;
+      height: 9px;
       border-radius: 50%;
       background: #107c10;
     }
@@ -68,19 +72,23 @@ hay forma de colocar el boton de Abrir ClickUp mas pequeño y que quede luego de
       background: #d13438;
     }
 
+    /* =========================
+       KPI
+       ========================= */
+
     .kpis {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
-      gap: 14px;
-      margin-bottom: 22px;
+      gap: 16px;
+      margin-bottom: 20px;
     }
 
     .kpi {
       background: white;
       border-radius: 10px;
-      padding: 18px;
+      padding: 20px;
+      min-height: 120px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-      min-height: 110px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -90,7 +98,7 @@ hay forma de colocar el boton de Abrir ClickUp mas pequeño y que quede luego de
       font-size: 13px;
       color: #605e5c;
       margin-bottom: 8px;
-      font-weight: 600;
+      font-weight: 500;
     }
 
     .kpi-valor {
@@ -99,6 +107,8 @@ hay forma de colocar el boton de Abrir ClickUp mas pequeño y que quede luego de
       color: #323130;
       line-height: 1;
     }
+
+    /* Colores según estatus */
 
     .kpi-en-proceso .kpi-valor {
       color: #0d6efd;
@@ -116,22 +126,28 @@ hay forma de colocar el boton de Abrir ClickUp mas pequeño y que quede luego de
       color: #198754;
     }
 
+    /* % avance */
+
     .kpi-avance .kpi-valor {
       color: #107c10;
     }
 
+    /* =========================
+       FILTROS
+       ========================= */
+
     .filtros {
       background: white;
       border-radius: 10px;
-      padding: 18px;
+      padding: 20px;
+      margin-bottom: 20px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-      margin-bottom: 22px;
     }
 
     .filtros-titulo {
-      font-size: 15px;
-      font-weight: 700;
-      margin-bottom: 14px;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 16px;
     }
 
     .filtros-grid {
@@ -148,52 +164,120 @@ hay forma de colocar el boton de Abrir ClickUp mas pequeño y que quede luego de
 
     .filtro label {
       font-size: 12px;
-      color: #605e5c;
       font-weight: 600;
+      color: #605e5c;
     }
 
     .filtro select,
-    .buscador input {
+    .busqueda input {
       width: 100%;
+      height: 38px;
       border: 1px solid #d2d0ce;
       border-radius: 6px;
-      padding: 9px 10px;
+      padding: 0 10px;
+      font-family: inherit;
       font-size: 13px;
       background: white;
-      color: #323130;
       outline: none;
     }
 
     .filtro select:focus,
-    .buscador input:focus {
-      border-color: #0d6efd;
+    .busqueda input:focus {
+      border-color: #0078d4;
+      box-shadow: 0 0 0 1px #0078d4;
     }
+
+    /* =========================
+       GRAFICOS
+       ========================= */
 
     .graficos {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 22px;
-      margin-bottom: 22px;
+      gap: 20px;
+      margin-bottom: 20px;
     }
 
     .grafico-card {
       background: white;
       border-radius: 10px;
-      padding: 18px;
+      padding: 20px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
       min-width: 0;
     }
 
     .grafico-titulo {
-      font-size: 15px;
-      font-weight: 700;
-      margin-bottom: 14px;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #323130;
     }
 
     .grafico-contenedor {
       position: relative;
-      height: 280px;
+      height: 300px;
+      width: 100%;
     }
+
+    /* =========================
+       RANKING RESPONSABLES
+       ========================= */
+
+    .ranking {
+      height: 300px;
+      overflow-y: auto;
+      padding-right: 5px;
+    }
+
+    .ranking-item {
+      margin-bottom: 14px;
+    }
+
+    .ranking-cabecera {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 5px;
+      font-size: 13px;
+    }
+
+    /*
+      CAMBIO:
+      Ahora el nombre puede ocupar todo el espacio disponible
+      y se permite que aparezca completo en varias líneas.
+    */
+
+    .ranking-nombre {
+      font-weight: 500;
+      flex: 1;
+      min-width: 0;
+      white-space: normal;
+      overflow-wrap: anywhere;
+      word-break: normal;
+      line-height: 1.3;
+    }
+
+    .ranking-cantidad {
+      flex-shrink: 0;
+      font-weight: 700;
+      color: #323130;
+    }
+
+    .ranking-barra {
+      height: 8px;
+      background: #edebe9;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .ranking-barra-fill {
+      height: 100%;
+      background: #0d6efd;
+      border-radius: 5px;
+    }
+
+    /* Prioridad más estrecha */
 
     .grafico-prioridad .grafico-contenedor {
       height: 225px;
@@ -201,55 +285,14 @@ hay forma de colocar el boton de Abrir ClickUp mas pequeño y que quede luego de
       margin: 0 auto;
     }
 
-    .ranking {
-      height: 280px;
-      overflow-y: auto;
-      padding-right: 5px;
-    }
-
-    .ranking-item {
-      margin-bottom: 13px;
-    }
-
-    .ranking-cabecera {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 5px;
-      font-size: 13px;
-    }
-
-    .ranking-nombre {
-      font-weight: 600;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .ranking-numero {
-      font-weight: 700;
-      color: #323130;
-    }
-
-    .ranking-barra {
-      width: 100%;
-      height: 8px;
-      background: #edebe9;
-      border-radius: 5px;
-      overflow: hidden;
-    }
-
-    .ranking-barra-progreso {
-      height: 100%;
-      background: #0d6efd;
-      border-radius: 5px;
-    }
+    /* =========================
+       TABLA
+       ========================= */
 
     .tabla-card {
       background: white;
       border-radius: 10px;
-      padding: 18px;
+      padding: 20px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     }
 
@@ -258,151 +301,149 @@ hay forma de colocar el boton de Abrir ClickUp mas pequeño y que quede luego de
       justify-content: space-between;
       align-items: center;
       gap: 15px;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
 
     .tabla-titulo {
-      font-size: 15px;
-      font-weight: 700;
+      font-size: 16px;
+      font-weight: 600;
     }
 
-    .buscador {
-      width: 280px;
+    .busqueda {
+      width: 300px;
     }
 
     .tabla-wrapper {
-      width: 100%;
       overflow-x: auto;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 1000px;
+      font-size: 13px;
     }
 
     th {
+      background: #f3f2f1;
+      color: #323130;
       text-align: left;
-      padding: 11px 10px;
-      font-size: 12px;
-      color: #605e5c;
-      background: #f8f8f8;
+      padding: 12px 10px;
+      font-weight: 600;
       border-bottom: 1px solid #edebe9;
-      font-weight: 700;
+      white-space: nowrap;
     }
 
     td {
       padding: 11px 10px;
-      font-size: 12px;
       border-bottom: 1px solid #edebe9;
       vertical-align: middle;
     }
 
     tbody tr:hover {
-      background: #f8f9fa;
+      background: #f8f8f8;
     }
 
-    .estado-badge,
-    .prioridad-badge {
+    /* =========================
+       ETIQUETAS
+       ========================= */
+
+    .etiqueta {
       display: inline-block;
-      padding: 5px 8px;
-      border-radius: 12px;
+      padding: 4px 8px;
+      border-radius: 5px;
       font-size: 11px;
       font-weight: 600;
       white-space: nowrap;
     }
 
-    .paginacion {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 15px;
-      gap: 15px;
-    }
-
-    .paginacion-info {
-      font-size: 12px;
-      color: #605e5c;
-    }
-
-    .paginacion-botones {
-      display: flex;
-      gap: 6px;
-    }
-
-    .pagina-btn {
-      border: 1px solid #d2d0ce;
-      background: white;
-      border-radius: 5px;
-      padding: 7px 10px;
-      cursor: pointer;
-      font-size: 12px;
-    }
-
-    .pagina-btn:hover:not(:disabled) {
-      background: #f3f2f1;
-    }
-
-    .pagina-btn:disabled {
-      opacity: 0.5;
-      cursor: default;
-    }
-
-    .pagina-btn.activa {
-      background: #0d6efd;
-      border-color: #0d6efd;
+    .etiqueta-estatus {
       color: white;
     }
 
-    .cargando {
-      text-align: center;
-      padding: 50px 20px;
-      color: #605e5c;
-      font-size: 14px;
+    .etiqueta-prioridad {
+      color: white;
     }
 
-    .error {
+    /* =========================
+       PAGINACION
+       ========================= */
+
+    .paginacion {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .paginacion button {
+      border: 1px solid #d2d0ce;
+      background: white;
+      border-radius: 5px;
+      padding: 7px 12px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 12px;
+    }
+
+    .paginacion button:hover:not(:disabled) {
+      background: #f3f2f1;
+    }
+
+    .paginacion button:disabled {
+      opacity: 0.45;
+      cursor: default;
+    }
+
+    .pagina-info {
+      font-size: 12px;
+      color: #605e5c;
+    }
+
+    /* =========================
+       MENSAJES
+       ========================= */
+
+    .mensaje {
+      background: white;
+      border-radius: 10px;
+      padding: 30px;
       text-align: center;
-      padding: 30px 20px;
+      color: #605e5c;
+    }
+
+    .mensaje.error {
       color: #d13438;
-      font-size: 14px;
     }
 
-    .sin-datos {
-      text-align: center;
-      padding: 35px 20px;
-      color: #605e5c;
-      font-size: 14px;
-    }
+    /* =========================
+       RESPONSIVE
+       ========================= */
 
     @media (max-width: 1200px) {
+
       .kpis {
         grid-template-columns: repeat(3, 1fr);
       }
-    }
 
-    @media (max-width: 900px) {
       .filtros-grid {
         grid-template-columns: repeat(2, 1fr);
       }
+
+    }
+
+    @media (max-width: 900px) {
 
       .graficos {
         grid-template-columns: 1fr;
       }
 
-      .grafico-prioridad .grafico-contenedor {
-        width: 100%;
-      }
     }
 
-    @media (max-width: 650px) {
-      .dashboard {
-        padding: 14px;
-      }
+    @media (max-width: 700px) {
 
-      .encabezado {
-        flex-direction: column;
-        align-items: flex-start;
+      .contenedor {
+        padding: 12px;
       }
 
       .kpis {
@@ -418,740 +459,1361 @@ hay forma de colocar el boton de Abrir ClickUp mas pequeño y que quede luego de
         align-items: stretch;
       }
 
-      .buscador {
+      .busqueda {
         width: 100%;
       }
+
+      .grafico-prioridad .grafico-contenedor {
+        width: 100%;
+      }
+
     }
 
-    @media (max-width: 420px) {
+    @media (max-width: 450px) {
+
       .kpis {
         grid-template-columns: 1fr;
       }
+
+      .encabezado h1 {
+        font-size: 22px;
+      }
+
     }
+
   </style>
+
 </head>
 
 <body>
 
-  <div class="dashboard">
+  <div class="contenedor">
 
-    <div class="encabezado">
-      <div>
-        <h1 class="titulo">Proyectos GPT Roadmap</h1>
-        <p class="subtitulo">Dashboard de seguimiento de proyectos</p>
-      </div>
+```
+<!-- =========================
+     ENCABEZADO
+     ========================= -->
 
-      <div class="conexion" id="conexion">
-        <span class="conexion-punto"></span>
-        <span id="conexionTexto">Conectando...</span>
-      </div>
+<div class="encabezado">
+
+  <h1>Proyectos GPT Roadmap</h1>
+
+  <div class="subtitulo">
+    Dashboard de seguimiento de proyectos
+  </div>
+
+  <div class="conexion" id="estadoConexion">
+
+    <span class="conexion-punto"></span>
+
+    <span id="textoConexion">
+      Conectando...
+    </span>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     KPI
+     ========================= -->
+
+<div class="kpis">
+
+  <!-- TOTAL -->
+
+  <div class="kpi">
+
+    <div class="kpi-titulo">
+      Total de proyectos
     </div>
 
-    <div class="kpis">
+    <div class="kpi-valor" id="kpiTotal">
+      0
+    </div>
 
-      <div class="kpi">
-        <div class="kpi-titulo">Total de proyectos</div>
-        <div class="kpi-valor" id="kpiTotal">0</div>
-      </div>
+  </div>
 
-      <div class="kpi kpi-en-proceso">
-        <div class="kpi-titulo">En proceso</div>
-        <div class="kpi-valor" id="kpiEnProceso">0</div>
-      </div>
 
-      <div class="kpi kpi-in-review-qa">
-        <div class="kpi-titulo">In review QA</div>
-        <div class="kpi-valor" id="kpiInReviewQA">0</div>
-      </div>
+  <!-- EN PROCESO -->
 
-      <div class="kpi kpi-completados">
-        <div class="kpi-titulo">Completados</div>
-        <div class="kpi-valor" id="kpiCompletados">0</div>
-      </div>
+  <div class="kpi kpi-en-proceso">
 
-      <div class="kpi kpi-cerrados">
-        <div class="kpi-titulo">Cerrados</div>
-        <div class="kpi-valor" id="kpiCerrados">0</div>
-      </div>
+    <div class="kpi-titulo">
+      En proceso
+    </div>
 
-      <div class="kpi kpi-avance">
-        <div class="kpi-titulo">% avance</div>
-        <div class="kpi-valor" id="kpiAvance">0%</div>
-      </div>
+    <div class="kpi-valor" id="kpiEnProceso">
+      0
+    </div>
+
+  </div>
+
+
+  <!-- IN REVIEW QA -->
+
+  <div class="kpi kpi-in-review-qa">
+
+    <div class="kpi-titulo">
+      In review QA
+    </div>
+
+    <div class="kpi-valor" id="kpiInReviewQA">
+      0
+    </div>
+
+  </div>
+
+
+  <!-- COMPLETADOS -->
+
+  <div class="kpi kpi-completados">
+
+    <div class="kpi-titulo">
+      Completados
+    </div>
+
+    <div class="kpi-valor" id="kpiCompletados">
+      0
+    </div>
+
+  </div>
+
+
+  <!-- CERRADOS -->
+
+  <div class="kpi kpi-cerrados">
+
+    <div class="kpi-titulo">
+      Cerrados
+    </div>
+
+    <div class="kpi-valor" id="kpiCerrados">
+      0
+    </div>
+
+  </div>
+
+
+  <!-- % AVANCE -->
+
+  <div class="kpi kpi-avance">
+
+    <div class="kpi-titulo">
+      % avance
+    </div>
+
+    <div class="kpi-valor" id="kpiAvance">
+      0%
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     FILTROS
+     ========================= -->
+
+<div class="filtros">
+
+  <div class="filtros-titulo">
+    Filtros
+  </div>
+
+  <div class="filtros-grid">
+
+    <div class="filtro">
+
+      <label for="filtroPeriodo">
+        Periodo
+      </label>
+
+      <select
+        id="filtroPeriodo"
+        onchange="aplicarFiltros()"
+      >
+
+        <option value="">
+          Todos
+        </option>
+
+      </select>
 
     </div>
 
-    <div class="filtros">
 
-      <div class="filtros-titulo">Filtros</div>
+    <div class="filtro">
 
-      <div class="filtros-grid">
+      <label for="filtroEstatus">
+        Estatus
+      </label>
 
-        <div class="filtro">
-          <label for="filtroPeriodo">Periodo</label>
-          <select id="filtroPeriodo" onchange="aplicarFiltros()">
-            <option value="">Todos</option>
-          </select>
-        </div>
+      <select
+        id="filtroEstatus"
+        onchange="aplicarFiltros()"
+      >
 
-        <div class="filtro">
-          <label for="filtroEstatus">Estatus</label>
-          <select id="filtroEstatus" onchange="aplicarFiltros()">
-            <option value="">Todos</option>
-          </select>
-        </div>
+        <option value="">
+          Todos
+        </option>
 
-        <div class="filtro">
-          <label for="filtroResponsable">Responsable</label>
-          <select id="filtroResponsable" onchange="aplicarFiltros()">
-            <option value="">Todos</option>
-          </select>
-        </div>
-
-        <div class="filtro">
-          <label for="filtroPrioridad">Prioridad</label>
-          <select id="filtroPrioridad" onchange="aplicarFiltros()">
-            <option value="">Todas</option>
-          </select>
-        </div>
-
-      </div>
+      </select>
 
     </div>
 
-    <div class="graficos">
 
-      <div class="grafico-card">
-        <div class="grafico-titulo">Distribución por estatus</div>
-        <div class="grafico-contenedor">
-          <canvas id="graficoEstatus"></canvas>
-        </div>
-      </div>
+    <div class="filtro">
 
-      <div class="grafico-card">
-        <div class="grafico-titulo">Evolución mensual de proyectos</div>
-        <div class="grafico-contenedor">
-          <canvas id="graficoMensual"></canvas>
-        </div>
-      </div>
+      <label for="filtroResponsable">
+        Responsable
+      </label>
 
-      <div class="grafico-card">
-        <div class="grafico-titulo">Asignados por proyectos</div>
-        <div class="ranking" id="rankingResponsables"></div>
-      </div>
+      <select
+        id="filtroResponsable"
+        onchange="aplicarFiltros()"
+      >
 
-      <div class="grafico-card grafico-prioridad">
-        <div class="grafico-titulo">Proyectos por prioridad</div>
-        <div class="grafico-contenedor">
-          <canvas id="graficoPrioridad"></canvas>
-        </div>
-      </div>
+        <option value="">
+          Todos
+        </option>
+
+      </select>
 
     </div>
 
-    <div class="tabla-card">
 
-      <div class="tabla-cabecera">
-        <div class="tabla-titulo">Detalle de proyectos</div>
+    <div class="filtro">
 
-        <div class="buscador">
-          <input
-            type="text"
-            id="busqueda"
-            placeholder="Buscar proyecto..."
-            oninput="aplicarFiltros()"
-          >
-        </div>
-      </div>
+      <label for="filtroPrioridad">
+        Prioridad
+      </label>
 
-      <div class="tabla-wrapper">
+      <select
+        id="filtroPrioridad"
+        onchange="aplicarFiltros()"
+      >
 
-        <table>
+        <option value="">
+          Todas
+        </option>
 
-          <thead>
-            <tr>
-              <th>Código</th>
-              <th>Proyecto</th>
-              <th>URL</th>
-              <th>Estado</th>
-              <th>Responsable</th>
-              <th>Fecha Creación</th>
-              <th>Prioridad</th>
-              <th>Año - Mes</th>
-            </tr>
-          </thead>
+      </select>
 
-          <tbody id="tablaBody">
-            <tr>
-              <td colspan="8">
-                <div class="cargando">Cargando información...</div>
-              </td>
-            </tr>
-          </tbody>
+    </div>
 
-        </table>
+  </div>
 
-      </div>
+</div>
 
-      <div class="paginacion">
 
-        <div class="paginacion-info" id="paginacionInfo">
-          0 registros
-        </div>
+<!-- =========================
+     GRAFICOS
+     ========================= -->
 
-        <div class="paginacion-botones">
+<div class="graficos">
 
-          <button
-            class="pagina-btn"
-            id="btnAnterior"
-            onclick="paginaAnterior()"
-          >
-            Anterior
-          </button>
 
-          <div id="numerosPagina"></div>
+  <!-- DISTRIBUCION POR ESTATUS -->
 
-          <button
-            class="pagina-btn"
-            id="btnSiguiente"
-            onclick="paginaSiguiente()"
-          >
-            Siguiente
-          </button>
+  <div class="grafico-card">
 
-        </div>
+    <div class="grafico-titulo">
+      Distribución por estatus
+    </div>
 
-      </div>
+    <div class="grafico-contenedor">
+
+      <canvas id="graficoEstatus"></canvas>
 
     </div>
 
   </div>
 
 
+  <!-- EVOLUCION MENSUAL -->
+
+  <div class="grafico-card">
+
+    <div class="grafico-titulo">
+      Evolución mensual de proyectos
+    </div>
+
+    <div class="grafico-contenedor">
+
+      <canvas id="graficoMensual"></canvas>
+
+    </div>
+
+  </div>
+
+
+  <!-- ASIGNADOS POR PROYECTOS -->
+
+  <div class="grafico-card">
+
+    <div class="grafico-titulo">
+      Asignados por proyectos
+    </div>
+
+    <div
+      class="ranking"
+      id="rankingResponsables"
+    ></div>
+
+  </div>
+
+
+  <!-- PRIORIDAD -->
+
+  <div class="grafico-card grafico-prioridad">
+
+    <div class="grafico-titulo">
+      Proyectos por prioridad
+    </div>
+
+    <div class="grafico-contenedor">
+
+      <canvas id="graficoPrioridad"></canvas>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     TABLA
+     ========================= -->
+
+<div class="tabla-card">
+
+  <div class="tabla-cabecera">
+
+    <div class="tabla-titulo">
+      Detalle de proyectos
+    </div>
+
+    <div class="busqueda">
+
+      <input
+        type="text"
+        id="busqueda"
+        placeholder="Buscar proyecto..."
+        oninput="aplicarFiltros()"
+      >
+
+    </div>
+
+  </div>
+
+
+  <div class="tabla-wrapper">
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th>
+            Código
+          </th>
+
+          <th>
+            Proyecto
+          </th>
+
+          <th>
+            Estado
+          </th>
+
+          <th>
+            Estatus
+          </th>
+
+          <th>
+            Responsable
+          </th>
+
+          <th>
+            Prioridad
+          </th>
+
+          <th>
+            Fecha creación
+          </th>
+
+          <th>
+            Fecha cierre
+          </th>
+
+        </tr>
+
+      </thead>
+
+      <tbody id="tablaProyectos"></tbody>
+
+    </table>
+
+  </div>
+
+
+  <div class="paginacion">
+
+    <button
+      id="btnAnterior"
+      onclick="paginaAnterior()"
+    >
+      Anterior
+    </button>
+
+    <span
+      class="pagina-info"
+      id="paginaInfo"
+    >
+      Página 1
+    </span>
+
+    <button
+      id="btnSiguiente"
+      onclick="paginaSiguiente()"
+    >
+      Siguiente
+    </button>
+
+  </div>
+
+</div>
+```
+
+  </div>
+
   <script>
 
-    /*
-      ============================================================
-      CONFIGURACIÓN
-      ============================================================
-    */
+    /* ============================================================
+       CONFIGURACION
+       ============================================================ */
 
     const POWER_AUTOMATE_URL =
       "https://default65bbe6da35e94c18993bee2c16cb7e.64.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/22/workflows/1cbcd22cd245429b859457e6c5ebed46/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=vOQVES3QkJ_ipBGmiHQ1qYRKDuAo8BnixTXhH6meIig";
 
 
-    /*
-      ============================================================
-      VARIABLES GLOBALES
-      ============================================================
-    */
+    /* ============================================================
+       VARIABLES GLOBALES
+       ============================================================ */
 
     let datos = [];
+
     let datosFiltrados = [];
+
     let paginaActual = 1;
+
     const registrosPorPagina = 10;
 
     let chartEstatus = null;
+
     let chartMensual = null;
+
     let chartPrioridad = null;
 
 
-    /*
-      ============================================================
-      COLORES
-      ============================================================
-    */
+    /* ============================================================
+       COLORES EXACTOS
+       ============================================================ */
 
     const COLORES_PRIORIDAD = {
+
       "urgent": "#dc3545",
+
       "high": "#fd7e14",
+
       "normal": "#0d6efd",
+
       "low": "#28a745",
+
       "sin prioridad": "#6c757d"
+
     };
+
 
     const COLORES_ESTATUS = {
+
       "project backlog": "#495057",
+
       "analysis": "#17a2b8",
+
       "pending assignment": "#fd7e14",
+
       "in progress": "#0d6efd",
+
       "asignado a qa": "#20c997",
+
       "in review qa": "#fd7e14",
+
       "in review uat": "#9c27b0",
+
       "post-deployment": "#6f42c1",
+
       "deployment": "#6610f2",
+
       "pre-deployment": "#6610f2",
+
       "blocked": "#dc3545",
+
       "completed": "#28a745",
+
       "closed": "#198754",
+
       "rejected": "#dc3545",
+
       "not applicable": "#6c757d",
+
       "sin estatus": "#6c757d"
+
     };
 
 
-    /*
-      ============================================================
-      FUNCIONES DE NORMALIZACIÓN
-      ============================================================
-    */
+    /* ============================================================
+       NORMALIZACION
+       ============================================================ */
 
     function normalizarTexto(valor) {
 
-      if (valor === null || valor === undefined) {
+      if (
+        valor === null ||
+        valor === undefined
+      ) {
+
         return "";
+
       }
 
       return String(valor)
         .trim()
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "");
+        .toLowerCase();
 
     }
 
 
-    function obtenerColorEstatus(valor) {
+    function textoEstatus(item) {
 
-      const clave = normalizarTexto(valor);
-
-      return COLORES_ESTATUS[clave] ||
-        COLORES_ESTATUS["sin estatus"];
-
-    }
-
-
-    function obtenerColorPrioridad(valor) {
-
-      const clave = normalizarTexto(valor);
-
-      return COLORES_PRIORIDAD[clave] ||
-        COLORES_PRIORIDAD["sin prioridad"];
-
-    }
-
-
-    /*
-      ============================================================
-      RESPONSABLES
-      ============================================================
-    */
-
-    function obtenerResponsables(valor) {
-
-      if (valor === null || valor === undefined) {
-        return [];
-      }
-
-      const texto = String(valor).trim();
-
-      if (!texto) {
-        return [];
-      }
-
-      return texto
-        .split(/[;,\n|]+/)
-        .map(nombre => nombre.trim())
-        .filter(nombre => nombre.length > 0);
-
-    }
-
-
-    function claveResponsable(nombre) {
-
-      return normalizarTexto(nombre);
-
-    }
-
-
-    /*
-      ============================================================
-      ESTATUS PARA KPI
-      ============================================================
-    */
-
-    function contieneEstatus(item, estados) {
-
-      const estatus = normalizarTexto(item.estatus);
-
-      return estados.some(estado =>
-        estatus.includes(normalizarTexto(estado))
+      return normalizarTexto(
+        item.estatus
       );
 
     }
 
 
+    function contieneEstatus(
+      item,
+      valores
+    ) {
+
+      const estatus =
+        textoEstatus(item);
+
+      return valores.some(
+        valor =>
+          estatus.includes(
+            normalizarTexto(valor)
+          )
+      );
+
+    }
+
+
+    /* ============================================================
+       RESPONSABLES
+       ============================================================ */
+
+    /*
+      ÚNICO AJUSTE REALIZADO:
+
+      El campo Responsable puede contener varios nombres
+      separados por coma.
+
+      También se mantienen los separadores que ya funcionaban:
+      ;
+      saltos de línea
+      |
+
+      Ejemplo:
+
+      "Juan Pérez, María López, Carlos Soto, María López"
+
+      se convierte en:
+
+      [
+        "Juan Pérez",
+        "María López",
+        "Carlos Soto",
+        "María López"
+      ]
+
+      Posteriormente el filtro elimina duplicados.
+    */
+
+    function obtenerResponsables(
+      valor
+    ) {
+
+      if (
+        valor === null ||
+        valor === undefined
+      ) {
+
+        return [];
+
+      }
+
+
+      const texto =
+        String(valor).trim();
+
+
+      if (!texto) {
+
+        return [];
+
+      }
+
+
+      return texto
+        .split(/[;,\n|]+/)
+        .map(
+          nombre =>
+            nombre.trim()
+        )
+        .filter(
+          nombre =>
+            nombre.length > 0
+        );
+
+    }
+
+
+    /*
+      Normaliza los nombres para evitar
+      duplicados por mayúsculas/minúsculas.
+    */
+
+    function claveResponsable(
+      nombre
+    ) {
+
+      return normalizarTexto(
+        nombre
+      );
+
+    }
+
+
+    /* ============================================================
+       CLASIFICACION KPI
+       ============================================================ */
+
     function esEnProceso(item) {
 
-      return contieneEstatus(item, [
-        "IN PROGRESS",
-        "PROGRES",
-        "EN PROCESO"
-      ]);
+      return contieneEstatus(
+        item,
+        [
+          "IN PROGRESS",
+          "PROGRES",
+          "EN PROCESO"
+        ]
+      );
 
     }
 
 
     function esInReviewQA(item) {
 
-      return contieneEstatus(item, [
-        "IN REVIEW QA"
-      ]);
+      return contieneEstatus(
+        item,
+        [
+          "IN REVIEW QA"
+        ]
+      );
 
     }
 
 
     function esCompletado(item) {
 
-      return contieneEstatus(item, [
-        "COMPLETED",
-        "COMPLETADO",
-        "COMPLETADOS"
-      ]);
+      return contieneEstatus(
+        item,
+        [
+          "COMPLETED",
+          "COMPLETADO",
+          "COMPLETADOS"
+        ]
+      );
 
     }
 
 
     function esCerrado(item) {
 
-      return contieneEstatus(item, [
-        "CLOSED",
-        "CERRADO",
-        "CERRADOS"
-      ]);
+      return contieneEstatus(
+        item,
+        [
+          "CLOSED",
+          "CERRADO",
+          "CERRADOS"
+        ]
+      );
 
     }
 
 
-    /*
-      ============================================================
-      ESCAPE HTML
-      ============================================================
-    */
+    /* ============================================================
+       COLORES
+       ============================================================ */
+
+    function obtenerColorEstatus(
+      estatus
+    ) {
+
+      const clave =
+        normalizarTexto(
+          estatus
+        );
+
+      return (
+        COLORES_ESTATUS[clave] ||
+        "#6c757d"
+      );
+
+    }
+
+
+    function obtenerColorPrioridad(
+      prioridad
+    ) {
+
+      const clave =
+        normalizarTexto(
+          prioridad
+        );
+
+      return (
+        COLORES_PRIORIDAD[clave] ||
+        "#6c757d"
+      );
+
+    }
+
+
+    /* ============================================================
+       ETIQUETAS
+       ============================================================ */
+
+    function crearEtiquetaEstado(
+      estatus
+    ) {
+
+      const valor =
+        estatus ||
+        "Sin estatus";
+
+
+      const color =
+        obtenerColorEstatus(
+          valor
+        );
+
+
+      return `
+
+        <span
+          class="etiqueta etiqueta-estatus"
+          style="background-color:${color};"
+        >
+          ${escapeHtml(valor)}
+        </span>
+
+      `;
+
+    }
+
+
+    function crearEtiquetaPrioridad(
+      prioridad
+    ) {
+
+      const valor =
+        prioridad ||
+        "Sin prioridad";
+
+
+      const color =
+        obtenerColorPrioridad(
+          valor
+        );
+
+
+      return `
+
+        <span
+          class="etiqueta etiqueta-prioridad"
+          style="background-color:${color};"
+        >
+          ${escapeHtml(valor)}
+        </span>
+
+      `;
+
+    }
+
+
+    /* ============================================================
+       ESCAPE HTML
+       ============================================================ */
 
     function escapeHtml(valor) {
 
-      if (valor === null || valor === undefined) {
+      if (
+        valor === null ||
+        valor === undefined
+      ) {
+
         return "";
+
       }
 
+
       return String(valor)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+
+        .replace(
+          /&/g,
+          "&amp;"
+        )
+
+        .replace(
+          /</g,
+          "&lt;"
+        )
+
+        .replace(
+          />/g,
+          "&gt;"
+        )
+
+        .replace(
+          /"/g,
+          "&quot;"
+        )
+
+        .replace(
+          /'/g,
+          "&#039;"
+        );
 
     }
 
 
-    /*
-      ============================================================
-      CARGAR DATOS DESDE POWER AUTOMATE
-      ============================================================
-    */
+    /* ============================================================
+       FORMATEAR FECHAS
+       ============================================================ */
+
+    function formatearFecha(
+      fecha
+    ) {
+
+      if (!fecha) {
+
+        return "-";
+
+      }
+
+
+      const valor =
+        new Date(fecha);
+
+
+      if (
+        isNaN(
+          valor.getTime()
+        )
+      ) {
+
+        return fecha;
+
+      }
+
+
+      return valor.toLocaleDateString(
+        "es-CL",
+        {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric"
+        }
+      );
+
+    }
+
+
+    /* ============================================================
+       CARGAR DATOS
+       ============================================================ */
 
     async function cargarDatos() {
 
+      const estadoConexion =
+        document.getElementById(
+          "estadoConexion"
+        );
+
+
+      const textoConexion =
+        document.getElementById(
+          "textoConexion"
+        );
+
+
       try {
 
-        actualizarConexion(
-          true,
-          "Conectando..."
-        );
+        const respuesta =
+          await fetch(
+            POWER_AUTOMATE_URL,
+            {
+              method: "POST",
 
-        const respuesta = await fetch(
-          POWER_AUTOMATE_URL,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({})
-          }
-        );
+              headers: {
+                "Content-Type":
+                  "application/json"
+              },
+
+              body:
+                JSON.stringify({})
+            }
+          );
+
 
         if (!respuesta.ok) {
+
           throw new Error(
-            "HTTP " + respuesta.status
+            "HTTP " +
+            respuesta.status
           );
+
         }
 
-        const resultado = await respuesta.json();
 
-        datos = Array.isArray(resultado)
-          ? resultado
-          : (
-              resultado.value ||
-              resultado.body ||
-              []
-            );
+        const resultado =
+          await respuesta.json();
 
-        datos = datos.map(item => ({
 
-          codigo:
-            item.codigo ||
-            "",
+        datos =
+          Array.isArray(
+            resultado
+          )
+            ? resultado
+            : (
+                resultado.value ||
+                resultado.body ||
+                []
+              );
 
-          proyecto:
-            item.proyecto ||
-            "",
 
-          estado:
-            item.estado ||
-            "",
+        datos =
+          datos.map(
+            item => ({
 
-          estatus:
-            item.estatus ||
-            "",
+              codigo:
+                item.codigo ||
+                "",
 
-          responsable:
-            item.responsable ||
-            "",
+              proyecto:
+                item.proyecto ||
+                "",
 
-          fechaCreacion:
-            item.fechaCreacion ||
-            "",
+              estado:
+                item.estado ||
+                "",
 
-          fechaCierre:
-            item.fechaCierre ||
-            "",
+              estatus:
+                item.estatus ||
+                "",
 
-          prioridad:
-            item.prioridad ||
-            "",
+              responsable:
+                item.responsable ||
+                "",
 
-          yearMes:
-            item.yearMes ||
-            "",
+              fechaCreacion:
+                item.fechaCreacion ||
+                "",
 
-          mesYear:
-            item.mesYear ||
-            "",
+              fechaCierre:
+                item.fechaCierre ||
+                "",
 
-          clickUpID:
-            item.clickUpID ||
-            "",
+              prioridad:
+                item.prioridad ||
+                "",
 
-          url:
-            item.url ||
-            ""
+              yearMes:
+                item.yearMes ||
+                "",
 
-        }));
+              mesYear:
+                item.mesYear ||
+                "",
 
-        actualizarConexion(
-          true,
-          "Conexión correcta"
-        );
+              clickUpID:
+                item.clickUpID ||
+                ""
 
-        inicializarFiltros();
+            })
+          );
 
-        aplicarFiltros();
 
-      } catch (error) {
+        datosFiltrados =
+          [
+            ...datos
+          ];
+
+
+        estadoConexion
+          .classList
+          .remove(
+            "error"
+          );
+
+
+        textoConexion.textContent =
+          "Conexión correcta";
+
+
+        document.getElementById(
+          "textoConexion"
+        ).title =
+          "Registros recibidos: " +
+          datos.length;
+
+
+        llenarFiltros();
+
+        actualizarDashboard();
+
+      }
+
+      catch (error) {
 
         console.error(
-          "Error cargando datos:",
           error
         );
 
-        actualizarConexion(
-          false,
-          "Error de conexión"
-        );
+
+        estadoConexion
+          .classList
+          .add(
+            "error"
+          );
+
+
+        textoConexion.textContent =
+          "Error de conexión";
+
 
         document.getElementById(
-          "tablaBody"
-        ).innerHTML = 
+          "tablaProyectos"
+        ).innerHTML = `
+
           <tr>
-            <td colspan="8">
-              <div class="error">
-                No fue posible cargar la información.
-              </div>
+
+            <td
+              colspan="8"
+              style="
+                text-align:center;
+                padding:30px;
+                color:#d13438;
+              "
+            >
+
+              No fue posible obtener los datos.
+
+              <br><br>
+
+              ${escapeHtml(
+                error.message
+              )}
+
             </td>
+
           </tr>
-        ;
+
+        `;
 
       }
 
     }
 
 
-    /*
-      ============================================================
-      ESTADO DE CONEXIÓN
-      ============================================================
-    */
+    /* ============================================================
+       FILTROS
+       ============================================================ */
 
-    function actualizarConexion(
-      correcta,
-      texto
-    ) {
+    function llenarFiltros() {
 
-      const conexion =
-        document.getElementById("conexion");
-
-      const conexionTexto =
-        document.getElementById("conexionTexto");
-
-      conexionTexto.textContent = texto;
-
-      if (correcta) {
-
-        conexion.classList.remove(
-          "error"
+      const periodo =
+        document.getElementById(
+          "filtroPeriodo"
         );
 
-      } else {
-
-        conexion.classList.add(
-          "error"
-        );
-
-      }
-
-    }
-
-
-    /*
-      ============================================================
-      FILTROS
-      ============================================================
-    */
-
-    function inicializarFiltros() {
-
-      const periodos =
-        [...new Set(
-          datos
-            .map(item => item.yearMes)
-            .filter(Boolean)
-        )]
-        .sort();
 
       const estatus =
-        [...new Set(
-          datos
-            .map(item => item.estatus)
-            .filter(Boolean)
-        )]
-        .sort();
-
-      const responsablesMap =
-        new Map();
-
-      datos.forEach(item => {
-
-        obtenerResponsables(
-          item.responsable
-        ).forEach(nombre => {
-
-          const clave =
-            claveResponsable(nombre);
-
-          if (!responsablesMap.has(clave)) {
-
-            responsablesMap.set(
-              clave,
-              nombre
-            );
-
-          }
-
-        });
-
-      });
-
-      const responsables =
-        [...responsablesMap.values()]
-          .sort((a, b) =>
-            a.localeCompare(
-              b,
-              "es",
-              {
-                sensitivity: "base"
-              }
-            )
-          );
-
-      const prioridades =
-        [...new Set(
-          datos
-            .map(item => item.prioridad)
-            .filter(Boolean)
-        )]
-        .sort();
-
-
-      llenarSelect(
-        "filtroPeriodo",
-        periodos
-      );
-
-      llenarSelect(
-        "filtroEstatus",
-        estatus
-      );
-
-      llenarSelect(
-        "filtroResponsable",
-        responsables
-      );
-
-      llenarSelect(
-        "filtroPrioridad",
-        prioridades
-      );
-
-    }
-
-
-    function llenarSelect(
-      id,
-      valores
-    ) {
-
-      const select =
-        document.getElementById(id);
-
-      const valorActual =
-        select.value;
-
-      const primeraOpcion =
-        select.options[0];
-
-      select.innerHTML = "";
-
-      select.appendChild(
-        primeraOpcion
-      );
-
-      valores.forEach(valor => {
-
-        const option =
-          document.createElement(
-            "option"
-          );
-
-        option.value = valor;
-        option.textContent = valor;
-
-        select.appendChild(
-          option
+        document.getElementById(
+          "filtroEstatus"
         );
 
-      });
 
-      if (
-        valores.includes(valorActual)
-      ) {
+      const responsable =
+        document.getElementById(
+          "filtroResponsable"
+        );
 
-        select.value = valorActual;
 
-      }
+      const prioridad =
+        document.getElementById(
+          "filtroPrioridad"
+        );
+
+
+      periodo.innerHTML =
+        '<option value="">Todos</option>';
+
+
+      estatus.innerHTML =
+        '<option value="">Todos</option>';
+
+
+      responsable.innerHTML =
+        '<option value="">Todos</option>';
+
+
+      prioridad.innerHTML =
+        '<option value="">Todas</option>';
+
+
+      /* PERIODOS */
+
+      const periodos =
+        [
+          ...new Set(
+            datos
+              .map(
+                item =>
+                  item.mesYear
+              )
+              .filter(
+                Boolean
+              )
+          )
+        ];
+
+
+      /* ESTATUS */
+
+      const estatuses =
+        [
+          ...new Set(
+            datos
+              .map(
+                item =>
+                  item.estatus
+              )
+              .filter(
+                Boolean
+              )
+          )
+        ];
+
+
+      /*
+        RESPONSABLES
+
+        Se separan los nombres individuales,
+        incluyendo los separados por coma.
+
+        Después se utiliza un Map para que
+        cada persona aparezca una sola vez.
+      */
+
+      const mapaResponsables =
+        new Map();
+
+
+      datos.forEach(
+        item => {
+
+          const responsables =
+            obtenerResponsables(
+              item.responsable
+            );
+
+
+          responsables.forEach(
+            nombre => {
+
+              const clave =
+                claveResponsable(
+                  nombre
+                );
+
+
+              if (
+                !mapaResponsables
+                  .has(clave)
+              ) {
+
+                mapaResponsables.set(
+                  clave,
+                  nombre
+                );
+
+              }
+
+            }
+          );
+
+        }
+      );
+
+
+      const responsables =
+        [
+          ...mapaResponsables.values()
+        ];
+
+
+      /* PRIORIDADES */
+
+      const prioridades =
+        [
+          ...new Set(
+            datos
+              .map(
+                item =>
+                  item.prioridad
+              )
+              .filter(
+                Boolean
+              )
+          )
+        ];
+
+
+      periodos.sort();
+
+      estatuses.sort();
+
+      responsables.sort(
+        (a, b) =>
+          a.localeCompare(
+            b,
+            "es",
+            {
+              sensitivity:
+                "base"
+            }
+          )
+      );
+
+      prioridades.sort();
+
+
+      /* CARGAR PERIODOS */
+
+      periodos.forEach(
+        valor => {
+
+          periodo.innerHTML += `
+
+            <option
+              value="${escapeHtml(valor)}"
+            >
+              ${escapeHtml(valor)}
+            </option>
+
+          `;
+
+        }
+      );
+
+
+      /* CARGAR ESTATUS */
+
+      estatuses.forEach(
+        valor => {
+
+          estatus.innerHTML += `
+
+            <option
+              value="${escapeHtml(valor)}"
+            >
+              ${escapeHtml(valor)}
+            </option>
+
+          `;
+
+        }
+      );
+
+
+      /*
+        CARGAR RESPONSABLES
+
+        Cada nombre aparece como
+        una opción independiente.
+      */
+
+      responsables.forEach(
+        nombre => {
+
+          responsable.innerHTML += `
+
+            <option
+              value="${escapeHtml(nombre)}"
+            >
+              ${escapeHtml(nombre)}
+            </option>
+
+          `;
+
+        }
+      );
+
+
+      /* CARGAR PRIORIDADES */
+
+      prioridades.forEach(
+        valor => {
+
+          prioridad.innerHTML += `
+
+            <option
+              value="${escapeHtml(valor)}"
+            >
+              ${escapeHtml(valor)}
+            </option>
+
+          `;
+
+        }
+      );
 
     }
 
+
+    /* ============================================================
+       APLICAR FILTROS
+       ============================================================ */
 
     function aplicarFiltros() {
 
@@ -1160,20 +1822,24 @@ hay forma de colocar el boton de Abrir ClickUp mas pequeño y que quede luego de
           "filtroPeriodo"
         ).value;
 
+
       const estatus =
         document.getElementById(
           "filtroEstatus"
         ).value;
+
 
       const responsable =
         document.getElementById(
           "filtroResponsable"
         ).value;
 
+
       const prioridad =
         document.getElementById(
           "filtroPrioridad"
         ).value;
+
 
       const busqueda =
         normalizarTexto(
@@ -1184,152 +1850,231 @@ hay forma de colocar el boton de Abrir ClickUp mas pequeño y que quede luego de
 
 
       datosFiltrados =
-        datos.filter(item => {
-
-          const cumplePeriodo =
-            !periodo ||
-            item.yearMes === periodo;
+        datos.filter(
+          item => {
 
 
-          const cumpleEstatus =
-            !estatus ||
-            item.estatus === estatus;
+            /* PERIODO */
+
+            if (
+              periodo &&
+              item.mesYear !==
+                periodo
+            ) {
+
+              return false;
+
+            }
 
 
-          const responsables =
-            obtenerResponsables(
-              item.responsable
-            );
+            /* ESTATUS */
+
+            if (
+              estatus &&
+              item.estatus !==
+                estatus
+            ) {
+
+              return false;
+
+            }
 
 
-          const cumpleResponsable =
-            !responsable ||
-            responsables.some(nombre =>
-              claveResponsable(nombre) ===
-              claveResponsable(responsable)
-            );
+            /*
+              RESPONSABLE
+
+              Ahora comprobamos si la persona
+              seleccionada pertenece al registro,
+              aunque el registro tenga varios
+              responsables separados por coma.
+            */
+
+            if (responsable) {
+
+              const responsables =
+                obtenerResponsables(
+                  item.responsable
+                );
 
 
-          const cumplePrioridad =
-            !prioridad ||
-            item.prioridad === prioridad;
+              const existeResponsable =
+                responsables.some(
+                  nombre =>
+                    claveResponsable(
+                      nombre
+                    ) ===
+                    claveResponsable(
+                      responsable
+                    )
+                );
 
 
-          const textoBusqueda =
-            normalizarTexto(
-              [
-                item.codigo,
-                item.proyecto,
-                item.estado,
-                item.estatus,
-                item.responsable,
-                item.prioridad,
-                item.yearMes
-              ].join(" ")
-            );
+              if (
+                !existeResponsable
+              ) {
+
+                return false;
+
+              }
+
+            }
 
 
-          const cumpleBusqueda =
-            !busqueda ||
-            textoBusqueda.includes(
-              busqueda
-            );
+            /* PRIORIDAD */
+
+            if (
+              prioridad &&
+              item.prioridad !==
+                prioridad
+            ) {
+
+              return false;
+
+            }
 
 
-          return (
-            cumplePeriodo &&
-            cumpleEstatus &&
-            cumpleResponsable &&
-            cumplePrioridad &&
-            cumpleBusqueda
-          );
+            /* BUSQUEDA */
 
-        });
+            if (busqueda) {
+
+              const texto =
+                normalizarTexto(
+
+                  [
+
+                    item.codigo,
+
+                    item.proyecto,
+
+                    item.estado,
+
+                    item.estatus,
+
+                    item.responsable,
+
+                    item.prioridad
+
+                  ].join(" ")
+
+                );
+
+
+              if (
+                !texto.includes(
+                  busqueda
+                )
+              ) {
+
+                return false;
+
+              }
+
+            }
+
+
+            return true;
+
+          }
+        );
 
 
       paginaActual = 1;
 
-      actualizarKPIs(
-        datosFiltrados
-      );
+      actualizarDashboard();
 
-      actualizarGraficos(
-        datosFiltrados
-      );
+    }
+
+
+    /* ============================================================
+       ACTUALIZAR DASHBOARD
+       ============================================================ */
+
+    function actualizarDashboard() {
+
+      actualizarKPIs();
+
+      actualizarGraficos();
 
       actualizarTabla();
 
     }
 
 
-    /*
-      ============================================================
-      KPI
-      ============================================================
-    */
+    /* ============================================================
+       KPI
+       ============================================================ */
 
-    function actualizarKPIs(
-      registros
-    ) {
+    function actualizarKPIs() {
 
       const total =
-        registros.length;
+        datosFiltrados.length;
+
 
       const enProceso =
-        registros.filter(
+        datosFiltrados.filter(
           esEnProceso
         ).length;
 
+
       const inReviewQA =
-        registros.filter(
+        datosFiltrados.filter(
           esInReviewQA
         ).length;
 
+
       const completados =
-        registros.filter(
+        datosFiltrados.filter(
           esCompletado
         ).length;
 
+
       const cerrados =
-        registros.filter(
+        datosFiltrados.filter(
           esCerrado
         ).length;
 
 
       const avance =
         total > 0
+
           ? Math.round(
               (
-                cerrados /
+                completados /
                 total
               ) * 100
             )
+
           : 0;
 
 
       document.getElementById(
         "kpiTotal"
-      ).textContent = total;
+      ).textContent =
+        total;
 
 
       document.getElementById(
         "kpiEnProceso"
-      ).textContent = enProceso;
+      ).textContent =
+        enProceso;
 
 
       document.getElementById(
         "kpiInReviewQA"
-      ).textContent = inReviewQA;
+      ).textContent =
+        inReviewQA;
 
 
       document.getElementById(
         "kpiCompletados"
-      ).textContent = completados;
+      ).textContent =
+        completados;
 
 
       document.getElementById(
         "kpiCerrados"
-      ).textContent = cerrados;
+      ).textContent =
+        cerrados;
 
 
       document.getElementById(
@@ -1340,64 +2085,61 @@ hay forma de colocar el boton de Abrir ClickUp mas pequeño y que quede luego de
     }
 
 
-    /*
-      ============================================================
-      GRÁFICOS
-      ============================================================
-    */
+    /* ============================================================
+       GRAFICOS
+       ============================================================ */
 
-    function actualizarGraficos(
-      registros
-    ) {
+    function actualizarGraficos() {
 
-      actualizarGraficoEstatus(
-        registros
-      );
+      crearGraficoEstatus();
 
-      actualizarGraficoMensual(
-        registros
-      );
+      crearGraficoMensual();
 
-      actualizarRankingResponsables(
-        registros
-      );
+      crearRankingResponsables();
 
-      actualizarGraficoPrioridad(
-        registros
-      );
+      crearGraficoPrioridad();
 
     }
 
 
-    /*
-      ============================================================
-      GRÁFICO ESTATUS
-      ============================================================
-    */
+    /* ============================================================
+       GRAFICO ESTATUS
+       ============================================================ */
 
-    function actualizarGraficoEstatus(
-      registros
-    ) {
+    function crearGraficoEstatus() {
 
       const conteo = {};
 
-      registros.forEach(item => {
 
-        const estatus =
-          item.estatus ||
-          "Sin estatus";
+      datosFiltrados.forEach(
+        item => {
 
-        conteo[estatus] =
-          (conteo[estatus] || 0) + 1;
+          const estatus =
+            item.estatus ||
+            "Sin estatus";
 
-      });
+
+          conteo[estatus] =
+            (
+              conteo[estatus] ||
+              0
+            ) + 1;
+
+        }
+      );
 
 
       const etiquetas =
-        Object.keys(conteo);
+        Object.keys(
+          conteo
+        );
+
 
       const valores =
-        Object.values(conteo);
+        Object.values(
+          conteo
+        );
+
 
       const colores =
         etiquetas.map(
@@ -1405,30 +2147,38 @@ hay forma de colocar el boton de Abrir ClickUp mas pequeño y que quede luego de
         );
 
 
-      const contexto =
+      if (chartEstatus) {
+
+        chartEstatus.destroy();
+
+      }
+
+
+      const ctx =
         document.getElementById(
           "graficoEstatus"
         );
 
 
-      if (chartEstatus) {
-        chartEstatus.destroy();
-      }
-
-
       chartEstatus =
         new Chart(
-          contexto,
+          ctx,
           {
-            type: "doughnut",
+
+            type:
+              "doughnut",
 
             data: {
 
-              labels: etiquetas,
+              labels:
+                etiquetas,
 
               datasets: [
+
                 {
-                  data: valores,
+
+                  data:
+                    valores,
 
                   backgroundColor:
                     colores,
@@ -1436,22 +2186,40 @@ hay forma de colocar el boton de Abrir ClickUp mas pequeño y que quede luego de
                   borderColor:
                     "#ffffff",
 
-                  borderWidth: 2
+                  borderWidth:
+                    2
+
                 }
+
               ]
 
             },
 
             options: {
 
-              responsive: true,
+              responsive:
+                true,
 
-              maintainAspectRatio: false,
+              maintainAspectRatio:
+                false,
 
               plugins: {
 
                 legend: {
-                  position: "bottom"
+
+                  position:
+                    "right",
+
+                  labels: {
+
+                    usePointStyle:
+                      true,
+
+                    padding:
+                      12
+
+                  }
+
                 }
 
               }
@@ -1464,93 +2232,129 @@ hay forma de colocar el boton de Abrir ClickUp mas pequeño y que quede luego de
     }
 
 
-    /*
-      ============================================================
-      GRÁFICO MENSUAL
-      ============================================================
-    */
+    /* ============================================================
+       GRAFICO MENSUAL
+       ============================================================ */
 
-    function actualizarGraficoMensual(
-      registros
-    ) {
+    function crearGraficoMensual() {
 
       const conteo = {};
 
-      registros.forEach(item => {
 
-        const periodo =
-          item.mesYear ||
-          item.yearMes ||
-          "Sin fecha";
+      datosFiltrados.forEach(
+        item => {
 
-        conteo[periodo] =
-          (conteo[periodo] || 0) + 1;
+          const periodo =
+            item.mesYear ||
+            item.yearMes ||
+            "Sin fecha";
 
-      });
+
+          conteo[periodo] =
+            (
+              conteo[periodo] ||
+              0
+            ) + 1;
+
+        }
+      );
 
 
       const etiquetas =
-        Object.keys(conteo);
+        Object.keys(
+          conteo
+        ).sort();
+
 
       const valores =
-        Object.values(conteo);
+        etiquetas.map(
+          etiqueta =>
+            conteo[etiqueta]
+        );
 
 
-      const contexto =
+      if (chartMensual) {
+
+        chartMensual.destroy();
+
+      }
+
+
+      const ctx =
         document.getElementById(
           "graficoMensual"
         );
 
 
-      if (chartMensual) {
-        chartMensual.destroy();
-      }
-
-
       chartMensual =
         new Chart(
-          contexto,
+          ctx,
           {
-            type: "line",
+
+            type:
+              "line",
 
             data: {
 
-              labels: etiquetas,
+              labels:
+                etiquetas,
 
               datasets: [
+
                 {
+
                   label:
                     "Proyectos",
 
-                  data: valores,
+                  data:
+                    valores,
 
-                  tension: 0.3,
+                  borderColor:
+                    "#0d6efd",
 
-                  fill: false,
+                  backgroundColor:
+                    "rgba(13,110,253,0.12)",
 
-                  borderWidth: 2,
+                  tension:
+                    0.3,
 
-                  pointRadius: 4,
+                  fill:
+                    true,
 
-                  pointHoverRadius: 6
+                  pointRadius:
+                    4,
+
+                  pointHoverRadius:
+                    6
+
                 }
+
               ]
 
             },
 
             options: {
 
-              responsive: true,
+              responsive:
+                true,
 
-              maintainAspectRatio: false,
+              maintainAspectRatio:
+                false,
 
               scales: {
 
                 y: {
-                  beginAtZero: true,
+
+                  beginAtZero:
+                    true,
+
                   ticks: {
-                    precision: 0
+
+                    precision:
+                      0
+
                   }
+
                 }
 
               },
@@ -1558,7 +2362,10 @@ hay forma de colocar el boton de Abrir ClickUp mas pequeño y que quede luego de
               plugins: {
 
                 legend: {
-                  display: false
+
+                  display:
+                    false
+
                 }
 
               }
@@ -1571,58 +2378,11 @@ hay forma de colocar el boton de Abrir ClickUp mas pequeño y que quede luego de
     }
 
 
-    /*
-      ============================================================
-      RANKING RESPONSABLES
-      ============================================================
-    */
+    /* ============================================================
+       RANKING RESPONSABLES
+       ============================================================ */
 
-    function actualizarRankingResponsables(
-      registros
-    ) {
-
-      const conteo =
-        new Map();
-
-
-      registros.forEach(item => {
-
-        obtenerResponsables(
-          item.responsable
-        ).forEach(nombre => {
-
-          const clave =
-            claveResponsable(nombre);
-
-          if (!conteo.has(clave)) {
-
-            conteo.set(
-              clave,
-              {
-                nombre: nombre,
-                cantidad: 0
-              }
-            );
-
-          }
-
-          conteo.get(
-            clave
-          ).cantidad++;
-
-        });
-
-      });
-
-
-      const ranking =
-        [...conteo.values()]
-          .sort(
-            (a, b) =>
-              b.cantidad -
-              a.cantidad
-          );
-
+    function crearRankingResponsables() {
 
       const contenedor =
         document.getElementById(
@@ -1630,12 +2390,121 @@ hay forma de colocar el boton de Abrir ClickUp mas pequeño y que quede luego de
         );
 
 
-      if (!ranking.length) {
+      const conteo =
+        new Map();
 
-        contenedor.innerHTML =
-          <div class="sin-datos">
-            No hay datos disponibles
-          </div>;
+
+      datosFiltrados.forEach(
+        item => {
+
+          const responsables =
+            obtenerResponsables(
+              item.responsable
+            );
+
+
+          if (
+            responsables.length === 0
+          ) {
+
+            const clave =
+              "sin responsable";
+
+
+            if (
+              !conteo.has(clave)
+            ) {
+
+              conteo.set(
+                clave,
+                {
+                  nombre:
+                    "Sin responsable",
+
+                  cantidad:
+                    0
+                }
+              );
+
+            }
+
+
+            conteo.get(
+              clave
+            ).cantidad++;
+
+
+            return;
+
+          }
+
+
+          responsables.forEach(
+            nombre => {
+
+              const clave =
+                claveResponsable(
+                  nombre
+                );
+
+
+              if (
+                !conteo.has(clave)
+              ) {
+
+                conteo.set(
+                  clave,
+                  {
+                    nombre:
+                      nombre,
+
+                    cantidad:
+                      0
+                  }
+                );
+
+              }
+
+
+              conteo.get(
+                clave
+              ).cantidad++;
+
+            }
+          );
+
+        }
+      );
+
+
+      const ranking =
+        [
+          ...conteo.values()
+        ]
+        .sort(
+          (a, b) =>
+            b.cantidad -
+            a.cantidad
+        );
+
+
+      if (
+        !ranking.length
+      ) {
+
+        contenedor.innerHTML = `
+
+          <div
+            style="
+              text-align:center;
+              padding:40px 10px;
+              color:#605e5c;
+            "
+          >
+            No hay datos disponibles.
+          </div>
+
+        `;
 
         return;
 
@@ -1647,113 +2516,211 @@ hay forma de colocar el boton de Abrir ClickUp mas pequeño y que quede luego de
 
 
       contenedor.innerHTML =
-        ranking
-          .map(item => {
+        ranking.map(
+          ({ nombre, cantidad }) => {
+
 
             const porcentaje =
               maximo > 0
+
                 ? (
-                    item.cantidad /
+                    cantidad /
                     maximo
                   ) * 100
+
                 : 0;
 
-            return 
-              <div class="ranking-item">
 
-                <div class="ranking-cabecera">
+            return `
+
+              <div
+                class="ranking-item"
+              >
+
+                <div
+                  class="ranking-cabecera"
+                >
 
                   <span
                     class="ranking-nombre"
-                    title="${escapeHtml(item.nombre)}"
+                    title="${escapeHtml(nombre)}"
                   >
-                    ${escapeHtml(item.nombre)}
+                    ${escapeHtml(nombre)}
                   </span>
 
-                  <span class="ranking-numero">
-                    ${item.cantidad}
+                  <span
+                    class="ranking-cantidad"
+                  >
+                    ${cantidad}
                   </span>
 
                 </div>
 
-                <div class="ranking-barra">
+
+                <div
+                  class="ranking-barra"
+                >
 
                   <div
-                    class="ranking-barra-progreso"
+                    class="ranking-barra-fill"
                     style="width:${porcentaje}%"
                   ></div>
 
                 </div>
 
               </div>
-            ;
 
-          })
-          .join("");
+            `;
+
+          }
+        ).join("");
 
     }
 
 
-    /*
-      ============================================================
-      GRÁFICO PRIORIDAD
-      ============================================================
-    */
+    /* ============================================================
+       GRAFICO PRIORIDAD
+       ============================================================ */
 
-    function actualizarGraficoPrioridad(
-      registros
-    ) {
+    function crearGraficoPrioridad() {
 
-      const conteo = {};
+      const ordenPrioridad = [
 
-      registros.forEach(item => {
+        "urgent",
 
-        const prioridad =
-          item.prioridad ||
-          "Sin prioridad";
+        "high",
 
-        conteo[prioridad] =
-          (conteo[prioridad] || 0) + 1;
+        "normal",
 
-      });
+        "low",
+
+        "sin prioridad"
+
+      ];
 
 
-      const etiquetas =
-        Object.keys(conteo);
+      const conteo = {
+
+        "urgent":
+          0,
+
+        "high":
+          0,
+
+        "normal":
+          0,
+
+        "low":
+          0,
+
+        "sin prioridad":
+          0
+
+      };
+
+
+      datosFiltrados.forEach(
+        item => {
+
+          const prioridad =
+            normalizarTexto(
+              item.prioridad
+            );
+
+
+          if (
+            Object.prototype.hasOwnProperty.call(
+              conteo,
+              prioridad
+            )
+          ) {
+
+            conteo[
+              prioridad
+            ]++;
+
+          }
+
+          else {
+
+            conteo[
+              "sin prioridad"
+            ]++;
+
+          }
+
+        }
+      );
+
+
+      const etiquetas = [
+
+        "Urgent",
+
+        "High",
+
+        "Normal",
+
+        "Low",
+
+        "Sin prioridad"
+
+      ];
+
 
       const valores =
-        Object.values(conteo);
-
-      const colores =
-        etiquetas.map(
-          obtenerColorPrioridad
+        ordenPrioridad.map(
+          prioridad =>
+            conteo[
+              prioridad
+            ]
         );
 
 
-      const contexto =
+      const colores =
+        ordenPrioridad.map(
+          prioridad =>
+            COLORES_PRIORIDAD[
+              prioridad
+            ]
+        );
+
+
+      if (chartPrioridad) {
+
+        chartPrioridad.destroy();
+
+      }
+
+
+      const ctx =
         document.getElementById(
           "graficoPrioridad"
         );
 
 
-      if (chartPrioridad) {
-        chartPrioridad.destroy();
-      }
-
-
       chartPrioridad =
         new Chart(
-          contexto,
+          ctx,
           {
-            type: "bar",
+
+            type:
+              "bar",
 
             data: {
 
-              labels: etiquetas,
+              labels:
+                etiquetas,
 
               datasets: [
+
                 {
-                  data: valores,
+
+                  label:
+                    "Proyectos",
+
+                  data:
+                    valores,
 
                   backgroundColor:
                     colores,
@@ -1761,29 +2728,41 @@ hay forma de colocar el boton de Abrir ClickUp mas pequeño y que quede luego de
                   borderColor:
                     colores,
 
-                  borderRadius: 5,
+                  borderRadius:
+                    5,
 
-                  barThickness: 28
+                  barThickness:
+                    28
+
                 }
+
               ]
 
             },
 
             options: {
 
-              responsive: true,
+              responsive:
+                true,
 
-              maintainAspectRatio: false,
+              maintainAspectRatio:
+                false,
 
-              indexAxis: "y",
+              indexAxis:
+                "y",
 
               scales: {
 
                 x: {
-                  beginAtZero: true,
+
+                  beginAtZero:
+                    true,
 
                   ticks: {
-                    precision: 0
+
+                    precision:
+                      0
+
                   }
 
                 }
@@ -1793,7 +2772,10 @@ hay forma de colocar el boton de Abrir ClickUp mas pequeño y que quede luego de
               plugins: {
 
                 legend: {
-                  display: false
+
+                  display:
+                    false
+
                 }
 
               }
@@ -1806,44 +2788,24 @@ hay forma de colocar el boton de Abrir ClickUp mas pequeño y que quede luego de
     }
 
 
-    /*
-      ============================================================
-      TABLA
-      ============================================================
-    */
+    /* ============================================================
+       TABLA
+       ============================================================ */
 
     function actualizarTabla() {
 
-      const tbody =
+      const tabla =
         document.getElementById(
-          "tablaBody"
+          "tablaProyectos"
         );
-
-
-      if (!datosFiltrados.length) {
-
-        tbody.innerHTML = 
-          <tr>
-            <td colspan="8">
-              <div class="sin-datos">
-                No hay registros que coincidan con los filtros.
-              </div>
-            </td>
-          </tr>
-        ;
-
-        actualizarPaginacion();
-
-        return;
-
-      }
 
 
       const inicio =
         (
           paginaActual -
           1
-        ) * registrosPorPagina;
+        ) *
+        registrosPorPagina;
 
 
       const fin =
@@ -1851,139 +2813,111 @@ hay forma de colocar el boton de Abrir ClickUp mas pequeño y que quede luego de
         registrosPorPagina;
 
 
-      const pagina =
+      const registros =
         datosFiltrados.slice(
           inicio,
           fin
         );
 
 
-      tbody.innerHTML =
-        pagina
-          .map(item => {
+      if (
+        !registros.length
+      ) {
 
-            const responsables =
-              obtenerResponsables(
-                item.responsable
-              );
+        tabla.innerHTML = `
 
+          <tr>
 
-            const colorEstatus =
-              obtenerColorEstatus(
-                item.estatus
-              );
+            <td
+              colspan="8"
+              style="
+                text-align:center;
+                padding:30px;
+                color:#605e5c;
+              "
+            >
+              No hay proyectos para mostrar.
+            </td>
 
+          </tr>
 
-            const colorPrioridad =
-              obtenerColorPrioridad(
-                item.prioridad
-              );
+        `;
 
+      }
 
-            return 
+      else {
+
+        tabla.innerHTML =
+          registros.map(
+            item => `
 
               <tr>
 
                 <td>
                   ${escapeHtml(
-                    item.codigo || "-"
-                  )}
-                </td>
-
-                <td>
-                  ${escapeHtml(
-                    item.proyecto || "-"
-                  )}
-                </td>
-
-                <td>
-                  ${
-                    item.url
-                      ? 
-                        <a
-                          href="${escapeHtml(item.url)}"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          style="
-                            display:inline-block;
-                            padding:7px 12px;
-                            background:#0d6efd;
-                            color:white;
-                            text-decoration:none;
-                            border-radius:5px;
-                            font-size:12px;
-                            font-weight:600;
-                            white-space:nowrap;
-                          "
-                        >
-                          Abrir ClickUp
-                        </a>
-                      
-                      : "-"
-                  }
-                </td>
-
-                <td>
-
-                  <span
-                    class="estado-badge"
-                    style="
-                      background:${colorEstatus};
-                      color:white;
-                    "
-                  >
-                    ${escapeHtml(
-                      item.estatus ||
-                      "Sin estatus"
-                    )}
-                  </span>
-
-                </td>
-
-                <td>
-                  ${escapeHtml(
-                    responsables.join(", ") ||
+                    item.codigo ||
                     "-"
                   )}
                 </td>
 
+
                 <td>
                   ${escapeHtml(
-                    item.fechaCreacion ||
+                    item.proyecto ||
                     "-"
                   )}
                 </td>
 
-                <td>
-
-                  <span
-                    class="prioridad-badge"
-                    style="
-                      background:${colorPrioridad};
-                      color:white;
-                    "
-                  >
-                    ${escapeHtml(
-                      item.prioridad ||
-                      "Sin prioridad"
-                    )}
-                  </span>
-
-                </td>
 
                 <td>
                   ${escapeHtml(
-                    item.yearMes ||
+                    item.estado ||
                     "-"
+                  )}
+                </td>
+
+
+                <td>
+                  ${crearEtiquetaEstado(
+                    item.estatus
+                  )}
+                </td>
+
+
+                <td>
+                  ${escapeHtml(
+                    item.responsable ||
+                    "-"
+                  )}
+                </td>
+
+
+                <td>
+                  ${crearEtiquetaPrioridad(
+                    item.prioridad
+                  )}
+                </td>
+
+
+                <td>
+                  ${formatearFecha(
+                    item.fechaCreacion
+                  )}
+                </td>
+
+
+                <td>
+                  ${formatearFecha(
+                    item.fechaCierre
                   )}
                 </td>
 
               </tr>
 
-            ;
+            `
+          ).join("");
 
-          })
-          .join("");
+      }
 
 
       actualizarPaginacion();
@@ -1991,50 +2925,26 @@ hay forma de colocar el boton de Abrir ClickUp mas pequeño y que quede luego de
     }
 
 
-    /*
-      ============================================================
-      PAGINACIÓN
-      ============================================================
-    */
+    /* ============================================================
+       PAGINACION
+       ============================================================ */
 
     function actualizarPaginacion() {
 
-      const total =
-        datosFiltrados.length;
-
       const totalPaginas =
-        Math.ceil(
-          total /
-          registrosPorPagina
-        );
-
-
-      const inicio =
-        total === 0
-          ? 0
-          : (
-              (
-                paginaActual -
-                1
-              ) *
-              registrosPorPagina
-            ) + 1;
-
-
-      const fin =
-        Math.min(
-          paginaActual *
-          registrosPorPagina,
-          total
+        Math.max(
+          1,
+          Math.ceil(
+            datosFiltrados.length /
+            registrosPorPagina
+          )
         );
 
 
       document.getElementById(
-        "paginacionInfo"
+        "paginaInfo"
       ).textContent =
-        total === 0
-          ? "0 registros"
-          : ${inicio}-${fin} de ${total} registros;
+        `Página ${paginaActual} de ${totalPaginas}`;
 
 
       document.getElementById(
@@ -2046,83 +2956,17 @@ hay forma de colocar el boton de Abrir ClickUp mas pequeño y que quede luego de
       document.getElementById(
         "btnSiguiente"
       ).disabled =
-        paginaActual >= totalPaginas;
-
-
-      actualizarNumerosPagina(
-        totalPaginas
-      );
-
-    }
-
-
-    function actualizarNumerosPagina(
-      totalPaginas
-    ) {
-
-      const contenedor =
-        document.getElementById(
-          "numerosPagina"
-        );
-
-
-      if (totalPaginas <= 1) {
-
-        contenedor.innerHTML = "";
-
-        return;
-
-      }
-
-
-      let html = "";
-
-
-      for (
-        let i = 1;
-        i <= totalPaginas;
-        i++
-      ) {
-
-        html += 
-
-          <button
-            class="pagina-btn ${
-              i === paginaActual
-                ? "activa"
-                : ""
-            }"
-            onclick="irAPagina(${i})"
-          >
-            ${i}
-          </button>
-
-        ;
-
-      }
-
-
-      contenedor.innerHTML =
-        html;
-
-    }
-
-
-    function irAPagina(
-      pagina
-    ) {
-
-      paginaActual =
-        pagina;
-
-      actualizarTabla();
+        paginaActual >=
+        totalPaginas;
 
     }
 
 
     function paginaAnterior() {
 
-      if (paginaActual > 1) {
+      if (
+        paginaActual > 1
+      ) {
 
         paginaActual--;
 
@@ -2156,11 +3000,9 @@ hay forma de colocar el boton de Abrir ClickUp mas pequeño y que quede luego de
     }
 
 
-    /*
-      ============================================================
-      INICIO
-      ============================================================
-    */
+    /* ============================================================
+       INICIO
+       ============================================================ */
 
     cargarDatos();
 
