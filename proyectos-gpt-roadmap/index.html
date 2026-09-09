@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>Proyectos GPT Roadmap</title>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
   <style>
 
@@ -14,18 +21,33 @@
       box-sizing: border-box;
     }
 
+
     body {
+
       margin: 0;
+
       padding: 18px;
-      font-family: "Segoe UI", Arial, sans-serif;
+
+      font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
       background: #f5f6f8;
+
       color: #242424;
+
     }
 
+
     .contenedor {
+
       max-width: 1500px;
+
       margin: 0 auto;
+
     }
+
 
 
     /* =====================================================
@@ -33,52 +55,92 @@
     ===================================================== */
 
     .encabezado {
+
       background: #ffffff;
+
       border-radius: 12px;
+
       padding: 18px 22px;
+
       margin-bottom: 14px;
-      box-shadow: 0 1px 4px rgba(0,0,0,.08);
+
+      box-shadow:
+        0 1px 4px rgba(0,0,0,.08);
 
       display: flex;
+
       justify-content: space-between;
+
       align-items: center;
+
       gap: 15px;
+
     }
+
 
     .encabezado h1 {
+
       margin: 0 0 4px;
+
       font-size: 25px;
+
       font-weight: 600;
+
     }
+
 
     .subtitulo {
+
       margin: 0;
+
       font-size: 13px;
+
       color: #666;
+
     }
+
 
     .conexion {
+
       display: flex;
+
       align-items: center;
+
       gap: 8px;
+
       font-size: 12px;
+
       white-space: nowrap;
+
     }
+
 
     .indicador {
+
       width: 9px;
+
       height: 9px;
+
       border-radius: 50%;
+
       background: #999;
+
     }
+
 
     .indicador.ok {
+
       background: #107c10;
+
     }
 
+
     .indicador.error {
+
       background: #d13438;
+
     }
+
 
 
     /* =====================================================
@@ -86,39 +148,69 @@
     ===================================================== */
 
     .kpis {
+
       display: grid;
-      grid-template-columns: repeat(7, 1fr);
+
+      grid-template-columns:
+        repeat(7, 1fr);
+
       gap: 10px;
+
       margin-bottom: 14px;
+
     }
+
 
     .kpi {
+
       background: #ffffff;
+
       border-radius: 10px;
+
       padding: 13px 12px;
-      box-shadow: 0 1px 4px rgba(0,0,0,.07);
+
+      box-shadow:
+        0 1px 4px rgba(0,0,0,.07);
+
       min-width: 0;
+
     }
 
+
     .kpi-titulo {
+
       font-size: 11px;
+
       color: #666;
+
       margin-bottom: 6px;
 
       white-space: nowrap;
+
       overflow: hidden;
+
       text-overflow: ellipsis;
+
     }
+
 
     .kpi-valor {
+
       font-size: 25px;
+
       font-weight: 600;
+
       line-height: 1;
+
     }
 
+
     .kpi-avance {
+
       color: #107c10;
+
     }
+
 
 
     /* =====================================================
@@ -126,68 +218,123 @@
     ===================================================== */
 
     .panel {
+
       background: #ffffff;
+
       border-radius: 10px;
+
       padding: 15px;
+
       margin-bottom: 14px;
-      box-shadow: 0 1px 4px rgba(0,0,0,.07);
+
+      box-shadow:
+        0 1px 4px rgba(0,0,0,.07);
+
     }
+
 
     .panel-titulo {
+
       font-size: 14px;
+
       font-weight: 600;
+
       margin-bottom: 10px;
+
     }
+
 
     .filtros {
+
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
       gap: 10px;
+
     }
 
+
     .campo label {
+
       display: block;
+
       font-size: 11px;
+
       color: #666;
+
       margin-bottom: 4px;
+
     }
+
 
     select,
     input {
+
       width: 100%;
+
       border: 1px solid #d1d1d1;
+
       border-radius: 6px;
+
       padding: 8px 9px;
+
       font-family: inherit;
+
       font-size: 12px;
+
       background: #fff;
+
     }
+
 
     select:focus,
     input:focus {
+
       outline: none;
+
       border-color: #0078d4;
+
     }
+
 
     .acciones {
+
       margin-top: 10px;
+
       display: flex;
+
       justify-content: flex-end;
+
     }
+
 
     button {
+
       border: none;
+
       border-radius: 6px;
+
       background: #0078d4;
+
       color: white;
+
       padding: 8px 14px;
+
       cursor: pointer;
+
       font-size: 12px;
+
     }
 
+
     button:hover {
+
       background: #106ebe;
+
     }
+
 
 
     /* =====================================================
@@ -195,121 +342,193 @@
     ===================================================== */
 
     .graficos {
+
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+
+      grid-template-columns:
+        1fr 1fr;
+
       gap: 14px;
+
       margin-bottom: 14px;
+
     }
+
 
     .grafico {
+
       background: #ffffff;
+
       border-radius: 10px;
+
       padding: 14px;
-      box-shadow: 0 1px 4px rgba(0,0,0,.07);
+
+      box-shadow:
+        0 1px 4px rgba(0,0,0,.07);
+
       height: 285px;
+
       min-width: 0;
+
     }
+
 
     .grafico h2 {
+
       font-size: 14px;
+
       font-weight: 600;
+
       margin: 0 0 8px;
+
     }
 
+
     .grafico-contenedor {
+
       position: relative;
+
       height: 225px;
+
     }
+
+
+
+    /* =====================================================
+       DISTRIBUCIÓN POR ESTATUS
+    ===================================================== */
+
+    .grafico-estatus {
+
+      grid-column: 1 / 2;
+
+    }
+
+
+
+    /* =====================================================
+       EVOLUCIÓN MENSUAL
+    ===================================================== */
+
+    .grafico-mensual {
+
+      grid-column: 2 / 3;
+
+    }
+
 
 
     /* =====================================================
        ASIGNADOS POR PROYECTOS
-       70% DEL ANCHO
+       
+       MÁS ESPACIO
     ===================================================== */
 
     .grafico-asignados {
+
       grid-column: 1 / 2;
+
       height: 285px;
+
     }
+
 
     .ranking-asignados {
+
       width: 100%;
-      max-height: 235px;
+
+      height: 235px;
+
       overflow-y: auto;
-      padding-right: 5px;
+
+      padding-right: 6px;
+
     }
 
+
     .asignado-item {
+
       display: grid;
 
-      /*
-        Primera columna:
-        nombre completo
-
-        Segunda columna:
-        barra
-
-        Tercera columna:
-        cantidad
-      */
-
       grid-template-columns:
-        minmax(180px, 250px)
+        minmax(220px, 290px)
         minmax(0, 1fr)
         42px;
 
       align-items: center;
 
-      gap: 12px;
+      gap: 14px;
 
       margin-bottom: 10px;
+
     }
 
+
     .asignado-nombre {
+
       font-size: 12px;
+
       color: #333;
+
       line-height: 1.25;
 
       overflow-wrap: anywhere;
+
       word-break: normal;
+
     }
 
+
     .asignado-barra-fondo {
+
       width: 100%;
-      height: 16px;
+
+      height: 15px;
 
       background: #edf0f2;
 
       border-radius: 10px;
 
       overflow: hidden;
+
     }
 
+
     .asignado-barra {
+
       height: 100%;
 
-      background: #0078d4;
+      background: #8bbce3;
 
       border-radius: 10px;
 
       min-width: 4px;
 
-      transition: width .3s ease;
+      transition:
+        width .3s ease;
+
     }
 
+
     .asignado-cantidad {
+
       font-size: 12px;
+
       font-weight: 600;
 
       text-align: right;
 
       color: #333;
+
     }
 
+
     .sin-asignados {
+
       display: flex;
 
       align-items: center;
+
       justify-content: center;
 
       height: 210px;
@@ -317,22 +536,36 @@
       color: #777;
 
       font-size: 12px;
+
     }
+
 
 
     /* =====================================================
        PRIORIDAD
-       30% DEL ANCHO
+       
+       MÁS ANGOSTO VISUALMENTE
     ===================================================== */
 
     .grafico-prioridad {
+
       grid-column: 2 / 3;
+
       height: 285px;
+
     }
 
+
     .grafico-prioridad .grafico-contenedor {
+
       height: 225px;
+
+      width: 85%;
+
+      margin: 0 auto;
+
     }
+
 
 
     /* =====================================================
@@ -340,18 +573,29 @@
     ===================================================== */
 
     .ranking-asignados::-webkit-scrollbar {
+
       width: 6px;
+
     }
+
 
     .ranking-asignados::-webkit-scrollbar-track {
+
       background: #f1f1f1;
+
       border-radius: 10px;
+
     }
 
+
     .ranking-asignados::-webkit-scrollbar-thumb {
+
       background: #c8c8c8;
+
       border-radius: 10px;
+
     }
+
 
 
     /* =====================================================
@@ -359,101 +603,179 @@
     ===================================================== */
 
     .tabla-panel {
+
       background: #ffffff;
+
       border-radius: 10px;
+
       padding: 14px;
-      box-shadow: 0 1px 4px rgba(0,0,0,.07);
+
+      box-shadow:
+        0 1px 4px rgba(0,0,0,.07);
+
     }
+
 
     .tabla-header {
+
       display: flex;
+
       justify-content: space-between;
+
       align-items: center;
+
       margin-bottom: 9px;
+
       gap: 10px;
+
     }
+
 
     .tabla-header h2 {
+
       margin: 0;
+
       font-size: 14px;
+
       font-weight: 600;
+
     }
+
 
     .registros {
+
       font-size: 11px;
+
       color: #666;
+
     }
+
 
     .tabla-scroll {
+
       overflow-x: auto;
+
     }
+
 
     table {
+
       width: 100%;
+
       border-collapse: collapse;
+
       font-size: 12px;
+
     }
+
 
     th {
+
       background: #f3f3f3;
+
       text-align: left;
+
       font-weight: 600;
+
       padding: 8px;
+
       white-space: nowrap;
+
     }
+
 
     td {
+
       padding: 8px;
-      border-top: 1px solid #eeeeee;
+
+      border-top:
+        1px solid #eeeeee;
+
       vertical-align: middle;
+
     }
 
+
     tr:hover td {
+
       background: #fafafa;
+
     }
+
 
 
     /* =====================================================
-       ESTADOS
+       ESTADOS DE LA TABLA
     ===================================================== */
 
     .estado {
+
       display: inline-block;
+
       padding: 3px 7px;
+
       border-radius: 10px;
+
       font-size: 10px;
+
       white-space: nowrap;
+
     }
+
 
     .estado-en-proceso {
+
       background: #fff4ce;
+
       color: #7a5c00;
+
     }
+
 
     .estado-review {
+
       background: #e8f1fb;
+
       color: #005a9e;
+
     }
+
 
     .estado-qa {
+
       background: #f3e8ff;
+
       color: #6b21a8;
+
     }
+
 
     .estado-completado {
+
       background: #e8f5e9;
+
       color: #107c10;
+
     }
+
 
     .estado-cerrado {
+
       background: #e6e6e6;
+
       color: #333;
+
     }
 
+
     .estado-pendiente {
+
       background: #f5f5f5;
+
       color: #666;
+
     }
+
 
 
     /* =====================================================
@@ -461,40 +783,67 @@
     ===================================================== */
 
     .paginacion {
+
       display: flex;
+
       justify-content: center;
+
       align-items: center;
+
       gap: 8px;
+
       margin-top: 12px;
+
     }
+
 
     .paginacion button {
+
       padding: 6px 10px;
+
       font-size: 11px;
+
     }
 
+
     .pagina-info {
+
       font-size: 11px;
+
       color: #666;
+
     }
+
 
 
     /* =====================================================
-       ESTADO DE CARGA
+       MENSAJE
     ===================================================== */
 
     .mensaje {
+
       background: #ffffff;
+
       border-radius: 10px;
+
       padding: 18px;
+
       margin-bottom: 14px;
+
       font-size: 13px;
-      box-shadow: 0 1px 4px rgba(0,0,0,.07);
+
+      box-shadow:
+        0 1px 4px rgba(0,0,0,.07);
+
     }
 
+
     .oculto {
+
       display: none;
+
     }
+
 
 
     /* =====================================================
@@ -504,7 +853,10 @@
     @media (max-width: 1200px) {
 
       .kpis {
-        grid-template-columns: repeat(4, 1fr);
+
+        grid-template-columns:
+          repeat(4, 1fr);
+
       }
 
     }
@@ -513,22 +865,44 @@
     @media (max-width: 900px) {
 
       .kpis {
-        grid-template-columns: repeat(3, 1fr);
+
+        grid-template-columns:
+          repeat(3, 1fr);
+
       }
+
 
       .graficos {
-        grid-template-columns: 1fr 1fr;
+
+        grid-template-columns:
+          1fr 1fr;
+
       }
+
 
       .filtros {
-        grid-template-columns: repeat(2, 1fr);
+
+        grid-template-columns:
+          repeat(2, 1fr);
+
       }
 
+
       .asignado-item {
+
         grid-template-columns:
-          minmax(150px, 200px)
+          minmax(160px, 220px)
           minmax(0, 1fr)
           40px;
+
+      }
+
+
+      .grafico-prioridad
+      .grafico-contenedor {
+
+        width: 95%;
+
       }
 
     }
@@ -537,75 +911,121 @@
     @media (max-width: 650px) {
 
       body {
+
         padding: 10px;
+
       }
+
 
       .encabezado {
+
         align-items: flex-start;
+
         flex-direction: column;
+
       }
+
 
       .kpis {
-        grid-template-columns: repeat(2, 1fr);
+
+        grid-template-columns:
+          repeat(2, 1fr);
+
       }
+
 
       .graficos {
+
         grid-template-columns: 1fr;
+
       }
+
 
       .filtros {
+
         grid-template-columns: 1fr;
+
       }
+
 
       .grafico {
+
         height: 275px;
+
       }
+
 
       .grafico-contenedor {
+
         height: 215px;
+
       }
 
 
-      /* ASIGNADOS EN MÓVIL */
+      .grafico-estatus,
+      .grafico-mensual,
+      .grafico-asignados,
+      .grafico-prioridad {
+
+        grid-column: auto;
+
+      }
+
 
       .grafico-asignados {
-        grid-column: auto;
-        height: auto;
-        min-height: 280px;
+
+        height: 285px;
+
       }
+
 
       .ranking-asignados {
-        max-height: 245px;
+
+        height: 235px;
+
       }
 
-
-      /* PRIORIDAD EN MÓVIL */
 
       .grafico-prioridad {
-        grid-column: auto;
+
         height: 275px;
+
       }
 
-      .grafico-prioridad .grafico-contenedor {
+
+      .grafico-prioridad
+      .grafico-contenedor {
+
         height: 215px;
+
+        width: 100%;
+
       }
 
 
       .asignado-item {
+
         grid-template-columns:
           125px
           minmax(0, 1fr)
           35px;
 
         gap: 8px;
+
       }
+
 
       .asignado-nombre {
+
         font-size: 11px;
+
       }
 
+
       .asignado-cantidad {
+
         font-size: 11px;
+
       }
 
     }
@@ -614,38 +1034,49 @@
     @media (max-width: 400px) {
 
       .kpis {
+
         grid-template-columns: 1fr;
+
       }
 
+
       .asignado-item {
+
         grid-template-columns:
           105px
           minmax(0, 1fr)
           32px;
+
       }
 
     }
 
   </style>
+
 </head>
+
 
 
 <body>
 
+
 <div class="contenedor">
+
 
 
   <!-- =====================================================
        ENCABEZADO
-  ====================================================== -->
+  ===================================================== -->
 
   <div class="encabezado">
+
 
     <div>
 
       <h1>
         Proyectos GPT Roadmap
       </h1>
+
 
       <p class="subtitulo">
         Dashboard de seguimiento de proyectos
@@ -656,23 +1087,27 @@
 
     <div class="conexion">
 
+
       <span
         id="indicadorConexion"
         class="indicador">
       </span>
 
+
       <span id="estadoConexion">
         Conectando...
       </span>
+
 
     </div>
 
   </div>
 
 
+
   <!-- =====================================================
        MENSAJE
-  ====================================================== -->
+  ===================================================== -->
 
   <div
     id="mensaje"
@@ -683,9 +1118,10 @@
   </div>
 
 
+
   <!-- =====================================================
        KPIs
-  ====================================================== -->
+  ===================================================== -->
 
   <div class="kpis">
 
@@ -797,11 +1233,13 @@
   </div>
 
 
+
   <!-- =====================================================
        FILTROS
-  ====================================================== -->
+  ===================================================== -->
 
   <div class="panel">
+
 
     <div class="panel-titulo">
       Filtros
@@ -892,20 +1330,24 @@
   </div>
 
 
+
   <!-- =====================================================
        GRÁFICOS
-  ====================================================== -->
+  ===================================================== -->
 
   <div class="graficos">
 
 
-    <!-- ESTATUS -->
+    <!-- =================================================
+         DISTRIBUCIÓN POR ESTATUS
+    ================================================== -->
 
-    <div class="grafico">
+    <div class="grafico grafico-estatus">
 
       <h2>
         Distribución por estatus
       </h2>
+
 
       <div class="grafico-contenedor">
 
@@ -916,13 +1358,17 @@
     </div>
 
 
-    <!-- EVOLUCIÓN -->
 
-    <div class="grafico">
+    <!-- =================================================
+         EVOLUCIÓN MENSUAL
+    ================================================== -->
+
+    <div class="grafico grafico-mensual">
 
       <h2>
         Evolución mensual de proyectos
       </h2>
+
 
       <div class="grafico-contenedor">
 
@@ -931,6 +1377,7 @@
       </div>
 
     </div>
+
 
 
     <!-- =================================================
@@ -943,13 +1390,14 @@
         Asignados por proyectos
       </h2>
 
+
       <div
         id="rankingAsignados"
         class="ranking-asignados">
-
       </div>
 
     </div>
+
 
 
     <!-- =================================================
@@ -962,6 +1410,7 @@
         Proyectos por prioridad
       </h2>
 
+
       <div class="grafico-contenedor">
 
         <canvas id="graficoPrioridad"></canvas>
@@ -970,12 +1419,14 @@
 
     </div>
 
+
   </div>
+
 
 
   <!-- =====================================================
        TABLA
-  ====================================================== -->
+  ===================================================== -->
 
   <div class="tabla-panel">
 
@@ -985,6 +1436,7 @@
       <h2>
         Detalle de proyectos
       </h2>
+
 
       <span
         id="registrosMostrados"
@@ -1003,7 +1455,8 @@
         id="busqueda"
         type="text"
         placeholder="Buscar por código, proyecto, estatus o responsable..."
-        oninput="aplicarFiltros">
+        oninput="aplicarFiltros()"
+      >
 
     </div>
 
@@ -1059,25 +1512,34 @@
 
     <div class="paginacion">
 
+
       <button onclick="paginaAnterior()">
         Anterior
       </button>
 
+
       <span
         id="paginaInfo"
         class="pagina-info">
+
         Página 1
+
       </span>
+
 
       <button onclick="paginaSiguiente()">
         Siguiente
       </button>
 
+
     </div>
+
 
   </div>
 
+
 </div>
+
 
 
 <script>
@@ -1087,16 +1549,17 @@
      CONFIGURACIÓN
   ===================================================== */
 
-  /*
-    IMPORTANTE:
-    Mantén aquí exactamente la URL de Power Automate
-    que ya tienes funcionando.
 
-    No necesitas modificar el flujo.
+  /*
+    MANTÉN AQUÍ LA MISMA URL DE POWER AUTOMATE
+    QUE YA ESTÁS UTILIZANDO.
+
+    Por seguridad, no la vuelvo a reproducir aquí.
   */
 
+
   const POWER_AUTOMATE_URL =
-    "https://default65bbe6da35e94c18993bee2c16cb7e.64.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/22/workflows/1cbcd22cd245429b859457e6c5ebed46/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=vOQVES3QkJ_ipBGmiHQ1qYRKDuAo8BnixTXhH6meIig";
+    "PEGAR_AQUI_LA_MISMA_URL_DE_POWER_AUTOMATE";
 
 
   const REGISTROS_POR_PAGINA = 10;
@@ -1118,8 +1581,70 @@
 
 
   /* =====================================================
+     PALETA DE COLORES
+     
+     Basada exactamente en los colores entregados,
+     pero suavizada para visualización.
+  ===================================================== */
+
+
+  const COLORES_PRIORIDAD = {
+
+    "urgent": "#f3a3aa",
+
+    "high": "#f6bd85",
+
+    "normal": "#8fb9e6",
+
+    "low": "#91cfaa",
+
+    "sin prioridad": "#bfc4c8"
+
+  };
+
+
+  const COLORES_ESTATUS = {
+
+    "project backlog": "#9da3a8",
+
+    "analysis": "#82cbd8",
+
+    "pending assignment": "#f5bd83",
+
+    "in progress": "#8fb9e6",
+
+    "asignado a qa": "#91d8c2",
+
+    "in review qa": "#f5bd83",
+
+    "in review uat": "#c39bdf",
+
+    "post-deployment": "#aa8bd0",
+
+    "deployment": "#a887db",
+
+    "pre-deployment": "#a887db",
+
+    "blocked": "#f3a3aa",
+
+    "completed": "#91cfaa",
+
+    "closed": "#82bd99",
+
+    "rejected": "#f3a3aa",
+
+    "not applicable": "#bfc4c8",
+
+    "sin estatus": "#bfc4c8"
+
+  };
+
+
+
+  /* =====================================================
      UTILIDADES
   ===================================================== */
+
 
   function valorSeguro(valor) {
 
@@ -1132,6 +1657,7 @@
 
     }
 
+
     return String(valor).trim();
 
   }
@@ -1141,15 +1667,39 @@
 
     return valorSeguro(valor)
 
-      .replace(/&/g, "&amp;")
+      .replace(
+        /&/g,
+        "&amp;"
+      )
 
-      .replace(/</g, "&lt;")
+      .replace(
+        /</g,
+        "&lt;"
+      )
 
-      .replace(/>/g, "&gt;")
+      .replace(
+        />/g,
+        "&gt;"
+      )
 
-      .replace(/"/g, "&quot;")
+      .replace(
+        /"/g,
+        "&quot;"
+      )
 
-      .replace(/'/g, "&#039;");
+      .replace(
+        /'/g,
+        "&#039;"
+      );
+
+  }
+
+
+  function normalizarTexto(valor) {
+
+    return valorSeguro(valor)
+      .toLowerCase()
+      .trim();
 
   }
 
@@ -1184,6 +1734,7 @@
   /* =====================================================
      CLASIFICACIÓN DE ESTATUS
   ===================================================== */
+
 
   function esEnProceso(item) {
 
@@ -1256,7 +1807,9 @@
      CARGAR DATOS
   ===================================================== */
 
+
   async function cargarDatos() {
+
 
     const mensaje =
       document.getElementById(
@@ -1277,6 +1830,7 @@
 
 
     try {
+
 
       const respuesta =
         await fetch(
@@ -1330,7 +1884,10 @@
       actualizarDashboard();
 
 
-    } catch (error) {
+    }
+
+    catch (error) {
+
 
       console.error(error);
 
@@ -1345,8 +1902,11 @@
 
 
       mensaje.innerHTML =
+
         "<strong>No fue posible cargar los datos.</strong><br>" +
+
         "Verifica que la URL de Power Automate sea correcta " +
+
         "y que el flujo esté funcionando.";
 
     }
@@ -1358,6 +1918,7 @@
   /* =====================================================
      FILTROS
   ===================================================== */
+
 
   function obtenerValoresUnicos(
     campo
@@ -1388,7 +1949,9 @@
   }
 
 
+
   function inicializarFiltros() {
+
 
     const filtroEstatus =
       document.getElementById(
@@ -1485,6 +2048,7 @@
 
   function inicializarFiltroPeriodo() {
 
+
     const filtro =
       document.getElementById(
         "filtroPeriodo"
@@ -1496,6 +2060,7 @@
 
     datos.forEach(
       item => {
+
 
         const clave =
           valorSeguro(
@@ -1521,6 +2086,7 @@
 
 
     const claves =
+
       Object.keys(periodos)
 
         .sort(
@@ -1557,6 +2123,7 @@
 
   function aplicarFiltros() {
 
+
     const periodo =
       document.getElementById(
         "filtroPeriodo"
@@ -1592,6 +2159,7 @@
 
 
     datosFiltrados =
+
       datos.filter(
         item => {
 
@@ -1691,6 +2259,7 @@
 
   function limpiarFiltros() {
 
+
     document.getElementById(
       "filtroPeriodo"
     ).value = "";
@@ -1733,6 +2302,7 @@
      ACTUALIZAR DASHBOARD
   ===================================================== */
 
+
   function actualizarDashboard() {
 
     actualizarKPIs();
@@ -1749,9 +2319,14 @@
 
   /* =====================================================
      KPIs
+     
+     % AVANCE:
+     CERRADOS / TOTAL * 100
   ===================================================== */
 
+
   function actualizarKPIs() {
+
 
     const total =
       datosFiltrados.length;
@@ -1788,13 +2363,14 @@
 
 
     /*
-      EL AVANCE SE CALCULA
-      EXCLUSIVAMENTE CON CERRADOS.
+      IMPORTANTE:
 
-      Fórmula:
+      El avance se calcula
+      SOLO con Cerrados.
 
       Cerrados / Total * 100
     */
+
 
     const avance =
 
@@ -1858,6 +2434,7 @@
      GRÁFICOS
   ===================================================== */
 
+
   function actualizarGraficos() {
 
     crearGraficoEstatus();
@@ -1871,10 +2448,45 @@
 
 
   /* =====================================================
+     OBTENER COLOR DE ESTATUS
+     
+     La clave se busca en minúsculas,
+     igual que la expresión de SharePoint.
+  ===================================================== */
+
+
+  function obtenerColorEstatus(
+    estatus
+  ) {
+
+
+    const clave =
+      normalizarTexto(
+        estatus
+      );
+
+
+    return (
+
+      COLORES_ESTATUS[clave] ||
+
+      COLORES_ESTATUS[
+        "sin estatus"
+      ]
+
+    );
+
+  }
+
+
+
+  /* =====================================================
      DISTRIBUCIÓN POR ESTATUS
   ===================================================== */
 
+
   function crearGraficoEstatus() {
+
 
     const conteo = {};
 
@@ -1882,10 +2494,14 @@
     datosFiltrados.forEach(
       item => {
 
+
         const estatus =
+
           valorSeguro(
             item.estatus
-          ) || "Sin estatus";
+          ) ||
+
+          "Sin estatus";
 
 
         conteo[estatus] =
@@ -1906,6 +2522,27 @@
     }
 
 
+    const etiquetas =
+      Object.keys(
+        conteo
+      );
+
+
+    const valores =
+      Object.values(
+        conteo
+      );
+
+
+    const colores =
+      etiquetas.map(
+        etiqueta =>
+          obtenerColorEstatus(
+            etiqueta
+          )
+      );
+
+
     graficoEstatus =
 
       new Chart(
@@ -1922,9 +2559,7 @@
           data: {
 
             labels:
-              Object.keys(
-                conteo
-              ),
+              etiquetas,
 
 
             datasets: [
@@ -1932,9 +2567,15 @@
               {
 
                 data:
-                  Object.values(
-                    conteo
-                  )
+                  valores,
+
+                backgroundColor:
+                  colores,
+
+                borderColor:
+                  "#ffffff",
+
+                borderWidth: 2
 
               }
 
@@ -1960,7 +2601,13 @@
 
                   font: {
                     size: 10
-                  }
+                  },
+
+                  boxWidth: 12,
+
+                  boxHeight: 12,
+
+                  padding: 8
 
                 }
 
@@ -1982,7 +2629,9 @@
      EVOLUCIÓN MENSUAL
   ===================================================== */
 
+
   function crearGraficoMensual() {
+
 
     const conteo = {};
 
@@ -1991,6 +2640,7 @@
 
     datosFiltrados.forEach(
       item => {
+
 
         const clave =
           valorSeguro(
@@ -2001,11 +2651,15 @@
         const etiqueta =
           valorSeguro(
             item.mesYear
-          ) || clave;
+          ) ||
+
+          clave;
 
 
         if (!clave) {
+
           return;
+
         }
 
 
@@ -2092,7 +2746,17 @@
 
                 tension: 0.3,
 
-                fill: false
+                fill: false,
+
+                borderColor:
+                  "#6fa6d3",
+
+                backgroundColor:
+                  "#6fa6d3",
+
+                pointRadius: 3,
+
+                pointHoverRadius: 5
 
               }
 
@@ -2163,10 +2827,15 @@
   /* =====================================================
      ASIGNADOS POR PROYECTOS
      
-     Ranking visual HTML
+     Ranking visual.
+     
+     Se muestra:
+     NOMBRE COMPLETO | BARRA | CANTIDAD
   ===================================================== */
 
+
   function actualizarAsignados() {
+
 
     const contenedor =
       document.getElementById(
@@ -2180,11 +2849,14 @@
     datosFiltrados.forEach(
       item => {
 
+
         const responsable =
 
           valorSeguro(
             item.responsable
-          ) || "Sin responsable";
+          ) ||
+
+          "Sin responsable";
 
 
         conteo[responsable] =
@@ -2214,6 +2886,7 @@
       ordenado.length === 0
     ) {
 
+
       contenedor.innerHTML =
 
         `
@@ -2221,6 +2894,7 @@
           No hay proyectos para mostrar.
         </div>
         `;
+
 
       return;
 
@@ -2257,6 +2931,7 @@
 
 
         item.innerHTML = `
+
 
           <div
             class="asignado-nombre"
@@ -2298,10 +2973,51 @@
 
 
   /* =====================================================
+     COLOR DE PRIORIDAD
+     
+     Colores originales entregados:
+     
+     Urgent  #dc3545
+     High    #fd7e14
+     Normal  #0d6efd
+     Low     #28a745
+     
+     Se utilizan versiones suavizadas.
+  ===================================================== */
+
+
+  function obtenerColorPrioridad(
+    prioridad
+  ) {
+
+
+    const clave =
+      normalizarTexto(
+        prioridad
+      );
+
+
+    return (
+
+      COLORES_PRIORIDAD[clave] ||
+
+      COLORES_PRIORIDAD[
+        "sin prioridad"
+      ]
+
+    );
+
+  }
+
+
+
+  /* =====================================================
      PRIORIDAD
   ===================================================== */
 
+
   function crearGraficoPrioridad() {
+
 
     const conteo = {};
 
@@ -2309,11 +3025,14 @@
     datosFiltrados.forEach(
       item => {
 
+
         const prioridad =
 
           valorSeguro(
             item.prioridad
-          ) || "Sin prioridad";
+          ) ||
+
+          "Sin prioridad";
 
 
         conteo[prioridad] =
@@ -2334,6 +3053,104 @@
     }
 
 
+    /*
+      Orden lógico:
+
+      Urgent
+      High
+      Normal
+      Low
+      Otros
+    */
+
+
+    const ordenPrioridad = [
+
+      "Urgent",
+
+      "High",
+
+      "Normal",
+
+      "Low"
+
+    ];
+
+
+    const etiquetasOrdenadas = [];
+
+
+    ordenPrioridad.forEach(
+      prioridad => {
+
+
+        const encontrada =
+
+          Object.keys(
+            conteo
+          ).find(
+            valor =>
+              normalizarTexto(
+                valor
+              ) ===
+              normalizarTexto(
+                prioridad
+              )
+          );
+
+
+        if (encontrada) {
+
+          etiquetasOrdenadas.push(
+            encontrada
+          );
+
+        }
+
+      }
+    );
+
+
+    Object.keys(
+      conteo
+    ).forEach(
+      prioridad => {
+
+
+        if (
+          !etiquetasOrdenadas.includes(
+            prioridad
+          )
+        ) {
+
+          etiquetasOrdenadas.push(
+            prioridad
+          );
+
+        }
+
+      }
+    );
+
+
+    const valores =
+
+      etiquetasOrdenadas.map(
+        prioridad =>
+          conteo[prioridad]
+      );
+
+
+    const colores =
+
+      etiquetasOrdenadas.map(
+        prioridad =>
+          obtenerColorPrioridad(
+            prioridad
+          )
+      );
+
+
     graficoPrioridad =
 
       new Chart(
@@ -2350,9 +3167,7 @@
           data: {
 
             labels:
-              Object.keys(
-                conteo
-              ),
+              etiquetasOrdenadas,
 
 
             datasets: [
@@ -2364,9 +3179,25 @@
 
 
                 data:
-                  Object.values(
-                    conteo
-                  )
+                  valores,
+
+
+                backgroundColor:
+                  colores,
+
+
+                borderColor:
+                  colores,
+
+
+                borderWidth: 1,
+
+
+                borderRadius: 5,
+
+
+                barThickness: 28
+
 
               }
 
@@ -2385,7 +3216,9 @@
             plugins: {
 
               legend: {
+
                 display: false
+
               }
 
             },
@@ -2402,7 +3235,9 @@
                   precision: 0,
 
                   font: {
+
                     size: 9
+
                   }
 
                 }
@@ -2415,7 +3250,9 @@
                 ticks: {
 
                   font: {
+
                     size: 9
+
                   }
 
                 }
@@ -2435,12 +3272,14 @@
 
 
   /* =====================================================
-     ESTILO DE ESTATUS
+     ESTILO DE ESTATUS EN TABLA
   ===================================================== */
+
 
   function crearEtiquetaEstado(
     estatus
   ) {
+
 
     const texto =
       valorSeguro(
@@ -2572,7 +3411,9 @@
      TABLA
   ===================================================== */
 
+
   function actualizarTabla() {
+
 
     const tabla =
       document.getElementById(
@@ -2585,12 +3426,14 @@
       (
         paginaActual - 1
       ) *
+
       REGISTROS_POR_PAGINA;
 
 
     const fin =
 
       inicio +
+
       REGISTROS_POR_PAGINA;
 
 
@@ -2608,6 +3451,7 @@
     registros.forEach(
       item => {
 
+
         const fila =
           document.createElement(
             "tr"
@@ -2615,6 +3459,7 @@
 
 
         fila.innerHTML = `
+
 
           <td>
             ${escaparHTML(
@@ -2698,12 +3543,16 @@
      FECHAS
   ===================================================== */
 
+
   function formatearFecha(
     fecha
   ) {
 
+
     if (!fecha) {
+
       return "-";
+
     }
 
 
@@ -2748,7 +3597,9 @@
      PAGINACIÓN
   ===================================================== */
 
+
   function obtenerTotalPaginas() {
+
 
     return Math.max(
 
@@ -2768,6 +3619,7 @@
 
 
   function actualizarPaginacion() {
+
 
     const totalPaginas =
       obtenerTotalPaginas();
@@ -2802,9 +3654,11 @@
 
   function paginaAnterior() {
 
+
     if (
       paginaActual > 1
     ) {
+
 
       paginaActual--;
 
@@ -2818,6 +3672,7 @@
 
   function paginaSiguiente() {
 
+
     const totalPaginas =
       obtenerTotalPaginas();
 
@@ -2826,6 +3681,7 @@
       paginaActual <
       totalPaginas
     ) {
+
 
       paginaActual++;
 
@@ -2841,9 +3697,45 @@
      INICIO
   ===================================================== */
 
+
+  document
+    .getElementById("filtroPeriodo")
+    .addEventListener(
+      "change",
+      aplicarFiltros
+    );
+
+
+  document
+    .getElementById("filtroEstatus")
+    .addEventListener(
+      "change",
+      aplicarFiltros
+    );
+
+
+  document
+    .getElementById("filtroResponsable")
+    .addEventListener(
+      "change",
+      aplicarFiltros
+    );
+
+
+  document
+    .getElementById("filtroPrioridad")
+    .addEventListener(
+      "change",
+      aplicarFiltros
+    );
+
+
   cargarDatos();
+
 
 </script>
 
+
 </body>
+
 </html>
