@@ -127,14 +127,59 @@
                 estadísticas y gráficos de la lista ProyectosGPTRoadmap.
             </p>
 
-            <p>
-                La conexión con Power Automate se configurará en el
-                siguiente paso.
-            </p>
-
         </div>
 
     </div>
+
+    <script>
+
+        /*
+         * URL DEL FLUJO DE POWER AUTOMATE
+         *
+         * Pega aquí la URL que te proporciona
+         * "Cuando se recibe una solicitud HTTP".
+         */
+        const POWER_AUTOMATE_URL = "https://default65bbe6da35e94c18993bee2c16cb7e.64.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/22/workflows/1cbcd22cd245429b859457e6c5ebed46/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=vOQVES3QkJ_ipBGmiHQ1qYRKDuAo8BnixTXhH6meIig";
+
+
+        async function cargarDatos() {
+
+            const conexion = document.getElementById("conexion");
+            const registros = document.getElementById("registros");
+
+            try {
+
+                conexion.textContent = "Conectando...";
+                registros.textContent = "-";
+
+                const respuesta = await fetch(POWER_AUTOMATE_URL, {
+                    method: "POST"
+                });
+
+                if (!respuesta.ok) {
+                    throw new Error("HTTP " + respuesta.status);
+                }
+
+                const datos = await respuesta.json();
+
+                conexion.textContent = "Conexión correcta";
+                registros.textContent = datos.length;
+
+                console.log("Datos recibidos:", datos);
+
+            } catch (error) {
+
+                conexion.textContent = "Error";
+                registros.textContent = "-";
+
+                console.error("Error al conectar con Power Automate:", error);
+            }
+        }
+
+
+        cargarDatos();
+
+    </script>
 
 </body>
 </html>
