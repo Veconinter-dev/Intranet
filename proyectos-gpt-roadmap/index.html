@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 
@@ -420,8 +421,6 @@
 
     /* =====================================================
        ASIGNADOS POR PROYECTOS
-       
-       MÁS ESPACIO
     ===================================================== */
 
     .grafico-asignados {
@@ -543,8 +542,6 @@
 
     /* =====================================================
        PRIORIDAD
-       
-       MÁS ANGOSTO VISUALMENTE
     ===================================================== */
 
     .grafico-prioridad {
@@ -1551,15 +1548,17 @@
 
 
   /*
+    IMPORTANTE:
+
     MANTÉN AQUÍ LA MISMA URL DE POWER AUTOMATE
     QUE YA ESTÁS UTILIZANDO.
 
-    Por seguridad, no la vuelvo a reproducir aquí.
+    No es necesario modificar Power Automate.
   */
 
 
   const POWER_AUTOMATE_URL =
-    "https://default65bbe6da35e94c18993bee2c16cb7e.64.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/22/workflows/1cbcd22cd245429b859457e6c5ebed46/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=vOQVES3QkJ_ipBGmiHQ1qYRKDuAo8BnixTXhH6meIig";
+    "PEGA_AQUI_LA_MISMA_URL_DE_POWER_AUTOMATE";
 
 
   const REGISTROS_POR_PAGINA = 10;
@@ -1583,76 +1582,68 @@
   /* =====================================================
      PALETA DE COLORES
      
-     Basada exactamente en los colores entregados,
-     pero suavizada para visualización.
+     COLORES NÍTIDOS SEGÚN DEFINICIÓN ORIGINAL
   ===================================================== */
 
 
- /* =====================================================
-   PALETA DE COLORES
-     
-   COLORES NÍTIDOS SEGÚN DEFINICIÓN ORIGINAL
-===================================================== */
+  /* =====================================================
+     PRIORIDADES
+  ===================================================== */
+
+  const COLORES_PRIORIDAD = {
+
+    "urgent": "#dc3545",
+
+    "high": "#fd7e14",
+
+    "normal": "#0d6efd",
+
+    "low": "#28a745",
+
+    "sin prioridad": "#6c757d"
+
+  };
 
 
-/* =====================================================
-   PRIORIDADES
-===================================================== */
+  /* =====================================================
+     ESTATUS
+  ===================================================== */
 
-const COLORES_PRIORIDAD = {
+  const COLORES_ESTATUS = {
 
-  "urgent": "#dc3545",
+    "project backlog": "#495057",
 
-  "high": "#fd7e14",
+    "analysis": "#17a2b8",
 
-  "normal": "#0d6efd",
+    "pending assignment": "#fd7e14",
 
-  "low": "#28a745",
+    "in progress": "#0d6efd",
 
-  "sin prioridad": "#6c757d"
+    "asignado a qa": "#20c997",
 
-};
+    "in review qa": "#fd7e14",
 
+    "in review uat": "#9c27b0",
 
-/* =====================================================
-   ESTATUS
-===================================================== */
+    "post-deployment": "#6f42c1",
 
-const COLORES_ESTATUS = {
+    "deployment": "#6610f2",
 
-  "project backlog": "#495057",
+    "pre-deployment": "#6610f2",
 
-  "analysis": "#17a2b8",
+    "blocked": "#dc3545",
 
-  "pending assignment": "#fd7e14",
+    "completed": "#28a745",
 
-  "in progress": "#0d6efd",
+    "closed": "#198754",
 
-  "asignado a qa": "#20c997",
+    "rejected": "#dc3545",
 
-  "in review qa": "#fd7e14",
+    "not applicable": "#6c757d",
 
-  "in review uat": "#9c27b0",
+    "sin estatus": "#6c757d"
 
-  "post-deployment": "#6f42c1",
-
-  "deployment": "#6610f2",
-
-  "pre-deployment": "#6610f2",
-
-  "blocked": "#dc3545",
-
-  "completed": "#28a745",
-
-  "closed": "#198754",
-
-  "rejected": "#dc3545",
-
-  "not applicable": "#6c757d",
-
-  "sin estatus": "#6c757d"
-
-};
+  };
 
 
   /* =====================================================
@@ -1931,12 +1922,90 @@ const COLORES_ESTATUS = {
 
   /* =====================================================
      FILTROS
+     
+     RESPONSABLES SEPARADOS POR COMA
+     
+     Ejemplo:
+     
+     Juan Pérez, María González, Pedro Soto
+     
+     Se convierten en:
+     
+     Juan Pérez
+     María González
+     Pedro Soto
   ===================================================== */
 
 
   function obtenerValoresUnicos(
     campo
   ) {
+
+
+    /*
+      RESPONSABLE:
+
+      Los responsables vienen separados
+      por coma.
+
+      Se devuelve cada persona como
+      una opción independiente.
+    */
+
+    if (campo === "responsable") {
+
+      return [
+
+        ...new Set(
+
+          datos
+
+            .flatMap(
+              item => {
+
+                const texto =
+                  valorSeguro(
+                    item[campo]
+                  );
+
+
+                if (!texto) {
+
+                  return [];
+
+                }
+
+
+                return texto
+
+                  .split(",")
+
+                  .map(
+                    nombre =>
+                      nombre.trim()
+                  )
+
+                  .filter(
+                    nombre =>
+                      nombre !== ""
+                  );
+
+              }
+            )
+
+        )
+
+      ];
+
+    }
+
+
+    /*
+      PARA LOS DEMÁS CAMPOS:
+
+      Se mantiene el comportamiento
+      original.
+    */
 
     return [
 
@@ -2020,7 +2089,16 @@ const COLORES_ESTATUS = {
       "responsable"
     )
 
-      .sort()
+      .sort(
+        (a, b) =>
+          a.localeCompare(
+            b,
+            "es",
+            {
+              sensitivity: "base"
+            }
+          )
+      )
 
       .forEach(
         valor => {
@@ -2196,13 +2274,39 @@ const COLORES_ESTATUS = {
             ) === estatus;
 
 
+          /*
+            RESPONSABLE:
+
+            Ahora se comprueba cada nombre
+            individualmente.
+
+            Ejemplo:
+
+            item.responsable =
+            "Juan Pérez, María González"
+
+            Si el filtro es "Juan Pérez",
+            el proyecto coincide.
+          */
+
           const coincideResponsable =
 
             !responsable ||
 
             valorSeguro(
               item.responsable
-            ) === responsable;
+            )
+
+              .split(",")
+
+              .map(
+                nombre =>
+                  nombre.trim()
+              )
+
+              .includes(
+                responsable
+              );
 
 
           const coincidePrioridad =
@@ -2463,9 +2567,6 @@ const COLORES_ESTATUS = {
 
   /* =====================================================
      OBTENER COLOR DE ESTATUS
-     
-     La clave se busca en minúsculas,
-     igual que la expresión de SharePoint.
   ===================================================== */
 
 
@@ -2842,9 +2943,6 @@ const COLORES_ESTATUS = {
      ASIGNADOS POR PROYECTOS
      
      Ranking visual.
-     
-     Se muestra:
-     NOMBRE COMPLETO | BARRA | CANTIDAD
   ===================================================== */
 
 
@@ -2988,15 +3086,6 @@ const COLORES_ESTATUS = {
 
   /* =====================================================
      COLOR DE PRIORIDAD
-     
-     Colores originales entregados:
-     
-     Urgent  #dc3545
-     High    #fd7e14
-     Normal  #0d6efd
-     Low     #28a745
-     
-     Se utilizan versiones suavizadas.
   ===================================================== */
 
 
@@ -3065,17 +3154,6 @@ const COLORES_ESTATUS = {
       graficoPrioridad.destroy();
 
     }
-
-
-    /*
-      Orden lógico:
-
-      Urgent
-      High
-      Normal
-      Low
-      Otros
-    */
 
 
     const ordenPrioridad = [
@@ -3211,7 +3289,6 @@ const COLORES_ESTATUS = {
 
 
                 barThickness: 28
-
 
               }
 
@@ -3753,3 +3830,4 @@ const COLORES_ESTATUS = {
 </body>
 
 </html>
+```
