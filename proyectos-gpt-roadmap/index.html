@@ -13,72 +13,299 @@
 
         body {
             margin: 0;
-            padding: 40px;
+            padding: 30px;
             font-family: Arial, sans-serif;
             background: #f4f6f8;
             color: #1f2937;
         }
 
         .contenedor {
-            max-width: 900px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
+        .encabezado {
+            margin-bottom: 25px;
+        }
+
         h1 {
-            margin: 0 0 8px 0;
+            margin: 0 0 6px 0;
             font-size: 32px;
         }
 
         .subtitulo {
             color: #6b7280;
-            margin-bottom: 30px;
+            font-size: 15px;
         }
 
-        .tarjetas {
+        .estado-conexion {
+            margin-top: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            background: white;
+            border-radius: 20px;
+            font-size: 13px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .indicador {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #9ca3af;
+        }
+
+        .indicador.ok {
+            background: #22c55e;
+        }
+
+        .indicador.error {
+            background: #ef4444;
+        }
+
+        .kpis {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 18px;
+            margin-bottom: 25px;
         }
 
-        .tarjeta {
+        .kpi {
             background: white;
             border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.07);
         }
 
-        .etiqueta {
+        .kpi-titulo {
             color: #6b7280;
-            font-size: 14px;
+            font-size: 13px;
             margin-bottom: 10px;
         }
 
-        .valor {
+        .kpi-valor {
             font-size: 30px;
             font-weight: bold;
         }
 
-        .descripcion {
-            margin-top: 30px;
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-            color: #4b5563;
+        .kpi-extra {
+            margin-top: 7px;
+            font-size: 12px;
+            color: #6b7280;
         }
 
-        @media (max-width: 600px) {
+        .panel {
+            background: white;
+            border-radius: 12px;
+            padding: 22px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+            margin-bottom: 22px;
+        }
 
-            body {
-                padding: 20px;
+        .panel-titulo {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 18px;
+        }
+
+        .filtros {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .filtro label {
+            display: block;
+            font-size: 12px;
+            color: #6b7280;
+            margin-bottom: 6px;
+        }
+
+        .filtro select,
+        .filtro input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            background: white;
+            font-size: 14px;
+        }
+
+        .boton {
+            margin-top: 20px;
+            padding: 10px 18px;
+            border: 0;
+            border-radius: 8px;
+            background: #1f2937;
+            color: white;
+            cursor: pointer;
+        }
+
+        .boton:hover {
+            opacity: 0.9;
+        }
+
+        .graficos {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+            margin-bottom: 22px;
+        }
+
+        .grafico {
+            min-height: 360px;
+        }
+
+        .grafico-contenedor {
+            position: relative;
+            height: 290px;
+        }
+
+        canvas {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        .tabla-contenedor {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        th {
+            text-align: left;
+            padding: 12px;
+            background: #f9fafb;
+            border-bottom: 1px solid #e5e7eb;
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        tr:hover td {
+            background: #fafafa;
+        }
+
+        .estado {
+            display: inline-block;
+            padding: 5px 9px;
+            border-radius: 15px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .estado-completado {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .estado-progreso {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .estado-pendiente {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .estado-otro {
+            background: #f3f4f6;
+            color: #374151;
+        }
+
+        .sin-datos {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 280px;
+            color: #9ca3af;
+        }
+
+        .paginacion {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 18px;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .paginacion-botones {
+            display: flex;
+            gap: 8px;
+        }
+
+        .paginacion button {
+            padding: 7px 12px;
+            border: 1px solid #d1d5db;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .paginacion button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .cargando {
+            text-align: center;
+            padding: 40px;
+            color: #6b7280;
+        }
+
+        .error {
+            text-align: center;
+            padding: 30px;
+            color: #b91c1c;
+            background: #fef2f2;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 1100px) {
+
+            .kpis {
+                grid-template-columns: repeat(3, 1fr);
             }
 
-            .tarjetas {
+            .filtros {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 750px) {
+
+            body {
+                padding: 18px;
+            }
+
+            .kpis {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .graficos {
                 grid-template-columns: 1fr;
             }
 
-            h1 {
-                font-size: 26px;
+            .filtros {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 450px) {
+
+            .kpis {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -86,7 +313,9 @@
 
 <body>
 
-    <div class="contenedor">
+<div class="contenedor">
+
+    <div class="encabezado">
 
         <h1>Proyectos GPT Roadmap</h1>
 
@@ -94,92 +323,1213 @@
             Dashboard de proyectos
         </div>
 
-        <div class="tarjetas">
+        <div class="estado-conexion">
 
-            <div class="tarjeta">
-                <div class="etiqueta">
-                    Estado de conexión
-                </div>
+            <span id="indicador" class="indicador"></span>
 
-                <div id="conexion" class="valor">
-                    Pendiente
-                </div>
-            </div>
-
-            <div class="tarjeta">
-                <div class="etiqueta">
-                    Registros recibidos
-                </div>
-
-                <div id="registros" class="valor">
-                    -
-                </div>
-            </div>
-
-        </div>
-
-        <div class="descripcion">
-
-            <strong>Prueba inicial</strong>
-
-            <p>
-                Esta página será utilizada posteriormente para mostrar
-                estadísticas y gráficos de la lista ProyectosGPTRoadmap.
-            </p>
+            <span id="conexion">
+                Conectando...
+            </span>
 
         </div>
 
     </div>
 
-    <script>
 
-        /*
-         * URL DEL FLUJO DE POWER AUTOMATE
-         *
-         * Pega aquí la URL que te proporciona
-         * "Cuando se recibe una solicitud HTTP".
-         */
-        const POWER_AUTOMATE_URL = "https://default65bbe6da35e94c18993bee2c16cb7e.64.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/22/workflows/1cbcd22cd245429b859457e6c5ebed46/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=vOQVES3QkJ_ipBGmiHQ1qYRKDuAo8BnixTXhH6meIig";
+    <!-- KPIs -->
+
+    <div class="kpis">
+
+        <div class="kpi">
+
+            <div class="kpi-titulo">
+                Total de proyectos
+            </div>
+
+            <div id="totalProyectos" class="kpi-valor">
+                -
+            </div>
+
+        </div>
 
 
-        async function cargarDatos() {
+        <div class="kpi">
 
-            const conexion = document.getElementById("conexion");
-            const registros = document.getElementById("registros");
+            <div class="kpi-titulo">
+                En progreso
+            </div>
 
-            try {
+            <div id="enProgreso" class="kpi-valor">
+                -
+            </div>
 
-                conexion.textContent = "Conectando...";
-                registros.textContent = "-";
+        </div>
 
-                const respuesta = await fetch(POWER_AUTOMATE_URL, {
-                    method: "POST"
-                });
 
-                if (!respuesta.ok) {
-                    throw new Error("HTTP " + respuesta.status);
-                }
+        <div class="kpi">
 
-                const datos = await respuesta.json();
+            <div class="kpi-titulo">
+                Completados
+            </div>
 
-                conexion.textContent = "Conexión correcta";
-                registros.textContent = datos.length;
+            <div id="completados" class="kpi-valor">
+                -
+            </div>
 
-                console.log("Datos recibidos:", datos);
+        </div>
 
-            } catch (error) {
 
-                conexion.textContent = "Error";
-                registros.textContent = "-";
+        <div class="kpi">
 
-                console.error("Error al conectar con Power Automate:", error);
+            <div class="kpi-titulo">
+                Pendientes
+            </div>
+
+            <div id="pendientes" class="kpi-valor">
+                -
+            </div>
+
+        </div>
+
+
+        <div class="kpi">
+
+            <div class="kpi-titulo">
+                % avance
+            </div>
+
+            <div id="porcentajeAvance" class="kpi-valor">
+                -
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- FILTROS -->
+
+    <div class="panel">
+
+        <div class="panel-titulo">
+            Filtros
+        </div>
+
+        <div class="filtros">
+
+            <div class="filtro">
+
+                <label>Periodo</label>
+
+                <select id="filtroPeriodo">
+                    <option value="">Todos</option>
+                </select>
+
+            </div>
+
+
+            <div class="filtro">
+
+                <label>Estatus</label>
+
+                <select id="filtroEstatus">
+                    <option value="">Todos</option>
+                </select>
+
+            </div>
+
+
+            <div class="filtro">
+
+                <label>Responsable</label>
+
+                <select id="filtroResponsable">
+                    <option value="">Todos</option>
+                </select>
+
+            </div>
+
+
+            <div class="filtro">
+
+                <label>Prioridad</label>
+
+                <select id="filtroPrioridad">
+                    <option value="">Todos</option>
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <button id="limpiarFiltros" class="boton">
+            Limpiar filtros
+        </button>
+
+    </div>
+
+
+    <!-- GRAFICOS -->
+
+    <div class="graficos">
+
+        <div class="panel grafico">
+
+            <div class="panel-titulo">
+                Distribución por estatus
+            </div>
+
+            <div class="grafico-contenedor">
+
+                <canvas id="graficoEstatus"></canvas>
+
+            </div>
+
+        </div>
+
+
+        <div class="panel grafico">
+
+            <div class="panel-titulo">
+                Proyectos por responsable
+            </div>
+
+            <div class="grafico-contenedor">
+
+                <canvas id="graficoResponsable"></canvas>
+
+            </div>
+
+        </div>
+
+
+        <div class="panel grafico">
+
+            <div class="panel-titulo">
+                Proyectos por prioridad
+            </div>
+
+            <div class="grafico-contenedor">
+
+                <canvas id="graficoPrioridad"></canvas>
+
+            </div>
+
+        </div>
+
+
+        <div class="panel grafico">
+
+            <div class="panel-titulo">
+                Evolución mensual
+            </div>
+
+            <div class="grafico-contenedor">
+
+                <canvas id="graficoMensual"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- TABLA -->
+
+    <div class="panel">
+
+        <div class="panel-titulo">
+            Proyectos
+        </div>
+
+        <div class="filtro" style="margin-bottom:18px;">
+
+            <input
+                type="text"
+                id="buscador"
+                placeholder="Buscar por código, proyecto o responsable..."
+            >
+
+        </div>
+
+
+        <div id="tablaContenedor" class="tabla-contenedor">
+
+            <div class="cargando">
+                Cargando proyectos...
+            </div>
+
+        </div>
+
+        <div id="paginacion" class="paginacion"></div>
+
+    </div>
+
+</div>
+
+
+<!-- Chart.js -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script>
+
+    /*
+     * IMPORTANTE:
+     * Conserva aquí la misma URL que ya probaste
+     * y que actualmente devuelve los 56 registros.
+     */
+
+    const POWER_AUTOMATE_URL = "PEGA_AQUI_LA_MISMA_URL_QUE_YA_FUNCIONA";
+
+
+    let datos = [];
+    let datosFiltrados = [];
+
+    let graficos = {};
+
+    let paginaActual = 1;
+
+    const registrosPorPagina = 10;
+
+
+    async function cargarDatos() {
+
+        const conexion = document.getElementById("conexion");
+        const indicador = document.getElementById("indicador");
+
+        try {
+
+            conexion.textContent = "Conectando...";
+
+            const respuesta = await fetch(POWER_AUTOMATE_URL, {
+                method: "POST"
+            });
+
+            if (!respuesta.ok) {
+
+                throw new Error(
+                    "HTTP " + respuesta.status
+                );
+
             }
+
+            datos = await respuesta.json();
+
+            datosFiltrados = [...datos];
+
+            conexion.textContent =
+                "Conexión correcta · " +
+                datos.length +
+                " registros";
+
+            indicador.classList.add("ok");
+
+            inicializarFiltros();
+
+            actualizarDashboard();
+
+        } catch (error) {
+
+            conexion.textContent =
+                "Error de conexión";
+
+            indicador.classList.add("error");
+
+            document.getElementById("tablaContenedor").innerHTML =
+                '<div class="error">' +
+                'No fue posible cargar los datos de Power Automate.' +
+                '</div>';
+
+            console.error(error);
+
+        }
+
+    }
+
+
+    function valorSeguro(valor) {
+
+        if (
+            valor === null ||
+            valor === undefined ||
+            valor === ""
+        ) {
+
+            return "Sin información";
+
+        }
+
+        return String(valor);
+
+    }
+
+
+    function inicializarFiltros() {
+
+        llenarSelect(
+            "filtroPeriodo",
+            datos.map(x => x.mesYear)
+        );
+
+        llenarSelect(
+            "filtroEstatus",
+            datos.map(x => x.estatus)
+        );
+
+        llenarSelect(
+            "filtroResponsable",
+            datos.map(x => x.responsable)
+        );
+
+        llenarSelect(
+            "filtroPrioridad",
+            datos.map(x => x.prioridad)
+        );
+
+    }
+
+
+    function llenarSelect(id, valores) {
+
+        const select =
+            document.getElementById(id);
+
+        const unicos = [
+            ...new Set(
+                valores
+                .map(valorSeguro)
+                .filter(x => x !== "Sin información")
+            )
+        ];
+
+        unicos.sort();
+
+        unicos.forEach(valor => {
+
+            const option =
+                document.createElement("option");
+
+            option.value = valor;
+            option.textContent = valor;
+
+            select.appendChild(option);
+
+        });
+
+    }
+
+
+    function aplicarFiltros() {
+
+        const periodo =
+            document.getElementById("filtroPeriodo").value;
+
+        const estatus =
+            document.getElementById("filtroEstatus").value;
+
+        const responsable =
+            document.getElementById("filtroResponsable").value;
+
+        const prioridad =
+            document.getElementById("filtroPrioridad").value;
+
+        const busqueda =
+            document.getElementById("buscador").value
+            .toLowerCase()
+            .trim();
+
+
+        datosFiltrados = datos.filter(item => {
+
+            const coincidePeriodo =
+                !periodo ||
+                valorSeguro(item.mesYear) === periodo;
+
+            const coincideEstatus =
+                !estatus ||
+                valorSeguro(item.estatus) === estatus;
+
+            const coincideResponsable =
+                !responsable ||
+                valorSeguro(item.responsable) === responsable;
+
+            const coincidePrioridad =
+                !prioridad ||
+                valorSeguro(item.prioridad) === prioridad;
+
+
+            const textoBusqueda = (
+
+                valorSeguro(item.codigo) +
+                " " +
+                valorSeguro(item.proyecto) +
+                " " +
+                valorSeguro(item.responsable)
+
+            ).toLowerCase();
+
+
+            const coincideBusqueda =
+                !busqueda ||
+                textoBusqueda.includes(busqueda);
+
+
+            return (
+                coincidePeriodo &&
+                coincideEstatus &&
+                coincideResponsable &&
+                coincidePrioridad &&
+                coincideBusqueda
+            );
+
+        });
+
+
+        paginaActual = 1;
+
+        actualizarDashboard();
+
+    }
+
+
+    function actualizarDashboard() {
+
+        actualizarKPIs();
+
+        actualizarGraficos();
+
+        actualizarTabla();
+
+    }
+
+
+    function actualizarKPIs() {
+
+        const total =
+            datosFiltrados.length;
+
+
+        const completados =
+            datosFiltrados.filter(
+                x =>
+                    normalizar(x.estatus)
+                    .includes("COMPLET")
+            ).length;
+
+
+        const progreso =
+            datosFiltrados.filter(
+                x =>
+                    normalizar(x.estatus)
+                    .includes("PROGRESS") ||
+                    normalizar(x.estatus)
+                    .includes("PROGRES")
+            ).length;
+
+
+        const pendientes =
+            datosFiltrados.filter(
+                x => {
+
+                    const estado =
+                        normalizar(x.estatus);
+
+                    return (
+                        estado.includes("PENDIENT") ||
+                        estado.includes("NOT START") ||
+                        estado.includes("NO INICI")
+                    );
+
+                }
+            ).length;
+
+
+        const porcentaje =
+            total > 0
+                ? Math.round(
+                    (completados / total) * 100
+                )
+                : 0;
+
+
+        document.getElementById(
+            "totalProyectos"
+        ).textContent = total;
+
+
+        document.getElementById(
+            "enProgreso"
+        ).textContent = progreso;
+
+
+        document.getElementById(
+            "completados"
+        ).textContent = completados;
+
+
+        document.getElementById(
+            "pendientes"
+        ).textContent = pendientes;
+
+
+        document.getElementById(
+            "porcentajeAvance"
+        ).textContent = porcentaje + "%";
+
+    }
+
+
+    function normalizar(valor) {
+
+        return valorSeguro(valor)
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toUpperCase();
+
+    }
+
+
+    function contarPorCampo(lista, campo) {
+
+        const resultado = {};
+
+        lista.forEach(item => {
+
+            const valor =
+                valorSeguro(item[campo]);
+
+            resultado[valor] =
+                (resultado[valor] || 0) + 1;
+
+        });
+
+        return resultado;
+
+    }
+
+
+    function destruirGrafico(id) {
+
+        if (graficos[id]) {
+
+            graficos[id].destroy();
+
+        }
+
+    }
+
+
+    function actualizarGraficos() {
+
+        crearGraficoEstatus();
+
+        crearGraficoResponsable();
+
+        crearGraficoPrioridad();
+
+        crearGraficoMensual();
+
+    }
+
+
+    function crearGraficoEstatus() {
+
+        const conteo =
+            contarPorCampo(
+                datosFiltrados,
+                "estatus"
+            );
+
+        destruirGrafico("estatus");
+
+        graficos.estatus =
+            new Chart(
+                document.getElementById(
+                    "graficoEstatus"
+                ),
+                {
+                    type: "doughnut",
+
+                    data: {
+
+                        labels:
+                            Object.keys(conteo),
+
+                        datasets: [
+
+                            {
+                                data:
+                                    Object.values(conteo)
+                            }
+
+                        ]
+
+                    },
+
+                    options: {
+
+                        responsive: true,
+
+                        maintainAspectRatio: false,
+
+                        plugins: {
+
+                            legend: {
+                                position: "bottom"
+                            }
+
+                        }
+
+                    }
+
+                }
+            );
+
+    }
+
+
+    function crearGraficoResponsable() {
+
+        const conteo =
+            contarPorCampo(
+                datosFiltrados,
+                "responsable"
+            );
+
+        const entradas =
+            Object.entries(conteo)
+            .sort((a,b) => b[1] - a[1]);
+
+
+        destruirGrafico("responsable");
+
+        graficos.responsable =
+            new Chart(
+                document.getElementById(
+                    "graficoResponsable"
+                ),
+                {
+                    type: "bar",
+
+                    data: {
+
+                        labels:
+                            entradas.map(x => x[0]),
+
+                        datasets: [
+
+                            {
+                                label:
+                                    "Proyectos",
+
+                                data:
+                                    entradas.map(x => x[1])
+                            }
+
+                        ]
+
+                    },
+
+                    options: {
+
+                        responsive: true,
+
+                        maintainAspectRatio: false,
+
+                        indexAxis: "y",
+
+                        plugins: {
+
+                            legend: {
+                                display: false
+                            }
+
+                        }
+
+                    }
+
+                }
+            );
+
+    }
+
+
+    function crearGraficoPrioridad() {
+
+        const conteo =
+            contarPorCampo(
+                datosFiltrados,
+                "prioridad"
+            );
+
+        destruirGrafico("prioridad");
+
+        graficos.prioridad =
+            new Chart(
+                document.getElementById(
+                    "graficoPrioridad"
+                ),
+                {
+                    type: "bar",
+
+                    data: {
+
+                        labels:
+                            Object.keys(conteo),
+
+                        datasets: [
+
+                            {
+                                label:
+                                    "Proyectos",
+
+                                data:
+                                    Object.values(conteo)
+                            }
+
+                        ]
+
+                    },
+
+                    options: {
+
+                        responsive: true,
+
+                        maintainAspectRatio: false,
+
+                        plugins: {
+
+                            legend: {
+                                display: false
+                            }
+
+                        }
+
+                    }
+
+                }
+            );
+
+    }
+
+
+    function crearGraficoMensual() {
+
+        const conteo =
+            contarPorCampo(
+                datosFiltrados,
+                "mesYear"
+            );
+
+        const entradas =
+            Object.entries(conteo);
+
+
+        destruirGrafico("mensual");
+
+        graficos.mensual =
+            new Chart(
+                document.getElementById(
+                    "graficoMensual"
+                ),
+                {
+                    type: "line",
+
+                    data: {
+
+                        labels:
+                            entradas.map(x => x[0]),
+
+                        datasets: [
+
+                            {
+                                label:
+                                    "Proyectos",
+
+                                data:
+                                    entradas.map(x => x[1]),
+
+                                tension: 0.3,
+
+                                fill: false
+                            }
+
+                        ]
+
+                    },
+
+                    options: {
+
+                        responsive: true,
+
+                        maintainAspectRatio: false,
+
+                        plugins: {
+
+                            legend: {
+                                display: false
+                            }
+
+                        }
+
+                    }
+
+                }
+            );
+
+    }
+
+
+    function actualizarTabla() {
+
+        const inicio =
+            (paginaActual - 1) *
+            registrosPorPagina;
+
+        const fin =
+            inicio +
+            registrosPorPagina;
+
+        const registros =
+            datosFiltrados.slice(
+                inicio,
+                fin
+            );
+
+
+        if (registros.length === 0) {
+
+            document.getElementById(
+                "tablaContenedor"
+            ).innerHTML =
+                '<div class="sin-datos">' +
+                'No hay proyectos que coincidan con los filtros.' +
+                '</div>';
+
+            actualizarPaginacion();
+
+            return;
+
         }
 
 
-        cargarDatos();
+        let html = `
 
-    </script>
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Código</th>
+                        <th>Proyecto</th>
+                        <th>Estatus</th>
+                        <th>Responsable</th>
+                        <th>Fecha creación</th>
+                        <th>Fecha cierre</th>
+                        <th>Prioridad</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+        `;
+
+
+        registros.forEach(item => {
+
+            html += `
+
+                <tr>
+
+                    <td>
+                        ${valorSeguro(item.codigo)}
+                    </td>
+
+                    <td>
+                        ${valorSeguro(item.proyecto)}
+                    </td>
+
+                    <td>
+                        ${crearEtiquetaEstado(item.estatus)}
+                    </td>
+
+                    <td>
+                        ${valorSeguro(item.responsable)}
+                    </td>
+
+                    <td>
+                        ${valorSeguro(item.fechaCreacion)}
+                    </td>
+
+                    <td>
+                        ${valorSeguro(item.fechaCierre)}
+                    </td>
+
+                    <td>
+                        ${valorSeguro(item.prioridad)}
+                    </td>
+
+                </tr>
+
+            `;
+
+        });
+
+
+        html += `
+
+                </tbody>
+
+            </table>
+
+        `;
+
+
+        document.getElementById(
+            "tablaContenedor"
+        ).innerHTML = html;
+
+
+        actualizarPaginacion();
+
+    }
+
+
+    function crearEtiquetaEstado(estado) {
+
+        const texto =
+            valorSeguro(estado);
+
+        const normal =
+            normalizar(texto);
+
+
+        let clase =
+            "estado-otro";
+
+
+        if (normal.includes("COMPLET")) {
+
+            clase =
+                "estado-completado";
+
+        } else if (
+            normal.includes("PROGRESS") ||
+            normal.includes("PROGRES")
+        ) {
+
+            clase =
+                "estado-progreso";
+
+        } else if (
+            normal.includes("PENDIENT") ||
+            normal.includes("NOT START") ||
+            normal.includes("NO INICI")
+        ) {
+
+            clase =
+                "estado-pendiente";
+
+        }
+
+
+        return `
+            <span class="estado ${clase}">
+                ${texto}
+            </span>
+        `;
+
+    }
+
+
+    function actualizarPaginacion() {
+
+        const total =
+            datosFiltrados.length;
+
+        const totalPaginas =
+            Math.ceil(
+                total /
+                registrosPorPagina
+            );
+
+
+        const contenedor =
+            document.getElementById(
+                "paginacion"
+            );
+
+
+        if (total === 0) {
+
+            contenedor.innerHTML = "";
+
+            return;
+
+        }
+
+
+        const desde =
+            ((paginaActual - 1) *
+            registrosPorPagina) + 1;
+
+        const hasta =
+            Math.min(
+                paginaActual *
+                registrosPorPagina,
+                total
+            );
+
+
+        contenedor.innerHTML = `
+
+            <div>
+                Mostrando ${desde}-${hasta}
+                de ${total} proyectos
+            </div>
+
+            <div class="paginacion-botones">
+
+                <button
+                    onclick="cambiarPagina(-1)"
+                    ${paginaActual === 1 ? "disabled" : ""}
+                >
+                    Anterior
+                </button>
+
+                <button
+                    onclick="cambiarPagina(1)"
+                    ${paginaActual === totalPaginas ? "disabled" : ""}
+                >
+                    Siguiente
+                </button>
+
+            </div>
+
+        `;
+
+    }
+
+
+    function cambiarPagina(direccion) {
+
+        const totalPaginas =
+            Math.ceil(
+                datosFiltrados.length /
+                registrosPorPagina
+            );
+
+
+        paginaActual += direccion;
+
+
+        if (paginaActual < 1) {
+
+            paginaActual = 1;
+
+        }
+
+
+        if (paginaActual > totalPaginas) {
+
+            paginaActual =
+                totalPaginas;
+
+        }
+
+
+        actualizarTabla();
+
+    }
+
+
+    document.getElementById(
+        "filtroPeriodo"
+    ).addEventListener(
+        "change",
+        aplicarFiltros
+    );
+
+
+    document.getElementById(
+        "filtroEstatus"
+    ).addEventListener(
+        "change",
+        aplicarFiltros
+    );
+
+
+    document.getElementById(
+        "filtroResponsable"
+    ).addEventListener(
+        "change",
+        aplicarFiltros
+    );
+
+
+    document.getElementById(
+        "filtroPrioridad"
+    ).addEventListener(
+        "change",
+        aplicarFiltros
+    );
+
+
+    document.getElementById(
+        "buscador"
+    ).addEventListener(
+        "input",
+        aplicarFiltros
+    );
+
+
+    document.getElementById(
+        "limpiarFiltros"
+    ).addEventListener(
+        "click",
+        function() {
+
+            document.getElementById(
+                "filtroPeriodo"
+            ).value = "";
+
+            document.getElementById(
+                "filtroEstatus"
+            ).value = "";
+
+            document.getElementById(
+                "filtroResponsable"
+            ).value = "";
+
+            document.getElementById(
+                "filtroPrioridad"
+            ).value = "";
+
+            document.getElementById(
+                "buscador"
+            ).value = "";
+
+            datosFiltrados =
+                [...datos];
+
+            paginaActual = 1;
+
+            actualizarDashboard();
+
+        }
+    );
+
+
+    cargarDatos();
+
+</script>
 
 </body>
 </html>
