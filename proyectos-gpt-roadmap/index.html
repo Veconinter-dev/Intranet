@@ -1,2780 +1,1741 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Proyectos GPT Roadmap</title>
-
-    <style>
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            padding: 22px;
-            font-family: Arial, sans-serif;
-            background: #f4f6f8;
-            color: #1f2937;
-        }
-
-        .contenedor {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        /* =====================================================
-           ENCABEZADO
-           ===================================================== */
-
-        .encabezado {
-            margin-bottom: 18px;
-        }
-
-        h1 {
-            margin: 0 0 5px 0;
-            font-size: 28px;
-        }
-
-        .subtitulo {
-            color: #6b7280;
-            font-size: 14px;
-        }
-
-        .estado-conexion {
-            margin-top: 10px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 12px;
-            background: white;
-            border-radius: 20px;
-            font-size: 12px;
-            box-shadow: 0 2px 7px rgba(0,0,0,0.06);
-        }
-
-        .indicador {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #9ca3af;
-        }
-
-        .indicador.ok {
-            background: #22c55e;
-        }
-
-        .indicador.error {
-            background: #ef4444;
-        }
-
-
-        /* =====================================================
-           KPIs
-           ===================================================== */
-
-        .kpis {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 10px;
-            margin-bottom: 18px;
-        }
-
-        .kpi {
-            background: white;
-            border-radius: 10px;
-            padding: 14px 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-            min-width: 0;
-        }
-
-        .kpi-titulo {
-            color: #6b7280;
-            font-size: 11px;
-            margin-bottom: 7px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .kpi-valor {
-            font-size: 25px;
-            font-weight: bold;
-            line-height: 1;
-        }
-
-        .kpi-extra {
-            margin-top: 5px;
-            font-size: 10px;
-            color: #9ca3af;
-        }
-
-
-        /* =====================================================
-           PANELES
-           ===================================================== */
-
-        .panel {
-            background: white;
-            border-radius: 10px;
-            padding: 17px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-            margin-bottom: 17px;
-        }
-
-        .panel-titulo {
-            font-size: 15px;
-            font-weight: bold;
-            margin-bottom: 12px;
-        }
-
-
-        /* =====================================================
-           FILTROS
-           ===================================================== */
-
-        .filtros {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-        }
-
-        .filtro label {
-            display: block;
-            font-size: 11px;
-            color: #6b7280;
-            margin-bottom: 5px;
-        }
-
-        .filtro select,
-        .filtro input {
-            width: 100%;
-            padding: 8px 10px;
-            border: 1px solid #d1d5db;
-            border-radius: 7px;
-            background: white;
-            font-size: 13px;
-        }
-
-        .filtro select:focus,
-        .filtro input:focus {
-            outline: none;
-            border-color: #2563eb;
-        }
-
-        .boton {
-            margin-top: 13px;
-            padding: 8px 15px;
-            border: 0;
-            border-radius: 7px;
-            background: #1f2937;
-            color: white;
-            cursor: pointer;
-            font-size: 12px;
-        }
-
-        .boton:hover {
-            opacity: 0.9;
-        }
-
-
-        /* =====================================================
-           GRAFICOS
-           ===================================================== */
-
-        .graficos {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 17px;
-            margin-bottom: 17px;
-        }
-
-        .grafico {
-            min-height: 275px;
-        }
-
-        .grafico-contenedor {
-            position: relative;
-            height: 215px;
-        }
-
-        canvas {
-            width: 100% !important;
-            height: 100% !important;
-        }
-
-
-        /* =====================================================
-           TABLA
-           ===================================================== */
-
-        .tabla-contenedor {
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 12px;
-        }
-
-        th {
-            text-align: left;
-            padding: 10px;
-            background: #f9fafb;
-            border-bottom: 1px solid #e5e7eb;
-            white-space: nowrap;
-        }
-
-        td {
-            padding: 10px;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        tr:hover td {
-            background: #fafafa;
-        }
-
-
-        /* =====================================================
-           ESTADOS
-           ===================================================== */
-
-        .estado {
-            display: inline-block;
-            padding: 4px 8px;
-            border-radius: 14px;
-            font-size: 10px;
-            font-weight: bold;
-            white-space: nowrap;
-        }
-
-        .estado-completado {
-            background: #dcfce7;
-            color: #166534;
-        }
-
-        .estado-cerrado {
-            background: #d1fae5;
-            color: #065f46;
-        }
-
-        .estado-progreso {
-            background: #dbeafe;
-            color: #1e40af;
-        }
-
-        .estado-review {
-            background: #ede9fe;
-            color: #5b21b6;
-        }
-
-        .estado-qa {
-            background: #fef3c7;
-            color: #92400e;
-        }
-
-        .estado-otro {
-            background: #f3f4f6;
-            color: #374151;
-        }
-
-
-        /* =====================================================
-           SIN DATOS / CARGANDO / ERROR
-           ===================================================== */
-
-        .sin-datos {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 180px;
-            color: #9ca3af;
-            font-size: 13px;
-        }
-
-        .cargando {
-            text-align: center;
-            padding: 35px;
-            color: #6b7280;
-        }
-
-        .error {
-            text-align: center;
-            padding: 25px;
-            color: #b91c1c;
-            background: #fef2f2;
-            border-radius: 8px;
-            font-size: 13px;
-        }
-
-
-        /* =====================================================
-           PAGINACION
-           ===================================================== */
-
-        .paginacion {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 15px;
-            font-size: 12px;
-            color: #6b7280;
-        }
-
-        .paginacion-botones {
-            display: flex;
-            gap: 6px;
-        }
-
-        .paginacion button {
-            padding: 6px 10px;
-            border: 1px solid #d1d5db;
-            background: white;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 11px;
-        }
-
-        .paginacion button:hover {
-            background: #f3f4f6;
-        }
-
-        .paginacion button:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-        }
-
-
-        /* =====================================================
-           RESPONSIVE
-           ===================================================== */
-
-        @media (max-width: 1200px) {
-
-            .kpis {
-                grid-template-columns: repeat(4, 1fr);
-            }
-
-        }
-
-
-        @media (max-width: 900px) {
-
-            .kpis {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .filtros {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .graficos {
-                grid-template-columns: 1fr;
-            }
-
-        }
-
-
-        @media (max-width: 600px) {
-
-            body {
-                padding: 14px;
-            }
-
-            .kpis {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .filtros {
-                grid-template-columns: 1fr;
-            }
-
-            .grafico {
-                min-height: 250px;
-            }
-
-            .grafico-contenedor {
-                height: 190px;
-            }
-
-            .paginacion {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-        }
-
-
-        @media (max-width: 400px) {
-
-            .kpis {
-                grid-template-columns: 1fr;
-            }
-
-        }
-
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Proyectos GPT Roadmap</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 18px;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f5f6f8;
+      color: #242424;
+    }
+
+    .contenedor {
+      max-width: 1500px;
+      margin: 0 auto;
+    }
+
+    /* =========================
+       ENCABEZADO
+    ========================= */
+
+    .encabezado {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 18px 22px;
+      margin-bottom: 14px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .encabezado h1 {
+      margin: 0 0 4px;
+      font-size: 25px;
+      font-weight: 600;
+    }
+
+    .subtitulo {
+      margin: 0;
+      font-size: 13px;
+      color: #666;
+    }
+
+    .conexion {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .indicador {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #999;
+    }
+
+    .indicador.ok {
+      background: #107c10;
+    }
+
+    .indicador.error {
+      background: #d13438;
+    }
+
+    /* =========================
+       KPIs
+    ========================= */
+
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .kpi {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 13px 12px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.07);
+      min-width: 0;
+    }
+
+    .kpi-titulo {
+      font-size: 11px;
+      color: #666;
+      margin-bottom: 6px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .kpi-valor {
+      font-size: 25px;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .kpi-avance {
+      color: #107c10;
+    }
+
+    /* =========================
+       FILTROS
+    ========================= */
+
+    .panel {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 14px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.07);
+    }
+
+    .panel-titulo {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .filtros {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .campo label {
+      display: block;
+      font-size: 11px;
+      color: #666;
+      margin-bottom: 4px;
+    }
+
+    select,
+    input {
+      width: 100%;
+      border: 1px solid #d1d1d1;
+      border-radius: 6px;
+      padding: 8px 9px;
+      font-family: inherit;
+      font-size: 12px;
+      background: #fff;
+    }
+
+    select:focus,
+    input:focus {
+      outline: none;
+      border-color: #0078d4;
+    }
+
+    .acciones {
+      margin-top: 10px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    button {
+      border: none;
+      border-radius: 6px;
+      background: #0078d4;
+      color: white;
+      padding: 8px 14px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    button:hover {
+      background: #106ebe;
+    }
+
+    /* =========================
+       GRÁFICOS
+    ========================= */
+
+    .graficos {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .grafico {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 14px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.07);
+      height: 285px;
+    }
+
+    .grafico h2 {
+      font-size: 14px;
+      font-weight: 600;
+      margin: 0 0 8px;
+    }
+
+    .grafico-contenedor {
+      position: relative;
+      height: 225px;
+    }
+
+    /* =========================
+       TABLA
+    ========================= */
+
+    .tabla-panel {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 14px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.07);
+    }
+
+    .tabla-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 9px;
+      gap: 10px;
+    }
+
+    .tabla-header h2 {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .registros {
+      font-size: 11px;
+      color: #666;
+    }
+
+    .tabla-scroll {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    th {
+      background: #f3f3f3;
+      text-align: left;
+      font-weight: 600;
+      padding: 8px;
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 8px;
+      border-top: 1px solid #eeeeee;
+      vertical-align: middle;
+    }
+
+    tr:hover td {
+      background: #fafafa;
+    }
+
+    .estado {
+      display: inline-block;
+      padding: 3px 7px;
+      border-radius: 10px;
+      font-size: 10px;
+      white-space: nowrap;
+    }
+
+    .estado-en-proceso {
+      background: #fff4ce;
+      color: #7a5c00;
+    }
+
+    .estado-review {
+      background: #e8f1fb;
+      color: #005a9e;
+    }
+
+    .estado-qa {
+      background: #f3e8ff;
+      color: #6b21a8;
+    }
+
+    .estado-completado {
+      background: #e8f5e9;
+      color: #107c10;
+    }
+
+    .estado-cerrado {
+      background: #e6e6e6;
+      color: #333;
+    }
+
+    .estado-pendiente {
+      background: #f5f5f5;
+      color: #666;
+    }
+
+    /* =========================
+       PAGINACIÓN
+    ========================= */
+
+    .paginacion {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .paginacion button {
+      padding: 6px 10px;
+      font-size: 11px;
+    }
+
+    .pagina-info {
+      font-size: 11px;
+      color: #666;
+    }
+
+    /* =========================
+       ESTADO DE CARGA
+    ========================= */
+
+    .mensaje {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 18px;
+      margin-bottom: 14px;
+      font-size: 13px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.07);
+    }
+
+    .oculto {
+      display: none;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 1200px) {
+      .kpis {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .kpis {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .graficos {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .filtros {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 650px) {
+      body {
+        padding: 10px;
+      }
+
+      .encabezado {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .kpis {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .graficos {
+        grid-template-columns: 1fr;
+      }
+
+      .filtros {
+        grid-template-columns: 1fr;
+      }
+
+      .grafico {
+        height: 275px;
+      }
+
+      .grafico-contenedor {
+        height: 215px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .kpis {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
-
 
 <body>
 
 <div class="contenedor">
 
+  <!-- =========================
+       ENCABEZADO
+  ========================== -->
 
-    <!-- =====================================================
-         ENCABEZADO
-         ===================================================== -->
+  <div class="encabezado">
+    <div>
+      <h1>Proyectos GPT Roadmap</h1>
+      <p class="subtitulo">
+        Dashboard de seguimiento de proyectos
+      </p>
+    </div>
 
-    <div class="encabezado">
+    <div class="conexion">
+      <span id="indicadorConexion" class="indicador"></span>
+      <span id="estadoConexion">Conectando...</span>
+    </div>
+  </div>
 
-        <h1>
-            Proyectos GPT Roadmap
-        </h1>
+  <!-- =========================
+       MENSAJE
+  ========================== -->
 
-        <div class="subtitulo">
-            Dashboard de proyectos
-        </div>
+  <div id="mensaje" class="mensaje">
+    Cargando información desde SharePoint...
+  </div>
 
-        <div class="estado-conexion">
+  <!-- =========================
+       KPIs
+  ========================== -->
 
-            <span
-                id="indicador"
-                class="indicador">
-            </span>
+  <div class="kpis">
 
-            <span id="conexion">
-                Conectando...
-            </span>
+    <div class="kpi">
+      <div class="kpi-titulo">Total de proyectos</div>
+      <div id="totalProyectos" class="kpi-valor">0</div>
+    </div>
 
-        </div>
+    <div class="kpi">
+      <div class="kpi-titulo">En proceso</div>
+      <div id="enProceso" class="kpi-valor">0</div>
+    </div>
+
+    <div class="kpi">
+      <div class="kpi-titulo">In review</div>
+      <div id="inReview" class="kpi-valor">0</div>
+    </div>
+
+    <div class="kpi">
+      <div class="kpi-titulo">QA</div>
+      <div id="qa" class="kpi-valor">0</div>
+    </div>
+
+    <div class="kpi">
+      <div class="kpi-titulo">Completados</div>
+      <div id="completados" class="kpi-valor">0</div>
+    </div>
+
+    <div class="kpi">
+      <div class="kpi-titulo">Cerrados</div>
+      <div id="cerrados" class="kpi-valor">0</div>
+    </div>
+
+    <div class="kpi">
+      <div class="kpi-titulo">% avance</div>
+      <div id="avance" class="kpi-valor kpi-avance">0%</div>
+    </div>
+
+  </div>
+
+  <!-- =========================
+       FILTROS
+  ========================== -->
+
+  <div class="panel">
+
+    <div class="panel-titulo">
+      Filtros
+    </div>
+
+    <div class="filtros">
+
+      <div class="campo">
+        <label for="filtroPeriodo">Periodo</label>
+        <select id="filtroPeriodo">
+          <option value="">Todos</option>
+        </select>
+      </div>
+
+      <div class="campo">
+        <label for="filtroEstatus">Estatus</label>
+        <select id="filtroEstatus">
+          <option value="">Todos</option>
+        </select>
+      </div>
+
+      <div class="campo">
+        <label for="filtroResponsable">Responsable</label>
+        <select id="filtroResponsable">
+          <option value="">Todos</option>
+        </select>
+      </div>
+
+      <div class="campo">
+        <label for="filtroPrioridad">Prioridad</label>
+        <select id="filtroPrioridad">
+          <option value="">Todas</option>
+        </select>
+      </div>
 
     </div>
 
+    <div class="acciones">
+      <button onclick="limpiarFiltros()">
+        Limpiar filtros
+      </button>
+    </div>
 
-    <!-- =====================================================
-         KPIs
-         ===================================================== -->
+  </div>
 
-    <div class="kpis">
+  <!-- =========================
+       GRÁFICOS
+  ========================== -->
 
+  <div class="graficos">
 
-        <div class="kpi">
+    <div class="grafico">
+      <h2>Distribución por estatus</h2>
+      <div class="grafico-contenedor">
+        <canvas id="graficoEstatus"></canvas>
+      </div>
+    </div>
 
-            <div class="kpi-titulo">
-                Total de proyectos
-            </div>
+    <div class="grafico">
+      <h2>Evolución mensual de proyectos</h2>
+      <div class="grafico-contenedor">
+        <canvas id="graficoMensual"></canvas>
+      </div>
+    </div>
 
-            <div
-                id="totalProyectos"
-                class="kpi-valor">
-                -
-            </div>
+    <div class="grafico">
+      <h2>Proyectos por responsable</h2>
+      <div class="grafico-contenedor">
+        <canvas id="graficoResponsable"></canvas>
+      </div>
+    </div>
 
-        </div>
+    <div class="grafico">
+      <h2>Proyectos por prioridad</h2>
+      <div class="grafico-contenedor">
+        <canvas id="graficoPrioridad"></canvas>
+      </div>
+    </div>
 
+  </div>
 
-        <div class="kpi">
+  <!-- =========================
+       TABLA
+  ========================== -->
 
-            <div class="kpi-titulo">
-                En proceso
-            </div>
+  <div class="tabla-panel">
 
-            <div
-                id="enProceso"
-                class="kpi-valor">
-                -
-            </div>
+    <div class="tabla-header">
+      <h2>Detalle de proyectos</h2>
+      <span id="registrosMostrados" class="registros">
+        0 registros
+      </span>
+    </div>
 
-        </div>
+    <div style="margin-bottom:10px;">
+      <input
+        id="busqueda"
+        type="text"
+        placeholder="Buscar por código, proyecto, estatus o responsable..."
+        oninput="aplicarFiltros()"
+      >
+    </div>
 
+    <div class="tabla-scroll">
 
-        <div class="kpi">
+      <table>
 
-            <div class="kpi-titulo">
-                In Review
-            </div>
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Proyecto</th>
+            <th>Estatus</th>
+            <th>Responsable</th>
+            <th>Fecha creación</th>
+            <th>Fecha cierre</th>
+            <th>Prioridad</th>
+          </tr>
+        </thead>
 
-            <div
-                id="inReview"
-                class="kpi-valor">
-                -
-            </div>
+        <tbody id="tablaProyectos">
+        </tbody>
 
-        </div>
-
-
-        <div class="kpi">
-
-            <div class="kpi-titulo">
-                QA
-            </div>
-
-            <div
-                id="qa"
-                class="kpi-valor">
-                -
-            </div>
-
-        </div>
-
-
-        <div class="kpi">
-
-            <div class="kpi-titulo">
-                Completados
-            </div>
-
-            <div
-                id="completados"
-                class="kpi-valor">
-                -
-            </div>
-
-        </div>
-
-
-        <div class="kpi">
-
-            <div class="kpi-titulo">
-                Cerrados
-            </div>
-
-            <div
-                id="cerrados"
-                class="kpi-valor">
-                -
-            </div>
-
-        </div>
-
-
-        <div class="kpi">
-
-            <div class="kpi-titulo">
-                % avance
-            </div>
-
-            <div
-                id="porcentajeAvance"
-                class="kpi-valor">
-                -
-            </div>
-
-            <div class="kpi-extra">
-                Completados + Cerrados
-            </div>
-
-        </div>
+      </table>
 
     </div>
 
+    <div class="paginacion">
 
-    <!-- =====================================================
-         FILTROS
-         ===================================================== -->
+      <button onclick="paginaAnterior()">
+        Anterior
+      </button>
 
-    <div class="panel">
+      <span id="paginaInfo" class="pagina-info">
+        Página 1
+      </span>
 
-        <div class="panel-titulo">
-            Filtros
-        </div>
-
-
-        <div class="filtros">
-
-
-            <div class="filtro">
-
-                <label for="filtroPeriodo">
-                    Periodo
-                </label>
-
-                <select id="filtroPeriodo">
-
-                    <option value="">
-                        Todos
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="filtro">
-
-                <label for="filtroEstatus">
-                    Estatus
-                </label>
-
-                <select id="filtroEstatus">
-
-                    <option value="">
-                        Todos
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="filtro">
-
-                <label for="filtroResponsable">
-                    Responsable
-                </label>
-
-                <select id="filtroResponsable">
-
-                    <option value="">
-                        Todos
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="filtro">
-
-                <label for="filtroPrioridad">
-                    Prioridad
-                </label>
-
-                <select id="filtroPrioridad">
-
-                    <option value="">
-                        Todos
-                    </option>
-
-                </select>
-
-            </div>
-
-        </div>
-
-
-        <button
-            id="limpiarFiltros"
-            class="boton">
-
-            Limpiar filtros
-
-        </button>
+      <button onclick="paginaSiguiente()">
+        Siguiente
+      </button>
 
     </div>
 
-
-    <!-- =====================================================
-         GRAFICOS
-         ===================================================== -->
-
-    <div class="graficos">
-
-
-        <div class="panel grafico">
-
-            <div class="panel-titulo">
-                Distribución por estatus
-            </div>
-
-            <div class="grafico-contenedor">
-
-                <canvas id="graficoEstatus"></canvas>
-
-            </div>
-
-        </div>
-
-
-        <div class="panel grafico">
-
-            <div class="panel-titulo">
-                Proyectos por responsable
-            </div>
-
-            <div class="grafico-contenedor">
-
-                <canvas id="graficoResponsable"></canvas>
-
-            </div>
-
-        </div>
-
-
-        <div class="panel grafico">
-
-            <div class="panel-titulo">
-                Proyectos por prioridad
-            </div>
-
-            <div class="grafico-contenedor">
-
-                <canvas id="graficoPrioridad"></canvas>
-
-            </div>
-
-        </div>
-
-
-        <div class="panel grafico">
-
-            <div class="panel-titulo">
-                Evolución mensual
-            </div>
-
-            <div class="grafico-contenedor">
-
-                <canvas id="graficoMensual"></canvas>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         TABLA
-         ===================================================== -->
-
-    <div class="panel">
-
-        <div class="panel-titulo">
-            Proyectos
-        </div>
-
-
-        <div
-            class="filtro"
-            style="margin-bottom:15px;">
-
-            <input
-                type="text"
-                id="buscador"
-                placeholder="Buscar por código, proyecto o responsable..."
-            >
-
-        </div>
-
-
-        <div
-            id="tablaContenedor"
-            class="tabla-contenedor">
-
-            <div class="cargando">
-                Cargando proyectos...
-            </div>
-
-        </div>
-
-
-        <div
-            id="paginacion"
-            class="paginacion">
-        </div>
-
-    </div>
+  </div>
 
 </div>
 
-
-<!-- =========================================================
-     CHART.JS
-     ========================================================= -->
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-
 <script>
 
+  /* =====================================================
+     CONFIGURACIÓN
+  ===================================================== */
+
+  const POWER_AUTOMATE_URL =
+    "https://default65bbe6da35e94c18993bee2c16cb7e.64.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/22/workflows/1cbcd22cd245429b859457e6c5ebed46/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=vOQVES3QkJ_ipBGmiHQ1qYRKDuAo8BnixTXhH6meIig";
+
+
+  const REGISTROS_POR_PAGINA = 10;
+
+  let datos = [];
+  let datosFiltrados = [];
+
+  let paginaActual = 1;
+
+  let graficoEstatus = null;
+  let graficoMensual = null;
+  let graficoResponsable = null;
+  let graficoPrioridad = null;
+
+
+  /* =====================================================
+     UTILIDADES
+  ===================================================== */
+
+  function valorSeguro(valor) {
+
+    if (valor === null || valor === undefined) {
+      return "";
+    }
+
+    return String(valor).trim();
+  }
+
+
+  function escaparHTML(valor) {
+
+    return valorSeguro(valor)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+
+  function textoEstatus(item) {
+
+    return valorSeguro(item.estatus).toUpperCase();
+  }
+
+
+  function contieneEstatus(item, palabras) {
+
+    const estatus = textoEstatus(item);
+
+    return palabras.some(palabra =>
+      estatus.includes(palabra)
+    );
+  }
+
+
+  /* =====================================================
+     CLASIFICACIÓN DE ESTATUS
+  ===================================================== */
+
+  function esEnProceso(item) {
+
+    return contieneEstatus(item, [
+      "IN PROGRESS",
+      "PROGRES",
+      "EN PROCESO"
+    ]);
+  }
+
+
+  function esInReview(item) {
+
+    return contieneEstatus(item, [
+      "IN REVIEW",
+      "INREVIEW",
+      "REVIEW"
+    ]);
+  }
+
+
+  function esQA(item) {
+
+    return contieneEstatus(item, [
+      "QA"
+    ]);
+  }
+
+
+  function esCompletado(item) {
+
+    return contieneEstatus(item, [
+      "COMPLET"
+    ]);
+  }
+
+
+  function esCerrado(item) {
+
+    return contieneEstatus(item, [
+      "CERRAD",
+      "CLOSED",
+      "CLOSE"
+    ]);
+  }
+
+
+  /* =====================================================
+     CARGAR DATOS
+  ===================================================== */
+
+  async function cargarDatos() {
+
+    const mensaje = document.getElementById("mensaje");
+    const indicador = document.getElementById("indicadorConexion");
+    const estadoConexion = document.getElementById("estadoConexion");
+
+    try {
+
+      const respuesta = await fetch(
+        POWER_AUTOMATE_URL,
+        {
+          method: "POST"
+        }
+      );
+
+      if (!respuesta.ok) {
+        throw new Error(
+          "HTTP " + respuesta.status
+        );
+      }
+
+      const resultado = await respuesta.json();
+
+      datos = Array.isArray(resultado)
+        ? resultado
+        : [];
+
+      datosFiltrados = [...datos];
+
+      indicador.classList.add("ok");
+      estadoConexion.textContent = "Conexión correcta";
+
+      mensaje.textContent =
+        "Datos cargados correctamente. Registros recibidos: "
+        + datos.length;
+
+      inicializarFiltros();
+      actualizarDashboard();
+
+    } catch (error) {
+
+      console.error(error);
+
+      indicador.classList.add("error");
+      estadoConexion.textContent = "Error de conexión";
+
+      mensaje.innerHTML =
+        "<strong>No fue posible cargar los datos.</strong><br>" +
+        "Verifica que la URL de Power Automate sea correcta " +
+        "y que el flujo esté funcionando.";
+
+    }
+
+  }
+
+
+  /* =====================================================
+     FILTROS
+  ===================================================== */
+
+  function obtenerValoresUnicos(campo) {
+
+    return [
+      ...new Set(
+        datos
+          .map(item => valorSeguro(item[campo]))
+          .filter(valor => valor !== "")
+      )
+    ];
+  }
+
+
+  function inicializarFiltros() {
+
+    const filtroEstatus =
+      document.getElementById("filtroEstatus");
+
+    const filtroResponsable =
+      document.getElementById("filtroResponsable");
+
+    const filtroPrioridad =
+      document.getElementById("filtroPrioridad");
+
+    filtroEstatus.innerHTML =
+      '<option value="">Todos</option>';
+
+    filtroResponsable.innerHTML =
+      '<option value="">Todos</option>';
+
+    filtroPrioridad.innerHTML =
+      '<option value="">Todas</option>';
+
+
+    obtenerValoresUnicos("estatus")
+      .sort()
+      .forEach(valor => {
+
+        filtroEstatus.innerHTML +=
+          `<option value="${escaparHTML(valor)}">
+            ${escaparHTML(valor)}
+          </option>`;
+
+      });
+
+
+    obtenerValoresUnicos("responsable")
+      .sort()
+      .forEach(valor => {
+
+        filtroResponsable.innerHTML +=
+          `<option value="${escaparHTML(valor)}">
+            ${escaparHTML(valor)}
+          </option>`;
+
+      });
+
+
+    obtenerValoresUnicos("prioridad")
+      .sort()
+      .forEach(valor => {
+
+        filtroPrioridad.innerHTML +=
+          `<option value="${escaparHTML(valor)}">
+            ${escaparHTML(valor)}
+          </option>`;
+
+      });
+
+
+    inicializarFiltroPeriodo();
+
+  }
+
+
+  function inicializarFiltroPeriodo() {
+
+    const filtro =
+      document.getElementById("filtroPeriodo");
+
+    const periodos = {};
+
+    datos.forEach(item => {
+
+      const clave =
+        valorSeguro(item.yearMes);
+
+      const etiqueta =
+        valorSeguro(item.mesYear);
+
+      if (clave) {
+
+        periodos[clave] =
+          etiqueta || clave;
+
+      }
+
+    });
+
+
+    const claves =
+      Object.keys(periodos)
+        .sort((a, b) =>
+          b.localeCompare(a, undefined, {
+            numeric: true
+          })
+        );
+
+
+    filtro.innerHTML =
+      '<option value="">Todos</option>';
+
+
+    claves.forEach(clave => {
+
+      filtro.innerHTML +=
+        `<option value="${escaparHTML(clave)}">
+          ${escaparHTML(periodos[clave])}
+        </option>`;
+
+    });
+
+  }
+
+
+  function aplicarFiltros() {
+
+    const periodo =
+      document.getElementById("filtroPeriodo").value;
+
+    const estatus =
+      document.getElementById("filtroEstatus").value;
+
+    const responsable =
+      document.getElementById("filtroResponsable").value;
+
+    const prioridad =
+      document.getElementById("filtroPrioridad").value;
+
+    const busqueda =
+      valorSeguro(
+        document.getElementById("busqueda").value
+      ).toLowerCase();
+
+
+    datosFiltrados = datos.filter(item => {
+
+      const coincidePeriodo =
+        !periodo ||
+        valorSeguro(item.yearMes) === periodo;
+
+      const coincideEstatus =
+        !estatus ||
+        valorSeguro(item.estatus) === estatus;
+
+      const coincideResponsable =
+        !responsable ||
+        valorSeguro(item.responsable) === responsable;
+
+      const coincidePrioridad =
+        !prioridad ||
+        valorSeguro(item.prioridad) === prioridad;
+
+
+      const textoBusqueda = [
+        item.codigo,
+        item.proyecto,
+        item.estatus,
+        item.responsable,
+        item.prioridad
+      ]
+      .map(valorSeguro)
+      .join(" ")
+      .toLowerCase();
+
+
+      const coincideBusqueda =
+        !busqueda ||
+        textoBusqueda.includes(busqueda);
+
+
+      return (
+        coincidePeriodo &&
+        coincideEstatus &&
+        coincideResponsable &&
+        coincidePrioridad &&
+        coincideBusqueda
+      );
+
+    });
+
+
+    paginaActual = 1;
+
+    actualizarDashboard();
+
+  }
+
+
+  function limpiarFiltros() {
+
+    document.getElementById("filtroPeriodo").value = "";
+    document.getElementById("filtroEstatus").value = "";
+    document.getElementById("filtroResponsable").value = "";
+    document.getElementById("filtroPrioridad").value = "";
+    document.getElementById("busqueda").value = "";
+
+    datosFiltrados = [...datos];
+
+    paginaActual = 1;
+
+    actualizarDashboard();
+
+  }
+
+
+  /* =====================================================
+     ACTUALIZAR DASHBOARD
+  ===================================================== */
+
+  function actualizarDashboard() {
+
+    actualizarKPIs();
+    actualizarGraficos();
+    actualizarTabla();
+
+  }
+
+
+  /* =====================================================
+     KPIs
+  ===================================================== */
+
+  function actualizarKPIs() {
+
+    const total =
+      datosFiltrados.length;
+
+
+    const enProceso =
+      datosFiltrados.filter(esEnProceso).length;
+
+
+    const inReview =
+      datosFiltrados.filter(esInReview).length;
+
+
+    const qa =
+      datosFiltrados.filter(esQA).length;
+
+
+    const completados =
+      datosFiltrados.filter(esCompletado).length;
+
+
+    const cerrados =
+      datosFiltrados.filter(esCerrado).length;
+
+
     /*
-     * ========================================================
-     * POWER AUTOMATE
-     * ========================================================
-     *
-     * IMPORTANTE:
-     * Mantén aquí la MISMA URL que ya funciona actualmente.
-     */
+      IMPORTANTE:
+      El % de avance se calcula EXCLUSIVAMENTE
+      utilizando los proyectos CERRADOS.
 
-    const POWER_AUTOMATE_URL =
-        "https://default65bbe6da35e94c18993bee2c16cb7e.64.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/22/workflows/1cbcd22cd245429b859457e6c5ebed46/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=vOQVES3QkJ_ipBGmiHQ1qYRKDuAo8BnixTXhH6meIig";
+      Fórmula:
+      Cerrados / Total de proyectos * 100
+    */
 
-
-    /*
-     * ========================================================
-     * VARIABLES
-     * ========================================================
-     */
-
-    let datos = [];
-
-    let datosFiltrados = [];
-
-    let graficos = {};
-
-    let paginaActual = 1;
-
-    const registrosPorPagina = 10;
+    const avance =
+      total > 0
+        ? (cerrados / total) * 100
+        : 0;
 
 
-    /*
-     * ========================================================
-     * CARGAR DATOS
-     * ========================================================
-     */
-
-    async function cargarDatos() {
-
-        const conexion =
-            document.getElementById(
-                "conexion"
-            );
-
-        const indicador =
-            document.getElementById(
-                "indicador"
-            );
+    document.getElementById("totalProyectos")
+      .textContent = total;
 
 
-        try {
-
-            conexion.textContent =
-                "Conectando...";
+    document.getElementById("enProceso")
+      .textContent = enProceso;
 
 
-            indicador.className =
-                "indicador";
+    document.getElementById("inReview")
+      .textContent = inReview;
 
 
-            const respuesta =
-                await fetch(
-                    POWER_AUTOMATE_URL,
-                    {
-                        method: "POST",
-                        headers: {
-                            "Content-Type":
-                                "application/json"
-                        },
-                        body:
-                            JSON.stringify({})
-                    }
-                );
+    document.getElementById("qa")
+      .textContent = qa;
 
 
-            if (!respuesta.ok) {
+    document.getElementById("completados")
+      .textContent = completados;
 
-                throw new Error(
-                    "HTTP " +
-                    respuesta.status
-                );
 
+    document.getElementById("cerrados")
+      .textContent = cerrados;
+
+
+    document.getElementById("avance")
+      .textContent = avance.toFixed(1) + "%";
+
+  }
+
+
+  /* =====================================================
+     GRÁFICOS
+  ===================================================== */
+
+  function actualizarGraficos() {
+
+    crearGraficoEstatus();
+    crearGraficoMensual();
+    crearGraficoResponsable();
+    crearGraficoPrioridad();
+
+  }
+
+
+  /* =========================
+     ESTATUS
+  ========================= */
+
+  function crearGraficoEstatus() {
+
+    const conteo = {};
+
+    datosFiltrados.forEach(item => {
+
+      const estatus =
+        valorSeguro(item.estatus) || "Sin estatus";
+
+      conteo[estatus] =
+        (conteo[estatus] || 0) + 1;
+
+    });
+
+
+    if (graficoEstatus) {
+      graficoEstatus.destroy();
+    }
+
+
+    graficoEstatus =
+      new Chart(
+        document.getElementById("graficoEstatus"),
+        {
+          type: "doughnut",
+
+          data: {
+            labels: Object.keys(conteo),
+
+            datasets: [
+              {
+                data: Object.values(conteo)
+              }
+            ]
+          },
+
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+
+            plugins: {
+              legend: {
+                position: "right",
+                labels: {
+                  font: {
+                    size: 10
+                  }
+                }
+              }
             }
+          }
+        }
+      );
+
+  }
 
 
-            datos =
-                await respuesta.json();
+  /* =========================
+     EVOLUCIÓN MENSUAL
+  ========================= */
+
+  function crearGraficoMensual() {
+
+    const conteo = {};
+    const etiquetas = {};
 
 
-            if (
-                !Array.isArray(datos)
-            ) {
+    datosFiltrados.forEach(item => {
 
-                throw new Error(
-                    "La respuesta no contiene un arreglo de proyectos."
-                );
+      const clave =
+        valorSeguro(item.yearMes);
 
+      const etiqueta =
+        valorSeguro(item.mesYear) || clave;
+
+
+      if (!clave) {
+        return;
+      }
+
+
+      conteo[clave] =
+        (conteo[clave] || 0) + 1;
+
+      etiquetas[clave] =
+        etiqueta;
+
+    });
+
+
+    const claves =
+      Object.keys(conteo)
+        .sort((a, b) =>
+          a.localeCompare(b, undefined, {
+            numeric: true
+          })
+        );
+
+
+    if (graficoMensual) {
+      graficoMensual.destroy();
+    }
+
+
+    graficoMensual =
+      new Chart(
+        document.getElementById("graficoMensual"),
+        {
+          type: "line",
+
+          data: {
+            labels:
+              claves.map(clave =>
+                etiquetas[clave]
+              ),
+
+            datasets: [
+              {
+                label: "Proyectos",
+
+                data:
+                  claves.map(clave =>
+                    conteo[clave]
+                  ),
+
+                tension: 0.3,
+
+                fill: false
+              }
+            ]
+          },
+
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+
+            plugins: {
+              legend: {
+                display: false
+              }
+            },
+
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: {
+                  precision: 0,
+                  font: {
+                    size: 9
+                  }
+                }
+              },
+
+              x: {
+                ticks: {
+                  font: {
+                    size: 9
+                  }
+                }
+              }
             }
-
-
-            datosFiltrados =
-                [...datos];
-
-
-            conexion.textContent =
-                "Conexión correcta · " +
-                datos.length +
-                " registros";
-
-
-            indicador.className =
-                "indicador ok";
-
-
-            inicializarFiltros();
-
-            actualizarDashboard();
-
-
+          }
         }
+      );
 
-        catch (error) {
-
-            console.error(
-                "Error al cargar datos:",
-                error
-            );
+  }
 
 
-            conexion.textContent =
-                "Error de conexión";
+  /* =========================
+     RESPONSABLE
+  ========================= */
+
+  function crearGraficoResponsable() {
+
+    const conteo = {};
 
 
-            indicador.className =
-                "indicador error";
+    datosFiltrados.forEach(item => {
+
+      const responsable =
+        valorSeguro(item.responsable)
+        || "Sin responsable";
+
+      conteo[responsable] =
+        (conteo[responsable] || 0) + 1;
+
+    });
 
 
-            document.getElementById(
-                "tablaContenedor"
-            ).innerHTML =
+    const ordenado =
+      Object.entries(conteo)
+        .sort((a, b) => b[1] - a[1]);
 
-                '<div class="error">' +
-                'No fue posible cargar los datos de Power Automate.' +
-                '</div>';
 
-        }
-
+    if (graficoResponsable) {
+      graficoResponsable.destroy();
     }
 
 
-    /*
-     * ========================================================
-     * VALOR SEGURO
-     * ========================================================
-     */
+    graficoResponsable =
+      new Chart(
+        document.getElementById("graficoResponsable"),
+        {
+          type: "bar",
 
-    function valorSeguro(valor) {
+          data: {
+            labels:
+              ordenado.map(item => item[0]),
 
-        if (
-            valor === null ||
-            valor === undefined ||
-            valor === ""
-        ) {
+            datasets: [
+              {
+                label: "Proyectos",
 
-            return "Sin información";
+                data:
+                  ordenado.map(item => item[1])
+              }
+            ]
+          },
 
+          options: {
+            indexAxis: "y",
+
+            responsive: true,
+            maintainAspectRatio: false,
+
+            plugins: {
+              legend: {
+                display: false
+              }
+            },
+
+            scales: {
+              x: {
+                beginAtZero: true,
+                ticks: {
+                  precision: 0,
+                  font: {
+                    size: 9
+                  }
+                }
+              },
+
+              y: {
+                ticks: {
+                  font: {
+                    size: 9
+                  }
+                }
+              }
+            }
+          }
         }
+      );
 
-        return String(valor);
+  }
 
+
+  /* =========================
+     PRIORIDAD
+  ========================= */
+
+  function crearGraficoPrioridad() {
+
+    const conteo = {};
+
+
+    datosFiltrados.forEach(item => {
+
+      const prioridad =
+        valorSeguro(item.prioridad)
+        || "Sin prioridad";
+
+      conteo[prioridad] =
+        (conteo[prioridad] || 0) + 1;
+
+    });
+
+
+    if (graficoPrioridad) {
+      graficoPrioridad.destroy();
     }
 
 
-    /*
-     * ========================================================
-     * NORMALIZAR ESTATUS
-     * ========================================================
-     */
+    graficoPrioridad =
+      new Chart(
+        document.getElementById("graficoPrioridad"),
+        {
+          type: "bar",
 
-    function normalizar(valor) {
+          data: {
+            labels: Object.keys(conteo),
 
-        return valorSeguro(valor)
-            .normalize("NFD")
-            .replace(
-                /[\u0300-\u036f]/g,
-                ""
-            )
-            .trim()
-            .toUpperCase();
+            datasets: [
+              {
+                label: "Proyectos",
 
-    }
+                data: Object.values(conteo)
+              }
+            ]
+          },
+
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+
+            plugins: {
+              legend: {
+                display: false
+              }
+            },
+
+            scales: {
+              y: {
+                beginAtZero: true,
+
+                ticks: {
+                  precision: 0,
+                  font: {
+                    size: 9
+                  }
+                }
+              },
+
+              x: {
+                ticks: {
+                  font: {
+                    size: 9
+                  }
+                }
+              }
+            }
+          }
+        }
+      );
+
+  }
 
 
-    /*
-     * ========================================================
-     * IDENTIFICAR ESTATUS
-     * ========================================================
-     */
+  /* =====================================================
+     ESTILO DE ESTATUS
+  ===================================================== */
 
-    function obtenerTipoEstatus(
-        estatus
+  function crearEtiquetaEstado(estatus) {
+
+    const texto =
+      valorSeguro(estatus);
+
+    const normalizado =
+      texto.toUpperCase();
+
+    let clase =
+      "estado-pendiente";
+
+
+    if (
+      normalizado.includes("IN PROGRESS") ||
+      normalizado.includes("PROGRES") ||
+      normalizado.includes("EN PROCESO")
     ) {
 
-        const estado =
-            normalizar(
-                estatus
-            );
-
-
-        /*
-         * EN PROCESO
-         */
-
-        if (
-            estado === "IN PROGRESS" ||
-            estado === "IN-PROGRESS" ||
-            estado === "IN_PROGRESS" ||
-            estado === "EN PROCESO" ||
-            estado === "EN PROGRESO"
-        ) {
-
-            return "proceso";
-
-        }
-
-
-        /*
-         * IN REVIEW
-         */
-
-        if (
-            estado === "IN REVIEW" ||
-            estado === "IN-REVIEW" ||
-            estado === "IN_REVIEW" ||
-            estado === "REVIEW"
-        ) {
-
-            return "review";
-
-        }
-
-
-        /*
-         * QA
-         */
-
-        if (
-            estado === "QA" ||
-            estado === "IN QA"
-        ) {
-
-            return "qa";
-
-        }
-
-
-        /*
-         * COMPLETADOS
-         */
-
-        if (
-            estado === "COMPLETED" ||
-            estado === "COMPLETADO" ||
-            estado === "COMPLETADA"
-        ) {
-
-            return "completado";
-
-        }
-
-
-        /*
-         * CERRADOS
-         */
-
-        if (
-            estado === "CLOSED" ||
-            estado === "CERRADO" ||
-            estado === "CERRADA"
-        ) {
-
-            return "cerrado";
-
-        }
-
-
-        return "otro";
+      clase =
+        "estado-en-proceso";
 
     }
-
-
-    /*
-     * ========================================================
-     * FILTROS
-     * ========================================================
-     */
-
-    function inicializarFiltros() {
-
-        inicializarFiltroPeriodo();
-
-
-        llenarSelect(
-            "filtroEstatus",
-            datos.map(
-                x => x.estatus
-            )
-        );
-
-
-        llenarSelect(
-            "filtroResponsable",
-            datos.map(
-                x => x.responsable
-            )
-        );
-
-
-        llenarSelect(
-            "filtroPrioridad",
-            datos.map(
-                x => x.prioridad
-            )
-        );
-
-    }
-
-
-    /*
-     * ========================================================
-     * FILTRO PERIODO
-     *
-     * yearMes = orden
-     * mesYear = texto visible
-     *
-     * Más reciente primero.
-     * ========================================================
-     */
-
-    function inicializarFiltroPeriodo() {
-
-        const select =
-            document.getElementById(
-                "filtroPeriodo"
-            );
-
-
-        const periodos = {};
-
-
-        datos.forEach(
-            item => {
-
-                const clave =
-                    valorSeguro(
-                        item.yearMes
-                    );
-
-
-                const texto =
-                    valorSeguro(
-                        item.mesYear
-                    );
-
-
-                if (
-                    clave !==
-                    "Sin información" &&
-                    texto !==
-                    "Sin información"
-                ) {
-
-                    periodos[clave] =
-                        texto;
-
-                }
-
-            }
-        );
-
-
-        const periodosOrdenados =
-            Object.keys(
-                periodos
-            )
-            .sort(
-                (a, b) =>
-                    b.localeCompare(
-                        a,
-                        undefined,
-                        {
-                            numeric: true
-                        }
-                    )
-            );
-
-
-        select.innerHTML =
-            '<option value="">Todos</option>';
-
-
-        periodosOrdenados.forEach(
-            clave => {
-
-                const option =
-                    document.createElement(
-                        "option"
-                    );
-
-
-                option.value =
-                    clave;
-
-
-                option.textContent =
-                    periodos[clave];
-
-
-                select.appendChild(
-                    option
-                );
-
-            }
-        );
-
-    }
-
-
-    /*
-     * ========================================================
-     * LLENAR SELECT
-     * ========================================================
-     */
-
-    function llenarSelect(
-        id,
-        valores
+    else if (
+      normalizado.includes("IN REVIEW") ||
+      normalizado.includes("INREVIEW") ||
+      normalizado.includes("REVIEW")
     ) {
 
-        const select =
-            document.getElementById(
-                id
-            );
-
-
-        const unicos = [
-
-            ...new Set(
-
-                valores
-                    .map(
-                        valorSeguro
-                    )
-                    .filter(
-                        x =>
-                            x !==
-                            "Sin información"
-                    )
-
-            )
-
-        ];
-
-
-        unicos.sort(
-            (a, b) =>
-                a.localeCompare(
-                    b,
-                    "es",
-                    {
-                        sensitivity:
-                            "base"
-                    }
-                )
-        );
-
-
-        select.innerHTML =
-            '<option value="">Todos</option>';
-
-
-        unicos.forEach(
-            valor => {
-
-                const option =
-                    document.createElement(
-                        "option"
-                    );
-
-
-                option.value =
-                    valor;
-
-
-                option.textContent =
-                    valor;
-
-
-                select.appendChild(
-                    option
-                );
-
-            }
-        );
+      clase =
+        "estado-review";
 
     }
-
-
-    /*
-     * ========================================================
-     * APLICAR FILTROS
-     * ========================================================
-     */
-
-    function aplicarFiltros() {
-
-        const periodo =
-            document.getElementById(
-                "filtroPeriodo"
-            ).value;
-
-
-        const estatus =
-            document.getElementById(
-                "filtroEstatus"
-            ).value;
-
-
-        const responsable =
-            document.getElementById(
-                "filtroResponsable"
-            ).value;
-
-
-        const prioridad =
-            document.getElementById(
-                "filtroPrioridad"
-            ).value;
-
-
-        const busqueda =
-            document.getElementById(
-                "buscador"
-            ).value
-            .toLowerCase()
-            .trim();
-
-
-        datosFiltrados =
-            datos.filter(
-                item => {
-
-
-                    const coincidePeriodo =
-                        !periodo ||
-                        valorSeguro(
-                            item.yearMes
-                        ) === periodo;
-
-
-                    const coincideEstatus =
-                        !estatus ||
-                        valorSeguro(
-                            item.estatus
-                        ) === estatus;
-
-
-                    const coincideResponsable =
-                        !responsable ||
-                        valorSeguro(
-                            item.responsable
-                        ) === responsable;
-
-
-                    const coincidePrioridad =
-                        !prioridad ||
-                        valorSeguro(
-                            item.prioridad
-                        ) === prioridad;
-
-
-                    const textoBusqueda = (
-
-                        valorSeguro(
-                            item.codigo
-                        ) +
-                        " " +
-                        valorSeguro(
-                            item.proyecto
-                        ) +
-                        " " +
-                        valorSeguro(
-                            item.responsable
-                        ) +
-                        " " +
-                        valorSeguro(
-                            item.estatus
-                        )
-
-                    )
-                    .toLowerCase();
-
-
-                    const coincideBusqueda =
-                        !busqueda ||
-                        textoBusqueda.includes(
-                            busqueda
-                        );
-
-
-                    return (
-
-                        coincidePeriodo &&
-                        coincideEstatus &&
-                        coincideResponsable &&
-                        coincidePrioridad &&
-                        coincideBusqueda
-
-                    );
-
-                }
-            );
-
-
-        paginaActual = 1;
-
-
-        actualizarDashboard();
-
-    }
-
-
-    /*
-     * ========================================================
-     * ACTUALIZAR DASHBOARD
-     * ========================================================
-     */
-
-    function actualizarDashboard() {
-
-        actualizarKPIs();
-
-        actualizarGraficos();
-
-        actualizarTabla();
-
-    }
-
-
-    /*
-     * ========================================================
-     * KPIs
-     *
-     * Total
-     * En proceso
-     * In Review
-     * QA
-     * Completados
-     * Cerrados
-     * % avance
-     * ========================================================
-     */
-
-    function actualizarKPIs() {
-
-        const total =
-            datosFiltrados.length;
-
-
-        const enProceso =
-            datosFiltrados.filter(
-                x =>
-                    obtenerTipoEstatus(
-                        x.estatus
-                    ) === "proceso"
-            ).length;
-
-
-        const inReview =
-            datosFiltrados.filter(
-                x =>
-                    obtenerTipoEstatus(
-                        x.estatus
-                    ) === "review"
-            ).length;
-
-
-        const qa =
-            datosFiltrados.filter(
-                x =>
-                    obtenerTipoEstatus(
-                        x.estatus
-                    ) === "qa"
-            ).length;
-
-
-        const completados =
-            datosFiltrados.filter(
-                x =>
-                    obtenerTipoEstatus(
-                        x.estatus
-                    ) === "completado"
-            ).length;
-
-
-        const cerrados =
-            datosFiltrados.filter(
-                x =>
-                    obtenerTipoEstatus(
-                        x.estatus
-                    ) === "cerrado"
-            ).length;
-
-
-        /*
-         * % AVANCE
-         *
-         * Completados + Cerrados
-         * dividido por el total.
-         */
-
-        const proyectosAvanzados =
-            completados +
-            cerrados;
-
-
-        const porcentaje =
-            total > 0
-
-                ? Math.round(
-                    (
-                        proyectosAvanzados /
-                        total
-                    ) * 100
-                )
-
-                : 0;
-
-
-        document.getElementById(
-            "totalProyectos"
-        ).textContent =
-            total;
-
-
-        document.getElementById(
-            "enProceso"
-        ).textContent =
-            enProceso;
-
-
-        document.getElementById(
-            "inReview"
-        ).textContent =
-            inReview;
-
-
-        document.getElementById(
-            "qa"
-        ).textContent =
-            qa;
-
-
-        document.getElementById(
-            "completados"
-        ).textContent =
-            completados;
-
-
-        document.getElementById(
-            "cerrados"
-        ).textContent =
-            cerrados;
-
-
-        document.getElementById(
-            "porcentajeAvance"
-        ).textContent =
-            porcentaje + "%";
-
-    }
-
-
-    /*
-     * ========================================================
-     * CONTAR POR CAMPO
-     * ========================================================
-     */
-
-    function contarPorCampo(
-        lista,
-        campo
+    else if (
+      normalizado.includes("QA")
     ) {
 
-        const resultado = {};
-
-
-        lista.forEach(
-            item => {
-
-                const valor =
-                    valorSeguro(
-                        item[campo]
-                    );
-
-
-                resultado[valor] =
-                    (
-                        resultado[valor] ||
-                        0
-                    ) + 1;
-
-            }
-        );
-
-
-        return resultado;
+      clase =
+        "estado-qa";
 
     }
-
-
-    /*
-     * ========================================================
-     * DESTRUIR GRAFICO
-     * ========================================================
-     */
-
-    function destruirGrafico(
-        id
+    else if (
+      normalizado.includes("COMPLET")
     ) {
 
-        if (
-            graficos[id]
-        ) {
-
-            graficos[id].destroy();
-
-        }
+      clase =
+        "estado-completado";
 
     }
-
-
-    /*
-     * ========================================================
-     * ACTUALIZAR GRAFICOS
-     * ========================================================
-     */
-
-    function actualizarGraficos() {
-
-        crearGraficoEstatus();
-
-        crearGraficoResponsable();
-
-        crearGraficoPrioridad();
-
-        crearGraficoMensual();
-
-    }
-
-
-    /*
-     * ========================================================
-     * GRAFICO ESTATUS
-     * ========================================================
-     */
-
-    function crearGraficoEstatus() {
-
-        const conteo =
-            contarPorCampo(
-                datosFiltrados,
-                "estatus"
-            );
-
-
-        destruirGrafico(
-            "estatus"
-        );
-
-
-        graficos.estatus =
-            new Chart(
-
-                document.getElementById(
-                    "graficoEstatus"
-                ),
-
-                {
-
-                    type:
-                        "doughnut",
-
-
-                    data: {
-
-                        labels:
-                            Object.keys(
-                                conteo
-                            ),
-
-                        datasets: [
-
-                            {
-
-                                data:
-                                    Object.values(
-                                        conteo
-                                    )
-
-                            }
-
-                        ]
-
-                    },
-
-
-                    options: {
-
-                        responsive:
-                            true,
-
-                        maintainAspectRatio:
-                            false,
-
-                        cutout:
-                            "58%",
-
-                        plugins: {
-
-                            legend: {
-
-                                position:
-                                    "bottom",
-
-                                labels: {
-
-                                    boxWidth:
-                                        10,
-
-                                    font: {
-
-                                        size:
-                                            10
-
-                                    }
-
-                                }
-
-                            }
-
-                        }
-
-                    }
-
-                }
-
-            );
-
-    }
-
-
-    /*
-     * ========================================================
-     * GRAFICO RESPONSABLE
-     * ========================================================
-     */
-
-    function crearGraficoResponsable() {
-
-        const conteo =
-            contarPorCampo(
-                datosFiltrados,
-                "responsable"
-            );
-
-
-        const entradas =
-            Object.entries(
-                conteo
-            )
-            .sort(
-                (a, b) =>
-                    b[1] - a[1]
-            );
-
-
-        destruirGrafico(
-            "responsable"
-        );
-
-
-        graficos.responsable =
-            new Chart(
-
-                document.getElementById(
-                    "graficoResponsable"
-                ),
-
-                {
-
-                    type:
-                        "bar",
-
-
-                    data: {
-
-                        labels:
-                            entradas.map(
-                                x =>
-                                    x[0]
-                            ),
-
-                        datasets: [
-
-                            {
-
-                                label:
-                                    "Proyectos",
-
-                                data:
-                                    entradas.map(
-                                        x =>
-                                            x[1]
-                                    )
-
-                            }
-
-                        ]
-
-                    },
-
-
-                    options: {
-
-                        responsive:
-                            true,
-
-                        maintainAspectRatio:
-                            false,
-
-                        indexAxis:
-                            "y",
-
-
-                        plugins: {
-
-                            legend: {
-
-                                display:
-                                    false
-
-                            }
-
-                        },
-
-
-                        scales: {
-
-                            x: {
-
-                                beginAtZero:
-                                    true,
-
-                                ticks: {
-
-                                    precision:
-                                        0,
-
-                                    font: {
-
-                                        size:
-                                            9
-
-                                    }
-
-                                }
-
-                            },
-
-                            y: {
-
-                                ticks: {
-
-                                    font: {
-
-                                        size:
-                                            9
-
-                                    }
-
-                                }
-
-                            }
-
-                        }
-
-                    }
-
-                }
-
-            );
-
-    }
-
-
-    /*
-     * ========================================================
-     * GRAFICO PRIORIDAD
-     * ========================================================
-     */
-
-    function crearGraficoPrioridad() {
-
-        const conteo =
-            contarPorCampo(
-                datosFiltrados,
-                "prioridad"
-            );
-
-
-        destruirGrafico(
-            "prioridad"
-        );
-
-
-        graficos.prioridad =
-            new Chart(
-
-                document.getElementById(
-                    "graficoPrioridad"
-                ),
-
-                {
-
-                    type:
-                        "bar",
-
-
-                    data: {
-
-                        labels:
-                            Object.keys(
-                                conteo
-                            ),
-
-                        datasets: [
-
-                            {
-
-                                label:
-                                    "Proyectos",
-
-                                data:
-                                    Object.values(
-                                        conteo
-                                    )
-
-                            }
-
-                        ]
-
-                    },
-
-
-                    options: {
-
-                        responsive:
-                            true,
-
-                        maintainAspectRatio:
-                            false,
-
-
-                        plugins: {
-
-                            legend: {
-
-                                display:
-                                    false
-
-                            }
-
-                        },
-
-
-                        scales: {
-
-                            x: {
-
-                                ticks: {
-
-                                    font: {
-
-                                        size:
-                                            9
-
-                                    }
-
-                                }
-
-                            },
-
-                            y: {
-
-                                beginAtZero:
-                                    true,
-
-                                ticks: {
-
-                                    precision:
-                                        0,
-
-                                    font: {
-
-                                        size:
-                                            9
-
-                                    }
-
-                                }
-
-                            }
-
-                        }
-
-                    }
-
-                }
-
-            );
-
-    }
-
-
-    /*
-     * ========================================================
-     * GRAFICO MENSUAL
-     *
-     * Orden cronológico por yearMes.
-     * ========================================================
-     */
-
-    function crearGraficoMensual() {
-
-        const periodos = {};
-
-
-        datosFiltrados.forEach(
-            item => {
-
-                const clave =
-                    valorSeguro(
-                        item.yearMes
-                    );
-
-
-                const texto =
-                    valorSeguro(
-                        item.mesYear
-                    );
-
-
-                if (
-                    clave ===
-                    "Sin información"
-                ) {
-
-                    return;
-
-                }
-
-
-                if (
-                    !periodos[clave]
-                ) {
-
-                    periodos[clave] = {
-
-                        texto:
-                            texto,
-
-                        cantidad:
-                            0
-
-                    };
-
-                }
-
-
-                periodos[clave]
-                    .cantidad++;
-
-            }
-        );
-
-
-        const entradas =
-            Object.entries(
-                periodos
-            )
-            .sort(
-                (a, b) =>
-                    a[0].localeCompare(
-                        b[0],
-                        undefined,
-                        {
-                            numeric:
-                                true
-                        }
-                    )
-            );
-
-
-        destruirGrafico(
-            "mensual"
-        );
-
-
-        graficos.mensual =
-            new Chart(
-
-                document.getElementById(
-                    "graficoMensual"
-                ),
-
-                {
-
-                    type:
-                        "line",
-
-
-                    data: {
-
-                        labels:
-                            entradas.map(
-                                x =>
-                                    x[1].texto
-                            ),
-
-                        datasets: [
-
-                            {
-
-                                label:
-                                    "Proyectos",
-
-                                data:
-                                    entradas.map(
-                                        x =>
-                                            x[1].cantidad
-                                    ),
-
-                                tension:
-                                    0.3,
-
-                                fill:
-                                    false
-
-                            }
-
-                        ]
-
-                    },
-
-
-                    options: {
-
-                        responsive:
-                            true,
-
-                        maintainAspectRatio:
-                            false,
-
-
-                        plugins: {
-
-                            legend: {
-
-                                display:
-                                    false
-
-                            }
-
-                        },
-
-
-                        scales: {
-
-                            x: {
-
-                                ticks: {
-
-                                    font: {
-
-                                        size:
-                                            9
-
-                                    }
-
-                                }
-
-                            },
-
-                            y: {
-
-                                beginAtZero:
-                                    true,
-
-                                ticks: {
-
-                                    precision:
-                                        0,
-
-                                    font: {
-
-                                        size:
-                                            9
-
-                                    }
-
-                                }
-
-                            }
-
-                        }
-
-                    }
-
-                }
-
-            );
-
-    }
-
-
-    /*
-     * ========================================================
-     * TABLA
-     * ========================================================
-     */
-
-    function actualizarTabla() {
-
-        const inicio =
-            (
-                paginaActual -
-                1
-            ) *
-            registrosPorPagina;
-
-
-        const fin =
-            inicio +
-            registrosPorPagina;
-
-
-        const registros =
-            datosFiltrados.slice(
-                inicio,
-                fin
-            );
-
-
-        if (
-            registros.length === 0
-        ) {
-
-            document.getElementById(
-                "tablaContenedor"
-            ).innerHTML =
-
-                '<div class="sin-datos">' +
-                'No hay proyectos que coincidan con los filtros.' +
-                '</div>';
-
-
-            actualizarPaginacion();
-
-            return;
-
-        }
-
-
-        let html = `
-
-            <table>
-
-                <thead>
-
-                    <tr>
-
-                        <th>
-                            Código
-                        </th>
-
-                        <th>
-                            Proyecto
-                        </th>
-
-                        <th>
-                            Estatus
-                        </th>
-
-                        <th>
-                            Responsable
-                        </th>
-
-                        <th>
-                            Fecha creación
-                        </th>
-
-                        <th>
-                            Fecha cierre
-                        </th>
-
-                        <th>
-                            Prioridad
-                        </th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-        `;
-
-
-        registros.forEach(
-            item => {
-
-                html += `
-
-                    <tr>
-
-                        <td>
-                            ${valorSeguro(
-                                item.codigo
-                            )}
-                        </td>
-
-                        <td>
-                            ${valorSeguro(
-                                item.proyecto
-                            )}
-                        </td>
-
-                        <td>
-                            ${crearEtiquetaEstado(
-                                item.estatus
-                            )}
-                        </td>
-
-                        <td>
-                            ${valorSeguro(
-                                item.responsable
-                            )}
-                        </td>
-
-                        <td>
-                            ${formatearFecha(
-                                item.fechaCreacion
-                            )}
-                        </td>
-
-                        <td>
-                            ${formatearFecha(
-                                item.fechaCierre
-                            )}
-                        </td>
-
-                        <td>
-                            ${valorSeguro(
-                                item.prioridad
-                            )}
-                        </td>
-
-                    </tr>
-
-                `;
-
-            }
-        );
-
-
-        html += `
-
-                </tbody>
-
-            </table>
-
-        `;
-
-
-        document.getElementById(
-            "tablaContenedor"
-        ).innerHTML =
-            html;
-
-
-        actualizarPaginacion();
-
-    }
-
-
-    /*
-     * ========================================================
-     * ETIQUETA ESTADO
-     * ========================================================
-     */
-
-    function crearEtiquetaEstado(
-        estado
+    else if (
+      normalizado.includes("CERRAD") ||
+      normalizado.includes("CLOSED") ||
+      normalizado.includes("CLOSE")
     ) {
 
-        const texto =
-            valorSeguro(
-                estado
-            );
-
-
-        const tipo =
-            obtenerTipoEstatus(
-                texto
-            );
-
-
-        let clase =
-            "estado-otro";
-
-
-        if (
-            tipo === "completado"
-        ) {
-
-            clase =
-                "estado-completado";
-
-        }
-
-        else if (
-            tipo === "cerrado"
-        ) {
-
-            clase =
-                "estado-cerrado";
-
-        }
-
-        else if (
-            tipo === "proceso"
-        ) {
-
-            clase =
-                "estado-progreso";
-
-        }
-
-        else if (
-            tipo === "review"
-        ) {
-
-            clase =
-                "estado-review";
-
-        }
-
-        else if (
-            tipo === "qa"
-        ) {
-
-            clase =
-                "estado-qa";
-
-        }
-
-
-        return `
-
-            <span class="estado ${clase}">
-                ${texto}
-            </span>
-
-        `;
+      clase =
+        "estado-cerrado";
 
     }
 
 
-    /*
-     * ========================================================
-     * FORMATEAR FECHA
-     * ========================================================
-     */
+    return `
+      <span class="estado ${clase}">
+        ${escaparHTML(texto || "Sin estatus")}
+      </span>
+    `;
 
-    function formatearFecha(
-        fecha
-    ) {
-
-        if (
-            !fecha ||
-            fecha === "Sin información"
-        ) {
-
-            return "-";
-
-        }
+  }
 
 
-        const valor =
-            String(fecha)
-                .substring(
-                    0,
-                    10
-                );
+  /* =====================================================
+     TABLA
+  ===================================================== */
+
+  function actualizarTabla() {
+
+    const tabla =
+      document.getElementById("tablaProyectos");
 
 
-        const partes =
-            valor.split("-");
+    const inicio =
+      (paginaActual - 1)
+      * REGISTROS_POR_PAGINA;
 
 
-        if (
-            partes.length !== 3
-        ) {
-
-            return valor;
-
-        }
+    const fin =
+      inicio + REGISTROS_POR_PAGINA;
 
 
-        return (
+    const registros =
+      datosFiltrados.slice(inicio, fin);
 
-            partes[2] +
-            "/" +
-            partes[1] +
-            "/" +
-            partes[0]
 
+    tabla.innerHTML = "";
+
+
+    registros.forEach(item => {
+
+      const fila =
+        document.createElement("tr");
+
+
+      fila.innerHTML = `
+
+        <td>
+          ${escaparHTML(item.codigo)}
+        </td>
+
+        <td>
+          ${escaparHTML(item.proyecto)}
+        </td>
+
+        <td>
+          ${crearEtiquetaEstado(item.estatus)}
+        </td>
+
+        <td>
+          ${escaparHTML(item.responsable)}
+        </td>
+
+        <td>
+          ${formatearFecha(item.fechaCreacion)}
+        </td>
+
+        <td>
+          ${formatearFecha(item.fechaCierre)}
+        </td>
+
+        <td>
+          ${escaparHTML(item.prioridad)}
+        </td>
+
+      `;
+
+
+      tabla.appendChild(fila);
+
+    });
+
+
+    document.getElementById("registrosMostrados")
+      .textContent =
+        datosFiltrados.length
+        + (
+          datosFiltrados.length === 1
+            ? " registro"
+            : " registros"
         );
 
+
+    actualizarPaginacion();
+
+  }
+
+
+  /* =====================================================
+     FECHAS
+  ===================================================== */
+
+  function formatearFecha(fecha) {
+
+    if (!fecha) {
+      return "-";
     }
 
 
-    /*
-     * ========================================================
-     * PAGINACION
-     * ========================================================
-     */
-
-    function actualizarPaginacion() {
-
-        const total =
-            datosFiltrados.length;
+    const fechaObjeto =
+      new Date(fecha);
 
 
-        const totalPaginas =
-            Math.ceil(
-                total /
-                registrosPorPagina
-            );
-
-
-        const contenedor =
-            document.getElementById(
-                "paginacion"
-            );
-
-
-        if (
-            total === 0
-        ) {
-
-            contenedor.innerHTML =
-                "";
-
-            return;
-
-        }
-
-
-        const desde =
-            (
-                (
-                    paginaActual -
-                    1
-                ) *
-                registrosPorPagina
-            ) + 1;
-
-
-        const hasta =
-            Math.min(
-                paginaActual *
-                registrosPorPagina,
-                total
-            );
-
-
-        contenedor.innerHTML = `
-
-            <div>
-
-                Mostrando
-                ${desde}-${hasta}
-                de
-                ${total}
-                proyectos
-
-            </div>
-
-
-            <div class="paginacion-botones">
-
-                <button
-                    onclick="cambiarPagina(-1)"
-                    ${paginaActual === 1 ? "disabled" : ""}
-                >
-                    Anterior
-                </button>
-
-
-                <button
-                    onclick="cambiarPagina(1)"
-                    ${paginaActual === totalPaginas ? "disabled" : ""}
-                >
-                    Siguiente
-                </button>
-
-            </div>
-
-        `;
-
+    if (isNaN(fechaObjeto.getTime())) {
+      return escaparHTML(fecha);
     }
 
 
-    /*
-     * ========================================================
-     * CAMBIAR PAGINA
-     * ========================================================
-     */
-
-    function cambiarPagina(
-        direccion
-    ) {
-
-        const totalPaginas =
-            Math.ceil(
-                datosFiltrados.length /
-                registrosPorPagina
-            );
-
-
-        paginaActual +=
-            direccion;
-
-
-        if (
-            paginaActual < 1
-        ) {
-
-            paginaActual = 1;
-
-        }
-
-
-        if (
-            paginaActual >
-            totalPaginas
-        ) {
-
-            paginaActual =
-                totalPaginas;
-
-        }
-
-
-        actualizarTabla();
-
-    }
-
-
-    /*
-     * ========================================================
-     * EVENTOS
-     * ========================================================
-     */
-
-    document.getElementById(
-        "filtroPeriodo"
-    ).addEventListener(
-        "change",
-        aplicarFiltros
+    return fechaObjeto.toLocaleDateString(
+      "es-CL",
+      {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric"
+      }
     );
 
+  }
 
-    document.getElementById(
-        "filtroEstatus"
-    ).addEventListener(
-        "change",
-        aplicarFiltros
+
+  /* =====================================================
+     PAGINACIÓN
+  ===================================================== */
+
+  function obtenerTotalPaginas() {
+
+    return Math.max(
+      1,
+      Math.ceil(
+        datosFiltrados.length /
+        REGISTROS_POR_PAGINA
+      )
     );
 
-
-    document.getElementById(
-        "filtroResponsable"
-    ).addEventListener(
-        "change",
-        aplicarFiltros
-    );
+  }
 
 
-    document.getElementById(
-        "filtroPrioridad"
-    ).addEventListener(
-        "change",
-        aplicarFiltros
-    );
+  function actualizarPaginacion() {
+
+    const totalPaginas =
+      obtenerTotalPaginas();
 
 
-    document.getElementById(
-        "buscador"
-    ).addEventListener(
-        "input",
-        aplicarFiltros
-    );
+    if (paginaActual > totalPaginas) {
+      paginaActual = totalPaginas;
+    }
 
 
-    /*
-     * ========================================================
-     * LIMPIAR FILTROS
-     * ========================================================
-     */
+    document.getElementById("paginaInfo")
+      .textContent =
+        "Página "
+        + paginaActual
+        + " de "
+        + totalPaginas;
 
-    document.getElementById(
-        "limpiarFiltros"
-    ).addEventListener(
-        "click",
-        function() {
+  }
 
 
-            document.getElementById(
-                "filtroPeriodo"
-            ).value = "";
+  function paginaAnterior() {
+
+    if (paginaActual > 1) {
+
+      paginaActual--;
+
+      actualizarTabla();
+
+    }
+
+  }
 
 
-            document.getElementById(
-                "filtroEstatus"
-            ).value = "";
+  function paginaSiguiente() {
+
+    const totalPaginas =
+      obtenerTotalPaginas();
 
 
-            document.getElementById(
-                "filtroResponsable"
-            ).value = "";
+    if (paginaActual < totalPaginas) {
+
+      paginaActual++;
+
+      actualizarTabla();
+
+    }
+
+  }
 
 
-            document.getElementById(
-                "filtroPrioridad"
-            ).value = "";
+  /* =====================================================
+     INICIO
+  ===================================================== */
 
-
-            document.getElementById(
-                "buscador"
-            ).value = "";
-
-
-            datosFiltrados =
-                [...datos];
-
-
-            paginaActual = 1;
-
-
-            actualizarDashboard();
-
-        }
-    );
-
-
-    /*
-     * ========================================================
-     * INICIO
-     * ========================================================
-     */
-
-    cargarDatos();
+  cargarDatos();
 
 </script>
 
