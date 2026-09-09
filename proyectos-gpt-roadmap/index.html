@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -208,6 +207,7 @@
       padding: 14px;
       box-shadow: 0 1px 4px rgba(0,0,0,.07);
       height: 285px;
+      min-width: 0;
     }
 
     .grafico h2 {
@@ -224,27 +224,44 @@
 
     /* =====================================================
        ASIGNADOS POR PROYECTOS
-       Ranking visual
+       70% DEL ANCHO
     ===================================================== */
 
     .grafico-asignados {
-      grid-column: 1 / -1;
-      height: auto;
-      min-height: 285px;
+      grid-column: 1 / 2;
+      height: 285px;
     }
 
     .ranking-asignados {
       width: 100%;
-      max-height: 255px;
+      max-height: 235px;
       overflow-y: auto;
-      padding-right: 4px;
+      padding-right: 5px;
     }
 
     .asignado-item {
       display: grid;
-      grid-template-columns: minmax(190px, 280px) 1fr 42px;
+
+      /*
+        Primera columna:
+        nombre completo
+
+        Segunda columna:
+        barra
+
+        Tercera columna:
+        cantidad
+      */
+
+      grid-template-columns:
+        minmax(180px, 250px)
+        minmax(0, 1fr)
+        42px;
+
       align-items: center;
+
       gap: 12px;
+
       margin-bottom: 10px;
     }
 
@@ -252,39 +269,69 @@
       font-size: 12px;
       color: #333;
       line-height: 1.25;
+
       overflow-wrap: anywhere;
+      word-break: normal;
     }
 
     .asignado-barra-fondo {
       width: 100%;
       height: 16px;
+
       background: #edf0f2;
+
       border-radius: 10px;
+
       overflow: hidden;
     }
 
     .asignado-barra {
       height: 100%;
+
       background: #0078d4;
+
       border-radius: 10px;
+
       min-width: 4px;
+
       transition: width .3s ease;
     }
 
     .asignado-cantidad {
       font-size: 12px;
       font-weight: 600;
+
       text-align: right;
+
       color: #333;
     }
 
     .sin-asignados {
       display: flex;
+
       align-items: center;
       justify-content: center;
+
       height: 210px;
+
       color: #777;
+
       font-size: 12px;
+    }
+
+
+    /* =====================================================
+       PRIORIDAD
+       30% DEL ANCHO
+    ===================================================== */
+
+    .grafico-prioridad {
+      grid-column: 2 / 3;
+      height: 285px;
+    }
+
+    .grafico-prioridad .grafico-contenedor {
+      height: 225px;
     }
 
 
@@ -478,7 +525,10 @@
       }
 
       .asignado-item {
-        grid-template-columns: minmax(150px, 220px) 1fr 40px;
+        grid-template-columns:
+          minmax(150px, 200px)
+          minmax(0, 1fr)
+          40px;
       }
 
     }
@@ -515,7 +565,11 @@
         height: 215px;
       }
 
+
+      /* ASIGNADOS EN MÓVIL */
+
       .grafico-asignados {
+        grid-column: auto;
         height: auto;
         min-height: 280px;
       }
@@ -524,8 +578,25 @@
         max-height: 245px;
       }
 
+
+      /* PRIORIDAD EN MÓVIL */
+
+      .grafico-prioridad {
+        grid-column: auto;
+        height: 275px;
+      }
+
+      .grafico-prioridad .grafico-contenedor {
+        height: 215px;
+      }
+
+
       .asignado-item {
-        grid-template-columns: 125px 1fr 35px;
+        grid-template-columns:
+          125px
+          minmax(0, 1fr)
+          35px;
+
         gap: 8px;
       }
 
@@ -547,7 +618,10 @@
       }
 
       .asignado-item {
-        grid-template-columns: 105px 1fr 32px;
+        grid-template-columns:
+          105px
+          minmax(0, 1fr)
+          32px;
       }
 
     }
@@ -878,9 +952,11 @@
     </div>
 
 
-    <!-- PRIORIDAD -->
+    <!-- =================================================
+         PRIORIDAD
+    ================================================== -->
 
-    <div class="grafico">
+    <div class="grafico grafico-prioridad">
 
       <h2>
         Proyectos por prioridad
@@ -927,7 +1003,7 @@
         id="busqueda"
         type="text"
         placeholder="Buscar por código, proyecto, estatus o responsable..."
-        oninput="aplicarFiltros()">
+        oninput="aplicarFiltros">
 
     </div>
 
@@ -2087,8 +2163,7 @@
   /* =====================================================
      ASIGNADOS POR PROYECTOS
      
-     NUEVO:
-     Ranking visual HTML en lugar de gráfico de barras.
+     Ranking visual HTML
   ===================================================== */
 
   function actualizarAsignados() {
@@ -2772,4 +2847,3 @@
 
 </body>
 </html>
-```
