@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Proyectos GPT Roadmap</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 40px;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #1f2937;
+        }
+
+        .contenedor {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            margin: 0 0 8px 0;
+            font-size: 32px;
+        }
+
+        .subtitulo {
+            color: #6b7280;
+            margin-bottom: 30px;
+        }
+
+        .tarjetas {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .tarjeta {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .etiqueta {
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .valor {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .descripcion {
+            margin-top: 30px;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            color: #4b5563;
+        }
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 20px;
+            }
+
+            .tarjetas {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="contenedor">
+
+        <h1>Proyectos GPT Roadmap</h1>
+
+        <div class="subtitulo">
+            Dashboard de proyectos
+        </div>
+
+        <div class="tarjetas">
+
+            <div class="tarjeta">
+                <div class="etiqueta">
+                    Estado de conexión
+                </div>
+
+                <div id="conexion" class="valor">
+                    Pendiente
+                </div>
+            </div>
+
+            <div class="tarjeta">
+                <div class="etiqueta">
+                    Registros recibidos
+                </div>
+
+                <div id="registros" class="valor">
+                    -
+                </div>
+            </div>
+
+        </div>
+
+        <div class="descripcion">
+
+            <strong>Prueba inicial</strong>
+
+            <p>
+                Esta página será utilizada posteriormente para mostrar
+                estadísticas y gráficos de la lista ProyectosGPTRoadmap.
+            </p>
+
+            <p>
+                La conexión con Power Automate se configurará en el
+                siguiente paso.
+            </p>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
