@@ -1,5 +1,5 @@
-```html
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -482,428 +482,421 @@
     }
 
   </style>
+
 </head>
 
 <body>
 
   <div class="contenedor">
 
-    <!-- =========================
-         ENCABEZADO
-         ========================= -->
+```
+<!-- =========================
+     ENCABEZADO
+     ========================= -->
 
-    <div class="encabezado">
+<div class="encabezado">
 
-      <h1>Proyectos GPT Roadmap</h1>
+  <h1>Proyectos GPT Roadmap</h1>
 
-      <div class="subtitulo">
-        Dashboard de seguimiento de proyectos
-      </div>
+  <div class="subtitulo">
+    Dashboard de seguimiento de proyectos
+  </div>
 
-      <div class="conexion" id="estadoConexion">
+  <div class="conexion" id="estadoConexion">
 
-        <span class="conexion-punto"></span>
+    <span class="conexion-punto"></span>
 
-        <span id="textoConexion">
-          Conectando...
-        </span>
+    <span id="textoConexion">
+      Conectando...
+    </span>
 
-      </div>
+  </div>
+
+</div>
+
+
+<!-- =========================
+     KPI
+     ========================= -->
+
+<div class="kpis">
+
+  <!-- TOTAL -->
+
+  <div class="kpi">
+
+    <div class="kpi-titulo">
+      Total de proyectos
+    </div>
+
+    <div class="kpi-valor" id="kpiTotal">
+      0
+    </div>
+
+  </div>
+
+
+  <!-- EN PROCESO -->
+
+  <div class="kpi kpi-en-proceso">
+
+    <div class="kpi-titulo">
+      En proceso
+    </div>
+
+    <div class="kpi-valor" id="kpiEnProceso">
+      0
+    </div>
+
+  </div>
+
+
+  <!-- IN REVIEW QA -->
+
+  <div class="kpi kpi-in-review-qa">
+
+    <div class="kpi-titulo">
+      In review QA
+    </div>
+
+    <div class="kpi-valor" id="kpiInReviewQA">
+      0
+    </div>
+
+  </div>
+
+
+  <!-- COMPLETADOS -->
+
+  <div class="kpi kpi-completados">
+
+    <div class="kpi-titulo">
+      Completados
+    </div>
+
+    <div class="kpi-valor" id="kpiCompletados">
+      0
+    </div>
+
+  </div>
+
+
+  <!-- CERRADOS -->
+
+  <div class="kpi kpi-cerrados">
+
+    <div class="kpi-titulo">
+      Cerrados
+    </div>
+
+    <div class="kpi-valor" id="kpiCerrados">
+      0
+    </div>
+
+  </div>
+
+
+  <!-- % AVANCE -->
+
+  <div class="kpi kpi-avance">
+
+    <div class="kpi-titulo">
+      % avance
+    </div>
+
+    <div class="kpi-valor" id="kpiAvance">
+      0%
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     FILTROS
+     ========================= -->
+
+<div class="filtros">
+
+  <div class="filtros-titulo">
+    Filtros
+  </div>
+
+  <div class="filtros-grid">
+
+    <div class="filtro">
+
+      <label for="filtroPeriodo">
+        Periodo
+      </label>
+
+      <select
+        id="filtroPeriodo"
+        onchange="aplicarFiltros()"
+      >
+
+        <option value="">
+          Todos
+        </option>
+
+      </select>
 
     </div>
 
 
-    <!-- =========================
-         KPI
-         ========================= -->
+    <div class="filtro">
 
-    <div class="kpis">
+      <label for="filtroEstatus">
+        Estatus
+      </label>
 
-      <!-- TOTAL -->
+      <select
+        id="filtroEstatus"
+        onchange="aplicarFiltros()"
+      >
 
-      <div class="kpi">
+        <option value="">
+          Todos
+        </option>
 
-        <div class="kpi-titulo">
-          Total de proyectos
-        </div>
-
-        <div class="kpi-valor" id="kpiTotal">
-          0
-        </div>
-
-      </div>
-
-
-      <!-- EN PROCESO -->
-
-      <div class="kpi kpi-en-proceso">
-
-        <div class="kpi-titulo">
-          En proceso
-        </div>
-
-        <div class="kpi-valor" id="kpiEnProceso">
-          0
-        </div>
-
-      </div>
-
-
-      <!-- IN REVIEW QA -->
-
-      <div class="kpi kpi-in-review-qa">
-
-        <div class="kpi-titulo">
-          In review QA
-        </div>
-
-        <div class="kpi-valor" id="kpiInReviewQA">
-          0
-        </div>
-
-      </div>
-
-
-      <!-- COMPLETADOS -->
-
-      <div class="kpi kpi-completados">
-
-        <div class="kpi-titulo">
-          Completados
-        </div>
-
-        <div class="kpi-valor" id="kpiCompletados">
-          0
-        </div>
-
-      </div>
-
-
-      <!-- CERRADOS -->
-
-      <div class="kpi kpi-cerrados">
-
-        <div class="kpi-titulo">
-          Cerrados
-        </div>
-
-        <div class="kpi-valor" id="kpiCerrados">
-          0
-        </div>
-
-      </div>
-
-
-      <!-- % AVANCE -->
-
-      <div class="kpi kpi-avance">
-
-        <div class="kpi-titulo">
-          % avance
-        </div>
-
-        <div class="kpi-valor" id="kpiAvance">
-          0%
-        </div>
-
-      </div>
+      </select>
 
     </div>
 
 
-    <!-- =========================
-         FILTROS
-         ========================= -->
+    <div class="filtro">
 
-    <div class="filtros">
+      <label for="filtroResponsable">
+        Responsable
+      </label>
 
-      <div class="filtros-titulo">
-        Filtros
-      </div>
+      <select
+        id="filtroResponsable"
+        onchange="aplicarFiltros()"
+      >
 
-      <div class="filtros-grid">
+        <option value="">
+          Todos
+        </option>
 
-        <div class="filtro">
-
-          <label for="filtroPeriodo">
-            Periodo
-          </label>
-
-          <select
-            id="filtroPeriodo"
-            onchange="aplicarFiltros()"
-          >
-
-            <option value="">
-              Todos
-            </option>
-
-          </select>
-
-        </div>
-
-
-        <div class="filtro">
-
-          <label for="filtroEstatus">
-            Estatus
-          </label>
-
-          <select
-            id="filtroEstatus"
-            onchange="aplicarFiltros()"
-          >
-
-            <option value="">
-              Todos
-            </option>
-
-          </select>
-
-        </div>
-
-
-        <div class="filtro">
-
-          <label for="filtroResponsable">
-            Responsable
-          </label>
-
-          <select
-            id="filtroResponsable"
-            onchange="aplicarFiltros()"
-          >
-
-            <option value="">
-              Todos
-            </option>
-
-          </select>
-
-        </div>
-
-
-        <div class="filtro">
-
-          <label for="filtroPrioridad">
-            Prioridad
-          </label>
-
-          <select
-            id="filtroPrioridad"
-            onchange="aplicarFiltros()"
-          >
-
-            <option value="">
-              Todas
-            </option>
-
-          </select>
-
-        </div>
-
-      </div>
+      </select>
 
     </div>
 
 
-    <!-- =========================
-         GRAFICOS
-         ========================= -->
+    <div class="filtro">
 
-    <div class="graficos">
+      <label for="filtroPrioridad">
+        Prioridad
+      </label>
 
+      <select
+        id="filtroPrioridad"
+        onchange="aplicarFiltros()"
+      >
 
-      <!-- DISTRIBUCION POR ESTATUS -->
+        <option value="">
+          Todas
+        </option>
 
-      <div class="grafico-card">
-
-        <div class="grafico-titulo">
-          Distribución por estatus
-        </div>
-
-        <div class="grafico-contenedor">
-
-          <canvas id="graficoEstatus"></canvas>
-
-        </div>
-
-      </div>
-
-
-      <!-- EVOLUCION MENSUAL -->
-
-      <div class="grafico-card">
-
-        <div class="grafico-titulo">
-          Evolución mensual de proyectos
-        </div>
-
-        <div class="grafico-contenedor">
-
-          <canvas id="graficoMensual"></canvas>
-
-        </div>
-
-      </div>
-
-
-      <!-- ASIGNADOS POR PROYECTOS -->
-
-      <div class="grafico-card">
-
-        <div class="grafico-titulo">
-          Asignados por proyectos
-        </div>
-
-        <div
-          class="ranking"
-          id="rankingResponsables"
-        ></div>
-
-      </div>
-
-
-      <!-- PRIORIDAD -->
-
-      <div class="grafico-card grafico-prioridad">
-
-        <div class="grafico-titulo">
-          Proyectos por prioridad
-        </div>
-
-        <div class="grafico-contenedor">
-
-          <canvas id="graficoPrioridad"></canvas>
-
-        </div>
-
-      </div>
+      </select>
 
     </div>
 
+  </div>
 
-    <!-- =========================
-         TABLA
-         ========================= -->
-
-    <div class="tabla-card">
-
-      <div class="tabla-cabecera">
-
-        <div class="tabla-titulo">
-          Detalle de proyectos
-        </div>
-
-        <div class="busqueda">
-
-          <input
-            type="text"
-            id="busqueda"
-            placeholder="Buscar proyecto..."
-            oninput="aplicarFiltros()"
-          >
-
-        </div>
-
-      </div>
+</div>
 
 
-      <div class="tabla-wrapper">
+<!-- =========================
+     GRAFICOS
+     ========================= -->
 
-        <table>
-
-          <thead>
-
-            <tr>
-
-              <th>
-                Código
-              </th>
-
-              <th>
-                Proyecto
-              </th>
-
-              <th>
-                Estado
-              </th>
-
-              <th>
-                Estatus
-              </th>
-
-              <th>
-                Responsable
-              </th>
-
-              <th>
-                Prioridad
-              </th>
-
-              <th>
-                Fecha creación
-              </th>
-
-              <th>
-                Fecha cierre
-              </th>
-
-            </tr>
-
-          </thead>
-
-          <tbody id="tablaProyectos"></tbody>
-
-        </table>
-
-      </div>
+<div class="graficos">
 
 
-      <div class="paginacion">
+  <!-- DISTRIBUCION POR ESTATUS -->
 
-        <button
-          id="btnAnterior"
-          onclick="paginaAnterior()"
-        >
-          Anterior
-        </button>
+  <div class="grafico-card">
 
-        <span
-          class="pagina-info"
-          id="paginaInfo"
-        >
-          Página 1
-        </span>
+    <div class="grafico-titulo">
+      Distribución por estatus
+    </div>
 
-        <button
-          id="btnSiguiente"
-          onclick="paginaSiguiente()"
-        >
-          Siguiente
-        </button>
+    <div class="grafico-contenedor">
 
-      </div>
+      <canvas id="graficoEstatus"></canvas>
 
     </div>
 
   </div>
 
 
+  <!-- EVOLUCION MENSUAL -->
+
+  <div class="grafico-card">
+
+    <div class="grafico-titulo">
+      Evolución mensual de proyectos
+    </div>
+
+    <div class="grafico-contenedor">
+
+      <canvas id="graficoMensual"></canvas>
+
+    </div>
+
+  </div>
+
+
+  <!-- ASIGNADOS POR PROYECTOS -->
+
+  <div class="grafico-card">
+
+    <div class="grafico-titulo">
+      Asignados por proyectos
+    </div>
+
+    <div
+      class="ranking"
+      id="rankingResponsables"
+    ></div>
+
+  </div>
+
+
+  <!-- PRIORIDAD -->
+
+  <div class="grafico-card grafico-prioridad">
+
+    <div class="grafico-titulo">
+      Proyectos por prioridad
+    </div>
+
+    <div class="grafico-contenedor">
+
+      <canvas id="graficoPrioridad"></canvas>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     TABLA
+     ========================= -->
+
+<div class="tabla-card">
+
+  <div class="tabla-cabecera">
+
+    <div class="tabla-titulo">
+      Detalle de proyectos
+    </div>
+
+    <div class="busqueda">
+
+      <input
+        type="text"
+        id="busqueda"
+        placeholder="Buscar proyecto..."
+        oninput="aplicarFiltros()"
+      >
+
+    </div>
+
+  </div>
+
+
+  <div class="tabla-wrapper">
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th>
+            Código
+          </th>
+
+          <th>
+            Proyecto
+          </th>
+
+          <th>
+            Estado
+          </th>
+
+          <th>
+            Estatus
+          </th>
+
+          <th>
+            Responsable
+          </th>
+
+          <th>
+            Prioridad
+          </th>
+
+          <th>
+            Fecha creación
+          </th>
+
+          <th>
+            Fecha cierre
+          </th>
+
+        </tr>
+
+      </thead>
+
+      <tbody id="tablaProyectos"></tbody>
+
+    </table>
+
+  </div>
+
+
+  <div class="paginacion">
+
+    <button
+      id="btnAnterior"
+      onclick="paginaAnterior()"
+    >
+      Anterior
+    </button>
+
+    <span
+      class="pagina-info"
+      id="paginaInfo"
+    >
+      Página 1
+    </span>
+
+    <button
+      id="btnSiguiente"
+      onclick="paginaSiguiente()"
+    >
+      Siguiente
+    </button>
+
+  </div>
+
+</div>
+```
+
+  </div>
+
   <script>
 
     /* ============================================================
        CONFIGURACION
        ============================================================ */
-
-    /*
-      IMPORTANTE:
-
-      CONSERVA AQUÍ LA URL DE POWER AUTOMATE QUE YA TIENES
-      FUNCIONANDO.
-
-      No necesitas modificar el flujo.
-    */
 
     const POWER_AUTOMATE_URL =
       "https://default65bbe6da35e94c18993bee2c16cb7e.64.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/22/workflows/1cbcd22cd245429b859457e6c5ebed46/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=vOQVES3QkJ_ipBGmiHQ1qYRKDuAo8BnixTXhH6meIig";
@@ -1038,29 +1031,30 @@
        ============================================================ */
 
     /*
-      Esta función convierte el campo Responsable
-      en una lista real de personas.
+      ÚNICO AJUSTE REALIZADO:
 
-      Se contemplan los separadores más habituales:
+      El campo Responsable puede contener varios nombres
+      separados por coma.
 
+      También se mantienen los separadores que ya funcionaban:
       ;
-      ,
       saltos de línea
       |
 
-      Si viene una sola persona,
-      devuelve una sola persona.
-
       Ejemplo:
 
-      "Juan Pérez; María López"
+      "Juan Pérez, María López, Carlos Soto, María López"
 
       se convierte en:
 
       [
         "Juan Pérez",
+        "María López",
+        "Carlos Soto",
         "María López"
       ]
+
+      Posteriormente el filtro elimina duplicados.
     */
 
     function obtenerResponsables(
@@ -1089,7 +1083,7 @@
 
 
       return texto
-        .split(/[;\n|]+/)
+        .split(/[;,\n|]+/)
         .map(
           nombre =>
             nombre.trim()
@@ -1644,16 +1638,11 @@
       /*
         RESPONSABLES
 
-        IMPORTANTE:
+        Se separan los nombres individuales,
+        incluyendo los separados por coma.
 
-        Ya no hacemos:
-
-        new Set(datos.map(item => item.responsable))
-
-        porque eso agrupa los nombres.
-
-        Ahora recorremos cada registro y
-        separamos cada persona.
+        Después se utiliza un Map para que
+        cada persona aparezca una sola vez.
       */
 
       const mapaResponsables =
@@ -1897,7 +1886,7 @@
               Ahora comprobamos si la persona
               seleccionada pertenece al registro,
               aunque el registro tenga varios
-              responsables.
+              responsables separados por coma.
             */
 
             if (responsable) {
@@ -2401,21 +2390,6 @@
         );
 
 
-      /*
-        CAMBIO IMPORTANTE:
-
-        Se cuenta cada responsable individualmente.
-
-        Si un proyecto tiene:
-
-        "Juan Pérez; María López"
-
-        se sumará:
-
-        Juan Pérez +1
-        María López +1
-      */
-
       const conteo =
         new Map();
 
@@ -2428,10 +2402,6 @@
               item.responsable
             );
 
-
-          /*
-            Si no tiene responsable
-          */
 
           if (
             responsables.length === 0
@@ -2468,10 +2438,6 @@
 
           }
 
-
-          /*
-            Contar cada persona
-          */
 
           responsables.forEach(
             nombre => {
@@ -3044,4 +3010,3 @@
 
 </body>
 </html>
-```
