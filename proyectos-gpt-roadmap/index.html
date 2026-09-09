@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,6 +10,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <style>
+
     * {
       box-sizing: border-box;
     }
@@ -26,9 +28,10 @@
       margin: 0 auto;
     }
 
-    /* =========================
+
+    /* =====================================================
        ENCABEZADO
-    ========================= */
+    ===================================================== */
 
     .encabezado {
       background: #ffffff;
@@ -36,6 +39,7 @@
       padding: 18px 22px;
       margin-bottom: 14px;
       box-shadow: 0 1px 4px rgba(0,0,0,.08);
+
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -77,9 +81,10 @@
       background: #d13438;
     }
 
-    /* =========================
+
+    /* =====================================================
        KPIs
-    ========================= */
+    ===================================================== */
 
     .kpis {
       display: grid;
@@ -100,6 +105,7 @@
       font-size: 11px;
       color: #666;
       margin-bottom: 6px;
+
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -115,9 +121,10 @@
       color: #107c10;
     }
 
-    /* =========================
+
+    /* =====================================================
        FILTROS
-    ========================= */
+    ===================================================== */
 
     .panel {
       background: #ffffff;
@@ -183,9 +190,10 @@
       background: #106ebe;
     }
 
-    /* =========================
+
+    /* =====================================================
        GRÁFICOS
-    ========================= */
+    ===================================================== */
 
     .graficos {
       display: grid;
@@ -213,9 +221,95 @@
       height: 225px;
     }
 
-    /* =========================
+
+    /* =====================================================
+       ASIGNADOS POR PROYECTOS
+       Ranking visual
+    ===================================================== */
+
+    .grafico-asignados {
+      grid-column: 1 / -1;
+      height: auto;
+      min-height: 285px;
+    }
+
+    .ranking-asignados {
+      width: 100%;
+      max-height: 255px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .asignado-item {
+      display: grid;
+      grid-template-columns: minmax(190px, 280px) 1fr 42px;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .asignado-nombre {
+      font-size: 12px;
+      color: #333;
+      line-height: 1.25;
+      overflow-wrap: anywhere;
+    }
+
+    .asignado-barra-fondo {
+      width: 100%;
+      height: 16px;
+      background: #edf0f2;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .asignado-barra {
+      height: 100%;
+      background: #0078d4;
+      border-radius: 10px;
+      min-width: 4px;
+      transition: width .3s ease;
+    }
+
+    .asignado-cantidad {
+      font-size: 12px;
+      font-weight: 600;
+      text-align: right;
+      color: #333;
+    }
+
+    .sin-asignados {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 210px;
+      color: #777;
+      font-size: 12px;
+    }
+
+
+    /* =====================================================
+       SCROLL DEL RANKING
+    ===================================================== */
+
+    .ranking-asignados::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .ranking-asignados::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+
+    .ranking-asignados::-webkit-scrollbar-thumb {
+      background: #c8c8c8;
+      border-radius: 10px;
+    }
+
+
+    /* =====================================================
        TABLA
-    ========================= */
+    ===================================================== */
 
     .tabla-panel {
       background: #ffffff;
@@ -271,6 +365,11 @@
       background: #fafafa;
     }
 
+
+    /* =====================================================
+       ESTADOS
+    ===================================================== */
+
     .estado {
       display: inline-block;
       padding: 3px 7px;
@@ -309,9 +408,10 @@
       color: #666;
     }
 
-    /* =========================
+
+    /* =====================================================
        PAGINACIÓN
-    ========================= */
+    ===================================================== */
 
     .paginacion {
       display: flex;
@@ -331,9 +431,10 @@
       color: #666;
     }
 
-    /* =========================
+
+    /* =====================================================
        ESTADO DE CARGA
-    ========================= */
+    ===================================================== */
 
     .mensaje {
       background: #ffffff;
@@ -348,17 +449,22 @@
       display: none;
     }
 
-    /* =========================
+
+    /* =====================================================
        RESPONSIVE
-    ========================= */
+    ===================================================== */
 
     @media (max-width: 1200px) {
+
       .kpis {
         grid-template-columns: repeat(4, 1fr);
       }
+
     }
 
+
     @media (max-width: 900px) {
+
       .kpis {
         grid-template-columns: repeat(3, 1fr);
       }
@@ -370,9 +476,16 @@
       .filtros {
         grid-template-columns: repeat(2, 1fr);
       }
+
+      .asignado-item {
+        grid-template-columns: minmax(150px, 220px) 1fr 40px;
+      }
+
     }
 
+
     @media (max-width: 650px) {
+
       body {
         padding: 10px;
       }
@@ -401,92 +514,218 @@
       .grafico-contenedor {
         height: 215px;
       }
+
+      .grafico-asignados {
+        height: auto;
+        min-height: 280px;
+      }
+
+      .ranking-asignados {
+        max-height: 245px;
+      }
+
+      .asignado-item {
+        grid-template-columns: 125px 1fr 35px;
+        gap: 8px;
+      }
+
+      .asignado-nombre {
+        font-size: 11px;
+      }
+
+      .asignado-cantidad {
+        font-size: 11px;
+      }
+
     }
 
+
     @media (max-width: 400px) {
+
       .kpis {
         grid-template-columns: 1fr;
       }
+
+      .asignado-item {
+        grid-template-columns: 105px 1fr 32px;
+      }
+
     }
+
   </style>
 </head>
+
 
 <body>
 
 <div class="contenedor">
 
-  <!-- =========================
+
+  <!-- =====================================================
        ENCABEZADO
-  ========================== -->
+  ====================================================== -->
 
   <div class="encabezado">
+
     <div>
-      <h1>Proyectos GPT Roadmap</h1>
+
+      <h1>
+        Proyectos GPT Roadmap
+      </h1>
+
       <p class="subtitulo">
         Dashboard de seguimiento de proyectos
       </p>
+
     </div>
+
 
     <div class="conexion">
-      <span id="indicadorConexion" class="indicador"></span>
-      <span id="estadoConexion">Conectando...</span>
+
+      <span
+        id="indicadorConexion"
+        class="indicador">
+      </span>
+
+      <span id="estadoConexion">
+        Conectando...
+      </span>
+
     </div>
+
   </div>
 
-  <!-- =========================
+
+  <!-- =====================================================
        MENSAJE
-  ========================== -->
+  ====================================================== -->
 
-  <div id="mensaje" class="mensaje">
+  <div
+    id="mensaje"
+    class="mensaje">
+
     Cargando información desde SharePoint...
+
   </div>
 
-  <!-- =========================
+
+  <!-- =====================================================
        KPIs
-  ========================== -->
+  ====================================================== -->
 
   <div class="kpis">
 
-    <div class="kpi">
-      <div class="kpi-titulo">Total de proyectos</div>
-      <div id="totalProyectos" class="kpi-valor">0</div>
-    </div>
 
     <div class="kpi">
-      <div class="kpi-titulo">En proceso</div>
-      <div id="enProceso" class="kpi-valor">0</div>
+
+      <div class="kpi-titulo">
+        Total de proyectos
+      </div>
+
+      <div
+        id="totalProyectos"
+        class="kpi-valor">
+        0
+      </div>
+
     </div>
 
-    <div class="kpi">
-      <div class="kpi-titulo">In review</div>
-      <div id="inReview" class="kpi-valor">0</div>
-    </div>
 
     <div class="kpi">
-      <div class="kpi-titulo">QA</div>
-      <div id="qa" class="kpi-valor">0</div>
+
+      <div class="kpi-titulo">
+        En proceso
+      </div>
+
+      <div
+        id="enProceso"
+        class="kpi-valor">
+        0
+      </div>
+
     </div>
 
-    <div class="kpi">
-      <div class="kpi-titulo">Completados</div>
-      <div id="completados" class="kpi-valor">0</div>
-    </div>
 
     <div class="kpi">
-      <div class="kpi-titulo">Cerrados</div>
-      <div id="cerrados" class="kpi-valor">0</div>
+
+      <div class="kpi-titulo">
+        In review
+      </div>
+
+      <div
+        id="inReview"
+        class="kpi-valor">
+        0
+      </div>
+
     </div>
 
+
     <div class="kpi">
-      <div class="kpi-titulo">% avance</div>
-      <div id="avance" class="kpi-valor kpi-avance">0%</div>
+
+      <div class="kpi-titulo">
+        QA
+      </div>
+
+      <div
+        id="qa"
+        class="kpi-valor">
+        0
+      </div>
+
+    </div>
+
+
+    <div class="kpi">
+
+      <div class="kpi-titulo">
+        Completados
+      </div>
+
+      <div
+        id="completados"
+        class="kpi-valor">
+        0
+      </div>
+
+    </div>
+
+
+    <div class="kpi">
+
+      <div class="kpi-titulo">
+        Cerrados
+      </div>
+
+      <div
+        id="cerrados"
+        class="kpi-valor">
+        0
+      </div>
+
+    </div>
+
+
+    <div class="kpi">
+
+      <div class="kpi-titulo">
+        % avance
+      </div>
+
+      <div
+        id="avance"
+        class="kpi-valor kpi-avance">
+        0%
+      </div>
+
     </div>
 
   </div>
 
-  <!-- =========================
+
+  <!-- =====================================================
        FILTROS
-  ========================== -->
+  ====================================================== -->
 
   <div class="panel">
 
@@ -494,119 +733,245 @@
       Filtros
     </div>
 
+
     <div class="filtros">
 
+
       <div class="campo">
-        <label for="filtroPeriodo">Periodo</label>
+
+        <label for="filtroPeriodo">
+          Periodo
+        </label>
+
         <select id="filtroPeriodo">
-          <option value="">Todos</option>
+
+          <option value="">
+            Todos
+          </option>
+
         </select>
+
       </div>
 
+
       <div class="campo">
-        <label for="filtroEstatus">Estatus</label>
+
+        <label for="filtroEstatus">
+          Estatus
+        </label>
+
         <select id="filtroEstatus">
-          <option value="">Todos</option>
+
+          <option value="">
+            Todos
+          </option>
+
         </select>
+
       </div>
 
+
       <div class="campo">
-        <label for="filtroResponsable">Responsable</label>
+
+        <label for="filtroResponsable">
+          Responsable
+        </label>
+
         <select id="filtroResponsable">
-          <option value="">Todos</option>
+
+          <option value="">
+            Todos
+          </option>
+
         </select>
+
       </div>
 
+
       <div class="campo">
-        <label for="filtroPrioridad">Prioridad</label>
+
+        <label for="filtroPrioridad">
+          Prioridad
+        </label>
+
         <select id="filtroPrioridad">
-          <option value="">Todas</option>
+
+          <option value="">
+            Todas
+          </option>
+
         </select>
+
       </div>
 
     </div>
 
+
     <div class="acciones">
+
       <button onclick="limpiarFiltros()">
         Limpiar filtros
       </button>
+
     </div>
 
   </div>
 
-  <!-- =========================
+
+  <!-- =====================================================
        GRÁFICOS
-  ========================== -->
+  ====================================================== -->
 
   <div class="graficos">
 
+
+    <!-- ESTATUS -->
+
     <div class="grafico">
-      <h2>Distribución por estatus</h2>
+
+      <h2>
+        Distribución por estatus
+      </h2>
+
       <div class="grafico-contenedor">
+
         <canvas id="graficoEstatus"></canvas>
+
       </div>
+
     </div>
 
+
+    <!-- EVOLUCIÓN -->
+
     <div class="grafico">
-      <h2>Evolución mensual de proyectos</h2>
+
+      <h2>
+        Evolución mensual de proyectos
+      </h2>
+
       <div class="grafico-contenedor">
+
         <canvas id="graficoMensual"></canvas>
+
       </div>
+
     </div>
 
-    <div class="grafico">
-      <h2>Proyectos por responsable</h2>
-      <div class="grafico-contenedor">
-        <canvas id="graficoResponsable"></canvas>
+
+    <!-- =================================================
+         ASIGNADOS
+    ================================================== -->
+
+    <div class="grafico grafico-asignados">
+
+      <h2>
+        Asignados por proyectos
+      </h2>
+
+      <div
+        id="rankingAsignados"
+        class="ranking-asignados">
+
       </div>
+
     </div>
 
+
+    <!-- PRIORIDAD -->
+
     <div class="grafico">
-      <h2>Proyectos por prioridad</h2>
+
+      <h2>
+        Proyectos por prioridad
+      </h2>
+
       <div class="grafico-contenedor">
+
         <canvas id="graficoPrioridad"></canvas>
+
       </div>
+
     </div>
 
   </div>
 
-  <!-- =========================
+
+  <!-- =====================================================
        TABLA
-  ========================== -->
+  ====================================================== -->
 
   <div class="tabla-panel">
 
+
     <div class="tabla-header">
-      <h2>Detalle de proyectos</h2>
-      <span id="registrosMostrados" class="registros">
+
+      <h2>
+        Detalle de proyectos
+      </h2>
+
+      <span
+        id="registrosMostrados"
+        class="registros">
+
         0 registros
+
       </span>
+
     </div>
 
+
     <div style="margin-bottom:10px;">
+
       <input
         id="busqueda"
         type="text"
         placeholder="Buscar por código, proyecto, estatus o responsable..."
-        oninput="aplicarFiltros()"
-      >
+        oninput="aplicarFiltros()">
+
     </div>
+
 
     <div class="tabla-scroll">
 
       <table>
 
         <thead>
+
           <tr>
-            <th>Código</th>
-            <th>Proyecto</th>
-            <th>Estatus</th>
-            <th>Responsable</th>
-            <th>Fecha creación</th>
-            <th>Fecha cierre</th>
-            <th>Prioridad</th>
+
+            <th>
+              Código
+            </th>
+
+            <th>
+              Proyecto
+            </th>
+
+            <th>
+              Estatus
+            </th>
+
+            <th>
+              Responsable
+            </th>
+
+            <th>
+              Fecha creación
+            </th>
+
+            <th>
+              Fecha cierre
+            </th>
+
+            <th>
+              Prioridad
+            </th>
+
           </tr>
+
         </thead>
+
 
         <tbody id="tablaProyectos">
         </tbody>
@@ -615,13 +980,16 @@
 
     </div>
 
+
     <div class="paginacion">
 
       <button onclick="paginaAnterior()">
         Anterior
       </button>
 
-      <span id="paginaInfo" class="pagina-info">
+      <span
+        id="paginaInfo"
+        class="pagina-info">
         Página 1
       </span>
 
@@ -635,27 +1003,42 @@
 
 </div>
 
+
 <script>
+
 
   /* =====================================================
      CONFIGURACIÓN
   ===================================================== */
 
+  /*
+    IMPORTANTE:
+    Mantén aquí exactamente la URL de Power Automate
+    que ya tienes funcionando.
+
+    No necesitas modificar el flujo.
+  */
+
   const POWER_AUTOMATE_URL =
-    "https://default65bbe6da35e94c18993bee2c16cb7e.64.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/22/workflows/1cbcd22cd245429b859457e6c5ebed46/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=vOQVES3QkJ_ipBGmiHQ1qYRKDuAo8BnixTXhH6meIig";
+    "PEGA_AQUI_LA_URL_DE_POWER_AUTOMATE";
 
 
   const REGISTROS_POR_PAGINA = 10;
 
+
   let datos = [];
+
   let datosFiltrados = [];
 
   let paginaActual = 1;
 
+
   let graficoEstatus = null;
+
   let graficoMensual = null;
-  let graficoResponsable = null;
+
   let graficoPrioridad = null;
+
 
 
   /* =====================================================
@@ -664,39 +1047,62 @@
 
   function valorSeguro(valor) {
 
-    if (valor === null || valor === undefined) {
+    if (
+      valor === null ||
+      valor === undefined
+    ) {
+
       return "";
+
     }
 
     return String(valor).trim();
+
   }
 
 
   function escaparHTML(valor) {
 
     return valorSeguro(valor)
+
       .replace(/&/g, "&amp;")
+
       .replace(/</g, "&lt;")
+
       .replace(/>/g, "&gt;")
+
       .replace(/"/g, "&quot;")
+
       .replace(/'/g, "&#039;");
+
   }
 
 
   function textoEstatus(item) {
 
-    return valorSeguro(item.estatus).toUpperCase();
+    return valorSeguro(
+      item.estatus
+    ).toUpperCase();
+
   }
 
 
-  function contieneEstatus(item, palabras) {
+  function contieneEstatus(
+    item,
+    palabras
+  ) {
 
-    const estatus = textoEstatus(item);
+    const estatus =
+      textoEstatus(item);
 
-    return palabras.some(palabra =>
-      estatus.includes(palabra)
+
+    return palabras.some(
+      palabra =>
+        estatus.includes(palabra)
     );
+
   }
+
 
 
   /* =====================================================
@@ -705,48 +1111,69 @@
 
   function esEnProceso(item) {
 
-    return contieneEstatus(item, [
-      "IN PROGRESS",
-      "PROGRES",
-      "EN PROCESO"
-    ]);
+    return contieneEstatus(
+      item,
+      [
+        "IN PROGRESS",
+        "PROGRES",
+        "EN PROCESO"
+      ]
+    );
+
   }
 
 
   function esInReview(item) {
 
-    return contieneEstatus(item, [
-      "IN REVIEW",
-      "INREVIEW",
-      "REVIEW"
-    ]);
+    return contieneEstatus(
+      item,
+      [
+        "IN REVIEW",
+        "INREVIEW",
+        "REVIEW"
+      ]
+    );
+
   }
 
 
   function esQA(item) {
 
-    return contieneEstatus(item, [
-      "QA"
-    ]);
+    return contieneEstatus(
+      item,
+      [
+        "QA"
+      ]
+    );
+
   }
 
 
   function esCompletado(item) {
 
-    return contieneEstatus(item, [
-      "COMPLET"
-    ]);
+    return contieneEstatus(
+      item,
+      [
+        "COMPLET"
+      ]
+    );
+
   }
 
 
   function esCerrado(item) {
 
-    return contieneEstatus(item, [
-      "CERRAD",
-      "CLOSED",
-      "CLOSE"
-    ]);
+    return contieneEstatus(
+      item,
+      [
+        "CERRAD",
+        "CLOSED",
+        "CLOSE"
+      ]
+    );
+
   }
+
 
 
   /* =====================================================
@@ -755,49 +1182,91 @@
 
   async function cargarDatos() {
 
-    const mensaje = document.getElementById("mensaje");
-    const indicador = document.getElementById("indicadorConexion");
-    const estadoConexion = document.getElementById("estadoConexion");
+    const mensaje =
+      document.getElementById(
+        "mensaje"
+      );
+
+
+    const indicador =
+      document.getElementById(
+        "indicadorConexion"
+      );
+
+
+    const estadoConexion =
+      document.getElementById(
+        "estadoConexion"
+      );
+
 
     try {
 
-      const respuesta = await fetch(
-        POWER_AUTOMATE_URL,
-        {
-          method: "POST"
-        }
-      );
+      const respuesta =
+        await fetch(
+          POWER_AUTOMATE_URL,
+          {
+            method: "POST"
+          }
+        );
+
 
       if (!respuesta.ok) {
+
         throw new Error(
-          "HTTP " + respuesta.status
+          "HTTP " +
+          respuesta.status
         );
+
       }
 
-      const resultado = await respuesta.json();
 
-      datos = Array.isArray(resultado)
-        ? resultado
-        : [];
+      const resultado =
+        await respuesta.json();
 
-      datosFiltrados = [...datos];
 
-      indicador.classList.add("ok");
-      estadoConexion.textContent = "Conexión correcta";
+      datos =
+        Array.isArray(resultado)
+          ? resultado
+          : [];
+
+
+      datosFiltrados =
+        [...datos];
+
+
+      indicador.classList.add(
+        "ok"
+      );
+
+
+      estadoConexion.textContent =
+        "Conexión correcta";
+
 
       mensaje.textContent =
         "Datos cargados correctamente. Registros recibidos: "
         + datos.length;
 
+
       inicializarFiltros();
+
       actualizarDashboard();
+
 
     } catch (error) {
 
       console.error(error);
 
-      indicador.classList.add("error");
-      estadoConexion.textContent = "Error de conexión";
+
+      indicador.classList.add(
+        "error"
+      );
+
+
+      estadoConexion.textContent =
+        "Error de conexión";
+
 
       mensaje.innerHTML =
         "<strong>No fue posible cargar los datos.</strong><br>" +
@@ -809,77 +1278,127 @@
   }
 
 
+
   /* =====================================================
      FILTROS
   ===================================================== */
 
-  function obtenerValoresUnicos(campo) {
+  function obtenerValoresUnicos(
+    campo
+  ) {
 
     return [
+
       ...new Set(
+
         datos
-          .map(item => valorSeguro(item[campo]))
-          .filter(valor => valor !== "")
+
+          .map(
+            item =>
+              valorSeguro(
+                item[campo]
+              )
+          )
+
+          .filter(
+            valor =>
+              valor !== ""
+          )
+
       )
+
     ];
+
   }
 
 
   function inicializarFiltros() {
 
     const filtroEstatus =
-      document.getElementById("filtroEstatus");
+      document.getElementById(
+        "filtroEstatus"
+      );
+
 
     const filtroResponsable =
-      document.getElementById("filtroResponsable");
+      document.getElementById(
+        "filtroResponsable"
+      );
+
 
     const filtroPrioridad =
-      document.getElementById("filtroPrioridad");
+      document.getElementById(
+        "filtroPrioridad"
+      );
+
 
     filtroEstatus.innerHTML =
       '<option value="">Todos</option>';
 
+
     filtroResponsable.innerHTML =
       '<option value="">Todos</option>';
+
 
     filtroPrioridad.innerHTML =
       '<option value="">Todas</option>';
 
 
-    obtenerValoresUnicos("estatus")
+    obtenerValoresUnicos(
+      "estatus"
+    )
+
       .sort()
-      .forEach(valor => {
 
-        filtroEstatus.innerHTML +=
-          `<option value="${escaparHTML(valor)}">
-            ${escaparHTML(valor)}
-          </option>`;
+      .forEach(
+        valor => {
 
-      });
+          filtroEstatus.innerHTML +=
+
+            `<option value="${escaparHTML(valor)}">
+              ${escaparHTML(valor)}
+            </option>`;
+
+        }
+      );
 
 
-    obtenerValoresUnicos("responsable")
+    obtenerValoresUnicos(
+      "responsable"
+    )
+
       .sort()
-      .forEach(valor => {
 
-        filtroResponsable.innerHTML +=
-          `<option value="${escaparHTML(valor)}">
-            ${escaparHTML(valor)}
-          </option>`;
+      .forEach(
+        valor => {
 
-      });
+          filtroResponsable.innerHTML +=
+
+            `<option value="${escaparHTML(valor)}">
+              ${escaparHTML(valor)}
+            </option>`;
+
+        }
+      );
 
 
-    obtenerValoresUnicos("prioridad")
+    obtenerValoresUnicos(
+      "prioridad"
+    )
+
       .sort()
-      .forEach(valor => {
 
-        filtroPrioridad.innerHTML +=
-          `<option value="${escaparHTML(valor)}">
-            ${escaparHTML(valor)}
-          </option>`;
+      .forEach(
+        valor => {
 
-      });
+          filtroPrioridad.innerHTML +=
+
+            `<option value="${escaparHTML(valor)}">
+              ${escaparHTML(valor)}
+            </option>`;
+
+        }
+      );
 
 
     inicializarFiltroPeriodo();
@@ -887,37 +1406,56 @@
   }
 
 
+
   function inicializarFiltroPeriodo() {
 
     const filtro =
-      document.getElementById("filtroPeriodo");
+      document.getElementById(
+        "filtroPeriodo"
+      );
+
 
     const periodos = {};
 
-    datos.forEach(item => {
 
-      const clave =
-        valorSeguro(item.yearMes);
+    datos.forEach(
+      item => {
 
-      const etiqueta =
-        valorSeguro(item.mesYear);
+        const clave =
+          valorSeguro(
+            item.yearMes
+          );
 
-      if (clave) {
 
-        periodos[clave] =
-          etiqueta || clave;
+        const etiqueta =
+          valorSeguro(
+            item.mesYear
+          );
+
+
+        if (clave) {
+
+          periodos[clave] =
+            etiqueta || clave;
+
+        }
 
       }
-
-    });
+    );
 
 
     const claves =
       Object.keys(periodos)
-        .sort((a, b) =>
-          b.localeCompare(a, undefined, {
-            numeric: true
-          })
+
+        .sort(
+          (a, b) =>
+            b.localeCompare(
+              a,
+              undefined,
+              {
+                numeric: true
+              }
+            )
         );
 
 
@@ -925,107 +1463,194 @@
       '<option value="">Todos</option>';
 
 
-    claves.forEach(clave => {
+    claves.forEach(
+      clave => {
 
-      filtro.innerHTML +=
-        `<option value="${escaparHTML(clave)}">
-          ${escaparHTML(periodos[clave])}
-        </option>`;
+        filtro.innerHTML +=
 
-    });
+          `<option value="${escaparHTML(clave)}">
+            ${escaparHTML(periodos[clave])}
+          </option>`;
+
+      }
+    );
 
   }
+
 
 
   function aplicarFiltros() {
 
     const periodo =
-      document.getElementById("filtroPeriodo").value;
+      document.getElementById(
+        "filtroPeriodo"
+      ).value;
+
 
     const estatus =
-      document.getElementById("filtroEstatus").value;
+      document.getElementById(
+        "filtroEstatus"
+      ).value;
+
 
     const responsable =
-      document.getElementById("filtroResponsable").value;
+      document.getElementById(
+        "filtroResponsable"
+      ).value;
+
 
     const prioridad =
-      document.getElementById("filtroPrioridad").value;
+      document.getElementById(
+        "filtroPrioridad"
+      ).value;
+
 
     const busqueda =
       valorSeguro(
-        document.getElementById("busqueda").value
+
+        document.getElementById(
+          "busqueda"
+        ).value
+
       ).toLowerCase();
 
 
-    datosFiltrados = datos.filter(item => {
-
-      const coincidePeriodo =
-        !periodo ||
-        valorSeguro(item.yearMes) === periodo;
-
-      const coincideEstatus =
-        !estatus ||
-        valorSeguro(item.estatus) === estatus;
-
-      const coincideResponsable =
-        !responsable ||
-        valorSeguro(item.responsable) === responsable;
-
-      const coincidePrioridad =
-        !prioridad ||
-        valorSeguro(item.prioridad) === prioridad;
+    datosFiltrados =
+      datos.filter(
+        item => {
 
 
-      const textoBusqueda = [
-        item.codigo,
-        item.proyecto,
-        item.estatus,
-        item.responsable,
-        item.prioridad
-      ]
-      .map(valorSeguro)
-      .join(" ")
-      .toLowerCase();
+          const coincidePeriodo =
+
+            !periodo ||
+
+            valorSeguro(
+              item.yearMes
+            ) === periodo;
 
 
-      const coincideBusqueda =
-        !busqueda ||
-        textoBusqueda.includes(busqueda);
+          const coincideEstatus =
+
+            !estatus ||
+
+            valorSeguro(
+              item.estatus
+            ) === estatus;
 
 
-      return (
-        coincidePeriodo &&
-        coincideEstatus &&
-        coincideResponsable &&
-        coincidePrioridad &&
-        coincideBusqueda
+          const coincideResponsable =
+
+            !responsable ||
+
+            valorSeguro(
+              item.responsable
+            ) === responsable;
+
+
+          const coincidePrioridad =
+
+            !prioridad ||
+
+            valorSeguro(
+              item.prioridad
+            ) === prioridad;
+
+
+          const textoBusqueda = [
+
+            item.codigo,
+
+            item.proyecto,
+
+            item.estatus,
+
+            item.responsable,
+
+            item.prioridad
+
+          ]
+
+            .map(valorSeguro)
+
+            .join(" ")
+
+            .toLowerCase();
+
+
+          const coincideBusqueda =
+
+            !busqueda ||
+
+            textoBusqueda.includes(
+              busqueda
+            );
+
+
+          return (
+
+            coincidePeriodo &&
+
+            coincideEstatus &&
+
+            coincideResponsable &&
+
+            coincidePrioridad &&
+
+            coincideBusqueda
+
+          );
+
+        }
       );
-
-    });
 
 
     paginaActual = 1;
 
+
     actualizarDashboard();
 
   }
+
 
 
   function limpiarFiltros() {
 
-    document.getElementById("filtroPeriodo").value = "";
-    document.getElementById("filtroEstatus").value = "";
-    document.getElementById("filtroResponsable").value = "";
-    document.getElementById("filtroPrioridad").value = "";
-    document.getElementById("busqueda").value = "";
+    document.getElementById(
+      "filtroPeriodo"
+    ).value = "";
 
-    datosFiltrados = [...datos];
+
+    document.getElementById(
+      "filtroEstatus"
+    ).value = "";
+
+
+    document.getElementById(
+      "filtroResponsable"
+    ).value = "";
+
+
+    document.getElementById(
+      "filtroPrioridad"
+    ).value = "";
+
+
+    document.getElementById(
+      "busqueda"
+    ).value = "";
+
+
+    datosFiltrados =
+      [...datos];
+
 
     paginaActual = 1;
+
 
     actualizarDashboard();
 
   }
+
 
 
   /* =====================================================
@@ -1035,10 +1660,15 @@
   function actualizarDashboard() {
 
     actualizarKPIs();
+
     actualizarGraficos();
+
+    actualizarAsignados();
+
     actualizarTabla();
 
   }
+
 
 
   /* =====================================================
@@ -1052,68 +1682,100 @@
 
 
     const enProceso =
-      datosFiltrados.filter(esEnProceso).length;
+      datosFiltrados.filter(
+        esEnProceso
+      ).length;
 
 
     const inReview =
-      datosFiltrados.filter(esInReview).length;
+      datosFiltrados.filter(
+        esInReview
+      ).length;
 
 
     const qa =
-      datosFiltrados.filter(esQA).length;
+      datosFiltrados.filter(
+        esQA
+      ).length;
 
 
     const completados =
-      datosFiltrados.filter(esCompletado).length;
+      datosFiltrados.filter(
+        esCompletado
+      ).length;
 
 
     const cerrados =
-      datosFiltrados.filter(esCerrado).length;
+      datosFiltrados.filter(
+        esCerrado
+      ).length;
 
 
     /*
-      IMPORTANTE:
-      El % de avance se calcula EXCLUSIVAMENTE
-      utilizando los proyectos CERRADOS.
+      EL AVANCE SE CALCULA
+      EXCLUSIVAMENTE CON CERRADOS.
 
       Fórmula:
-      Cerrados / Total de proyectos * 100
+
+      Cerrados / Total * 100
     */
 
     const avance =
+
       total > 0
-        ? (cerrados / total) * 100
+
+        ? (
+            cerrados /
+            total
+          ) * 100
+
         : 0;
 
 
-    document.getElementById("totalProyectos")
-      .textContent = total;
+    document.getElementById(
+      "totalProyectos"
+    ).textContent =
+      total;
 
 
-    document.getElementById("enProceso")
-      .textContent = enProceso;
+    document.getElementById(
+      "enProceso"
+    ).textContent =
+      enProceso;
 
 
-    document.getElementById("inReview")
-      .textContent = inReview;
+    document.getElementById(
+      "inReview"
+    ).textContent =
+      inReview;
 
 
-    document.getElementById("qa")
-      .textContent = qa;
+    document.getElementById(
+      "qa"
+    ).textContent =
+      qa;
 
 
-    document.getElementById("completados")
-      .textContent = completados;
+    document.getElementById(
+      "completados"
+    ).textContent =
+      completados;
 
 
-    document.getElementById("cerrados")
-      .textContent = cerrados;
+    document.getElementById(
+      "cerrados"
+    ).textContent =
+      cerrados;
 
 
-    document.getElementById("avance")
-      .textContent = avance.toFixed(1) + "%";
+    document.getElementById(
+      "avance"
+    ).textContent =
+      avance.toFixed(1) +
+      "%";
 
   }
+
 
 
   /* =====================================================
@@ -1123,411 +1785,688 @@
   function actualizarGraficos() {
 
     crearGraficoEstatus();
+
     crearGraficoMensual();
-    crearGraficoResponsable();
+
     crearGraficoPrioridad();
 
   }
 
 
-  /* =========================
-     ESTATUS
-  ========================= */
+
+  /* =====================================================
+     DISTRIBUCIÓN POR ESTATUS
+  ===================================================== */
 
   function crearGraficoEstatus() {
 
     const conteo = {};
 
-    datosFiltrados.forEach(item => {
 
-      const estatus =
-        valorSeguro(item.estatus) || "Sin estatus";
+    datosFiltrados.forEach(
+      item => {
 
-      conteo[estatus] =
-        (conteo[estatus] || 0) + 1;
+        const estatus =
+          valorSeguro(
+            item.estatus
+          ) || "Sin estatus";
 
-    });
+
+        conteo[estatus] =
+
+          (
+            conteo[estatus] ||
+            0
+          ) + 1;
+
+      }
+    );
 
 
     if (graficoEstatus) {
+
       graficoEstatus.destroy();
+
     }
 
 
     graficoEstatus =
+
       new Chart(
-        document.getElementById("graficoEstatus"),
+
+        document.getElementById(
+          "graficoEstatus"
+        ),
+
         {
+
           type: "doughnut",
 
+
           data: {
-            labels: Object.keys(conteo),
+
+            labels:
+              Object.keys(
+                conteo
+              ),
+
 
             datasets: [
+
               {
-                data: Object.values(conteo)
+
+                data:
+                  Object.values(
+                    conteo
+                  )
+
               }
+
             ]
+
           },
 
+
           options: {
+
             responsive: true,
+
             maintainAspectRatio: false,
 
+
             plugins: {
+
               legend: {
+
                 position: "right",
+
                 labels: {
+
                   font: {
                     size: 10
                   }
+
                 }
+
               }
+
             }
+
           }
+
         }
+
       );
 
   }
 
 
-  /* =========================
+
+  /* =====================================================
      EVOLUCIÓN MENSUAL
-  ========================= */
+  ===================================================== */
 
   function crearGraficoMensual() {
 
     const conteo = {};
+
     const etiquetas = {};
 
 
-    datosFiltrados.forEach(item => {
+    datosFiltrados.forEach(
+      item => {
 
-      const clave =
-        valorSeguro(item.yearMes);
+        const clave =
+          valorSeguro(
+            item.yearMes
+          );
 
-      const etiqueta =
-        valorSeguro(item.mesYear) || clave;
+
+        const etiqueta =
+          valorSeguro(
+            item.mesYear
+          ) || clave;
 
 
-      if (!clave) {
-        return;
+        if (!clave) {
+          return;
+        }
+
+
+        conteo[clave] =
+
+          (
+            conteo[clave] ||
+            0
+          ) + 1;
+
+
+        etiquetas[clave] =
+          etiqueta;
+
       }
-
-
-      conteo[clave] =
-        (conteo[clave] || 0) + 1;
-
-      etiquetas[clave] =
-        etiqueta;
-
-    });
+    );
 
 
     const claves =
-      Object.keys(conteo)
-        .sort((a, b) =>
-          a.localeCompare(b, undefined, {
-            numeric: true
-          })
-        );
+
+      Object.keys(
+        conteo
+      )
+
+      .sort(
+        (a, b) =>
+
+          a.localeCompare(
+            b,
+            undefined,
+            {
+              numeric: true
+            }
+          )
+
+      );
 
 
     if (graficoMensual) {
+
       graficoMensual.destroy();
+
     }
 
 
     graficoMensual =
+
       new Chart(
-        document.getElementById("graficoMensual"),
+
+        document.getElementById(
+          "graficoMensual"
+        ),
+
         {
+
           type: "line",
 
+
           data: {
+
             labels:
-              claves.map(clave =>
-                etiquetas[clave]
+
+              claves.map(
+                clave =>
+                  etiquetas[clave]
               ),
 
+
             datasets: [
+
               {
-                label: "Proyectos",
+
+                label:
+                  "Proyectos",
+
 
                 data:
-                  claves.map(clave =>
-                    conteo[clave]
+
+                  claves.map(
+                    clave =>
+                      conteo[clave]
                   ),
+
 
                 tension: 0.3,
 
                 fill: false
+
               }
+
             ]
+
           },
 
+
           options: {
+
             responsive: true,
+
             maintainAspectRatio: false,
 
+
             plugins: {
+
               legend: {
                 display: false
               }
+
             },
 
+
             scales: {
+
               y: {
+
                 beginAtZero: true,
+
                 ticks: {
+
                   precision: 0,
+
                   font: {
                     size: 9
                   }
+
                 }
+
               },
 
+
               x: {
+
                 ticks: {
+
                   font: {
                     size: 9
                   }
+
                 }
+
               }
+
             }
+
           }
+
         }
+
       );
 
   }
 
 
-  /* =========================
-     RESPONSABLE
-  ========================= */
 
-  function crearGraficoResponsable() {
+  /* =====================================================
+     ASIGNADOS POR PROYECTOS
+     
+     NUEVO:
+     Ranking visual HTML en lugar de gráfico de barras.
+  ===================================================== */
+
+  function actualizarAsignados() {
+
+    const contenedor =
+      document.getElementById(
+        "rankingAsignados"
+      );
+
 
     const conteo = {};
 
 
-    datosFiltrados.forEach(item => {
+    datosFiltrados.forEach(
+      item => {
 
-      const responsable =
-        valorSeguro(item.responsable)
-        || "Sin responsable";
+        const responsable =
 
-      conteo[responsable] =
-        (conteo[responsable] || 0) + 1;
+          valorSeguro(
+            item.responsable
+          ) || "Sin responsable";
 
-    });
+
+        conteo[responsable] =
+
+          (
+            conteo[responsable] ||
+            0
+          ) + 1;
+
+      }
+    );
 
 
     const ordenado =
-      Object.entries(conteo)
-        .sort((a, b) => b[1] - a[1]);
+
+      Object.entries(
+        conteo
+      )
+
+      .sort(
+        (a, b) =>
+          b[1] - a[1]
+      );
 
 
-    if (graficoResponsable) {
-      graficoResponsable.destroy();
+    if (
+      ordenado.length === 0
+    ) {
+
+      contenedor.innerHTML =
+
+        `
+        <div class="sin-asignados">
+          No hay proyectos para mostrar.
+        </div>
+        `;
+
+      return;
+
     }
 
 
-    graficoResponsable =
-      new Chart(
-        document.getElementById("graficoResponsable"),
-        {
-          type: "bar",
+    const mayorCantidad =
+      ordenado[0][1];
 
-          data: {
-            labels:
-              ordenado.map(item => item[0]),
 
-            datasets: [
-              {
-                label: "Proyectos",
+    contenedor.innerHTML = "";
 
-                data:
-                  ordenado.map(item => item[1])
-              }
-            ]
-          },
 
-          options: {
-            indexAxis: "y",
+    ordenado.forEach(
+      ([nombre, cantidad]) => {
 
-            responsive: true,
-            maintainAspectRatio: false,
 
-            plugins: {
-              legend: {
-                display: false
-              }
-            },
+        const porcentaje =
 
-            scales: {
-              x: {
-                beginAtZero: true,
-                ticks: {
-                  precision: 0,
-                  font: {
-                    size: 9
-                  }
-                }
-              },
+          (
+            cantidad /
+            mayorCantidad
+          ) * 100;
 
-              y: {
-                ticks: {
-                  font: {
-                    size: 9
-                  }
-                }
-              }
-            }
-          }
-        }
-      );
+
+        const item =
+          document.createElement(
+            "div"
+          );
+
+
+        item.className =
+          "asignado-item";
+
+
+        item.innerHTML = `
+
+          <div
+            class="asignado-nombre"
+            title="${escaparHTML(nombre)}">
+
+            ${escaparHTML(nombre)}
+
+          </div>
+
+
+          <div class="asignado-barra-fondo">
+
+            <div
+              class="asignado-barra"
+              style="width:${porcentaje}%">
+            </div>
+
+          </div>
+
+
+          <div class="asignado-cantidad">
+
+            ${cantidad}
+
+          </div>
+
+        `;
+
+
+        contenedor.appendChild(
+          item
+        );
+
+      }
+    );
 
   }
 
 
-  /* =========================
+
+  /* =====================================================
      PRIORIDAD
-  ========================= */
+  ===================================================== */
 
   function crearGraficoPrioridad() {
 
     const conteo = {};
 
 
-    datosFiltrados.forEach(item => {
+    datosFiltrados.forEach(
+      item => {
 
-      const prioridad =
-        valorSeguro(item.prioridad)
-        || "Sin prioridad";
+        const prioridad =
 
-      conteo[prioridad] =
-        (conteo[prioridad] || 0) + 1;
+          valorSeguro(
+            item.prioridad
+          ) || "Sin prioridad";
 
-    });
+
+        conteo[prioridad] =
+
+          (
+            conteo[prioridad] ||
+            0
+          ) + 1;
+
+      }
+    );
 
 
     if (graficoPrioridad) {
+
       graficoPrioridad.destroy();
+
     }
 
 
     graficoPrioridad =
+
       new Chart(
-        document.getElementById("graficoPrioridad"),
+
+        document.getElementById(
+          "graficoPrioridad"
+        ),
+
         {
+
           type: "bar",
 
+
           data: {
-            labels: Object.keys(conteo),
+
+            labels:
+              Object.keys(
+                conteo
+              ),
+
 
             datasets: [
-              {
-                label: "Proyectos",
 
-                data: Object.values(conteo)
+              {
+
+                label:
+                  "Proyectos",
+
+
+                data:
+                  Object.values(
+                    conteo
+                  )
+
               }
+
             ]
+
           },
 
+
           options: {
+
             responsive: true,
+
             maintainAspectRatio: false,
 
+
             plugins: {
+
               legend: {
                 display: false
               }
+
             },
 
+
             scales: {
+
               y: {
+
                 beginAtZero: true,
 
                 ticks: {
+
                   precision: 0,
+
                   font: {
                     size: 9
                   }
+
                 }
+
               },
 
+
               x: {
+
                 ticks: {
+
                   font: {
                     size: 9
                   }
+
                 }
+
               }
+
             }
+
           }
+
         }
+
       );
 
   }
+
 
 
   /* =====================================================
      ESTILO DE ESTATUS
   ===================================================== */
 
-  function crearEtiquetaEstado(estatus) {
+  function crearEtiquetaEstado(
+    estatus
+  ) {
 
     const texto =
-      valorSeguro(estatus);
+      valorSeguro(
+        estatus
+      );
+
 
     const normalizado =
       texto.toUpperCase();
+
 
     let clase =
       "estado-pendiente";
 
 
     if (
-      normalizado.includes("IN PROGRESS") ||
-      normalizado.includes("PROGRES") ||
-      normalizado.includes("EN PROCESO")
+
+      normalizado.includes(
+        "IN PROGRESS"
+      ) ||
+
+      normalizado.includes(
+        "PROGRES"
+      ) ||
+
+      normalizado.includes(
+        "EN PROCESO"
+      )
+
     ) {
 
       clase =
         "estado-en-proceso";
 
     }
+
+
     else if (
-      normalizado.includes("IN REVIEW") ||
-      normalizado.includes("INREVIEW") ||
-      normalizado.includes("REVIEW")
+
+      normalizado.includes(
+        "IN REVIEW"
+      ) ||
+
+      normalizado.includes(
+        "INREVIEW"
+      ) ||
+
+      normalizado.includes(
+        "REVIEW"
+      )
+
     ) {
 
       clase =
         "estado-review";
 
     }
+
+
     else if (
-      normalizado.includes("QA")
+
+      normalizado.includes(
+        "QA"
+      )
+
     ) {
 
       clase =
         "estado-qa";
 
     }
+
+
     else if (
-      normalizado.includes("COMPLET")
+
+      normalizado.includes(
+        "COMPLET"
+      )
+
     ) {
 
       clase =
         "estado-completado";
 
     }
+
+
     else if (
-      normalizado.includes("CERRAD") ||
-      normalizado.includes("CLOSED") ||
-      normalizado.includes("CLOSE")
+
+      normalizado.includes(
+        "CERRAD"
+      ) ||
+
+      normalizado.includes(
+        "CLOSED"
+      ) ||
+
+      normalizado.includes(
+        "CLOSE"
+      )
+
     ) {
 
       clase =
@@ -1537,12 +2476,21 @@
 
 
     return `
-      <span class="estado ${clase}">
-        ${escaparHTML(texto || "Sin estatus")}
+
+      <span
+        class="estado ${clase}">
+
+        ${escaparHTML(
+          texto ||
+          "Sin estatus"
+        )}
+
       </span>
+
     `;
 
   }
+
 
 
   /* =====================================================
@@ -1552,77 +2500,117 @@
   function actualizarTabla() {
 
     const tabla =
-      document.getElementById("tablaProyectos");
+      document.getElementById(
+        "tablaProyectos"
+      );
 
 
     const inicio =
-      (paginaActual - 1)
-      * REGISTROS_POR_PAGINA;
+
+      (
+        paginaActual - 1
+      ) *
+      REGISTROS_POR_PAGINA;
 
 
     const fin =
-      inicio + REGISTROS_POR_PAGINA;
+
+      inicio +
+      REGISTROS_POR_PAGINA;
 
 
     const registros =
-      datosFiltrados.slice(inicio, fin);
+
+      datosFiltrados.slice(
+        inicio,
+        fin
+      );
 
 
     tabla.innerHTML = "";
 
 
-    registros.forEach(item => {
+    registros.forEach(
+      item => {
 
-      const fila =
-        document.createElement("tr");
-
-
-      fila.innerHTML = `
-
-        <td>
-          ${escaparHTML(item.codigo)}
-        </td>
-
-        <td>
-          ${escaparHTML(item.proyecto)}
-        </td>
-
-        <td>
-          ${crearEtiquetaEstado(item.estatus)}
-        </td>
-
-        <td>
-          ${escaparHTML(item.responsable)}
-        </td>
-
-        <td>
-          ${formatearFecha(item.fechaCreacion)}
-        </td>
-
-        <td>
-          ${formatearFecha(item.fechaCierre)}
-        </td>
-
-        <td>
-          ${escaparHTML(item.prioridad)}
-        </td>
-
-      `;
+        const fila =
+          document.createElement(
+            "tr"
+          );
 
 
-      tabla.appendChild(fila);
+        fila.innerHTML = `
 
-    });
+          <td>
+            ${escaparHTML(
+              item.codigo
+            )}
+          </td>
 
 
-    document.getElementById("registrosMostrados")
-      .textContent =
-        datosFiltrados.length
-        + (
-          datosFiltrados.length === 1
-            ? " registro"
-            : " registros"
+          <td>
+            ${escaparHTML(
+              item.proyecto
+            )}
+          </td>
+
+
+          <td>
+            ${crearEtiquetaEstado(
+              item.estatus
+            )}
+          </td>
+
+
+          <td>
+            ${escaparHTML(
+              item.responsable
+            )}
+          </td>
+
+
+          <td>
+            ${formatearFecha(
+              item.fechaCreacion
+            )}
+          </td>
+
+
+          <td>
+            ${formatearFecha(
+              item.fechaCierre
+            )}
+          </td>
+
+
+          <td>
+            ${escaparHTML(
+              item.prioridad
+            )}
+          </td>
+
+        `;
+
+
+        tabla.appendChild(
+          fila
         );
+
+      }
+    );
+
+
+    document.getElementById(
+      "registrosMostrados"
+    ).textContent =
+
+      datosFiltrados.length +
+
+      (
+        datosFiltrados.length === 1
+          ? " registro"
+          : " registros"
+      );
 
 
     actualizarPaginacion();
@@ -1630,11 +2618,14 @@
   }
 
 
+
   /* =====================================================
      FECHAS
   ===================================================== */
 
-  function formatearFecha(fecha) {
+  function formatearFecha(
+    fecha
+  ) {
 
     if (!fecha) {
       return "-";
@@ -1645,21 +2636,37 @@
       new Date(fecha);
 
 
-    if (isNaN(fechaObjeto.getTime())) {
-      return escaparHTML(fecha);
+    if (
+      isNaN(
+        fechaObjeto.getTime()
+      )
+    ) {
+
+      return escaparHTML(
+        fecha
+      );
+
     }
 
 
     return fechaObjeto.toLocaleDateString(
+
       "es-CL",
+
       {
+
         day: "2-digit",
+
         month: "2-digit",
+
         year: "numeric"
+
       }
+
     );
 
   }
+
 
 
   /* =====================================================
@@ -1669,14 +2676,20 @@
   function obtenerTotalPaginas() {
 
     return Math.max(
+
       1,
+
       Math.ceil(
+
         datosFiltrados.length /
         REGISTROS_POR_PAGINA
+
       )
+
     );
 
   }
+
 
 
   function actualizarPaginacion() {
@@ -1685,24 +2698,38 @@
       obtenerTotalPaginas();
 
 
-    if (paginaActual > totalPaginas) {
-      paginaActual = totalPaginas;
+    if (
+      paginaActual >
+      totalPaginas
+    ) {
+
+      paginaActual =
+        totalPaginas;
+
     }
 
 
-    document.getElementById("paginaInfo")
-      .textContent =
-        "Página "
-        + paginaActual
-        + " de "
-        + totalPaginas;
+    document.getElementById(
+      "paginaInfo"
+    ).textContent =
+
+      "Página " +
+
+      paginaActual +
+
+      " de " +
+
+      totalPaginas;
 
   }
 
 
+
   function paginaAnterior() {
 
-    if (paginaActual > 1) {
+    if (
+      paginaActual > 1
+    ) {
 
       paginaActual--;
 
@@ -1713,13 +2740,17 @@
   }
 
 
+
   function paginaSiguiente() {
 
     const totalPaginas =
       obtenerTotalPaginas();
 
 
-    if (paginaActual < totalPaginas) {
+    if (
+      paginaActual <
+      totalPaginas
+    ) {
 
       paginaActual++;
 
@@ -1728,6 +2759,7 @@
     }
 
   }
+
 
 
   /* =====================================================
