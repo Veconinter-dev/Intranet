@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -108,6 +109,7 @@
     }
 
     /* Colores según estatus */
+
     .kpi-en-proceso .kpi-valor {
       color: #0d6efd;
     }
@@ -124,7 +126,8 @@
       color: #198754;
     }
 
-    /* % avance se mantiene independiente */
+    /* % avance */
+
     .kpi-avance .kpi-valor {
       color: #107c10;
     }
@@ -216,7 +219,10 @@
       width: 100%;
     }
 
-    /* Ranking de responsables */
+    /* =========================
+       RANKING RESPONSABLES
+       ========================= */
+
     .ranking {
       height: 300px;
       overflow-y: auto;
@@ -231,19 +237,29 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 12px;
       margin-bottom: 5px;
       font-size: 13px;
     }
 
+    /*
+      CAMBIO:
+      Ahora el nombre puede ocupar todo el espacio disponible
+      y se permite que aparezca completo en varias líneas.
+    */
+
     .ranking-nombre {
       font-weight: 500;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      max-width: 80%;
+      flex: 1;
+      min-width: 0;
+      white-space: normal;
+      overflow-wrap: anywhere;
+      word-break: normal;
+      line-height: 1.3;
     }
 
     .ranking-cantidad {
+      flex-shrink: 0;
       font-weight: 700;
       color: #323130;
     }
@@ -262,6 +278,7 @@
     }
 
     /* Prioridad más estrecha */
+
     .grafico-prioridad .grafico-contenedor {
       height: 225px;
       width: 85%;
@@ -404,6 +421,7 @@
        ========================= */
 
     @media (max-width: 1200px) {
+
       .kpis {
         grid-template-columns: repeat(3, 1fr);
       }
@@ -411,15 +429,19 @@
       .filtros-grid {
         grid-template-columns: repeat(2, 1fr);
       }
+
     }
 
     @media (max-width: 900px) {
+
       .graficos {
         grid-template-columns: 1fr;
       }
+
     }
 
     @media (max-width: 700px) {
+
       .contenedor {
         padding: 12px;
       }
@@ -444,9 +466,11 @@
       .grafico-prioridad .grafico-contenedor {
         width: 100%;
       }
+
     }
 
     @media (max-width: 450px) {
+
       .kpis {
         grid-template-columns: 1fr;
       }
@@ -454,7 +478,9 @@
       .encabezado h1 {
         font-size: 22px;
       }
+
     }
+
   </style>
 </head>
 
@@ -475,8 +501,13 @@
       </div>
 
       <div class="conexion" id="estadoConexion">
+
         <span class="conexion-punto"></span>
-        <span id="textoConexion">Conectando...</span>
+
+        <span id="textoConexion">
+          Conectando...
+        </span>
+
       </div>
 
     </div>
@@ -488,8 +519,10 @@
 
     <div class="kpis">
 
-      <!-- 1. TOTAL -->
+      <!-- TOTAL -->
+
       <div class="kpi">
+
         <div class="kpi-titulo">
           Total de proyectos
         </div>
@@ -497,10 +530,12 @@
         <div class="kpi-valor" id="kpiTotal">
           0
         </div>
+
       </div>
 
 
-      <!-- 2. EN PROCESO -->
+      <!-- EN PROCESO -->
+
       <div class="kpi kpi-en-proceso">
 
         <div class="kpi-titulo">
@@ -514,7 +549,8 @@
       </div>
 
 
-      <!-- 3. IN REVIEW QA -->
+      <!-- IN REVIEW QA -->
+
       <div class="kpi kpi-in-review-qa">
 
         <div class="kpi-titulo">
@@ -528,7 +564,8 @@
       </div>
 
 
-      <!-- 4. COMPLETADOS -->
+      <!-- COMPLETADOS -->
+
       <div class="kpi kpi-completados">
 
         <div class="kpi-titulo">
@@ -542,7 +579,8 @@
       </div>
 
 
-      <!-- 5. CERRADOS -->
+      <!-- CERRADOS -->
+
       <div class="kpi kpi-cerrados">
 
         <div class="kpi-titulo">
@@ -556,7 +594,8 @@
       </div>
 
 
-      <!-- 6. % AVANCE -->
+      <!-- % AVANCE -->
+
       <div class="kpi kpi-avance">
 
         <div class="kpi-titulo">
@@ -590,8 +629,10 @@
             Periodo
           </label>
 
-          <select id="filtroPeriodo"
-                  onchange="aplicarFiltros()">
+          <select
+            id="filtroPeriodo"
+            onchange="aplicarFiltros()"
+          >
 
             <option value="">
               Todos
@@ -608,8 +649,10 @@
             Estatus
           </label>
 
-          <select id="filtroEstatus"
-                  onchange="aplicarFiltros()">
+          <select
+            id="filtroEstatus"
+            onchange="aplicarFiltros()"
+          >
 
             <option value="">
               Todos
@@ -626,8 +669,10 @@
             Responsable
           </label>
 
-          <select id="filtroResponsable"
-                  onchange="aplicarFiltros()">
+          <select
+            id="filtroResponsable"
+            onchange="aplicarFiltros()"
+          >
 
             <option value="">
               Todos
@@ -644,8 +689,10 @@
             Prioridad
           </label>
 
-          <select id="filtroPrioridad"
-                  onchange="aplicarFiltros()">
+          <select
+            id="filtroPrioridad"
+            onchange="aplicarFiltros()"
+          >
 
             <option value="">
               Todas
@@ -668,6 +715,7 @@
 
 
       <!-- DISTRIBUCION POR ESTATUS -->
+
       <div class="grafico-card">
 
         <div class="grafico-titulo">
@@ -684,6 +732,7 @@
 
 
       <!-- EVOLUCION MENSUAL -->
+
       <div class="grafico-card">
 
         <div class="grafico-titulo">
@@ -699,19 +748,24 @@
       </div>
 
 
-      <!-- ASIGNADOS POR RESPONSABLE -->
+      <!-- ASIGNADOS POR PROYECTOS -->
+
       <div class="grafico-card">
 
         <div class="grafico-titulo">
           Asignados por proyectos
         </div>
 
-        <div class="ranking" id="rankingResponsables"></div>
+        <div
+          class="ranking"
+          id="rankingResponsables"
+        ></div>
 
       </div>
 
 
       <!-- PRIORIDAD -->
+
       <div class="grafico-card grafico-prioridad">
 
         <div class="grafico-titulo">
@@ -799,9 +853,7 @@
 
           </thead>
 
-          <tbody id="tablaProyectos">
-
-          </tbody>
+          <tbody id="tablaProyectos"></tbody>
 
         </table>
 
@@ -846,12 +898,15 @@
 
     /*
       IMPORTANTE:
-      Conserva aquí EXACTAMENTE tu URL actual de Power Automate.
-      No reemplaces la URL si ya la tienes configurada.
+
+      CONSERVA AQUÍ LA URL DE POWER AUTOMATE QUE YA TIENES
+      FUNCIONANDO.
+
+      No necesitas modificar el flujo.
     */
 
     const POWER_AUTOMATE_URL =
-      "https://default65bbe6da35e94c18993bee2c16cb7e.64.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/22/workflows/1cbcd22cd245429b859457e6c5ebed46/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=vOQVES3QkJ_ipBGmiHQ1qYRKDuAo8BnixTXhH6meIig";
+      "PEGA_AQUI_TU_URL_ACTUAL_DE_POWER_AUTOMATE";
 
 
     /* ============================================================
@@ -859,6 +914,7 @@
        ============================================================ */
 
     let datos = [];
+
     let datosFiltrados = [];
 
     let paginaActual = 1;
@@ -866,7 +922,9 @@
     const registrosPorPagina = 10;
 
     let chartEstatus = null;
+
     let chartMensual = null;
+
     let chartPrioridad = null;
 
 
@@ -932,8 +990,13 @@
 
     function normalizarTexto(valor) {
 
-      if (valor === null || valor === undefined) {
+      if (
+        valor === null ||
+        valor === undefined
+      ) {
+
         return "";
+
       }
 
       return String(valor)
@@ -945,69 +1008,170 @@
 
     function textoEstatus(item) {
 
-      return normalizarTexto(item.estatus);
+      return normalizarTexto(
+        item.estatus
+      );
 
     }
 
 
-    function contieneEstatus(item, valores) {
+    function contieneEstatus(
+      item,
+      valores
+    ) {
 
-      const estatus = textoEstatus(item);
+      const estatus =
+        textoEstatus(item);
 
-      return valores.some(valor =>
-        estatus.includes(normalizarTexto(valor))
+      return valores.some(
+        valor =>
+          estatus.includes(
+            normalizarTexto(valor)
+          )
       );
 
     }
 
 
     /* ============================================================
-       CLASIFICACION DE KPI
+       RESPONSABLES
        ============================================================ */
 
-    function esEnProceso(item) {
+    /*
+      Esta función convierte el campo Responsable
+      en una lista real de personas.
 
-      return contieneEstatus(item, [
-        "IN PROGRESS",
-        "PROGRES",
-        "EN PROCESO"
-      ]);
+      Se contemplan los separadores más habituales:
+
+      ;
+      ,
+      saltos de línea
+      |
+
+      Si viene una sola persona,
+      devuelve una sola persona.
+
+      Ejemplo:
+
+      "Juan Pérez; María López"
+
+      se convierte en:
+
+      [
+        "Juan Pérez",
+        "María López"
+      ]
+    */
+
+    function obtenerResponsables(
+      valor
+    ) {
+
+      if (
+        valor === null ||
+        valor === undefined
+      ) {
+
+        return [];
+
+      }
+
+
+      const texto =
+        String(valor).trim();
+
+
+      if (!texto) {
+
+        return [];
+
+      }
+
+
+      return texto
+        .split(/[;\n|]+/)
+        .map(
+          nombre =>
+            nombre.trim()
+        )
+        .filter(
+          nombre =>
+            nombre.length > 0
+        );
 
     }
 
 
     /*
-      IN REVIEW QA ES UNA SOLA CATEGORIA.
-      No se cuentan por separado "IN REVIEW" y "QA".
+      Normaliza los nombres para evitar
+      duplicados por mayúsculas/minúsculas.
     */
+
+    function claveResponsable(
+      nombre
+    ) {
+
+      return normalizarTexto(
+        nombre
+      );
+
+    }
+
+
+    /* ============================================================
+       CLASIFICACION KPI
+       ============================================================ */
+
+    function esEnProceso(item) {
+
+      return contieneEstatus(
+        item,
+        [
+          "IN PROGRESS",
+          "PROGRES",
+          "EN PROCESO"
+        ]
+      );
+
+    }
+
 
     function esInReviewQA(item) {
 
-      return contieneEstatus(item, [
-        "IN REVIEW QA"
-      ]);
+      return contieneEstatus(
+        item,
+        [
+          "IN REVIEW QA"
+        ]
+      );
 
     }
 
 
     function esCompletado(item) {
 
-      return contieneEstatus(item, [
-        "COMPLETED",
-        "COMPLETADO",
-        "COMPLETADOS"
-      ]);
+      return contieneEstatus(
+        item,
+        [
+          "COMPLETED",
+          "COMPLETADO",
+          "COMPLETADOS"
+        ]
+      );
 
     }
 
 
     function esCerrado(item) {
 
-      return contieneEstatus(item, [
-        "CLOSED",
-        "CERRADO",
-        "CERRADOS"
-      ]);
+      return contieneEstatus(
+        item,
+        [
+          "CLOSED",
+          "CERRADO",
+          "CERRADOS"
+        ]
+      );
 
     }
 
@@ -1016,20 +1180,36 @@
        COLORES
        ============================================================ */
 
-    function obtenerColorEstatus(estatus) {
+    function obtenerColorEstatus(
+      estatus
+    ) {
 
-      const clave = normalizarTexto(estatus);
+      const clave =
+        normalizarTexto(
+          estatus
+        );
 
-      return COLORES_ESTATUS[clave] || "#6c757d";
+      return (
+        COLORES_ESTATUS[clave] ||
+        "#6c757d"
+      );
 
     }
 
 
-    function obtenerColorPrioridad(prioridad) {
+    function obtenerColorPrioridad(
+      prioridad
+    ) {
 
-      const clave = normalizarTexto(prioridad);
+      const clave =
+        normalizarTexto(
+          prioridad
+        );
 
-      return COLORES_PRIORIDAD[clave] || "#6c757d";
+      return (
+        COLORES_PRIORIDAD[clave] ||
+        "#6c757d"
+      );
 
     }
 
@@ -1038,43 +1218,59 @@
        ETIQUETAS
        ============================================================ */
 
-    function crearEtiquetaEstado(estatus) {
+    function crearEtiquetaEstado(
+      estatus
+    ) {
 
       const valor =
         estatus ||
         "Sin estatus";
 
+
       const color =
-        obtenerColorEstatus(valor);
+        obtenerColorEstatus(
+          valor
+        );
+
 
       return `
+
         <span
           class="etiqueta etiqueta-estatus"
           style="background-color:${color};"
         >
           ${escapeHtml(valor)}
         </span>
+
       `;
 
     }
 
 
-    function crearEtiquetaPrioridad(prioridad) {
+    function crearEtiquetaPrioridad(
+      prioridad
+    ) {
 
       const valor =
         prioridad ||
         "Sin prioridad";
 
+
       const color =
-        obtenerColorPrioridad(valor);
+        obtenerColorPrioridad(
+          valor
+        );
+
 
       return `
+
         <span
           class="etiqueta etiqueta-prioridad"
           style="background-color:${color};"
         >
           ${escapeHtml(valor)}
         </span>
+
       `;
 
     }
@@ -1086,16 +1282,42 @@
 
     function escapeHtml(valor) {
 
-      if (valor === null || valor === undefined) {
+      if (
+        valor === null ||
+        valor === undefined
+      ) {
+
         return "";
+
       }
 
+
       return String(valor)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+
+        .replace(
+          /&/g,
+          "&amp;"
+        )
+
+        .replace(
+          /</g,
+          "&lt;"
+        )
+
+        .replace(
+          />/g,
+          "&gt;"
+        )
+
+        .replace(
+          /"/g,
+          "&quot;"
+        )
+
+        .replace(
+          /'/g,
+          "&#039;"
+        );
 
     }
 
@@ -1104,17 +1326,31 @@
        FORMATEAR FECHAS
        ============================================================ */
 
-    function formatearFecha(fecha) {
+    function formatearFecha(
+      fecha
+    ) {
 
       if (!fecha) {
+
         return "-";
+
       }
 
-      const valor = new Date(fecha);
 
-      if (isNaN(valor.getTime())) {
+      const valor =
+        new Date(fecha);
+
+
+      if (
+        isNaN(
+          valor.getTime()
+        )
+      ) {
+
         return fecha;
+
       }
+
 
       return valor.toLocaleDateString(
         "es-CL",
@@ -1135,10 +1371,16 @@
     async function cargarDatos() {
 
       const estadoConexion =
-        document.getElementById("estadoConexion");
+        document.getElementById(
+          "estadoConexion"
+        );
+
 
       const textoConexion =
-        document.getElementById("textoConexion");
+        document.getElementById(
+          "textoConexion"
+        );
+
 
       try {
 
@@ -1147,10 +1389,14 @@
             POWER_AUTOMATE_URL,
             {
               method: "POST",
+
               headers: {
-                "Content-Type": "application/json"
+                "Content-Type":
+                  "application/json"
               },
-              body: JSON.stringify({})
+
+              body:
+                JSON.stringify({})
             }
           );
 
@@ -1158,7 +1404,8 @@
         if (!respuesta.ok) {
 
           throw new Error(
-            "HTTP " + respuesta.status
+            "HTTP " +
+            respuesta.status
           );
 
         }
@@ -1168,13 +1415,10 @@
           await respuesta.json();
 
 
-        /*
-          Power Automate devuelve directamente
-          el array generado por Seleccionar.
-        */
-
         datos =
-          Array.isArray(resultado)
+          Array.isArray(
+            resultado
+          )
             ? resultado
             : (
                 resultado.value ||
@@ -1183,49 +1427,70 @@
               );
 
 
-        datos = datos.map(item => ({
+        datos =
+          datos.map(
+            item => ({
 
-          codigo:
-            item.codigo || "",
+              codigo:
+                item.codigo ||
+                "",
 
-          proyecto:
-            item.proyecto || "",
+              proyecto:
+                item.proyecto ||
+                "",
 
-          estado:
-            item.estado || "",
+              estado:
+                item.estado ||
+                "",
 
-          estatus:
-            item.estatus || "",
+              estatus:
+                item.estatus ||
+                "",
 
-          responsable:
-            item.responsable || "",
+              responsable:
+                item.responsable ||
+                "",
 
-          fechaCreacion:
-            item.fechaCreacion || "",
+              fechaCreacion:
+                item.fechaCreacion ||
+                "",
 
-          fechaCierre:
-            item.fechaCierre || "",
+              fechaCierre:
+                item.fechaCierre ||
+                "",
 
-          prioridad:
-            item.prioridad || "",
+              prioridad:
+                item.prioridad ||
+                "",
 
-          yearMes:
-            item.yearMes || "",
+              yearMes:
+                item.yearMes ||
+                "",
 
-          mesYear:
-            item.mesYear || "",
+              mesYear:
+                item.mesYear ||
+                "",
 
-          clickUpID:
-            item.clickUpID || ""
+              clickUpID:
+                item.clickUpID ||
+                ""
 
-        }));
+            })
+          );
 
 
         datosFiltrados =
-          [...datos];
+          [
+            ...datos
+          ];
 
 
-        estadoConexion.classList.remove("error");
+        estadoConexion
+          .classList
+          .remove(
+            "error"
+          );
+
 
         textoConexion.textContent =
           "Conexión correcta";
@@ -1246,9 +1511,17 @@
 
       catch (error) {
 
-        console.error(error);
+        console.error(
+          error
+        );
 
-        estadoConexion.classList.add("error");
+
+        estadoConexion
+          .classList
+          .add(
+            "error"
+          );
+
 
         textoConexion.textContent =
           "Error de conexión";
@@ -1268,9 +1541,14 @@
                 color:#d13438;
               "
             >
+
               No fue posible obtener los datos.
+
               <br><br>
-              ${escapeHtml(error.message)}
+
+              ${escapeHtml(
+                error.message
+              )}
 
             </td>
 
@@ -1294,15 +1572,18 @@
           "filtroPeriodo"
         );
 
+
       const estatus =
         document.getElementById(
           "filtroEstatus"
         );
 
+
       const responsable =
         document.getElementById(
           "filtroResponsable"
         );
+
 
       const prioridad =
         document.getElementById(
@@ -1313,99 +1594,230 @@
       periodo.innerHTML =
         '<option value="">Todos</option>';
 
+
       estatus.innerHTML =
         '<option value="">Todos</option>';
 
+
       responsable.innerHTML =
         '<option value="">Todos</option>';
+
 
       prioridad.innerHTML =
         '<option value="">Todas</option>';
 
 
-      const periodos =
-        [...new Set(
-          datos
-            .map(item => item.mesYear)
-            .filter(Boolean)
-        )];
+      /* PERIODOS */
 
+      const periodos =
+        [
+          ...new Set(
+            datos
+              .map(
+                item =>
+                  item.mesYear
+              )
+              .filter(
+                Boolean
+              )
+          )
+        ];
+
+
+      /* ESTATUS */
 
       const estatuses =
-        [...new Set(
-          datos
-            .map(item => item.estatus)
-            .filter(Boolean)
-        )];
+        [
+          ...new Set(
+            datos
+              .map(
+                item =>
+                  item.estatus
+              )
+              .filter(
+                Boolean
+              )
+          )
+        ];
+
+
+      /*
+        RESPONSABLES
+
+        IMPORTANTE:
+
+        Ya no hacemos:
+
+        new Set(datos.map(item => item.responsable))
+
+        porque eso agrupa los nombres.
+
+        Ahora recorremos cada registro y
+        separamos cada persona.
+      */
+
+      const mapaResponsables =
+        new Map();
+
+
+      datos.forEach(
+        item => {
+
+          const responsables =
+            obtenerResponsables(
+              item.responsable
+            );
+
+
+          responsables.forEach(
+            nombre => {
+
+              const clave =
+                claveResponsable(
+                  nombre
+                );
+
+
+              if (
+                !mapaResponsables
+                  .has(clave)
+              ) {
+
+                mapaResponsables.set(
+                  clave,
+                  nombre
+                );
+
+              }
+
+            }
+          );
+
+        }
+      );
 
 
       const responsables =
-        [...new Set(
-          datos
-            .map(item => item.responsable)
-            .filter(Boolean)
-        )];
+        [
+          ...mapaResponsables.values()
+        ];
 
+
+      /* PRIORIDADES */
 
       const prioridades =
-        [...new Set(
-          datos
-            .map(item => item.prioridad)
-            .filter(Boolean)
-        )];
+        [
+          ...new Set(
+            datos
+              .map(
+                item =>
+                  item.prioridad
+              )
+              .filter(
+                Boolean
+              )
+          )
+        ];
 
 
       periodos.sort();
 
       estatuses.sort();
 
-      responsables.sort();
+      responsables.sort(
+        (a, b) =>
+          a.localeCompare(
+            b,
+            "es",
+            {
+              sensitivity:
+                "base"
+            }
+          )
+      );
 
       prioridades.sort();
 
 
-      periodos.forEach(valor => {
+      /* CARGAR PERIODOS */
 
-        periodo.innerHTML += `
-          <option value="${escapeHtml(valor)}">
-            ${escapeHtml(valor)}
-          </option>
-        `;
+      periodos.forEach(
+        valor => {
 
-      });
+          periodo.innerHTML += `
 
+            <option
+              value="${escapeHtml(valor)}"
+            >
+              ${escapeHtml(valor)}
+            </option>
 
-      estatuses.forEach(valor => {
+          `;
 
-        estatus.innerHTML += `
-          <option value="${escapeHtml(valor)}">
-            ${escapeHtml(valor)}
-          </option>
-        `;
-
-      });
+        }
+      );
 
 
-      responsables.forEach(valor => {
+      /* CARGAR ESTATUS */
 
-        responsable.innerHTML += `
-          <option value="${escapeHtml(valor)}">
-            ${escapeHtml(valor)}
-          </option>
-        `;
+      estatuses.forEach(
+        valor => {
 
-      });
+          estatus.innerHTML += `
+
+            <option
+              value="${escapeHtml(valor)}"
+            >
+              ${escapeHtml(valor)}
+            </option>
+
+          `;
+
+        }
+      );
 
 
-      prioridades.forEach(valor => {
+      /*
+        CARGAR RESPONSABLES
 
-        prioridad.innerHTML += `
-          <option value="${escapeHtml(valor)}">
-            ${escapeHtml(valor)}
-          </option>
-        `;
+        Cada nombre aparece como
+        una opción independiente.
+      */
 
-      });
+      responsables.forEach(
+        nombre => {
+
+          responsable.innerHTML += `
+
+            <option
+              value="${escapeHtml(nombre)}"
+            >
+              ${escapeHtml(nombre)}
+            </option>
+
+          `;
+
+        }
+      );
+
+
+      /* CARGAR PRIORIDADES */
+
+      prioridades.forEach(
+        valor => {
+
+          prioridad.innerHTML += `
+
+            <option
+              value="${escapeHtml(valor)}"
+            >
+              ${escapeHtml(valor)}
+            </option>
+
+          `;
+
+        }
+      );
 
     }
 
@@ -1421,20 +1833,24 @@
           "filtroPeriodo"
         ).value;
 
+
       const estatus =
         document.getElementById(
           "filtroEstatus"
         ).value;
+
 
       const responsable =
         document.getElementById(
           "filtroResponsable"
         ).value;
 
+
       const prioridad =
         document.getElementById(
           "filtroPrioridad"
         ).value;
+
 
       const busqueda =
         normalizarTexto(
@@ -1445,64 +1861,132 @@
 
 
       datosFiltrados =
-        datos.filter(item => {
-
-          if (
-            periodo &&
-            item.mesYear !== periodo
-          ) {
-            return false;
-          }
+        datos.filter(
+          item => {
 
 
-          if (
-            estatus &&
-            item.estatus !== estatus
-          ) {
-            return false;
-          }
+            /* PERIODO */
 
+            if (
+              periodo &&
+              item.mesYear !==
+                periodo
+            ) {
 
-          if (
-            responsable &&
-            item.responsable !== responsable
-          ) {
-            return false;
-          }
-
-
-          if (
-            prioridad &&
-            item.prioridad !== prioridad
-          ) {
-            return false;
-          }
-
-
-          if (busqueda) {
-
-            const texto = normalizarTexto(
-              [
-                item.codigo,
-                item.proyecto,
-                item.estado,
-                item.estatus,
-                item.responsable,
-                item.prioridad
-              ].join(" ")
-            );
-
-
-            if (!texto.includes(busqueda)) {
               return false;
+
             }
 
+
+            /* ESTATUS */
+
+            if (
+              estatus &&
+              item.estatus !==
+                estatus
+            ) {
+
+              return false;
+
+            }
+
+
+            /*
+              RESPONSABLE
+
+              Ahora comprobamos si la persona
+              seleccionada pertenece al registro,
+              aunque el registro tenga varios
+              responsables.
+            */
+
+            if (responsable) {
+
+              const responsables =
+                obtenerResponsables(
+                  item.responsable
+                );
+
+
+              const existeResponsable =
+                responsables.some(
+                  nombre =>
+                    claveResponsable(
+                      nombre
+                    ) ===
+                    claveResponsable(
+                      responsable
+                    )
+                );
+
+
+              if (
+                !existeResponsable
+              ) {
+
+                return false;
+
+              }
+
+            }
+
+
+            /* PRIORIDAD */
+
+            if (
+              prioridad &&
+              item.prioridad !==
+                prioridad
+            ) {
+
+              return false;
+
+            }
+
+
+            /* BUSQUEDA */
+
+            if (busqueda) {
+
+              const texto =
+                normalizarTexto(
+
+                  [
+
+                    item.codigo,
+
+                    item.proyecto,
+
+                    item.estado,
+
+                    item.estatus,
+
+                    item.responsable,
+
+                    item.prioridad
+
+                  ].join(" ")
+
+                );
+
+
+              if (
+                !texto.includes(
+                  busqueda
+                )
+              ) {
+
+                return false;
+
+              }
+
+            }
+
+
+            return true;
+
           }
-
-
-          return true;
-
-        });
+        );
 
 
       paginaActual = 1;
@@ -1543,11 +2027,6 @@
         ).length;
 
 
-      /*
-        IN REVIEW QA:
-        una sola caja y una sola métrica.
-      */
-
       const inReviewQA =
         datosFiltrados.filter(
           esInReviewQA
@@ -1566,19 +2045,16 @@
         ).length;
 
 
-      /*
-        % avance:
-        completados / total * 100
-      */
-
       const avance =
         total > 0
+
           ? Math.round(
               (
                 completados /
                 total
               ) * 100
             )
+
           : 0;
 
 
@@ -1646,23 +2122,34 @@
       const conteo = {};
 
 
-      datosFiltrados.forEach(item => {
+      datosFiltrados.forEach(
+        item => {
 
-        const estatus =
-          item.estatus ||
-          "Sin estatus";
+          const estatus =
+            item.estatus ||
+            "Sin estatus";
 
-        conteo[estatus] =
-          (conteo[estatus] || 0) + 1;
 
-      });
+          conteo[estatus] =
+            (
+              conteo[estatus] ||
+              0
+            ) + 1;
+
+        }
+      );
 
 
       const etiquetas =
-        Object.keys(conteo);
+        Object.keys(
+          conteo
+        );
+
 
       const valores =
-        Object.values(conteo);
+        Object.values(
+          conteo
+        );
 
 
       const colores =
@@ -1672,7 +2159,9 @@
 
 
       if (chartEstatus) {
+
         chartEstatus.destroy();
+
       }
 
 
@@ -1686,41 +2175,60 @@
         new Chart(
           ctx,
           {
-            type: "doughnut",
+
+            type:
+              "doughnut",
 
             data: {
 
-              labels: etiquetas,
+              labels:
+                etiquetas,
 
               datasets: [
+
                 {
-                  data: valores,
 
-                  backgroundColor: colores,
+                  data:
+                    valores,
 
-                  borderColor: "#ffffff",
+                  backgroundColor:
+                    colores,
 
-                  borderWidth: 2
+                  borderColor:
+                    "#ffffff",
+
+                  borderWidth:
+                    2
+
                 }
+
               ]
 
             },
 
             options: {
 
-              responsive: true,
+              responsive:
+                true,
 
-              maintainAspectRatio: false,
+              maintainAspectRatio:
+                false,
 
               plugins: {
 
                 legend: {
 
-                  position: "right",
+                  position:
+                    "right",
 
                   labels: {
-                    usePointStyle: true,
-                    padding: 12
+
+                    usePointStyle:
+                      true,
+
+                    padding:
+                      12
+
                   }
 
                 }
@@ -1744,22 +2252,29 @@
       const conteo = {};
 
 
-      datosFiltrados.forEach(item => {
+      datosFiltrados.forEach(
+        item => {
 
-        const periodo =
-          item.mesYear ||
-          item.yearMes ||
-          "Sin fecha";
+          const periodo =
+            item.mesYear ||
+            item.yearMes ||
+            "Sin fecha";
 
 
-        conteo[periodo] =
-          (conteo[periodo] || 0) + 1;
+          conteo[periodo] =
+            (
+              conteo[periodo] ||
+              0
+            ) + 1;
 
-      });
+        }
+      );
 
 
       const etiquetas =
-        Object.keys(conteo).sort();
+        Object.keys(
+          conteo
+        ).sort();
 
 
       const valores =
@@ -1770,7 +2285,9 @@
 
 
       if (chartMensual) {
+
         chartMensual.destroy();
+
       }
 
 
@@ -1784,19 +2301,24 @@
         new Chart(
           ctx,
           {
-            type: "line",
+
+            type:
+              "line",
 
             data: {
 
-              labels: etiquetas,
+              labels:
+                etiquetas,
 
               datasets: [
 
                 {
+
                   label:
                     "Proyectos",
 
-                  data: valores,
+                  data:
+                    valores,
 
                   borderColor:
                     "#0d6efd",
@@ -1804,13 +2326,17 @@
                   backgroundColor:
                     "rgba(13,110,253,0.12)",
 
-                  tension: 0.3,
+                  tension:
+                    0.3,
 
-                  fill: true,
+                  fill:
+                    true,
 
-                  pointRadius: 4,
+                  pointRadius:
+                    4,
 
-                  pointHoverRadius: 6
+                  pointHoverRadius:
+                    6
 
                 }
 
@@ -1820,18 +2346,24 @@
 
             options: {
 
-              responsive: true,
+              responsive:
+                true,
 
-              maintainAspectRatio: false,
+              maintainAspectRatio:
+                false,
 
               scales: {
 
                 y: {
 
-                  beginAtZero: true,
+                  beginAtZero:
+                    true,
 
                   ticks: {
-                    precision: 0
+
+                    precision:
+                      0
+
                   }
 
                 }
@@ -1841,7 +2373,10 @@
               plugins: {
 
                 legend: {
-                  display: false
+
+                  display:
+                    false
+
                 }
 
               }
@@ -1849,7 +2384,6 @@
             }
 
           }
-
         );
 
     }
@@ -1867,33 +2401,133 @@
         );
 
 
-      const conteo = {};
+      /*
+        CAMBIO IMPORTANTE:
+
+        Se cuenta cada responsable individualmente.
+
+        Si un proyecto tiene:
+
+        "Juan Pérez; María López"
+
+        se sumará:
+
+        Juan Pérez +1
+        María López +1
+      */
+
+      const conteo =
+        new Map();
 
 
-      datosFiltrados.forEach(item => {
+      datosFiltrados.forEach(
+        item => {
 
-        const responsable =
-          item.responsable ||
-          "Sin responsable";
+          const responsables =
+            obtenerResponsables(
+              item.responsable
+            );
 
 
-        conteo[responsable] =
-          (conteo[responsable] || 0) + 1;
+          /*
+            Si no tiene responsable
+          */
 
-      });
+          if (
+            responsables.length === 0
+          ) {
+
+            const clave =
+              "sin responsable";
+
+
+            if (
+              !conteo.has(clave)
+            ) {
+
+              conteo.set(
+                clave,
+                {
+                  nombre:
+                    "Sin responsable",
+
+                  cantidad:
+                    0
+                }
+              );
+
+            }
+
+
+            conteo.get(
+              clave
+            ).cantidad++;
+
+
+            return;
+
+          }
+
+
+          /*
+            Contar cada persona
+          */
+
+          responsables.forEach(
+            nombre => {
+
+              const clave =
+                claveResponsable(
+                  nombre
+                );
+
+
+              if (
+                !conteo.has(clave)
+              ) {
+
+                conteo.set(
+                  clave,
+                  {
+                    nombre:
+                      nombre,
+
+                    cantidad:
+                      0
+                  }
+                );
+
+              }
+
+
+              conteo.get(
+                clave
+              ).cantidad++;
+
+            }
+          );
+
+        }
+      );
 
 
       const ranking =
-        Object.entries(conteo)
-          .sort(
-            (a, b) =>
-              b[1] - a[1]
-          );
+        [
+          ...conteo.values()
+        ]
+        .sort(
+          (a, b) =>
+            b.cantidad -
+            a.cantidad
+        );
 
 
-      if (!ranking.length) {
+      if (
+        !ranking.length
+      ) {
 
         contenedor.innerHTML = `
+
           <div
             style="
               text-align:center;
@@ -1903,6 +2537,7 @@
           >
             No hay datos disponibles.
           </div>
+
         `;
 
         return;
@@ -1911,27 +2546,34 @@
 
 
       const maximo =
-        ranking[0][1];
+        ranking[0].cantidad;
 
 
       contenedor.innerHTML =
         ranking.map(
-          ([nombre, cantidad]) => {
+          ({ nombre, cantidad }) => {
+
 
             const porcentaje =
               maximo > 0
+
                 ? (
                     cantidad /
                     maximo
                   ) * 100
+
                 : 0;
 
 
             return `
 
-              <div class="ranking-item">
+              <div
+                class="ranking-item"
+              >
 
-                <div class="ranking-cabecera">
+                <div
+                  class="ranking-cabecera"
+                >
 
                   <span
                     class="ranking-nombre"
@@ -1948,7 +2590,10 @@
 
                 </div>
 
-                <div class="ranking-barra">
+
+                <div
+                  class="ranking-barra"
+                >
 
                   <div
                     class="ranking-barra-fill"
@@ -1990,45 +2635,56 @@
 
       const conteo = {
 
-        "urgent": 0,
+        "urgent":
+          0,
 
-        "high": 0,
+        "high":
+          0,
 
-        "normal": 0,
+        "normal":
+          0,
 
-        "low": 0,
+        "low":
+          0,
 
-        "sin prioridad": 0
+        "sin prioridad":
+          0
 
       };
 
 
-      datosFiltrados.forEach(item => {
+      datosFiltrados.forEach(
+        item => {
 
-        const prioridad =
-          normalizarTexto(
-            item.prioridad
-          );
+          const prioridad =
+            normalizarTexto(
+              item.prioridad
+            );
 
 
-        if (
-          Object.prototype.hasOwnProperty.call(
-            conteo,
-            prioridad
-          )
-        ) {
+          if (
+            Object.prototype.hasOwnProperty.call(
+              conteo,
+              prioridad
+            )
+          ) {
 
-          conteo[prioridad]++;
+            conteo[
+              prioridad
+            ]++;
+
+          }
+
+          else {
+
+            conteo[
+              "sin prioridad"
+            ]++;
+
+          }
 
         }
-
-        else {
-
-          conteo["sin prioridad"]++;
-
-        }
-
-      });
+      );
 
 
       const etiquetas = [
@@ -2049,7 +2705,9 @@
       const valores =
         ordenPrioridad.map(
           prioridad =>
-            conteo[prioridad]
+            conteo[
+              prioridad
+            ]
         );
 
 
@@ -2063,7 +2721,9 @@
 
 
       if (chartPrioridad) {
+
         chartPrioridad.destroy();
+
       }
 
 
@@ -2077,19 +2737,24 @@
         new Chart(
           ctx,
           {
-            type: "bar",
+
+            type:
+              "bar",
 
             data: {
 
-              labels: etiquetas,
+              labels:
+                etiquetas,
 
               datasets: [
 
                 {
+
                   label:
                     "Proyectos",
 
-                  data: valores,
+                  data:
+                    valores,
 
                   backgroundColor:
                     colores,
@@ -2097,9 +2762,11 @@
                   borderColor:
                     colores,
 
-                  borderRadius: 5,
+                  borderRadius:
+                    5,
 
-                  barThickness: 28
+                  barThickness:
+                    28
 
                 }
 
@@ -2109,20 +2776,27 @@
 
             options: {
 
-              responsive: true,
+              responsive:
+                true,
 
-              maintainAspectRatio: false,
+              maintainAspectRatio:
+                false,
 
-              indexAxis: "y",
+              indexAxis:
+                "y",
 
               scales: {
 
                 x: {
 
-                  beginAtZero: true,
+                  beginAtZero:
+                    true,
 
                   ticks: {
-                    precision: 0
+
+                    precision:
+                      0
+
                   }
 
                 }
@@ -2132,7 +2806,10 @@
               plugins: {
 
                 legend: {
-                  display: false
+
+                  display:
+                    false
+
                 }
 
               }
@@ -2140,7 +2817,6 @@
             }
 
           }
-
         );
 
     }
@@ -2162,7 +2838,8 @@
         (
           paginaActual -
           1
-        ) * registrosPorPagina;
+        ) *
+        registrosPorPagina;
 
 
       const fin =
@@ -2177,7 +2854,9 @@
         );
 
 
-      if (!registros.length) {
+      if (
+        !registros.length
+      ) {
 
         tabla.innerHTML = `
 
@@ -2210,21 +2889,27 @@
 
                 <td>
                   ${escapeHtml(
-                    item.codigo || "-"
+                    item.codigo ||
+                    "-"
                   )}
                 </td>
 
-                <td>
-                  ${escapeHtml(
-                    item.proyecto || "-"
-                  )}
-                </td>
 
                 <td>
                   ${escapeHtml(
-                    item.estado || "-"
+                    item.proyecto ||
+                    "-"
                   )}
                 </td>
+
+
+                <td>
+                  ${escapeHtml(
+                    item.estado ||
+                    "-"
+                  )}
+                </td>
+
 
                 <td>
                   ${crearEtiquetaEstado(
@@ -2232,11 +2917,14 @@
                   )}
                 </td>
 
+
                 <td>
                   ${escapeHtml(
-                    item.responsable || "-"
+                    item.responsable ||
+                    "-"
                   )}
                 </td>
+
 
                 <td>
                   ${crearEtiquetaPrioridad(
@@ -2244,11 +2932,13 @@
                   )}
                 </td>
 
+
                 <td>
                   ${formatearFecha(
                     item.fechaCreacion
                   )}
                 </td>
+
 
                 <td>
                   ${formatearFecha(
@@ -2300,14 +2990,17 @@
       document.getElementById(
         "btnSiguiente"
       ).disabled =
-        paginaActual >= totalPaginas;
+        paginaActual >=
+        totalPaginas;
 
     }
 
 
     function paginaAnterior() {
 
-      if (paginaActual > 1) {
+      if (
+        paginaActual > 1
+      ) {
 
         paginaActual--;
 
@@ -2351,3 +3044,4 @@
 
 </body>
 </html>
+```
