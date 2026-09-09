@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Proyectos GPT Roadmap</title>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -15,79 +14,72 @@
 
     body {
       margin: 0;
-      font-family: "Segoe UI", Arial, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       background: #f5f6f8;
-      color: #323130;
+      color: #212529;
     }
 
-    .dashboard {
+    .contenedor {
       max-width: 1500px;
       margin: 0 auto;
-      padding: 24px;
+      padding: 25px;
     }
 
     .encabezado {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 24px;
-      gap: 20px;
+      background: white;
+      border-radius: 10px;
+      padding: 22px 25px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
 
-    .titulo {
+    .encabezado h1 {
       margin: 0;
-      font-size: 28px;
-      font-weight: 700;
-      color: #323130;
+      font-size: 26px;
+      color: #212529;
     }
 
-    .subtitulo {
-      margin: 5px 0 0;
+    .encabezado p {
+      margin: 6px 0 0;
+      color: #6c757d;
       font-size: 14px;
-      color: #605e5c;
     }
 
     .conexion {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      color: #605e5c;
-      white-space: nowrap;
+      gap: 7px;
+      margin-top: 12px;
+      font-size: 12px;
+      color: #198754;
+      font-weight: 600;
     }
 
     .conexion-punto {
-      width: 10px;
-      height: 10px;
+      width: 9px;
+      height: 9px;
       border-radius: 50%;
-      background: #107c10;
-    }
-
-    .conexion.error .conexion-punto {
-      background: #d13438;
+      background: #28a745;
     }
 
     .kpis {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
-      gap: 14px;
-      margin-bottom: 22px;
+      gap: 15px;
+      margin-bottom: 20px;
     }
 
     .kpi {
       background: white;
       border-radius: 10px;
       padding: 18px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-      min-height: 110px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      text-align: center;
     }
 
     .kpi-titulo {
       font-size: 13px;
-      color: #605e5c;
+      color: #6c757d;
       margin-bottom: 8px;
       font-weight: 600;
     }
@@ -95,15 +87,14 @@
     .kpi-valor {
       font-size: 30px;
       font-weight: 700;
-      color: #323130;
-      line-height: 1;
+      color: #212529;
     }
 
     .kpi-en-proceso .kpi-valor {
       color: #0d6efd;
     }
 
-    .kpi-in-review-qa .kpi-valor {
+    .kpi-review .kpi-valor {
       color: #fd7e14;
     }
 
@@ -123,20 +114,11 @@
       background: white;
       border-radius: 10px;
       padding: 18px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-      margin-bottom: 22px;
-    }
-
-    .filtros-titulo {
-      font-size: 15px;
-      font-weight: 700;
-      margin-bottom: 14px;
-    }
-
-    .filtros-grid {
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
+      gap: 15px;
     }
 
     .filtro {
@@ -147,46 +129,38 @@
 
     .filtro label {
       font-size: 12px;
-      color: #605e5c;
       font-weight: 600;
+      color: #495057;
     }
 
     .filtro select,
     .buscador input {
       width: 100%;
-      border: 1px solid #d2d0ce;
+      border: 1px solid #ced4da;
       border-radius: 6px;
       padding: 9px 10px;
       font-size: 13px;
       background: white;
-      color: #323130;
-      outline: none;
-    }
-
-    .filtro select:focus,
-    .buscador input:focus {
-      border-color: #0d6efd;
     }
 
     .graficos {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 22px;
-      margin-bottom: 22px;
+      gap: 20px;
+      margin-bottom: 20px;
     }
 
     .grafico-card {
       background: white;
       border-radius: 10px;
-      padding: 18px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-      min-width: 0;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
 
-    .grafico-titulo {
-      font-size: 15px;
-      font-weight: 700;
-      margin-bottom: 14px;
+    .grafico-card h3 {
+      margin: 0 0 15px;
+      font-size: 16px;
+      color: #343a40;
     }
 
     .grafico-contenedor {
@@ -214,177 +188,135 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 10px;
       margin-bottom: 5px;
-      font-size: 13px;
-    }
-
-    .ranking-nombre {
+      font-size: 12px;
       font-weight: 600;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .ranking-numero {
-      font-weight: 700;
-      color: #323130;
     }
 
     .ranking-barra {
-      width: 100%;
-      height: 8px;
-      background: #edebe9;
-      border-radius: 5px;
+      height: 10px;
+      background: #e9ecef;
+      border-radius: 6px;
       overflow: hidden;
     }
 
-    .ranking-barra-progreso {
+    .ranking-barra-interior {
       height: 100%;
+      border-radius: 6px;
       background: #0d6efd;
-      border-radius: 5px;
     }
 
     .tabla-card {
       background: white;
       border-radius: 10px;
-      padding: 18px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
 
-    .tabla-cabecera {
+    .tabla-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 15px;
-      margin-bottom: 14px;
+      margin-bottom: 15px;
     }
 
-    .tabla-titulo {
-      font-size: 15px;
-      font-weight: 700;
+    .tabla-header h3 {
+      margin: 0;
+      font-size: 16px;
     }
 
     .buscador {
-      width: 280px;
+      width: 300px;
     }
 
-    .tabla-wrapper {
-      width: 100%;
+    .tabla-scroll {
       overflow-x: auto;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 1000px;
+      font-size: 12px;
     }
 
     th {
-      text-align: left;
-      padding: 11px 10px;
-      font-size: 12px;
-      color: #605e5c;
-      background: #f8f8f8;
-      border-bottom: 1px solid #edebe9;
+      background: #f1f3f5;
+      color: #495057;
       font-weight: 700;
+      text-align: left;
+      padding: 11px 9px;
+      border-bottom: 1px solid #dee2e6;
+      white-space: nowrap;
     }
 
     td {
-      padding: 11px 10px;
-      font-size: 12px;
-      border-bottom: 1px solid #edebe9;
+      padding: 10px 9px;
+      border-bottom: 1px solid #edf0f2;
       vertical-align: middle;
     }
 
-    tbody tr:hover {
+    tr:hover td {
       background: #f8f9fa;
     }
 
-    .estado-badge,
-    .prioridad-badge {
+    .estado-badge {
       display: inline-block;
-      padding: 5px 8px;
+      padding: 4px 8px;
       border-radius: 12px;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 600;
       white-space: nowrap;
     }
 
     .paginacion {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      margin-top: 15px;
-      gap: 15px;
+      gap: 8px;
+      margin-top: 18px;
     }
 
-    .paginacion-info {
-      font-size: 12px;
-      color: #605e5c;
-    }
-
-    .paginacion-botones {
-      display: flex;
-      gap: 6px;
-    }
-
-    .pagina-btn {
-      border: 1px solid #d2d0ce;
+    .paginacion button {
+      border: 1px solid #ced4da;
       background: white;
       border-radius: 5px;
-      padding: 7px 10px;
+      padding: 6px 10px;
       cursor: pointer;
       font-size: 12px;
     }
 
-    .pagina-btn:hover:not(:disabled) {
-      background: #f3f2f1;
+    .paginacion button:hover {
+      background: #f1f3f5;
     }
 
-    .pagina-btn:disabled {
+    .paginacion button:disabled {
       opacity: 0.5;
       cursor: default;
     }
 
-    .pagina-btn.activa {
-      background: #0d6efd;
-      border-color: #0d6efd;
-      color: white;
+    .pagina-info {
+      font-size: 12px;
+      color: #6c757d;
     }
 
-    .cargando {
+    .mensaje {
       text-align: center;
-      padding: 50px 20px;
-      color: #605e5c;
-      font-size: 14px;
+      padding: 30px;
+      color: #6c757d;
     }
 
-    .error {
-      text-align: center;
-      padding: 30px 20px;
-      color: #d13438;
-      font-size: 14px;
-    }
-
-    .sin-datos {
-      text-align: center;
-      padding: 35px 20px;
-      color: #605e5c;
-      font-size: 14px;
-    }
-
-    @media (max-width: 1200px) {
+    @media (max-width: 1100px) {
       .kpis {
         grid-template-columns: repeat(3, 1fr);
       }
-    }
 
-    @media (max-width: 900px) {
-      .filtros-grid {
+      .filtros {
         grid-template-columns: repeat(2, 1fr);
       }
+    }
 
+    @media (max-width: 800px) {
       .graficos {
         grid-template-columns: 1fr;
       }
@@ -392,27 +324,8 @@
       .grafico-prioridad .grafico-contenedor {
         width: 100%;
       }
-    }
 
-    @media (max-width: 650px) {
-      .dashboard {
-        padding: 14px;
-      }
-
-      .encabezado {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .kpis {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .filtros-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .tabla-cabecera {
+      .tabla-header {
         flex-direction: column;
         align-items: stretch;
       }
@@ -422,7 +335,21 @@
       }
     }
 
-    @media (max-width: 420px) {
+    @media (max-width: 600px) {
+      .contenedor {
+        padding: 12px;
+      }
+
+      .kpis {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .filtros {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 400px) {
       .kpis {
         grid-template-columns: 1fr;
       }
@@ -432,1738 +359,1283 @@
 
 <body>
 
-  <div class="dashboard">
+<div class="contenedor">
 
-    <div class="encabezado">
-      <div>
-        <h1 class="titulo">Proyectos GPT Roadmap</h1>
-        <p class="subtitulo">Dashboard de seguimiento de proyectos</p>
-      </div>
+  <div class="encabezado">
+    <h1>Proyectos GPT Roadmap</h1>
+    <p>Dashboard de seguimiento de proyectos</p>
 
-      <div class="conexion" id="conexion">
-        <span class="conexion-punto"></span>
-        <span id="conexionTexto">Conectando...</span>
-      </div>
+    <div class="conexion">
+      <span class="conexion-punto"></span>
+      <span id="estadoConexion">Conectando...</span>
+    </div>
+  </div>
+
+  <div class="kpis">
+
+    <div class="kpi">
+      <div class="kpi-titulo">Total de proyectos</div>
+      <div class="kpi-valor" id="kpiTotal">0</div>
     </div>
 
-    <div class="kpis">
-
-      <div class="kpi">
-        <div class="kpi-titulo">Total de proyectos</div>
-        <div class="kpi-valor" id="kpiTotal">0</div>
-      </div>
-
-      <div class="kpi kpi-en-proceso">
-        <div class="kpi-titulo">En proceso</div>
-        <div class="kpi-valor" id="kpiEnProceso">0</div>
-      </div>
-
-      <div class="kpi kpi-in-review-qa">
-        <div class="kpi-titulo">In review QA</div>
-        <div class="kpi-valor" id="kpiInReviewQA">0</div>
-      </div>
-
-      <div class="kpi kpi-completados">
-        <div class="kpi-titulo">Completados</div>
-        <div class="kpi-valor" id="kpiCompletados">0</div>
-      </div>
-
-      <div class="kpi kpi-cerrados">
-        <div class="kpi-titulo">Cerrados</div>
-        <div class="kpi-valor" id="kpiCerrados">0</div>
-      </div>
-
-      <div class="kpi kpi-avance">
-        <div class="kpi-titulo">% avance</div>
-        <div class="kpi-valor" id="kpiAvance">0%</div>
-      </div>
-
+    <div class="kpi kpi-en-proceso">
+      <div class="kpi-titulo">En proceso</div>
+      <div class="kpi-valor" id="kpiEnProceso">0</div>
     </div>
 
-    <div class="filtros">
-
-      <div class="filtros-titulo">Filtros</div>
-
-      <div class="filtros-grid">
-
-        <div class="filtro">
-          <label for="filtroPeriodo">Periodo</label>
-          <select id="filtroPeriodo" onchange="aplicarFiltros()">
-            <option value="">Todos</option>
-          </select>
-        </div>
-
-        <div class="filtro">
-          <label for="filtroEstatus">Estatus</label>
-          <select id="filtroEstatus" onchange="aplicarFiltros()">
-            <option value="">Todos</option>
-          </select>
-        </div>
-
-        <div class="filtro">
-          <label for="filtroResponsable">Responsable</label>
-          <select id="filtroResponsable" onchange="aplicarFiltros()">
-            <option value="">Todos</option>
-          </select>
-        </div>
-
-        <div class="filtro">
-          <label for="filtroPrioridad">Prioridad</label>
-          <select id="filtroPrioridad" onchange="aplicarFiltros()">
-            <option value="">Todas</option>
-          </select>
-        </div>
-
-      </div>
-
+    <div class="kpi kpi-review">
+      <div class="kpi-titulo">In review QA</div>
+      <div class="kpi-valor" id="kpiInReviewQA">0</div>
     </div>
 
-    <div class="graficos">
-
-      <div class="grafico-card">
-        <div class="grafico-titulo">Distribución por estatus</div>
-        <div class="grafico-contenedor">
-          <canvas id="graficoEstatus"></canvas>
-        </div>
-      </div>
-
-      <div class="grafico-card">
-        <div class="grafico-titulo">Evolución mensual de proyectos</div>
-        <div class="grafico-contenedor">
-          <canvas id="graficoMensual"></canvas>
-        </div>
-      </div>
-
-      <div class="grafico-card">
-        <div class="grafico-titulo">Asignados por proyectos</div>
-        <div class="ranking" id="rankingResponsables"></div>
-      </div>
-
-      <div class="grafico-card grafico-prioridad">
-        <div class="grafico-titulo">Proyectos por prioridad</div>
-        <div class="grafico-contenedor">
-          <canvas id="graficoPrioridad"></canvas>
-        </div>
-      </div>
-
+    <div class="kpi kpi-completados">
+      <div class="kpi-titulo">Completados</div>
+      <div class="kpi-valor" id="kpiCompletados">0</div>
     </div>
 
-    <div class="tabla-card">
+    <div class="kpi kpi-cerrados">
+      <div class="kpi-titulo">Cerrados</div>
+      <div class="kpi-valor" id="kpiCerrados">0</div>
+    </div>
 
-      <div class="tabla-cabecera">
-        <div class="tabla-titulo">Detalle de proyectos</div>
-
-        <div class="buscador">
-          <input
-            type="text"
-            id="busqueda"
-            placeholder="Buscar proyecto..."
-            oninput="aplicarFiltros()"
-          >
-        </div>
-      </div>
-
-      <div class="tabla-wrapper">
-
-        <table>
-
-          <thead>
-            <tr>
-              <th>Código</th>
-              <th>Proyecto</th>
-              <th>URL</th>
-              <th>Estado</th>
-              <th>Responsable</th>
-              <th>Fecha Creación</th>
-              <th>Prioridad</th>
-              <th>Año - Mes</th>
-            </tr>
-          </thead>
-
-          <tbody id="tablaBody">
-            <tr>
-              <td colspan="8">
-                <div class="cargando">Cargando información...</div>
-              </td>
-            </tr>
-          </tbody>
-
-        </table>
-
-      </div>
-
-      <div class="paginacion">
-
-        <div class="paginacion-info" id="paginacionInfo">
-          0 registros
-        </div>
-
-        <div class="paginacion-botones">
-
-          <button
-            class="pagina-btn"
-            id="btnAnterior"
-            onclick="paginaAnterior()"
-          >
-            Anterior
-          </button>
-
-          <div id="numerosPagina"></div>
-
-          <button
-            class="pagina-btn"
-            id="btnSiguiente"
-            onclick="paginaSiguiente()"
-          >
-            Siguiente
-          </button>
-
-        </div>
-
-      </div>
-
+    <div class="kpi kpi-avance">
+      <div class="kpi-titulo">% avance</div>
+      <div class="kpi-valor" id="kpiAvance">0%</div>
     </div>
 
   </div>
 
+  <div class="filtros">
 
-  <script>
+    <div class="filtro">
+      <label for="filtroPeriodo">Periodo</label>
+      <select id="filtroPeriodo" onchange="aplicarFiltros()">
+        <option value="">Todos</option>
+      </select>
+    </div>
 
-    /*
-      ============================================================
-      CONFIGURACIÓN
-      ============================================================
-    */
+    <div class="filtro">
+      <label for="filtroEstatus">Estatus</label>
+      <select id="filtroEstatus" onchange="aplicarFiltros()">
+        <option value="">Todos</option>
+      </select>
+    </div>
 
-    const POWER_AUTOMATE_URL =
-      "https://default65bbe6da35e94c18993bee2c16cb7e.64.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/22/workflows/1cbcd22cd245429b859457e6c5ebed46/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=vOQVES3QkJ_ipBGmiHQ1qYRKDuAo8BnixTXhH6meIig";
+    <div class="filtro">
+      <label for="filtroResponsable">Responsable</label>
+      <select id="filtroResponsable" onchange="aplicarFiltros()">
+        <option value="">Todos</option>
+      </select>
+    </div>
+
+    <div class="filtro">
+      <label for="filtroPrioridad">Prioridad</label>
+      <select id="filtroPrioridad" onchange="aplicarFiltros()">
+        <option value="">Todas</option>
+      </select>
+    </div>
+
+  </div>
+
+  <div class="graficos">
+
+    <div class="grafico-card">
+      <h3>Distribución por estatus</h3>
+      <div class="grafico-contenedor">
+        <canvas id="graficoEstatus"></canvas>
+      </div>
+    </div>
+
+    <div class="grafico-card">
+      <h3>Evolución mensual de proyectos</h3>
+      <div class="grafico-contenedor">
+        <canvas id="graficoMensual"></canvas>
+      </div>
+    </div>
+
+    <div class="grafico-card">
+      <h3>Asignados por proyectos</h3>
+      <div class="ranking" id="rankingResponsables"></div>
+    </div>
+
+    <div class="grafico-card grafico-prioridad">
+      <h3>Proyectos por prioridad</h3>
+      <div class="grafico-contenedor">
+        <canvas id="graficoPrioridad"></canvas>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="tabla-card">
+
+    <div class="tabla-header">
+      <h3>Detalle de proyectos</h3>
+
+      <div class="buscador">
+        <input
+          type="text"
+          id="busqueda"
+          placeholder="Buscar proyecto..."
+          oninput="aplicarFiltros()"
+        />
+      </div>
+    </div>
+
+    <div class="tabla-scroll">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Proyecto</th>
+            <th>Estado</th>
+            <th>Responsable</th>
+            <th>Fecha Creación</th>
+            <th>Prioridad</th>
+            <th>Año - Mes</th>
+            <th>Abrir</th>
+          </tr>
+        </thead>
+
+        <tbody id="tablaProyectos">
+        </tbody>
+
+      </table>
+
+    </div>
+
+    <div class="paginacion">
+      <button id="btnAnterior" onclick="paginaAnterior()">Anterior</button>
+      <span class="pagina-info" id="paginaInfo">Página 1</span>
+      <button id="btnSiguiente" onclick="paginaSiguiente()">Siguiente</button>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+const POWER_AUTOMATE_URL =
+  "https://default65bbe6da35e94c18993bee2c16cb7e.64.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/22/workflows/1cbcd22cd245429b859457e6c5ebed46/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=vOQVES3QkJ_ipBGmiHQ1qYRKDuAo8BnixTXhH6meIig";
 
 
-    /*
-      ============================================================
-      VARIABLES GLOBALES
-      ============================================================
-    */
+let datos = [];
+let datosFiltrados = [];
+let paginaActual = 1;
+const registrosPorPagina = 10;
 
-    let datos = [];
-    let datosFiltrados = [];
-    let paginaActual = 1;
-    const registrosPorPagina = 10;
-
-    let chartEstatus = null;
-    let chartMensual = null;
-    let chartPrioridad = null;
+let graficoEstatus = null;
+let graficoMensual = null;
+let graficoPrioridad = null;
 
 
-    /*
-      ============================================================
-      COLORES
-      ============================================================
-    */
-
-    const COLORES_PRIORIDAD = {
-      "urgent": "#dc3545",
-      "high": "#fd7e14",
-      "normal": "#0d6efd",
-      "low": "#28a745",
-      "sin prioridad": "#6c757d"
-    };
-
-    const COLORES_ESTATUS = {
-      "project backlog": "#495057",
-      "analysis": "#17a2b8",
-      "pending assignment": "#fd7e14",
-      "in progress": "#0d6efd",
-      "asignado a qa": "#20c997",
-      "in review qa": "#fd7e14",
-      "in review uat": "#9c27b0",
-      "post-deployment": "#6f42c1",
-      "deployment": "#6610f2",
-      "pre-deployment": "#6610f2",
-      "blocked": "#dc3545",
-      "completed": "#28a745",
-      "closed": "#198754",
-      "rejected": "#dc3545",
-      "not applicable": "#6c757d",
-      "sin estatus": "#6c757d"
-    };
+const COLORES_PRIORIDAD = {
+  "urgent": "#dc3545",
+  "high": "#fd7e14",
+  "normal": "#0d6efd",
+  "low": "#28a745",
+  "sin prioridad": "#6c757d"
+};
 
 
-    /*
-      ============================================================
-      FUNCIONES DE NORMALIZACIÓN
-      ============================================================
-    */
+const COLORES_ESTATUS = {
+  "project backlog": "#495057",
+  "analysis": "#17a2b8",
+  "pending assignment": "#fd7e14",
+  "in progress": "#0d6efd",
+  "asignado a qa": "#20c997",
+  "in review qa": "#fd7e14",
+  "in review uat": "#9c27b0",
+  "post-deployment": "#6f42c1",
+  "deployment": "#6610f2",
+  "pre-deployment": "#6610f2",
+  "blocked": "#dc3545",
+  "completed": "#28a745",
+  "closed": "#198754",
+  "rejected": "#dc3545",
+  "not applicable": "#6c757d",
+  "sin estatus": "#6c757d"
+};
 
-    function normalizarTexto(valor) {
 
-      if (valor === null || valor === undefined) {
-        return "";
+function normalizarTexto(valor) {
+
+  if (valor === null || valor === undefined) {
+    return "";
+  }
+
+  return String(valor)
+    .trim()
+    .toLowerCase();
+
+}
+
+
+function escapeHtml(valor) {
+
+  if (valor === null || valor === undefined) {
+    return "";
+  }
+
+  return String(valor)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
+}
+
+
+function obtenerResponsables(valor) {
+
+  if (valor === null || valor === undefined) {
+    return [];
+  }
+
+  const texto = String(valor).trim();
+
+  if (!texto) {
+    return [];
+  }
+
+  return texto
+    .split(/[;,\n|]+/)
+    .map(nombre => nombre.trim())
+    .filter(nombre => nombre.length > 0);
+
+}
+
+
+function contieneEstatus(item, valores) {
+
+  const estatus = normalizarTexto(item.estatus);
+
+  return valores.some(valor =>
+    estatus.includes(normalizarTexto(valor))
+  );
+
+}
+
+
+function esEnProceso(item) {
+
+  return contieneEstatus(item, [
+    "IN PROGRESS",
+    "PROGRES",
+    "EN PROCESO"
+  ]);
+
+}
+
+
+function esInReviewQA(item) {
+
+  return contieneEstatus(item, [
+    "IN REVIEW QA"
+  ]);
+
+}
+
+
+function esCompletado(item) {
+
+  return contieneEstatus(item, [
+    "COMPLETED",
+    "COMPLETADO",
+    "COMPLETADOS"
+  ]);
+
+}
+
+
+function esCerrado(item) {
+
+  return contieneEstatus(item, [
+    "CLOSED",
+    "CERRADO",
+    "CERRADOS"
+  ]);
+
+}
+
+
+function obtenerColorEstatus(estatus) {
+
+  const clave = normalizarTexto(estatus);
+
+  return COLORES_ESTATUS[clave] || "#6c757d";
+
+}
+
+
+function obtenerColorPrioridad(prioridad) {
+
+  const clave = normalizarTexto(prioridad);
+
+  return COLORES_PRIORIDAD[clave] || "#6c757d";
+
+}
+
+
+async function cargarDatos() {
+
+  try {
+
+    const respuesta = await fetch(
+      POWER_AUTOMATE_URL,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({})
+      }
+    );
+
+    if (!respuesta.ok) {
+      throw new Error(
+        "Error HTTP " + respuesta.status
+      );
+    }
+
+    const resultado = await respuesta.json();
+
+    datos = Array.isArray(resultado)
+      ? resultado
+      : resultado.value || [];
+
+    datos = datos.map(item => {
+
+      return {
+
+        codigo:
+          item.codigo ||
+          "",
+
+        proyecto:
+          item.proyecto ||
+          "",
+
+        estado:
+          item.estado ||
+          "",
+
+        estatus:
+          item.estatus ||
+          "",
+
+        responsable:
+          item.responsable ||
+          "",
+
+        fechaCreacion:
+          item.fechaCreacion ||
+          "",
+
+        fechaCierre:
+          item.fechaCierre ||
+          "",
+
+        prioridad:
+          item.prioridad ||
+          "",
+
+        yearMes:
+          item.yearMes ||
+          "",
+
+        mesYear:
+          item.mesYear ||
+          "",
+
+        clickUpID:
+          item.clickUpID ||
+          "",
+
+        url:
+          item.url ||
+          ""
+
+      };
+
+    });
+
+    document.getElementById(
+      "estadoConexion"
+    ).textContent =
+      "Conexión correcta";
+
+    cargarFiltros();
+
+    actualizarDashboard();
+
+  }
+  catch (error) {
+
+    console.error(error);
+
+    document.getElementById(
+      "estadoConexion"
+    ).textContent =
+      "Error de conexión";
+
+  }
+
+}
+
+
+function cargarFiltros() {
+
+  const periodos = [
+    ...new Set(
+      datos
+        .map(item => item.yearMes)
+        .filter(Boolean)
+    )
+  ].sort();
+
+  const estatus = [
+    ...new Set(
+      datos
+        .map(item => item.estatus)
+        .filter(Boolean)
+    )
+  ].sort();
+
+  const prioridades = [
+    ...new Set(
+      datos
+        .map(item => item.prioridad)
+        .filter(Boolean)
+    )
+  ].sort();
+
+  const responsablesMap = new Map();
+
+  datos.forEach(item => {
+
+    obtenerResponsables(
+      item.responsable
+    ).forEach(nombre => {
+
+      const clave =
+        normalizarTexto(nombre);
+
+      if (
+        !responsablesMap.has(clave)
+      ) {
+
+        responsablesMap.set(
+          clave,
+          nombre
+        );
+
       }
 
-      return String(valor)
-        .trim()
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "");
+    });
 
-    }
+  });
 
-
-    function obtenerColorEstatus(valor) {
-
-      const clave = normalizarTexto(valor);
-
-      return COLORES_ESTATUS[clave] ||
-        COLORES_ESTATUS["sin estatus"];
-
-    }
-
-
-    function obtenerColorPrioridad(valor) {
-
-      const clave = normalizarTexto(valor);
-
-      return COLORES_PRIORIDAD[clave] ||
-        COLORES_PRIORIDAD["sin prioridad"];
-
-    }
-
-
-    /*
-      ============================================================
-      RESPONSABLES
-      ============================================================
-    */
-
-    function obtenerResponsables(valor) {
-
-      if (valor === null || valor === undefined) {
-        return [];
-      }
-
-      const texto = String(valor).trim();
-
-      if (!texto) {
-        return [];
-      }
-
-      return texto
-        .split(/[;,\n|]+/)
-        .map(nombre => nombre.trim())
-        .filter(nombre => nombre.length > 0);
-
-    }
-
-
-    function claveResponsable(nombre) {
-
-      return normalizarTexto(nombre);
-
-    }
-
-
-    /*
-      ============================================================
-      ESTATUS PARA KPI
-      ============================================================
-    */
-
-    function contieneEstatus(item, estados) {
-
-      const estatus = normalizarTexto(item.estatus);
-
-      return estados.some(estado =>
-        estatus.includes(normalizarTexto(estado))
+  const responsables =
+    [...responsablesMap.values()]
+      .sort((a, b) =>
+        a.localeCompare(b)
       );
 
-    }
 
+  llenarSelect(
+    "filtroPeriodo",
+    periodos
+  );
 
-    function esEnProceso(item) {
+  llenarSelect(
+    "filtroEstatus",
+    estatus
+  );
 
-      return contieneEstatus(item, [
-        "IN PROGRESS",
-        "PROGRES",
-        "EN PROCESO"
-      ]);
+  llenarSelect(
+    "filtroResponsable",
+    responsables
+  );
 
-    }
+  llenarSelect(
+    "filtroPrioridad",
+    prioridades
+  );
 
+}
 
-    function esInReviewQA(item) {
 
-      return contieneEstatus(item, [
-        "IN REVIEW QA"
-      ]);
+function llenarSelect(id, valores) {
 
-    }
+  const select =
+    document.getElementById(id);
 
+  const valorActual =
+    select.value;
 
-    function esCompletado(item) {
+  while (
+    select.options.length > 1
+  ) {
 
-      return contieneEstatus(item, [
-        "COMPLETED",
-        "COMPLETADO",
-        "COMPLETADOS"
-      ]);
+    select.remove(1);
 
-    }
+  }
 
+  valores.forEach(valor => {
 
-    function esCerrado(item) {
+    const option =
+      document.createElement("option");
 
-      return contieneEstatus(item, [
-        "CLOSED",
-        "CERRADO",
-        "CERRADOS"
-      ]);
+    option.value = valor;
+    option.textContent = valor;
 
-    }
+    select.appendChild(option);
 
+  });
 
-    /*
-      ============================================================
-      ESCAPE HTML
-      ============================================================
-    */
+  if (
+    valores.includes(valorActual)
+  ) {
 
-    function escapeHtml(valor) {
+    select.value = valorActual;
 
-      if (valor === null || valor === undefined) {
-        return "";
-      }
+  }
 
-      return String(valor)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+}
 
-    }
 
+function aplicarFiltros() {
 
-    /*
-      ============================================================
-      CARGAR DATOS DESDE POWER AUTOMATE
-      ============================================================
-    */
+  const periodo =
+    document.getElementById(
+      "filtroPeriodo"
+    ).value;
 
-    async function cargarDatos() {
+  const estatus =
+    document.getElementById(
+      "filtroEstatus"
+    ).value;
 
-      try {
+  const responsable =
+    document.getElementById(
+      "filtroResponsable"
+    ).value;
 
-        actualizarConexion(
-          true,
-          "Conectando..."
-        );
+  const prioridad =
+    document.getElementById(
+      "filtroPrioridad"
+    ).value;
 
-        const respuesta = await fetch(
-          POWER_AUTOMATE_URL,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({})
-          }
-        );
+  const busqueda =
+    normalizarTexto(
+      document.getElementById(
+        "busqueda"
+      ).value
+    );
 
-        if (!respuesta.ok) {
-          throw new Error(
-            "HTTP " + respuesta.status
-          );
-        }
 
-        const resultado = await respuesta.json();
-
-        datos = Array.isArray(resultado)
-          ? resultado
-          : (
-              resultado.value ||
-              resultado.body ||
-              []
-            );
-
-        datos = datos.map(item => ({
-
-          codigo:
-            item.codigo ||
-            "",
-
-          proyecto:
-            item.proyecto ||
-            "",
-
-          estado:
-            item.estado ||
-            "",
-
-          estatus:
-            item.estatus ||
-            "",
-
-          responsable:
-            item.responsable ||
-            "",
-
-          fechaCreacion:
-            item.fechaCreacion ||
-            "",
-
-          fechaCierre:
-            item.fechaCierre ||
-            "",
-
-          prioridad:
-            item.prioridad ||
-            "",
-
-          yearMes:
-            item.yearMes ||
-            "",
-
-          mesYear:
-            item.mesYear ||
-            "",
-
-          clickUpID:
-            item.clickUpID ||
-            "",
-
-          url:
-            item.url ||
-            ""
-
-        }));
-
-        actualizarConexion(
-          true,
-          "Conexión correcta"
-        );
-
-        inicializarFiltros();
-
-        aplicarFiltros();
-
-      } catch (error) {
-
-        console.error(
-          "Error cargando datos:",
-          error
-        );
-
-        actualizarConexion(
-          false,
-          "Error de conexión"
-        );
-
-        document.getElementById(
-          "tablaBody"
-        ).innerHTML = `
-          <tr>
-            <td colspan="8">
-              <div class="error">
-                No fue posible cargar la información.
-              </div>
-            </td>
-          </tr>
-        `;
-
-      }
-
-    }
-
-
-    /*
-      ============================================================
-      ESTADO DE CONEXIÓN
-      ============================================================
-    */
-
-    function actualizarConexion(
-      correcta,
-      texto
-    ) {
-
-      const conexion =
-        document.getElementById("conexion");
-
-      const conexionTexto =
-        document.getElementById("conexionTexto");
-
-      conexionTexto.textContent = texto;
-
-      if (correcta) {
-
-        conexion.classList.remove(
-          "error"
-        );
-
-      } else {
-
-        conexion.classList.add(
-          "error"
-        );
-
-      }
-
-    }
-
-
-    /*
-      ============================================================
-      FILTROS
-      ============================================================
-    */
-
-    function inicializarFiltros() {
-
-      const periodos =
-        [...new Set(
-          datos
-            .map(item => item.yearMes)
-            .filter(Boolean)
-        )]
-        .sort();
-
-      const estatus =
-        [...new Set(
-          datos
-            .map(item => item.estatus)
-            .filter(Boolean)
-        )]
-        .sort();
-
-      const responsablesMap =
-        new Map();
-
-      datos.forEach(item => {
-
-        obtenerResponsables(
-          item.responsable
-        ).forEach(nombre => {
-
-          const clave =
-            claveResponsable(nombre);
-
-          if (!responsablesMap.has(clave)) {
-
-            responsablesMap.set(
-              clave,
-              nombre
-            );
-
-          }
-
-        });
-
-      });
+  datosFiltrados =
+    datos.filter(item => {
 
       const responsables =
-        [...responsablesMap.values()]
-          .sort((a, b) =>
-            a.localeCompare(
-              b,
-              "es",
-              {
-                sensitivity: "base"
-              }
-            )
-          );
-
-      const prioridades =
-        [...new Set(
-          datos
-            .map(item => item.prioridad)
-            .filter(Boolean)
-        )]
-        .sort();
-
-
-      llenarSelect(
-        "filtroPeriodo",
-        periodos
-      );
-
-      llenarSelect(
-        "filtroEstatus",
-        estatus
-      );
-
-      llenarSelect(
-        "filtroResponsable",
-        responsables
-      );
-
-      llenarSelect(
-        "filtroPrioridad",
-        prioridades
-      );
-
-    }
-
-
-    function llenarSelect(
-      id,
-      valores
-    ) {
-
-      const select =
-        document.getElementById(id);
-
-      const valorActual =
-        select.value;
-
-      const primeraOpcion =
-        select.options[0];
-
-      select.innerHTML = "";
-
-      select.appendChild(
-        primeraOpcion
-      );
-
-      valores.forEach(valor => {
-
-        const option =
-          document.createElement(
-            "option"
-          );
-
-        option.value = valor;
-        option.textContent = valor;
-
-        select.appendChild(
-          option
-        );
-
-      });
-
-      if (
-        valores.includes(valorActual)
-      ) {
-
-        select.value = valorActual;
-
-      }
-
-    }
-
-
-    function aplicarFiltros() {
-
-      const periodo =
-        document.getElementById(
-          "filtroPeriodo"
-        ).value;
-
-      const estatus =
-        document.getElementById(
-          "filtroEstatus"
-        ).value;
-
-      const responsable =
-        document.getElementById(
-          "filtroResponsable"
-        ).value;
-
-      const prioridad =
-        document.getElementById(
-          "filtroPrioridad"
-        ).value;
-
-      const busqueda =
-        normalizarTexto(
-          document.getElementById(
-            "busqueda"
-          ).value
-        );
-
-
-      datosFiltrados =
-        datos.filter(item => {
-
-          const cumplePeriodo =
-            !periodo ||
-            item.yearMes === periodo;
-
-
-          const cumpleEstatus =
-            !estatus ||
-            item.estatus === estatus;
-
-
-          const responsables =
-            obtenerResponsables(
-              item.responsable
-            );
-
-
-          const cumpleResponsable =
-            !responsable ||
-            responsables.some(nombre =>
-              claveResponsable(nombre) ===
-              claveResponsable(responsable)
-            );
-
-
-          const cumplePrioridad =
-            !prioridad ||
-            item.prioridad === prioridad;
-
-
-          const textoBusqueda =
-            normalizarTexto(
-              [
-                item.codigo,
-                item.proyecto,
-                item.estado,
-                item.estatus,
-                item.responsable,
-                item.prioridad,
-                item.yearMes
-              ].join(" ")
-            );
-
-
-          const cumpleBusqueda =
-            !busqueda ||
-            textoBusqueda.includes(
-              busqueda
-            );
-
-
-          return (
-            cumplePeriodo &&
-            cumpleEstatus &&
-            cumpleResponsable &&
-            cumplePrioridad &&
-            cumpleBusqueda
-          );
-
-        });
-
-
-      paginaActual = 1;
-
-      actualizarKPIs(
-        datosFiltrados
-      );
-
-      actualizarGraficos(
-        datosFiltrados
-      );
-
-      actualizarTabla();
-
-    }
-
-
-    /*
-      ============================================================
-      KPI
-      ============================================================
-    */
-
-    function actualizarKPIs(
-      registros
-    ) {
-
-      const total =
-        registros.length;
-
-      const enProceso =
-        registros.filter(
-          esEnProceso
-        ).length;
-
-      const inReviewQA =
-        registros.filter(
-          esInReviewQA
-        ).length;
-
-      const completados =
-        registros.filter(
-          esCompletado
-        ).length;
-
-      const cerrados =
-        registros.filter(
-          esCerrado
-        ).length;
-
-
-      const avance =
-        total > 0
-          ? Math.round(
-              (
-                cerrados /
-                total
-              ) * 100
-            )
-          : 0;
-
-
-      document.getElementById(
-        "kpiTotal"
-      ).textContent = total;
-
-
-      document.getElementById(
-        "kpiEnProceso"
-      ).textContent = enProceso;
-
-
-      document.getElementById(
-        "kpiInReviewQA"
-      ).textContent = inReviewQA;
-
-
-      document.getElementById(
-        "kpiCompletados"
-      ).textContent = completados;
-
-
-      document.getElementById(
-        "kpiCerrados"
-      ).textContent = cerrados;
-
-
-      document.getElementById(
-        "kpiAvance"
-      ).textContent =
-        avance + "%";
-
-    }
-
-
-    /*
-      ============================================================
-      GRÁFICOS
-      ============================================================
-    */
-
-    function actualizarGraficos(
-      registros
-    ) {
-
-      actualizarGraficoEstatus(
-        registros
-      );
-
-      actualizarGraficoMensual(
-        registros
-      );
-
-      actualizarRankingResponsables(
-        registros
-      );
-
-      actualizarGraficoPrioridad(
-        registros
-      );
-
-    }
-
-
-    /*
-      ============================================================
-      GRÁFICO ESTATUS
-      ============================================================
-    */
-
-    function actualizarGraficoEstatus(
-      registros
-    ) {
-
-      const conteo = {};
-
-      registros.forEach(item => {
-
-        const estatus =
-          item.estatus ||
-          "Sin estatus";
-
-        conteo[estatus] =
-          (conteo[estatus] || 0) + 1;
-
-      });
-
-
-      const etiquetas =
-        Object.keys(conteo);
-
-      const valores =
-        Object.values(conteo);
-
-      const colores =
-        etiquetas.map(
-          obtenerColorEstatus
-        );
-
-
-      const contexto =
-        document.getElementById(
-          "graficoEstatus"
-        );
-
-
-      if (chartEstatus) {
-        chartEstatus.destroy();
-      }
-
-
-      chartEstatus =
-        new Chart(
-          contexto,
-          {
-            type: "doughnut",
-
-            data: {
-
-              labels: etiquetas,
-
-              datasets: [
-                {
-                  data: valores,
-
-                  backgroundColor:
-                    colores,
-
-                  borderColor:
-                    "#ffffff",
-
-                  borderWidth: 2
-                }
-              ]
-
-            },
-
-            options: {
-
-              responsive: true,
-
-              maintainAspectRatio: false,
-
-              plugins: {
-
-                legend: {
-                  position: "bottom"
-                }
-
-              }
-
-            }
-
-          }
-        );
-
-    }
-
-
-    /*
-      ============================================================
-      GRÁFICO MENSUAL
-      ============================================================
-    */
-
-    function actualizarGraficoMensual(
-      registros
-    ) {
-
-      const conteo = {};
-
-      registros.forEach(item => {
-
-        const periodo =
-          item.mesYear ||
-          item.yearMes ||
-          "Sin fecha";
-
-        conteo[periodo] =
-          (conteo[periodo] || 0) + 1;
-
-      });
-
-
-      const etiquetas =
-        Object.keys(conteo);
-
-      const valores =
-        Object.values(conteo);
-
-
-      const contexto =
-        document.getElementById(
-          "graficoMensual"
-        );
-
-
-      if (chartMensual) {
-        chartMensual.destroy();
-      }
-
-
-      chartMensual =
-        new Chart(
-          contexto,
-          {
-            type: "line",
-
-            data: {
-
-              labels: etiquetas,
-
-              datasets: [
-                {
-                  label:
-                    "Proyectos",
-
-                  data: valores,
-
-                  tension: 0.3,
-
-                  fill: false,
-
-                  borderWidth: 2,
-
-                  pointRadius: 4,
-
-                  pointHoverRadius: 6
-                }
-              ]
-
-            },
-
-            options: {
-
-              responsive: true,
-
-              maintainAspectRatio: false,
-
-              scales: {
-
-                y: {
-                  beginAtZero: true,
-                  ticks: {
-                    precision: 0
-                  }
-                }
-
-              },
-
-              plugins: {
-
-                legend: {
-                  display: false
-                }
-
-              }
-
-            }
-
-          }
-        );
-
-    }
-
-
-    /*
-      ============================================================
-      RANKING RESPONSABLES
-      ============================================================
-    */
-
-    function actualizarRankingResponsables(
-      registros
-    ) {
-
-      const conteo =
-        new Map();
-
-
-      registros.forEach(item => {
-
         obtenerResponsables(
           item.responsable
-        ).forEach(nombre => {
-
-          const clave =
-            claveResponsable(nombre);
-
-          if (!conteo.has(clave)) {
-
-            conteo.set(
-              clave,
-              {
-                nombre: nombre,
-                cantidad: 0
-              }
-            );
-
-          }
-
-          conteo.get(
-            clave
-          ).cantidad++;
-
-        });
-
-      });
-
-
-      const ranking =
-        [...conteo.values()]
-          .sort(
-            (a, b) =>
-              b.cantidad -
-              a.cantidad
-          );
-
-
-      const contenedor =
-        document.getElementById(
-          "rankingResponsables"
         );
 
 
-      if (!ranking.length) {
-
-        contenedor.innerHTML =
-          `<div class="sin-datos">
-            No hay datos disponibles
-          </div>`;
-
-        return;
-
-      }
+      const coincidePeriodo =
+        !periodo ||
+        item.yearMes === periodo;
 
 
-      const maximo =
-        ranking[0].cantidad;
+      const coincideEstatus =
+        !estatus ||
+        item.estatus === estatus;
 
 
-      contenedor.innerHTML =
-        ranking
-          .map(item => {
-
-            const porcentaje =
-              maximo > 0
-                ? (
-                    item.cantidad /
-                    maximo
-                  ) * 100
-                : 0;
-
-            return `
-              <div class="ranking-item">
-
-                <div class="ranking-cabecera">
-
-                  <span
-                    class="ranking-nombre"
-                    title="${escapeHtml(item.nombre)}"
-                  >
-                    ${escapeHtml(item.nombre)}
-                  </span>
-
-                  <span class="ranking-numero">
-                    ${item.cantidad}
-                  </span>
-
-                </div>
-
-                <div class="ranking-barra">
-
-                  <div
-                    class="ranking-barra-progreso"
-                    style="width:${porcentaje}%"
-                  ></div>
-
-                </div>
-
-              </div>
-            `;
-
-          })
-          .join("");
-
-    }
-
-
-    /*
-      ============================================================
-      GRÁFICO PRIORIDAD
-      ============================================================
-    */
-
-    function actualizarGraficoPrioridad(
-      registros
-    ) {
-
-      const conteo = {};
-
-      registros.forEach(item => {
-
-        const prioridad =
-          item.prioridad ||
-          "Sin prioridad";
-
-        conteo[prioridad] =
-          (conteo[prioridad] || 0) + 1;
-
-      });
-
-
-      const etiquetas =
-        Object.keys(conteo);
-
-      const valores =
-        Object.values(conteo);
-
-      const colores =
-        etiquetas.map(
-          obtenerColorPrioridad
+      const coincideResponsable =
+        !responsable ||
+        responsables.some(nombre =>
+          normalizarTexto(nombre) ===
+          normalizarTexto(responsable)
         );
 
 
-      const contexto =
-        document.getElementById(
-          "graficoPrioridad"
+      const coincidePrioridad =
+        !prioridad ||
+        item.prioridad === prioridad;
+
+
+      const textoBusqueda = [
+        item.codigo,
+        item.proyecto,
+        item.estatus,
+        item.responsable,
+        item.prioridad,
+        item.yearMes
+      ]
+        .join(" ")
+        .toLowerCase();
+
+
+      const coincideBusqueda =
+        !busqueda ||
+        textoBusqueda.includes(
+          busqueda
         );
 
 
-      if (chartPrioridad) {
-        chartPrioridad.destroy();
-      }
-
-
-      chartPrioridad =
-        new Chart(
-          contexto,
-          {
-            type: "bar",
-
-            data: {
-
-              labels: etiquetas,
-
-              datasets: [
-                {
-                  data: valores,
-
-                  backgroundColor:
-                    colores,
-
-                  borderColor:
-                    colores,
-
-                  borderRadius: 5,
-
-                  barThickness: 28
-                }
-              ]
-
-            },
-
-            options: {
-
-              responsive: true,
-
-              maintainAspectRatio: false,
-
-              indexAxis: "y",
-
-              scales: {
-
-                x: {
-                  beginAtZero: true,
-
-                  ticks: {
-                    precision: 0
-                  }
-
-                }
-
-              },
-
-              plugins: {
-
-                legend: {
-                  display: false
-                }
-
-              }
-
-            }
-
-          }
-        );
-
-    }
-
-
-    /*
-      ============================================================
-      TABLA
-      ============================================================
-    */
-
-    function actualizarTabla() {
-
-      const tbody =
-        document.getElementById(
-          "tablaBody"
-        );
-
-
-      if (!datosFiltrados.length) {
-
-        tbody.innerHTML = `
-          <tr>
-            <td colspan="8">
-              <div class="sin-datos">
-                No hay registros que coincidan con los filtros.
-              </div>
-            </td>
-          </tr>
-        `;
-
-        actualizarPaginacion();
-
-        return;
-
-      }
-
-
-      const inicio =
-        (
-          paginaActual -
-          1
-        ) * registrosPorPagina;
-
-
-      const fin =
-        inicio +
-        registrosPorPagina;
-
-
-      const pagina =
-        datosFiltrados.slice(
-          inicio,
-          fin
-        );
-
-
-      tbody.innerHTML =
-        pagina
-          .map(item => {
-
-            const responsables =
-              obtenerResponsables(
-                item.responsable
-              );
-
-
-            const colorEstatus =
-              obtenerColorEstatus(
-                item.estatus
-              );
-
-
-            const colorPrioridad =
-              obtenerColorPrioridad(
-                item.prioridad
-              );
-
-
-            return `
-
-              <tr>
-
-                <td>
-                  ${escapeHtml(
-                    item.codigo || "-"
-                  )}
-                </td>
-
-                <td>
-                  ${escapeHtml(
-                    item.proyecto || "-"
-                  )}
-                </td>
-
-                <td>
-                  ${
-                    item.url
-                      ? `
-                        <a
-                          href="${escapeHtml(item.url)}"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          style="
-                            display:inline-block;
-                            padding:7px 12px;
-                            background:#0d6efd;
-                            color:white;
-                            text-decoration:none;
-                            border-radius:5px;
-                            font-size:12px;
-                            font-weight:600;
-                            white-space:nowrap;
-                          "
-                        >
-                          Abrir ClickUp
-                        </a>
-                      `
-                      : "-"
-                  }
-                </td>
-
-                <td>
-
-                  <span
-                    class="estado-badge"
-                    style="
-                      background:${colorEstatus};
-                      color:white;
-                    "
-                  >
-                    ${escapeHtml(
-                      item.estatus ||
-                      "Sin estatus"
-                    )}
-                  </span>
-
-                </td>
-
-                <td>
-                  ${escapeHtml(
-                    responsables.join(", ") ||
-                    "-"
-                  )}
-                </td>
-
-                <td>
-                  ${escapeHtml(
-                    item.fechaCreacion ||
-                    "-"
-                  )}
-                </td>
-
-                <td>
-
-                  <span
-                    class="prioridad-badge"
-                    style="
-                      background:${colorPrioridad};
-                      color:white;
-                    "
-                  >
-                    ${escapeHtml(
-                      item.prioridad ||
-                      "Sin prioridad"
-                    )}
-                  </span>
-
-                </td>
-
-                <td>
-                  ${escapeHtml(
-                    item.yearMes ||
-                    "-"
-                  )}
-                </td>
-
-              </tr>
-
-            `;
-
-          })
-          .join("");
-
-
-      actualizarPaginacion();
-
-    }
-
-
-    /*
-      ============================================================
-      PAGINACIÓN
-      ============================================================
-    */
-
-    function actualizarPaginacion() {
-
-      const total =
-        datosFiltrados.length;
-
-      const totalPaginas =
-        Math.ceil(
-          total /
-          registrosPorPagina
-        );
-
-
-      const inicio =
-        total === 0
-          ? 0
-          : (
-              (
-                paginaActual -
-                1
-              ) *
-              registrosPorPagina
-            ) + 1;
-
-
-      const fin =
-        Math.min(
-          paginaActual *
-          registrosPorPagina,
-          total
-        );
-
-
-      document.getElementById(
-        "paginacionInfo"
-      ).textContent =
-        total === 0
-          ? "0 registros"
-          : `${inicio}-${fin} de ${total} registros`;
-
-
-      document.getElementById(
-        "btnAnterior"
-      ).disabled =
-        paginaActual <= 1;
-
-
-      document.getElementById(
-        "btnSiguiente"
-      ).disabled =
-        paginaActual >= totalPaginas;
-
-
-      actualizarNumerosPagina(
-        totalPaginas
+      return (
+        coincidePeriodo &&
+        coincideEstatus &&
+        coincideResponsable &&
+        coincidePrioridad &&
+        coincideBusqueda
       );
 
-    }
+    });
 
 
-    function actualizarNumerosPagina(
-      totalPaginas
-    ) {
+  paginaActual = 1;
 
-      const contenedor =
-        document.getElementById(
-          "numerosPagina"
-        );
+  actualizarDashboard();
+
+}
 
 
-      if (totalPaginas <= 1) {
+function actualizarDashboard() {
 
-        contenedor.innerHTML = "";
+  actualizarKPIs();
+  actualizarGraficos();
+  actualizarTabla();
 
-        return;
+}
 
+
+function actualizarKPIs() {
+
+  const total =
+    datosFiltrados.length;
+
+  const enProceso =
+    datosFiltrados.filter(
+      esEnProceso
+    ).length;
+
+  const inReviewQA =
+    datosFiltrados.filter(
+      esInReviewQA
+    ).length;
+
+  const completados =
+    datosFiltrados.filter(
+      esCompletado
+    ).length;
+
+  const cerrados =
+    datosFiltrados.filter(
+      esCerrado
+    ).length;
+
+
+  const avance =
+    total > 0
+      ? Math.round(
+          (
+            cerrados /
+            total
+          ) * 100
+        )
+      : 0;
+
+
+  document.getElementById(
+    "kpiTotal"
+  ).textContent =
+    total;
+
+  document.getElementById(
+    "kpiEnProceso"
+  ).textContent =
+    enProceso;
+
+  document.getElementById(
+    "kpiInReviewQA"
+  ).textContent =
+    inReviewQA;
+
+  document.getElementById(
+    "kpiCompletados"
+  ).textContent =
+    completados;
+
+  document.getElementById(
+    "kpiCerrados"
+  ).textContent =
+    cerrados;
+
+  document.getElementById(
+    "kpiAvance"
+  ).textContent =
+    avance + "%";
+
+}
+
+
+function actualizarGraficos() {
+
+  actualizarGraficoEstatus();
+  actualizarGraficoMensual();
+  actualizarRankingResponsables();
+  actualizarGraficoPrioridad();
+
+}
+
+
+function actualizarGraficoEstatus() {
+
+  const conteo = {};
+
+  datosFiltrados.forEach(item => {
+
+    const estatus =
+      item.estatus ||
+      "Sin estatus";
+
+    conteo[estatus] =
+      (conteo[estatus] || 0) + 1;
+
+  });
+
+
+  const etiquetas =
+    Object.keys(conteo);
+
+  const valores =
+    Object.values(conteo);
+
+  const colores =
+    etiquetas.map(
+      obtenerColorEstatus
+    );
+
+
+  if (graficoEstatus) {
+    graficoEstatus.destroy();
+  }
+
+
+  graficoEstatus =
+    new Chart(
+      document.getElementById(
+        "graficoEstatus"
+      ),
+      {
+        type: "doughnut",
+
+        data: {
+          labels: etiquetas,
+
+          datasets: [
+            {
+              data: valores,
+              backgroundColor: colores,
+              borderColor: "#ffffff",
+              borderWidth: 2
+            }
+          ]
+        },
+
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+
+          plugins: {
+            legend: {
+              position: "right"
+            }
+          }
+        }
       }
+    );
+
+}
 
 
-      let html = "";
+function actualizarGraficoMensual() {
+
+  const conteo = {};
+
+  datosFiltrados.forEach(item => {
+
+    const periodo =
+      item.mesYear ||
+      item.yearMes ||
+      "Sin fecha";
+
+    conteo[periodo] =
+      (conteo[periodo] || 0) + 1;
+
+  });
 
 
-      for (
-        let i = 1;
-        i <= totalPaginas;
-        i++
-      ) {
+  const etiquetas =
+    Object.keys(conteo);
 
-        html += `
+  const valores =
+    Object.values(conteo);
 
-          <button
-            class="pagina-btn ${
-              i === paginaActual
-                ? "activa"
-                : ""
-            }"
-            onclick="irAPagina(${i})"
-          >
-            ${i}
-          </button>
 
+  if (graficoMensual) {
+    graficoMensual.destroy();
+  }
+
+
+  graficoMensual =
+    new Chart(
+      document.getElementById(
+        "graficoMensual"
+      ),
+      {
+        type: "line",
+
+        data: {
+          labels: etiquetas,
+
+          datasets: [
+            {
+              label: "Proyectos",
+              data: valores,
+              tension: 0.3,
+              fill: false
+            }
+          ]
+        },
+
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                precision: 0
+              }
+            }
+          }
+        }
+      }
+    );
+
+}
+
+
+function actualizarRankingResponsables() {
+
+  const conteo = {};
+
+  datosFiltrados.forEach(item => {
+
+    obtenerResponsables(
+      item.responsable
+    ).forEach(nombre => {
+
+      conteo[nombre] =
+        (conteo[nombre] || 0) + 1;
+
+    });
+
+  });
+
+
+  const ranking =
+    Object.entries(conteo)
+      .sort((a, b) =>
+        b[1] - a[1]
+      );
+
+
+  const maximo =
+    ranking.length
+      ? ranking[0][1]
+      : 1;
+
+
+  const contenedor =
+    document.getElementById(
+      "rankingResponsables"
+    );
+
+
+  if (!ranking.length) {
+
+    contenedor.innerHTML =
+      '<div class="mensaje">Sin datos</div>';
+
+    return;
+
+  }
+
+
+  contenedor.innerHTML =
+    ranking.map(
+      ([nombre, cantidad]) => {
+
+        const porcentaje =
+          (cantidad / maximo) * 100;
+
+
+        return `
+          <div class="ranking-item">
+
+            <div class="ranking-cabecera">
+              <span>${escapeHtml(nombre)}</span>
+              <span>${cantidad}</span>
+            </div>
+
+            <div class="ranking-barra">
+              <div
+                class="ranking-barra-interior"
+                style="width:${porcentaje}%"
+              ></div>
+            </div>
+
+          </div>
         `;
 
       }
+    ).join("");
+
+}
 
 
-      contenedor.innerHTML =
-        html;
+function actualizarGraficoPrioridad() {
 
-    }
+  const conteo = {};
 
+  datosFiltrados.forEach(item => {
 
-    function irAPagina(
-      pagina
-    ) {
+    const prioridad =
+      item.prioridad ||
+      "Sin prioridad";
 
-      paginaActual =
-        pagina;
+    conteo[prioridad] =
+      (conteo[prioridad] || 0) + 1;
 
-      actualizarTabla();
-
-    }
+  });
 
 
-    function paginaAnterior() {
+  const etiquetas =
+    Object.keys(conteo);
 
-      if (paginaActual > 1) {
+  const valores =
+    Object.values(conteo);
 
-        paginaActual--;
+  const colores =
+    etiquetas.map(
+      obtenerColorPrioridad
+    );
 
-        actualizarTabla();
 
+  if (graficoPrioridad) {
+    graficoPrioridad.destroy();
+  }
+
+
+  graficoPrioridad =
+    new Chart(
+      document.getElementById(
+        "graficoPrioridad"
+      ),
+      {
+        type: "bar",
+
+        data: {
+          labels: etiquetas,
+
+          datasets: [
+            {
+              label: "Proyectos",
+              data: valores,
+              backgroundColor: colores,
+              borderColor: colores,
+              borderRadius: 5,
+              barThickness: 28
+            }
+          ]
+        },
+
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+
+          plugins: {
+            legend: {
+              display: false
+            }
+          },
+
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                precision: 0
+              }
+            }
+          }
+        }
       }
+    );
 
-    }
+}
 
 
-    function paginaSiguiente() {
+function actualizarTabla() {
 
-      const totalPaginas =
-        Math.ceil(
-          datosFiltrados.length /
-          registrosPorPagina
+  const tabla =
+    document.getElementById(
+      "tablaProyectos"
+    );
+
+
+  if (!datosFiltrados.length) {
+
+    tabla.innerHTML = `
+      <tr>
+        <td colspan="8" class="mensaje">
+          No se encontraron proyectos
+        </td>
+      </tr>
+    `;
+
+    actualizarPaginacion();
+
+    return;
+
+  }
+
+
+  const inicio =
+    (
+      paginaActual - 1
+    ) * registrosPorPagina;
+
+
+  const fin =
+    inicio + registrosPorPagina;
+
+
+  const registros =
+    datosFiltrados.slice(
+      inicio,
+      fin
+    );
+
+
+  tabla.innerHTML =
+    registros.map(item => {
+
+      const colorEstatus =
+        obtenerColorEstatus(
+          item.estatus
         );
 
 
-      if (
-        paginaActual <
-        totalPaginas
-      ) {
+      return `
 
-        paginaActual++;
+        <tr>
 
-        actualizarTabla();
+          <td>
+            ${escapeHtml(item.codigo)}
+          </td>
 
-      }
+          <td>
+            ${escapeHtml(item.proyecto)}
+          </td>
 
-    }
+          <td>
+
+            <span
+              class="estado-badge"
+              style="
+                background:${colorEstatus}20;
+                color:${colorEstatus};
+              "
+            >
+              ${escapeHtml(
+                item.estatus ||
+                "Sin estatus"
+              )}
+            </span>
+
+          </td>
+
+          <td>
+            ${escapeHtml(
+              item.responsable ||
+              "-"
+            )}
+          </td>
+
+          <td>
+            ${escapeHtml(
+              item.fechaCreacion ||
+              "-"
+            )}
+          </td>
+
+          <td>
+
+            <span
+              class="estado-badge"
+              style="
+                background:${obtenerColorPrioridad(item.prioridad)}20;
+                color:${obtenerColorPrioridad(item.prioridad)};
+              "
+            >
+              ${escapeHtml(
+                item.prioridad ||
+                "Sin prioridad"
+              )}
+            </span>
+
+          </td>
+
+          <td>
+            ${escapeHtml(
+              item.yearMes ||
+              "-"
+            )}
+          </td>
+
+          <td>
+
+            ${
+              item.url
+                ? `
+                  <a
+                    href="${escapeHtml(item.url)}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Abrir proyecto en ClickUp"
+                    style="
+                      display:inline-block;
+                      padding:4px 7px;
+                      background:#0d6efd;
+                      color:white;
+                      text-decoration:none;
+                      border-radius:4px;
+                      font-size:10px;
+                      font-weight:600;
+                      white-space:nowrap;
+                    "
+                  >
+                    Abrir en ClickUp
+                  </a>
+                `
+                : "-"
+            }
+
+          </td>
+
+        </tr>
+
+      `;
+
+    }).join("");
 
 
-    /*
-      ============================================================
-      INICIO
-      ============================================================
-    */
+  actualizarPaginacion();
+
+}
+
+
+function actualizarPaginacion() {
+
+  const totalPaginas =
+    Math.max(
+      1,
+      Math.ceil(
+        datosFiltrados.length /
+        registrosPorPagina
+      )
+    );
+
+
+  document.getElementById(
+    "paginaInfo"
+  ).textContent =
+    `Página ${paginaActual} de ${totalPaginas}`;
+
+
+  document.getElementById(
+    "btnAnterior"
+  ).disabled =
+    paginaActual <= 1;
+
+
+  document.getElementById(
+    "btnSiguiente"
+  ).disabled =
+    paginaActual >= totalPaginas;
+
+}
+
+
+function paginaAnterior() {
+
+  if (paginaActual > 1) {
+
+    paginaActual--;
+
+    actualizarTabla();
+
+  }
+
+}
+
+
+function paginaSiguiente() {
+
+  const totalPaginas =
+    Math.ceil(
+      datosFiltrados.length /
+      registrosPorPagina
+    );
+
+
+  if (
+    paginaActual <
+    totalPaginas
+  ) {
+
+    paginaActual++;
+
+    actualizarTabla();
+
+  }
+
+}
+
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    datosFiltrados = [];
 
     cargarDatos();
 
-  </script>
+  }
+);
+
+</script>
 
 </body>
 </html>
