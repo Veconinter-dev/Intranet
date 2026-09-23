@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -993,16 +994,10 @@
 
     /* =====================================================
        API DE TOM - POWER AUTOMATE
-       
-       IMPORTANTE:
-       Reemplazar solamente el texto entre comillas por
-       la HTTP POST URL del flujo:
-       
-       Tom - API para Save The Turkey
        ===================================================== */
 
     const tomApiUrl =
-        "PEGA_AQUI_LA_URL_DEL_FLUJO";
+        "https://default65bbe6da35e94c18993bee2c16cb7e.64.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/17/workflows/0da59cf4591544a1a6a9b8398452e7b0/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=1t-A7WRjLUB27Lmnd86_6TIFoTo2y_gy-eE6C2NenPc";
 
 
     /* =====================================================
@@ -1010,10 +1005,6 @@
        ===================================================== */
 
     const translations = {
-
-        /* =================================================
-           ESPAÑOL
-           ================================================= */
 
         es: {
 
@@ -1083,11 +1074,6 @@
 
         },
 
-
-        /* =================================================
-           ENGLISH
-           ================================================= */
-
         en: {
 
             instructionsTitle:
@@ -1155,11 +1141,6 @@
                 "😊 Tom is happy"
 
         },
-
-
-        /* =================================================
-           PORTUGUÊS
-           ================================================= */
 
         pt: {
 
@@ -1243,6 +1224,51 @@
 
 
     /* =====================================================
+       DATOS ACTUALES DE TOM
+       ===================================================== */
+
+    let currentTomState =
+        "Normal";
+
+
+    /* =====================================================
+       ACTUALIZAR ESTADO VISUAL DE TOM
+       ===================================================== */
+
+    function updateTomStatus() {
+
+        const language =
+            languageSelector.value;
+
+        const t =
+            translations[language];
+
+        const status =
+            String(
+                currentTomState || "Normal"
+            ).toLowerCase();
+
+        let statusText =
+            t.tomHappy;
+
+        if (
+            status === "normal"
+        ) {
+
+            statusText =
+                t.tomHappy;
+
+        }
+
+        document.getElementById(
+            "tomStatus"
+        ).textContent =
+            statusText;
+
+    }
+
+
+    /* =====================================================
        FUNCIÓN CAMBIO DE IDIOMA
        ===================================================== */
 
@@ -1251,15 +1277,9 @@
         const t =
             translations[language];
 
-
         if (!t) {
             return;
         }
-
-
-        /* =================================================
-           IDIOMA DEL DOCUMENTO
-           ================================================= */
 
         document.documentElement.lang =
             language;
@@ -1326,12 +1346,6 @@
             t.energy;
 
 
-        /*
-         * El estado se actualiza desde la API de Tom.
-         * Al cambiar idioma, volvemos a traducir el estado
-         * actualmente recibido.
-         */
-
         updateTomStatus();
 
 
@@ -1371,10 +1385,6 @@
 
         /* =================================================
            TARJETAS
-           
-           IMPORTANTE:
-           Los nombres y mensajes NO se traducen.
-           Solo se traducen las etiquetas.
            ================================================= */
 
         document
@@ -1458,7 +1468,6 @@
 
                     }
 
-
                     else if (
                         category ===
                         "coworker"
@@ -1468,7 +1477,6 @@
                             t.categoryCoworker;
 
                     }
-
 
                     else if (
                         category ===
@@ -1510,7 +1518,6 @@
                             t.today;
 
                     }
-
 
                     else if (
                         dateType ===
@@ -1557,78 +1564,20 @@
 
 
     /* =====================================================
-       DATOS ACTUALES DE TOM
-       ===================================================== */
-
-    let currentTomState =
-        "Normal";
-
-
-    /* =====================================================
-       ACTUALIZAR ESTADO VISUAL DE TOM
-       ===================================================== */
-
-    function updateTomStatus() {
-
-        const language =
-            languageSelector.value;
-
-
-        const t =
-            translations[language];
-
-
-        const status =
-            String(
-                currentTomState || "Normal"
-            ).toLowerCase();
-
-
-        let statusText =
-            t.tomHappy;
-
-
-        /*
-         * Por ahora el estado Normal representa
-         * que Tom está feliz.
-         *
-         * Dejamos esta estructura preparada para
-         * agregar otros estados posteriormente.
-         */
-
-        if (
-            status === "normal"
-        ) {
-
-            statusText =
-                t.tomHappy;
-
-        }
-
-
-        document.getElementById(
-            "tomStatus"
-        ).textContent =
-            statusText;
-
-    }
-
-
-    /* =====================================================
        CARGAR DATOS DE TOM DESDE POWER AUTOMATE
        ===================================================== */
 
     async function loadTomData() {
 
         /*
-         * Evita ejecutar la llamada si todavía
-         * no se ha colocado la URL.
+         * Esta validación solamente comprueba que
+         * no se haya dejado el texto de ejemplo.
          */
 
         if (
             !tomApiUrl ||
             tomApiUrl ===
-                "https://default65bbe6da35e94c18993bee2c16cb7e.64.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/17/workflows/0da59cf4591544a1a6a9b8398452e7b0/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=1t-A7WRjLUB27Lmnd86_6TIFoTo2y_gy-eE6C2NenPc"
+                "PEGA_AQUI_LA_URL_DEL_FLUJO"
         ) {
 
             console.warn(
@@ -1640,6 +1589,11 @@
 
 
         try {
+
+            console.log(
+                "Consultando datos de Tom..."
+            );
+
 
             const response =
                 await fetch(
@@ -1667,6 +1621,12 @@
 
             const data =
                 await response.json();
+
+
+            console.log(
+                "Respuesta recibida de Power Automate:",
+                data
+            );
 
 
             /* =================================================
@@ -1726,7 +1686,7 @@
 
 
             /* =================================================
-               NUTRICIÓN
+               ACTUALIZAR NUTRICIÓN
                ================================================= */
 
             document.getElementById(
@@ -1744,7 +1704,7 @@
 
 
             /* =================================================
-               FELICIDAD
+               ACTUALIZAR FELICIDAD
                ================================================= */
 
             document.getElementById(
@@ -1762,7 +1722,7 @@
 
 
             /* =================================================
-               ENERGÍA
+               ACTUALIZAR ENERGÍA
                ================================================= */
 
             document.getElementById(
@@ -1780,7 +1740,7 @@
 
 
             /* =================================================
-               RECONOCIMIENTOS
+               ACTUALIZAR RECONOCIMIENTOS
                ================================================= */
 
             document.getElementById(
@@ -1790,7 +1750,7 @@
 
 
             /* =================================================
-               ESTADO
+               ACTUALIZAR ESTADO
                ================================================= */
 
             currentTomState =
@@ -1803,7 +1763,15 @@
 
             console.log(
                 "Tom actualizado correctamente:",
-                data
+                {
+                    nutricion: nutricion,
+                    felicidad: felicidad,
+                    energia: energia,
+                    reconocimientos:
+                        data.reconocimientos,
+                    estado:
+                        currentTomState
+                }
             );
 
         }
@@ -1814,12 +1782,6 @@
                 "No fue posible obtener los datos de Tom:",
                 error
             );
-
-            /*
-             * Si Power Automate falla, dejamos los valores
-             * visuales existentes. No mostramos un error
-             * al usuario para no afectar el diseño.
-             */
 
         }
 
@@ -1995,8 +1957,6 @@
 
     /* =====================================================
        CARGAR TOM
-       
-       Se ejecuta al terminar de cargar el HTML.
        ===================================================== */
 
     loadTomData();
@@ -2005,3 +1965,40 @@
 
 </body>
 </html>
+```
+
+### Qué debe ocurrir ahora
+
+Cuando abras la página, el HTML inicialmente tiene los valores visuales de respaldo:
+
+```text
+Nutrición       55%
+Felicidad       55%
+Energía         55%
+Reconocimientos 0
+```
+
+pero inmediatamente `loadTomData()` consulta Power Automate.
+
+Como tu flujo está devolviendo:
+
+```text
+nutricion: 60
+felicidad: 55
+energia: 55
+reconocimientos: 3
+estado: Normal
+```
+
+la página debe terminar mostrando:
+
+**🍗 Nutrición 60%**
+**❤️ Felicidad 55%**
+**🪶 Energía 55%**
+**Reconocimientos: 3**
+
+y la barra de Nutrición debe quedar al **60%**.
+
+**Importante:** como la URL HTTP contiene el `sig=` que autoriza a ejecutar el flujo, al estar dentro de un HTML público de GitHub Pages esa URL queda expuesta a quien pueda inspeccionar el código. En este momento el endpoint solamente devuelve los valores públicos de Tom, así que funcionalmente sirve para esta etapa; más adelante, si hacemos que ese endpoint entregue nombres y mensajes del muro, conviene revisar la arquitectura de seguridad antes de hacerlo.
+
+Cuando subas este `index.html` a GitHub, **no necesitas modificar nada más en Power Automate**.
