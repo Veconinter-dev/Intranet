@@ -29,45 +29,14 @@
         }
 
         .container {
-            width: min(1200px, 94%);
+            width: min(1250px, 95%);
             margin: 0 auto;
-            padding: 22px 0 50px;
+            padding: 18px 0 40px;
         }
 
 
         /* =========================
-           ENCABEZADO
-        ========================= */
-
-        .header {
-            text-align: center;
-            margin-bottom: 16px;
-        }
-
-        .header h1 {
-            margin: 0;
-
-            font-size: clamp(30px, 4vw, 44px);
-
-            font-weight: 800;
-
-            color: #743d20;
-
-            letter-spacing: -1px;
-        }
-
-        .header p {
-            margin: 5px 0 0;
-
-            font-size: 16px;
-
-            color: #8a6248;
-        }
-
-
-        /* =========================
-           TOM
-           SECCIÓN COMPACTA
+           TOM - CABECERA COMPACTA
         ========================= */
 
         .tom-section {
@@ -76,37 +45,38 @@
 
             align-items: center;
 
-            gap: 28px;
+            gap: 20px;
 
-            background: rgba(255, 250, 242, 0.90);
+            background: rgba(255, 250, 242, 0.88);
 
-            border: 2px solid #d8b28a;
+            border: 1px solid #d8b28a;
 
-            border-radius: 24px;
+            border-radius: 18px;
 
-            padding: 16px 24px;
+            padding: 10px 18px;
 
             box-shadow:
-                0 7px 22px rgba(92, 54, 25, 0.12);
+                0 5px 16px
+                rgba(92, 54, 25, 0.10);
 
-            text-align: left;
         }
 
 
         /* =========================
-           TOM IMAGEN
+           TOM
         ========================= */
 
         .tom-character {
 
-            flex: 0 0 150px;
+            flex: 0 0 90px;
 
             text-align: center;
+
         }
 
         .tom-image {
 
-            width: 145px;
+            width: 82px;
 
             height: auto;
 
@@ -116,19 +86,21 @@
 
             filter:
                 drop-shadow(
-                    0 8px 8px rgba(0, 0, 0, 0.15)
+                    0 5px 5px
+                    rgba(0, 0, 0, 0.14)
                 );
+
         }
 
         .tom-status {
 
             display: inline-block;
 
-            margin-top: 4px;
+            margin-top: 2px;
 
-            padding: 5px 12px;
+            padding: 3px 8px;
 
-            border-radius: 30px;
+            border-radius: 20px;
 
             background: #f2dfc5;
 
@@ -136,14 +108,15 @@
 
             font-weight: 700;
 
-            font-size: 13px;
+            font-size: 10px;
 
             white-space: nowrap;
+
         }
 
 
         /* =========================
-           PANEL DE ESTADO
+           INFORMACIÓN TOM
         ========================= */
 
         .tom-info {
@@ -151,6 +124,7 @@
             flex: 1;
 
             min-width: 0;
+
         }
 
 
@@ -163,11 +137,12 @@
             display: grid;
 
             grid-template-columns:
-                repeat(3, minmax(0, 1fr));
+                repeat(3, 1fr);
 
             gap: 18px;
 
             width: 100%;
+
         }
 
         .bar-item {
@@ -175,6 +150,7 @@
             margin: 0;
 
             text-align: left;
+
         }
 
         .bar-header {
@@ -185,11 +161,12 @@
 
             align-items: center;
 
-            margin-bottom: 6px;
+            margin-bottom: 4px;
 
             font-weight: 700;
 
-            font-size: 14px;
+            font-size: 12px;
+
         }
 
         .bar-value {
@@ -197,13 +174,14 @@
             font-weight: 800;
 
             color: #743d20;
+
         }
 
         .bar-background {
 
             width: 100%;
 
-            height: 14px;
+            height: 9px;
 
             background: #eadbc8;
 
@@ -211,8 +189,6 @@
 
             overflow: hidden;
 
-            box-shadow:
-                inset 0 2px 4px rgba(0, 0, 0, 0.10);
         }
 
         .bar-fill {
@@ -221,8 +197,8 @@
 
             border-radius: 20px;
 
-            transition:
-                width 0.8s ease;
+            transition: width 0.8s ease;
+
         }
 
         .nutrition {
@@ -244,35 +220,34 @@
 
         .counter {
 
-            margin-top: 13px;
+            margin-top: 7px;
 
             display: inline-flex;
 
             align-items: center;
 
-            gap: 7px;
+            gap: 5px;
 
             background: #fff;
 
             border: 1px solid #dfc5a8;
 
-            padding: 6px 13px;
+            padding: 4px 10px;
 
-            border-radius: 30px;
+            border-radius: 20px;
 
             font-weight: 700;
 
-            font-size: 13px;
+            font-size: 11px;
 
-            box-shadow:
-                0 3px 8px rgba(0, 0, 0, 0.06);
         }
 
         .counter-number {
 
-            font-size: 16px;
+            font-size: 13px;
 
             color: #8b4c25;
+
         }
 
 
@@ -282,32 +257,36 @@
 
         .wall-section {
 
-            margin-top: 28px;
+            margin-top: 20px;
+
         }
 
         .wall-title {
 
             text-align: center;
 
-            margin-bottom: 16px;
+            margin-bottom: 12px;
+
         }
 
         .wall-title h2 {
 
             margin: 0;
 
-            font-size: 34px;
+            font-size: 28px;
 
             color: #743d20;
+
         }
 
         .wall-title p {
 
-            margin: 5px 0 0;
+            margin: 3px 0 0;
 
             color: #8a6248;
 
-            font-size: 15px;
+            font-size: 13px;
+
         }
 
 
@@ -317,28 +296,28 @@
 
         .search-box {
 
-            max-width: 650px;
+            max-width: 500px;
 
-            margin: 0 auto 22px;
+            margin: 0 auto 16px;
 
-            position: relative;
         }
 
         .search-box input {
 
             width: 100%;
 
-            padding: 12px 18px;
+            padding: 9px 15px;
 
-            border-radius: 30px;
+            border-radius: 22px;
 
-            border: 2px solid #d8b28a;
+            border: 1px solid #d8b28a;
 
             background: #fffaf3;
 
-            font-size: 15px;
+            font-size: 13px;
 
             outline: none;
+
         }
 
         .search-box input:focus {
@@ -346,31 +325,44 @@
             border-color: #b97945;
 
             box-shadow:
-                0 0 0 3px rgba(
+                0 0 0 3px
+                rgba(
                     185,
                     121,
                     69,
-                    0.12
+                    0.10
                 );
+
         }
 
 
         /* =========================
-           TARJETAS
+           MURO DE TARJETAS
         ========================= */
 
         .wall {
 
             display: grid;
 
+            /*
+               5 tarjetas cuando exista
+               suficiente ancho
+            */
+
             grid-template-columns:
                 repeat(
-                    auto-fit,
-                    minmax(280px, 1fr)
+                    5,
+                    minmax(0, 1fr)
                 );
 
-            gap: 20px;
+            gap: 14px;
+
         }
+
+
+        /* =========================
+           TARJETA
+        ========================= */
 
         .card {
 
@@ -384,44 +376,49 @@
 
             border: 1px solid #ddc2a2;
 
-            border-radius: 20px;
+            border-radius: 15px;
 
-            padding: 20px;
+            padding: 13px;
 
             box-shadow:
-                0 6px 16px
+                0 4px 11px
                 rgba(
                     86,
                     52,
                     28,
-                    0.11
+                    0.09
                 );
 
             transition:
                 transform 0.2s ease,
                 box-shadow 0.2s ease;
+
+            min-width: 0;
+
         }
 
         .card:hover {
 
             transform:
-                translateY(-3px);
+                translateY(-2px);
 
             box-shadow:
-                0 10px 22px
+                0 7px 16px
                 rgba(
                     86,
                     52,
                     28,
-                    0.16
+                    0.14
                 );
+
         }
 
         .card-icon {
 
-            font-size: 28px;
+            font-size: 23px;
 
-            margin-bottom: 8px;
+            margin-bottom: 5px;
+
         }
 
         .card-to {
@@ -430,80 +427,94 @@
 
             color: #743d20;
 
-            margin-bottom: 10px;
+            margin-bottom: 7px;
+
+            font-size: 13px;
+
         }
 
         .card-message {
 
             background: #f6eadb;
 
-            border-radius: 14px;
+            border-radius: 10px;
 
-            padding: 14px;
+            padding: 10px;
 
-            line-height: 1.5;
+            line-height: 1.35;
 
-            min-height: 78px;
+            min-height: 72px;
+
+            font-size: 12px;
+
         }
 
         .card-from {
 
-            margin-top: 12px;
+            margin-top: 8px;
 
-            font-size: 13px;
+            font-size: 11px;
 
             color: #765b48;
 
             text-align: right;
+
         }
 
         .card-date {
 
-            margin-top: 4px;
+            margin-top: 2px;
 
-            font-size: 12px;
+            font-size: 10px;
 
             color: #9a7b63;
 
             text-align: right;
+
         }
 
 
         /* =========================
-           RESPONSIVE
+           4 TARJETAS
         ========================= */
 
-        @media (max-width: 850px) {
+        @media (max-width: 1100px) {
 
-            .tom-section {
+            .wall {
 
-                gap: 20px;
+                grid-template-columns:
+                    repeat(4, minmax(0, 1fr));
 
-                padding: 15px 18px;
-            }
-
-            .tom-character {
-
-                flex: 0 0 125px;
-            }
-
-            .tom-image {
-
-                width: 120px;
-            }
-
-            .bars {
-
-                gap: 12px;
-            }
-
-            .bar-header {
-
-                font-size: 13px;
             }
 
         }
 
+
+        /* =========================
+           3 TARJETAS
+        ========================= */
+
+        @media (max-width: 850px) {
+
+            .wall {
+
+                grid-template-columns:
+                    repeat(3, minmax(0, 1fr));
+
+            }
+
+            .bars {
+
+                gap: 10px;
+
+            }
+
+        }
+
+
+        /* =========================
+           TABLET
+        ========================= */
 
         @media (max-width: 650px) {
 
@@ -511,23 +522,67 @@
 
                 width: 92%;
 
-                padding-top: 18px;
+                padding-top: 12px;
+
             }
 
-            .header {
+            .tom-section {
 
-                margin-bottom: 12px;
+                gap: 12px;
+
+                padding: 8px 12px;
+
             }
 
-            .header h1 {
+            .tom-character {
 
-                font-size: 30px;
+                flex: 0 0 75px;
+
             }
 
-            .header p {
+            .tom-image {
 
-                font-size: 14px;
+                width: 68px;
+
             }
+
+            .bars {
+
+                grid-template-columns: 1fr;
+
+                gap: 7px;
+
+            }
+
+            .bar-header {
+
+                font-size: 11px;
+
+            }
+
+            .wall {
+
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+
+                gap: 10px;
+
+            }
+
+            .wall-title h2 {
+
+                font-size: 25px;
+
+            }
+
+        }
+
+
+        /* =========================
+           TELÉFONO
+        ========================= */
+
+        @media (max-width: 430px) {
 
             .tom-section {
 
@@ -535,90 +590,43 @@
 
                 text-align: center;
 
-                gap: 10px;
-
-                padding: 16px;
             }
 
             .tom-character {
 
                 flex: none;
+
             }
 
             .tom-image {
 
-                width: 130px;
+                width: 75px;
+
             }
 
             .tom-info {
 
                 width: 100%;
-            }
 
-            .bars {
-
-                grid-template-columns: 1fr;
-
-                gap: 12px;
-            }
-
-            .bar-header {
-
-                font-size: 14px;
-            }
-
-            .counter {
-
-                margin-top: 12px;
-            }
-
-            .wall-section {
-
-                margin-top: 24px;
-            }
-
-            .wall-title h2 {
-
-                font-size: 28px;
-            }
-
-            .wall-title p {
-
-                font-size: 14px;
             }
 
             .wall {
 
                 grid-template-columns: 1fr;
 
-                gap: 16px;
             }
+
         }
 
     </style>
+
 </head>
 
 
 <body>
 
+
 <div class="container">
-
-
-    <!-- =========================
-         ENCABEZADO
-    ========================== -->
-
-    <header class="header">
-
-        <h1>
-            🦃 ¡SALVEMOS A TOM!
-        </h1>
-
-        <p>
-            Un pequeño gesto puede hacer una gran diferencia.
-        </p>
-
-    </header>
 
 
     <!-- =========================
@@ -645,7 +653,7 @@
         </div>
 
 
-        <!-- INFORMACIÓN -->
+        <!-- INFORMACIÓN TOM -->
 
         <div class="tom-info">
 
@@ -813,8 +821,8 @@
 
                 <div class="card-message">
 
-                    Gracias por tu apoyo y por estar siempre
-                    dispuesta a ayudar.
+                    Gracias por tu apoyo y por estar
+                    siempre dispuesta a ayudar.
 
                 </div>
 
@@ -869,13 +877,69 @@
 
                 <div class="card-message">
 
-                    Gracias por tu excelente actitud y por
-                    hacer la diferencia.
+                    Gracias por tu excelente actitud
+                    y por hacer la diferencia.
 
                 </div>
 
                 <div class="card-from">
                     De: Luis
+                </div>
+
+                <div class="card-date">
+                    Ayer
+                </div>
+
+            </article>
+
+
+            <article class="card">
+
+                <div class="card-icon">
+                    💛
+                </div>
+
+                <div class="card-to">
+                    Para: Sofía
+                </div>
+
+                <div class="card-message">
+
+                    Gracias por tu ayuda y disposición
+                    durante estos días.
+
+                </div>
+
+                <div class="card-from">
+                    De: Carlos
+                </div>
+
+                <div class="card-date">
+                    Ayer
+                </div>
+
+            </article>
+
+
+            <article class="card">
+
+                <div class="card-icon">
+                    ✨
+                </div>
+
+                <div class="card-to">
+                    Para: Diego
+                </div>
+
+                <div class="card-message">
+
+                    Gracias por siempre buscar una
+                    solución y apoyar al equipo.
+
+                </div>
+
+                <div class="card-from">
+                    De: Laura
                 </div>
 
                 <div class="card-date">
@@ -897,7 +961,7 @@
 
     /* =========================
        BUSCADOR
-    ========================== */
+    ========================= */
 
     const searchInput =
         document.getElementById("searchInput");
