@@ -992,6 +992,20 @@
 
 
     /* =====================================================
+       API DE TOM - POWER AUTOMATE
+       
+       IMPORTANTE:
+       Reemplazar solamente el texto entre comillas por
+       la HTTP POST URL del flujo:
+       
+       Tom - API para Save The Turkey
+       ===================================================== */
+
+    const tomApiUrl =
+        "PEGA_AQUI_LA_URL_DEL_FLUJO";
+
+
+    /* =====================================================
        TRADUCCIONES
        ===================================================== */
 
@@ -1062,7 +1076,10 @@
                 "✨ Acción positiva",
 
             noResults:
-                "No se encontraron reconocimientos."
+                "No se encontraron reconocimientos.",
+
+            tomNormal:
+                "😊 Tom está feliz"
 
         },
 
@@ -1132,7 +1149,10 @@
                 "✨ Positive action",
 
             noResults:
-                "No recognitions found."
+                "No recognitions found.",
+
+            tomNormal:
+                "😊 Tom is happy"
 
         },
 
@@ -1202,7 +1222,10 @@
                 "✨ Ação positiva",
 
             noResults:
-                "Nenhum reconhecimento encontrado."
+                "Nenhum reconhecimento encontrado.",
+
+            tomNormal:
+                "😊 Tom está feliz"
 
         }
 
@@ -1303,10 +1326,13 @@
             t.energy;
 
 
-        document.getElementById(
-            "tomStatus"
-        ).textContent =
-            t.tomHappy;
+        /*
+         * El estado se actualiza desde la API de Tom.
+         * Al cambiar idioma, volvemos a traducir el estado
+         * actualmente recibido.
+         */
+
+        updateTomStatus();
 
 
         document.getElementById(
@@ -1531,6 +1557,276 @@
 
 
     /* =====================================================
+       DATOS ACTUALES DE TOM
+       ===================================================== */
+
+    let currentTomState =
+        "Normal";
+
+
+    /* =====================================================
+       ACTUALIZAR ESTADO VISUAL DE TOM
+       ===================================================== */
+
+    function updateTomStatus() {
+
+        const language =
+            languageSelector.value;
+
+
+        const t =
+            translations[language];
+
+
+        const status =
+            String(
+                currentTomState || "Normal"
+            ).toLowerCase();
+
+
+        let statusText =
+            t.tomHappy;
+
+
+        /*
+         * Por ahora el estado Normal representa
+         * que Tom está feliz.
+         *
+         * Dejamos esta estructura preparada para
+         * agregar otros estados posteriormente.
+         */
+
+        if (
+            status === "normal"
+        ) {
+
+            statusText =
+                t.tomHappy;
+
+        }
+
+
+        document.getElementById(
+            "tomStatus"
+        ).textContent =
+            statusText;
+
+    }
+
+
+    /* =====================================================
+       CARGAR DATOS DE TOM DESDE POWER AUTOMATE
+       ===================================================== */
+
+    async function loadTomData() {
+
+        /*
+         * Evita ejecutar la llamada si todavía
+         * no se ha colocado la URL.
+         */
+
+        if (
+            !tomApiUrl ||
+            tomApiUrl ===
+                "https://default65bbe6da35e94c18993bee2c16cb7e.64.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/17/workflows/0da59cf4591544a1a6a9b8398452e7b0/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=1t-A7WRjLUB27Lmnd86_6TIFoTo2y_gy-eE6C2NenPc"
+        ) {
+
+            console.warn(
+                "La URL de Power Automate para Tom todavía no ha sido configurada."
+            );
+
+            return;
+        }
+
+
+        try {
+
+            const response =
+                await fetch(
+                    tomApiUrl,
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+                        body: "{}"
+                    }
+                );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "HTTP " +
+                    response.status
+                );
+
+            }
+
+
+            const data =
+                await response.json();
+
+
+            /* =================================================
+               VALIDAR DATOS
+               ================================================= */
+
+            if (
+                typeof data.nutricion !==
+                    "number" ||
+                typeof data.felicidad !==
+                    "number" ||
+                typeof data.energia !==
+                    "number" ||
+                typeof data.reconocimientos !==
+                    "number"
+            ) {
+
+                throw new Error(
+                    "La respuesta de Power Automate no tiene el formato esperado."
+                );
+
+            }
+
+
+            /* =================================================
+               LIMITAR LOS VALORES ENTRE 0 Y 100
+               ================================================= */
+
+            const nutricion =
+                Math.max(
+                    0,
+                    Math.min(
+                        100,
+                        data.nutricion
+                    )
+                );
+
+
+            const felicidad =
+                Math.max(
+                    0,
+                    Math.min(
+                        100,
+                        data.felicidad
+                    )
+                );
+
+
+            const energia =
+                Math.max(
+                    0,
+                    Math.min(
+                        100,
+                        data.energia
+                    )
+                );
+
+
+            /* =================================================
+               NUTRICIÓN
+               ================================================= */
+
+            document.getElementById(
+                "nutritionValue"
+            ).textContent =
+                nutricion +
+                "%";
+
+
+            document.getElementById(
+                "nutritionBar"
+            ).style.width =
+                nutricion +
+                "%";
+
+
+            /* =================================================
+               FELICIDAD
+               ================================================= */
+
+            document.getElementById(
+                "happinessValue"
+            ).textContent =
+                felicidad +
+                "%";
+
+
+            document.getElementById(
+                "happinessBar"
+            ).style.width =
+                felicidad +
+                "%";
+
+
+            /* =================================================
+               ENERGÍA
+               ================================================= */
+
+            document.getElementById(
+                "energyValue"
+            ).textContent =
+                energia +
+                "%";
+
+
+            document.getElementById(
+                "energyBar"
+            ).style.width =
+                energia +
+                "%";
+
+
+            /* =================================================
+               RECONOCIMIENTOS
+               ================================================= */
+
+            document.getElementById(
+                "recognitionsValue"
+            ).textContent =
+                data.reconocimientos;
+
+
+            /* =================================================
+               ESTADO
+               ================================================= */
+
+            currentTomState =
+                data.estado ||
+                "Normal";
+
+
+            updateTomStatus();
+
+
+            console.log(
+                "Tom actualizado correctamente:",
+                data
+            );
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "No fue posible obtener los datos de Tom:",
+                error
+            );
+
+            /*
+             * Si Power Automate falla, dejamos los valores
+             * visuales existentes. No mostramos un error
+             * al usuario para no afectar el diseño.
+             */
+
+        }
+
+    }
+
+
+    /* =====================================================
        CARGAR IDIOMA GUARDADO
        ===================================================== */
 
@@ -1695,6 +1991,15 @@
 
         }
     );
+
+
+    /* =====================================================
+       CARGAR TOM
+       
+       Se ejecuta al terminar de cargar el HTML.
+       ===================================================== */
+
+    loadTomData();
 
 </script>
 
