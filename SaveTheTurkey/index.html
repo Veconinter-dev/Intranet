@@ -1,11 +1,10 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Save the Turkey!</title>
+<title>Acción de Gracias</title>
 
 <style>
     * {
@@ -359,7 +358,7 @@
     }
 
     /* =========================
-       FONDOS DE EJEMPLO
+       FONDOS
        ========================= */
 
     .fondo1 {
@@ -410,6 +409,7 @@
     }
 
     @media (max-width: 650px) {
+
         body {
             padding: 12px;
         }
@@ -443,6 +443,7 @@
     }
 
     @media (max-width: 430px) {
+
         .wall {
             grid-template-columns: 1fr;
         }
@@ -484,11 +485,13 @@
         </select>
     </div>
 
+
     <!-- =========================
          COMO PARTICIPAR
          ========================= -->
 
     <details class="instructions-section">
+
         <summary id="instructionsTitle">
             ℹ️ ¿Cómo participar?
         </summary>
@@ -496,7 +499,9 @@
         <div class="instructions-content">
             <ol id="instructionsList"></ol>
         </div>
+
     </details>
+
 
     <!-- =========================
          TOM
@@ -515,7 +520,6 @@
             <div class="tom-info">
 
                 <div class="tom-title-row">
-                    <span class="tom-name">🦃 Tom</span>
 
                     <span
                         class="tom-status"
@@ -523,60 +527,120 @@
                     >
                         😊 Tom está feliz
                     </span>
+
                 </div>
+
 
                 <div class="tom-bars">
 
+                    <!-- NUTRICIÓN -->
+
                     <div class="tom-bar-item">
+
                         <div class="tom-bar-label">
-                            <span>🍗 Nutrición</span>
-                            <span class="tom-bar-value" id="nutritionValue">55%</span>
+
+                            <span>
+                                🍗 Nutrición
+                            </span>
+
+                            <span
+                                class="tom-bar-value"
+                                id="nutritionValue"
+                            >
+                                55%
+                            </span>
+
                         </div>
 
                         <div class="progress-track">
+
                             <div
                                 class="progress-fill nutrition-fill"
                                 id="nutritionBar"
                                 style="width:55%;"
                             ></div>
+
                         </div>
+
                     </div>
 
+
+                    <!-- FELICIDAD -->
+
                     <div class="tom-bar-item">
+
                         <div class="tom-bar-label">
-                            <span>❤️ Felicidad</span>
-                            <span class="tom-bar-value" id="happinessValue">55%</span>
+
+                            <span>
+                                ❤️ Felicidad
+                            </span>
+
+                            <span
+                                class="tom-bar-value"
+                                id="happinessValue"
+                            >
+                                55%
+                            </span>
+
                         </div>
 
                         <div class="progress-track">
+
                             <div
                                 class="progress-fill happiness-fill"
                                 id="happinessBar"
                                 style="width:55%;"
                             ></div>
+
                         </div>
+
                     </div>
 
+
+                    <!-- ENERGÍA -->
+
                     <div class="tom-bar-item">
+
                         <div class="tom-bar-label">
-                            <span>🪶 Energía</span>
-                            <span class="tom-bar-value" id="energyValue">55%</span>
+
+                            <span>
+                                🪶 Energía
+                            </span>
+
+                            <span
+                                class="tom-bar-value"
+                                id="energyValue"
+                            >
+                                55%
+                            </span>
+
                         </div>
 
                         <div class="progress-track">
+
                             <div
                                 class="progress-fill energy-fill"
                                 id="energyBar"
                                 style="width:55%;"
                             ></div>
+
                         </div>
+
                     </div>
 
                 </div>
 
+
                 <div class="tom-footer">
-                    <span id="recognitionsLabel">Reconocimientos:</span>
-                    <strong id="recognitionsValue">0</strong>
+
+                    <span id="recognitionsLabel">
+                        Reconocimientos:
+                    </span>
+
+                    <strong id="recognitionsValue">
+                        0
+                    </strong>
+
                 </div>
 
             </div>
@@ -585,13 +649,15 @@
 
     </section>
 
+
     <!-- =========================
-         MURO
+         CABECERA DEL MURO
          ========================= -->
 
     <div class="wall-header">
 
         <div>
+
             <h1
                 class="wall-title"
                 id="wallTitle"
@@ -605,7 +671,9 @@
             >
                 Un espacio para reconocer y agradecer.
             </p>
+
         </div>
+
 
         <a
             id="gratitudeButton"
@@ -618,6 +686,7 @@
         </a>
 
     </div>
+
 
     <!-- =========================
          BUSCADOR
@@ -634,6 +703,7 @@
 
     </div>
 
+
     <!-- =========================
          TARJETAS
          ========================= -->
@@ -643,31 +713,37 @@
         id="gratitudeWall"
     >
 
+
         <!-- TARJETA 1 -->
 
         <article
             class="gratitude-card"
             data-name="María González"
+            data-recipient="María González"
+            data-from="Carlos Pérez"
         >
+
             <div class="card-background fondo1">
 
                 <div class="card-top">
 
                     <div class="card-recipient">
-                        Para: María González
                     </div>
 
                     <div class="card-from">
-                        De: Carlos Pérez
                     </div>
 
                 </div>
 
+
                 <div class="card-message">
+
                     Gracias por todo el apoyo y la buena energía
                     durante este año. Tu compromiso hizo una gran
                     diferencia para todos.
+
                 </div>
+
 
                 <div class="card-bottom">
 
@@ -675,39 +751,46 @@
                         💛 Agradecimiento
                     </span>
 
-                    <span>
+                    <span class="card-date">
                         Hoy
                     </span>
 
                 </div>
 
             </div>
+
         </article>
+
 
         <!-- TARJETA 2 -->
 
         <article
             class="gratitude-card"
             data-name="Carlos Pérez"
+            data-recipient="Carlos Pérez"
+            data-from="Ana Rodríguez"
         >
+
             <div class="card-background fondo2">
 
                 <div class="card-top">
 
                     <div class="card-recipient">
-                        Para: Carlos Pérez
                     </div>
 
                     <div class="card-from">
-                        De: Ana Rodríguez
                     </div>
 
                 </div>
 
+
                 <div class="card-message">
+
                     Gracias por siempre estar dispuesto a ayudar
                     y compartir tus conocimientos con el equipo.
+
                 </div>
+
 
                 <div class="card-bottom">
 
@@ -715,39 +798,46 @@
                         ❤️ Compañero
                     </span>
 
-                    <span>
+                    <span class="card-date">
                         Hoy
                     </span>
 
                 </div>
 
             </div>
+
         </article>
+
 
         <!-- TARJETA 3 -->
 
         <article
             class="gratitude-card"
             data-name="Ana Rodríguez"
+            data-recipient="Ana Rodríguez"
+            data-from="Luis Martínez"
         >
+
             <div class="card-background fondo3">
 
                 <div class="card-top">
 
                     <div class="card-recipient">
-                        Para: Ana Rodríguez
                     </div>
 
                     <div class="card-from">
-                        De: Luis Martínez
                     </div>
 
                 </div>
 
+
                 <div class="card-message">
+
                     Gracias por esa pequeña acción que ayudó a que
                     el trabajo del equipo fuera mucho más sencillo.
+
                 </div>
+
 
                 <div class="card-bottom">
 
@@ -755,39 +845,46 @@
                         ✨ Acción positiva
                     </span>
 
-                    <span>
+                    <span class="card-date">
                         Ayer
                     </span>
 
                 </div>
 
             </div>
+
         </article>
+
 
         <!-- TARJETA 4 -->
 
         <article
             class="gratitude-card"
             data-name="Luis Martínez"
+            data-recipient="Luis Martínez"
+            data-from="María González"
         >
+
             <div class="card-background fondo1">
 
                 <div class="card-top">
 
                     <div class="card-recipient">
-                        Para: Luis Martínez
                     </div>
 
                     <div class="card-from">
-                        De: María González
                     </div>
 
                 </div>
 
+
                 <div class="card-message">
+
                     Gracias por tu disposición y por hacer que cada
                     desafío se convierta en una oportunidad.
+
                 </div>
+
 
                 <div class="card-bottom">
 
@@ -795,39 +892,46 @@
                         💛 Agradecimiento
                     </span>
 
-                    <span>
+                    <span class="card-date">
                         Ayer
                     </span>
 
                 </div>
 
             </div>
+
         </article>
+
 
         <!-- TARJETA 5 -->
 
         <article
             class="gratitude-card"
             data-name="Pedro Silva"
+            data-recipient="Pedro Silva"
+            data-from="Laura Gómez"
         >
+
             <div class="card-background fondo2">
 
                 <div class="card-top">
 
                     <div class="card-recipient">
-                        Para: Pedro Silva
                     </div>
 
                     <div class="card-from">
-                        De: Laura Gómez
                     </div>
 
                 </div>
 
+
                 <div class="card-message">
+
                     Gracias por tu colaboración y por mantener
                     siempre una actitud positiva.
+
                 </div>
+
 
                 <div class="card-bottom">
 
@@ -835,18 +939,20 @@
                         ❤️ Compañero
                     </span>
 
-                    <span>
+                    <span class="card-date">
                         Ayer
                     </span>
 
                 </div>
 
             </div>
+
         </article>
 
     </div>
 
 </div>
+
 
 <script>
 
@@ -857,7 +963,8 @@
     const gratitudeFormUrl =
         "https://brematlocal.sharepoint.com/sites/GestinHumana/_layouts/15/listform.aspx?PageType=8&ListId=%7B52E9AFEA-9335-47FF-A7F4-68ED606F5536%7D&RootFolder=%2Fsites%2FGestinHumana%2FLists%2FDa%20de%20Accin%20de%20Gracias%2F&Source=https%3A%2F%2Fbrematlocal.sharepoint.com%2Fsites%2FGestinHumana%2FLists%2FDa%2520de%2520Accin%2520de%2520Gracias%2FAllItems.aspx%3Fviewid%3Dae346730%252Defdd%252D430e%252Dae03%252Deb2d4b079c6a%26env%3DWebViewList%26npsAction%3DcreateList&ContentTypeId=0x01001DF0FF2BD68D34478DC6B8F3A917880E";
 
-    document.getElementById("gratitudeButton").href = gratitudeFormUrl;
+    document.getElementById("gratitudeButton").href =
+        gratitudeFormUrl;
 
 
     /* =========================
@@ -867,7 +974,9 @@
     const translations = {
 
         es: {
-            instructionsTitle: "ℹ️ ¿Cómo participar?",
+
+            instructionsTitle:
+                "ℹ️ ¿Cómo participar?",
 
             instructions: [
                 'Puedes dejar un mensaje de agradecimiento para Veconinter y/o a un amigo al que quieras agradecer por este año 2025.',
@@ -876,20 +985,46 @@
                 'El talento que seleccionaste recibirá una notificación con el enlace para buscar su agradecimiento en el muro interactivo.'
             ],
 
-            wallTitle: "💌 Muro de Gratitud",
-            wallSubtitle: "Un espacio para reconocer y agradecer.",
-            gratitudeButton: "💛 Dejar un agradecimiento",
-            searchPlaceholder: "Buscar por nombre...",
-            to: "Para:",
-            from: "De:",
-            today: "Hoy",
-            yesterday: "Ayer",
-            tomHappy: "😊 Tom está feliz",
-            recognitions: "Reconocimientos:"
+            wallTitle:
+                "💌 Muro de Gratitud",
+
+            wallSubtitle:
+                "Un espacio para reconocer y agradecer.",
+
+            gratitudeButton:
+                "💛 Dejar un agradecimiento",
+
+            searchPlaceholder:
+                "Buscar por nombre...",
+
+            to:
+                "Para:",
+
+            from:
+                "De:",
+
+            today:
+                "Hoy",
+
+            yesterday:
+                "Ayer",
+
+            tomHappy:
+                "😊 Tom está feliz",
+
+            recognitions:
+                "Reconocimientos:",
+
+            noResults:
+                "No se encontraron reconocimientos."
+
         },
 
+
         en: {
-            instructionsTitle: "ℹ️ How to participate?",
+
+            instructionsTitle:
+                "ℹ️ How to participate?",
 
             instructions: [
                 'You can leave a thank you message for Veconinter and/or a friend you would like to thank for this year 2025.',
@@ -898,20 +1033,46 @@
                 'The talent you selected will receive a notification with the link to search for your thank you note on the interactive wall.'
             ],
 
-            wallTitle: "💌 Gratitude Wall",
-            wallSubtitle: "A space to recognize and appreciate.",
-            gratitudeButton: "💛 Leave a thank you",
-            searchPlaceholder: "Search by name...",
-            to: "To:",
-            from: "From:",
-            today: "Today",
-            yesterday: "Yesterday",
-            tomHappy: "😊 Tom is happy",
-            recognitions: "Recognitions:"
+            wallTitle:
+                "💌 Gratitude Wall",
+
+            wallSubtitle:
+                "A space to recognize and appreciate.",
+
+            gratitudeButton:
+                "💛 Leave a thank you",
+
+            searchPlaceholder:
+                "Search by name...",
+
+            to:
+                "To:",
+
+            from:
+                "From:",
+
+            today:
+                "Today",
+
+            yesterday:
+                "Yesterday",
+
+            tomHappy:
+                "😊 Tom is happy",
+
+            recognitions:
+                "Recognitions:",
+
+            noResults:
+                "No recognitions found."
+
         },
 
+
         pt: {
-            instructionsTitle: "ℹ️ Como participar?",
+
+            instructionsTitle:
+                "ℹ️ Como participar?",
 
             instructions: [
                 'Você pode deixar uma mensagem de agradecimento para o Veconinter e/ou para um amigo que você queira agradecer por este ano de 2025.',
@@ -920,16 +1081,39 @@
                 'O talento que você selecionou receberá uma notificação com o link para encontrar seu agradecimento no mural interativo.'
             ],
 
-            wallTitle: "💌 Mural de Gratidão",
-            wallSubtitle: "Um espaço para reconhecer e agradecer.",
-            gratitudeButton: "💛 Deixar um agradecimento",
-            searchPlaceholder: "Buscar por nome...",
-            to: "Para:",
-            from: "De:",
-            today: "Hoje",
-            yesterday: "Ontem",
-            tomHappy: "😊 Tom está feliz",
-            recognitions: "Reconhecimentos:"
+            wallTitle:
+                "💌 Mural de Gratidão",
+
+            wallSubtitle:
+                "Um espaço para reconhecer e agradecer.",
+
+            gratitudeButton:
+                "💛 Deixar um agradecimento",
+
+            searchPlaceholder:
+                "Buscar por nome...",
+
+            to:
+                "Para:",
+
+            from:
+                "De:",
+
+            today:
+                "Hoje",
+
+            yesterday:
+                "Ontem",
+
+            tomHappy:
+                "😊 Tom está feliz",
+
+            recognitions:
+                "Reconhecimentos:",
+
+            noResults:
+                "Nenhum reconhecimento encontrado."
+
         }
 
     };
@@ -940,167 +1124,139 @@
        ========================= */
 
     const languageSelector =
-        document.getElementById("languageSelector");
+        document.getElementById(
+            "languageSelector"
+        );
+
 
     function setLanguage(language) {
 
-        const t = translations[language];
+        const t =
+            translations[language];
 
-        document.documentElement.lang = language;
 
-        document.getElementById("instructionsTitle").textContent =
+        document.documentElement.lang =
+            language;
+
+
+        /* INSTRUCCIONES */
+
+        document.getElementById(
+            "instructionsTitle"
+        ).textContent =
             t.instructionsTitle;
 
-        document.getElementById("instructionsList").innerHTML =
+
+        document.getElementById(
+            "instructionsList"
+        ).innerHTML =
             t.instructions
-                .map(item => `<li>${item}</li>`)
+                .map(
+                    item => `<li>${item}</li>`
+                )
                 .join("");
 
-        document.getElementById("wallTitle").textContent =
+
+        /* MURO */
+
+        document.getElementById(
+            "wallTitle"
+        ).textContent =
             t.wallTitle;
 
-        document.getElementById("wallSubtitle").textContent =
+
+        document.getElementById(
+            "wallSubtitle"
+        ).textContent =
             t.wallSubtitle;
 
-        document.getElementById("gratitudeButton").textContent =
+
+        document.getElementById(
+            "gratitudeButton"
+        ).textContent =
             t.gratitudeButton;
 
-        document.getElementById("searchInput").placeholder =
+
+        document.getElementById(
+            "searchInput"
+        ).placeholder =
             t.searchPlaceholder;
 
-        document.getElementById("tomStatus").textContent =
+
+        /* TOM */
+
+        document.getElementById(
+            "tomStatus"
+        ).textContent =
             t.tomHappy;
 
-        document.getElementById("recognitionsLabel").textContent =
+
+        document.getElementById(
+            "recognitionsLabel"
+        ).textContent =
             t.recognitions;
 
-        document.querySelectorAll(".card-recipient")
-            .forEach(element => {
 
-                const text = element.textContent;
+        /* =========================
+           TARJETAS
 
-                const name = text
-                    .replace(/^.*?:\s*/, "");
+           IMPORTANTE:
+           Los nombres se toman
+           directamente de:
+           data-recipient
+           data-from
 
-                element.textContent =
-                    `${t.to} ${name}`;
-            });
+           Nunca se traducen ni
+           se vuelven a procesar.
+           ========================= */
 
-        document.querySelectorAll(".card-from")
-            .forEach(element => {
+        document.querySelectorAll(
+            ".gratitude-card"
+        ).forEach(card => {
 
-                const text = element.textContent;
+            const recipient =
+                card.dataset.recipient || "";
 
-                const name = text
-                    .replace(/^.*?:\s*/, "");
-
-                element.textContent =
-                    `${t.from} ${name}`;
-            });
-
-        localStorage.setItem(
-            "saveTheTurkeyLanguage",
-            language
-        );
-    }
+            const from =
+                card.dataset.from || "";
 
 
-    /* =========================
-       IDIOMA INICIAL
-       ========================= */
+            const recipientElement =
+                card.querySelector(
+                    ".card-recipient"
+                );
 
-    const savedLanguage =
-        localStorage.getItem(
-            "saveTheTurkeyLanguage"
-        ) || "es";
-
-    languageSelector.value = savedLanguage;
-
-    setLanguage(savedLanguage);
-
-    languageSelector.addEventListener(
-        "change",
-        function() {
-            setLanguage(this.value);
-        }
-    );
+            const fromElement =
+                card.querySelector(
+                    ".card-from"
+                );
 
 
-    /* =========================
-       BUSCADOR
-       ========================= */
+            if (recipientElement) {
 
-    const searchInput =
-        document.getElementById("searchInput");
-
-    const cards =
-        document.querySelectorAll(".gratitude-card");
-
-    searchInput.addEventListener(
-        "input",
-        function() {
-
-            const searchValue =
-                this.value
-                    .toLowerCase()
-                    .trim();
-
-            let visibleCards = 0;
-
-            cards.forEach(card => {
-
-                const name =
-                    card.dataset.name
-                        .toLowerCase();
-
-                if (
-                    searchValue === "" ||
-                    name.includes(searchValue)
-                ) {
-                    card.style.display = "";
-                    visibleCards++;
-                } else {
-                    card.style.display = "none";
-                }
-
-            });
-
-            let noResults =
-                document.getElementById("noResults");
-
-            if (
-                visibleCards === 0 &&
-                searchValue !== ""
-            ) {
-
-                if (!noResults) {
-
-                    noResults =
-                        document.createElement("div");
-
-                    noResults.id = "noResults";
-                    noResults.className =
-                        "no-results";
-
-                    noResults.textContent =
-                        "No se encontraron reconocimientos.";
-
-                    document
-                        .getElementById("gratitudeWall")
-                        .appendChild(noResults);
-                }
-
-            } else if (noResults) {
-
-                noResults.remove();
+                recipientElement.textContent =
+                    `${t.to} ${recipient}`;
 
             }
 
-        }
-    );
 
-</script>
+            if (fromElement) {
 
-</body>
-</html>
-```
+                fromElement.textContent =
+                    `${t.from} ${from}`;
+
+            }
+
+        });
+
+
+        /* =========================
+           FECHAS DE LAS TARJETAS
+           ========================= */
+
+        document.querySelectorAll(
+            ".card-date"
+        ).forEach(element => {
+
+            const dateType =
+                element.dataset.dateType;
