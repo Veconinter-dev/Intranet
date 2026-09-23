@@ -740,7 +740,10 @@
 
                 <div class="card-bottom">
 
-                    <span class="card-category">
+                    <span
+                        class="card-category"
+                        data-category="company"
+                    >
                         💛 Agradecimiento
                     </span>
 
@@ -790,7 +793,10 @@
 
                 <div class="card-bottom">
 
-                    <span class="card-category">
+                    <span
+                        class="card-category"
+                        data-category="coworker"
+                    >
                         ❤️ Compañero
                     </span>
 
@@ -840,7 +846,10 @@
 
                 <div class="card-bottom">
 
-                    <span class="card-category">
+                    <span
+                        class="card-category"
+                        data-category="positive"
+                    >
                         ✨ Acción positiva
                     </span>
 
@@ -890,7 +899,10 @@
 
                 <div class="card-bottom">
 
-                    <span class="card-category">
+                    <span
+                        class="card-category"
+                        data-category="company"
+                    >
                         💛 Agradecimiento
                     </span>
 
@@ -940,7 +952,10 @@
 
                 <div class="card-bottom">
 
-                    <span class="card-category">
+                    <span
+                        class="card-category"
+                        data-category="coworker"
+                    >
                         ❤️ Compañero
                     </span>
 
@@ -971,6 +986,7 @@
     const gratitudeFormUrl =
         "https://brematlocal.sharepoint.com/sites/GestinHumana/_layouts/15/listform.aspx?PageType=8&ListId=%7B52E9AFEA-9335-47FF-A7F4-68ED606F5536%7D&RootFolder=%2Fsites%2FGestinHumana%2FLists%2FDa%20de%20Accin%20de%20Gracias%2F&Source=https%3A%2F%2Fbrematlocal.sharepoint.com%2Fsites%2FGestinHumana%2FLists%2FDa%2520de%2520Accin%2520de%2520Gracias%2FAllItems.aspx%3Fviewid%3Dae346730%252Defdd%252D430e%252Dae03%252Deb2d4b079c6a%26env%3DWebViewList%26npsAction%3DcreateList&ContentTypeId=0x01001DF0FF2BD68D34478DC6B8F3A917880E";
 
+
     document.getElementById("gratitudeButton").href =
         gratitudeFormUrl;
 
@@ -981,16 +997,20 @@
 
     const translations = {
 
+        /* =================================================
+           ESPAÑOL
+           ================================================= */
+
         es: {
 
             instructionsTitle:
                 "ℹ️ ¿Cómo participar?",
 
             instructions: [
-                'Puedes dejar un mensaje de agradecimiento para Veconinter y/o a un amigo al que quieras agradecer por este año 2025.',
+                "Puedes dejar un mensaje de agradecimiento para Veconinter y/o a un amigo al que quieras agradecer por este año 2025.",
                 'Haz clic en "Dejar un agradecimiento" > Se abrirá el formulario en una nueva pestaña.',
                 'Selecciona el idioma, fondo de tu tarjeta, el nombre del destinatario y escribe tu agradecimiento. Luego haz clic en "Guardar" y listo.',
-                'El talento que seleccionaste recibirá una notificación con el enlace para buscar su agradecimiento en el muro interactivo.'
+                "El talento que seleccionaste recibirá una notificación con el enlace para buscar su agradecimiento en el muro interactivo."
             ],
 
             nutrition:
@@ -1032,11 +1052,24 @@
             recognitions:
                 "Reconocimientos:",
 
+            categoryCompany:
+                "💛 Agradecimiento",
+
+            categoryCoworker:
+                "❤️ Compañero",
+
+            categoryPositive:
+                "✨ Acción positiva",
+
             noResults:
                 "No se encontraron reconocimientos."
 
         },
 
+
+        /* =================================================
+           ENGLISH
+           ================================================= */
 
         en: {
 
@@ -1044,10 +1077,10 @@
                 "ℹ️ How to participate?",
 
             instructions: [
-                'You can leave a thank you message for Veconinter and/or a friend you would like to thank for this year 2025.',
+                "You can leave a thank-you message for Veconinter and/or for a friend you would like to thank for this year 2025.",
                 'Click "Leave a thank you" > The form will open in a new tab.',
-                'Select the language, background for your card, the recipient\'s name, and write your message of thanks. Then click "Save" and you\'re done.',
-                'The talent you selected will receive a notification with the link to search for your thank you note on the interactive wall.'
+                'Select the language, the background for your card, the recipient\'s name, and write your thank-you message. Then click "Save" and you\'re done.',
+                "The person you selected will receive a notification with a link to find their thank-you message on the interactive wall."
             ],
 
             nutrition:
@@ -1089,11 +1122,24 @@
             recognitions:
                 "Recognitions:",
 
+            categoryCompany:
+                "💛 Appreciation",
+
+            categoryCoworker:
+                "❤️ Colleague",
+
+            categoryPositive:
+                "✨ Positive action",
+
             noResults:
                 "No recognitions found."
 
         },
 
+
+        /* =================================================
+           PORTUGUÊS
+           ================================================= */
 
         pt: {
 
@@ -1101,10 +1147,10 @@
                 "ℹ️ Como participar?",
 
             instructions: [
-                'Você pode deixar uma mensagem de agradecimento para o Veconinter e/ou para um amigo que você queira agradecer por este ano de 2025.',
+                "Você pode deixar uma mensagem de agradecimento para o Veconinter e/ou para um amigo que você queira agradecer por este ano de 2025.",
                 'Clique em "Deixar um agradecimento" > O formulário será aberto em uma nova aba.',
-                'Selecione o idioma, fundo do seu cartão, o nome do destinatário e escreva seu agradecimento, clique em "Salvar" e pronto.',
-                'O talento que você selecionou receberá uma notificação com o link para encontrar seu agradecimento no mural interativo.'
+                'Selecione o idioma, o fundo do seu cartão, o nome do destinatário e escreva sua mensagem de agradecimento. Depois clique em "Salvar" e pronto.',
+                "A pessoa que você selecionou receberá uma notificação com um link para encontrar sua mensagem de agradecimento no mural interativo."
             ],
 
             nutrition:
@@ -1146,6 +1192,15 @@
             recognitions:
                 "Reconhecimentos:",
 
+            categoryCompany:
+                "💛 Agradecimento",
+
+            categoryCoworker:
+                "❤️ Colega",
+
+            categoryPositive:
+                "✨ Ação positiva",
+
             noResults:
                 "Nenhum reconhecimento encontrado."
 
@@ -1155,31 +1210,41 @@
 
 
     /* =====================================================
-       CAMBIO DE IDIOMA
+       SELECTOR DE IDIOMA
        ===================================================== */
 
     const languageSelector =
-        document.getElementById("languageSelector");
+        document.getElementById(
+            "languageSelector"
+        );
 
+
+    /* =====================================================
+       FUNCIÓN CAMBIO DE IDIOMA
+       ===================================================== */
 
     function setLanguage(language) {
 
-        const t = translations[language];
+        const t =
+            translations[language];
+
 
         if (!t) {
             return;
         }
 
 
-        /* Idioma HTML */
+        /* =================================================
+           IDIOMA DEL DOCUMENTO
+           ================================================= */
 
         document.documentElement.lang =
             language;
 
 
-        /* -------------------------
-           INSTRUCCIONES
-           ------------------------- */
+        /* =================================================
+           COMO PARTICIPAR
+           ================================================= */
 
         document.getElementById(
             "instructionsTitle"
@@ -1187,19 +1252,38 @@
             t.instructionsTitle;
 
 
-        document.getElementById(
-            "instructionsList"
-        ).innerHTML =
-            t.instructions
-                .map(function(item) {
-                    return "<li>" + item + "</li>";
-                })
-                .join("");
+        const instructionsList =
+            document.getElementById(
+                "instructionsList"
+            );
 
 
-        /* -------------------------
+        instructionsList.innerHTML =
+            "";
+
+
+        t.instructions.forEach(
+            function(item) {
+
+                const li =
+                    document.createElement(
+                        "li"
+                    );
+
+                li.textContent =
+                    item;
+
+                instructionsList.appendChild(
+                    li
+                );
+
+            }
+        );
+
+
+        /* =================================================
            TOM
-           ------------------------- */
+           ================================================= */
 
         document.getElementById(
             "nutritionLabel"
@@ -1231,9 +1315,9 @@
             t.recognitions;
 
 
-        /* -------------------------
+        /* =================================================
            MURO
-           ------------------------- */
+           ================================================= */
 
         document.getElementById(
             "wallTitle"
@@ -1259,97 +1343,166 @@
             t.searchPlaceholder;
 
 
-        /* -------------------------
+        /* =================================================
            TARJETAS
-
-           Los nombres se obtienen
-           siempre desde data-*.
-
-           NO se vuelve a leer
-           el texto visible.
-           ------------------------- */
+           
+           IMPORTANTE:
+           Los nombres y mensajes NO se traducen.
+           Solo se traducen las etiquetas.
+           ================================================= */
 
         document
-            .querySelectorAll(".gratitude-card")
-            .forEach(function(card) {
+            .querySelectorAll(
+                ".gratitude-card"
+            )
+            .forEach(
+                function(card) {
 
-                const recipient =
-                    card.getAttribute(
-                        "data-recipient"
-                    ) || "";
-
-                const from =
-                    card.getAttribute(
-                        "data-from"
-                    ) || "";
+                    const recipient =
+                        card.getAttribute(
+                            "data-recipient"
+                        ) || "";
 
 
-                const recipientElement =
-                    card.querySelector(
-                        ".card-recipient"
-                    );
+                    const from =
+                        card.getAttribute(
+                            "data-from"
+                        ) || "";
 
 
-                const fromElement =
-                    card.querySelector(
-                        ".card-from"
-                    );
+                    const recipientElement =
+                        card.querySelector(
+                            ".card-recipient"
+                        );
 
 
-                if (recipientElement) {
+                    const fromElement =
+                        card.querySelector(
+                            ".card-from"
+                        );
 
-                    recipientElement.textContent =
-                        t.to + " " + recipient;
+
+                    if (recipientElement) {
+
+                        recipientElement.textContent =
+                            t.to +
+                            " " +
+                            recipient;
+
+                    }
+
+
+                    if (fromElement) {
+
+                        fromElement.textContent =
+                            t.from +
+                            " " +
+                            from;
+
+                    }
 
                 }
+            );
 
 
-                if (fromElement) {
+        /* =================================================
+           CATEGORÍAS
+           ================================================= */
 
-                    fromElement.textContent =
-                        t.from + " " + from;
+        document
+            .querySelectorAll(
+                ".card-category"
+            )
+            .forEach(
+                function(element) {
+
+                    const category =
+                        element.getAttribute(
+                            "data-category"
+                        );
+
+
+                    if (
+                        category ===
+                        "company"
+                    ) {
+
+                        element.textContent =
+                            t.categoryCompany;
+
+                    }
+
+
+                    else if (
+                        category ===
+                        "coworker"
+                    ) {
+
+                        element.textContent =
+                            t.categoryCoworker;
+
+                    }
+
+
+                    else if (
+                        category ===
+                        "positive"
+                    ) {
+
+                        element.textContent =
+                            t.categoryPositive;
+
+                    }
 
                 }
+            );
 
-            });
 
-
-        /* -------------------------
+        /* =================================================
            FECHAS
-           ------------------------- */
+           ================================================= */
 
         document
-            .querySelectorAll(".card-date")
-            .forEach(function(element) {
+            .querySelectorAll(
+                ".card-date"
+            )
+            .forEach(
+                function(element) {
 
-                const dateType =
-                    element.getAttribute(
-                        "data-date"
-                    );
+                    const dateType =
+                        element.getAttribute(
+                            "data-date"
+                        );
 
 
-                if (dateType === "today") {
+                    if (
+                        dateType ===
+                        "today"
+                    ) {
 
-                    element.textContent =
-                        t.today;
+                        element.textContent =
+                            t.today;
+
+                    }
+
+
+                    else if (
+                        dateType ===
+                        "yesterday"
+                    ) {
+
+                        element.textContent =
+                            t.yesterday;
+
+                    }
 
                 }
-
-                else if (
-                    dateType === "yesterday"
-                ) {
-
-                    element.textContent =
-                        t.yesterday;
-
-                }
-
-            });
+            );
 
 
-        /* -------------------------
-           MENSAJE SIN RESULTADOS
-           ------------------------- */
+        /* =================================================
+           SIN RESULTADOS
+           ================================================= */
 
         const noResults =
             document.getElementById(
@@ -1365,9 +1518,9 @@
         }
 
 
-        /* -------------------------
+        /* =================================================
            GUARDAR IDIOMA
-           ------------------------- */
+           ================================================= */
 
         localStorage.setItem(
             "saveTheTurkeyLanguage",
@@ -1444,7 +1597,8 @@
                     .trim();
 
 
-            let visibleCards = 0;
+            let visibleCards =
+                0;
 
 
             cards.forEach(
@@ -1502,20 +1656,18 @@
                             "div"
                         );
 
+
                     noResults.id =
                         "noResults";
+
 
                     noResults.className =
                         "no-results";
 
 
-                    const currentLanguage =
-                        languageSelector.value;
-
-
                     noResults.textContent =
                         translations[
-                            currentLanguage
+                            languageSelector.value
                         ].noResults;
 
 
