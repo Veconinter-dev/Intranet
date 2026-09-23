@@ -1,1928 +1,1106 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Save the Turkey</title>
+<title>Save the Turkey!</title>
 
-    <style>
+<style>
+    * {
+        box-sizing: border-box;
+    }
 
-        * {
-            box-sizing: border-box;
+    body {
+        margin: 0;
+        padding: 20px;
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: #f7f8fa;
+        color: #333;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 1600px;
+        margin: 0 auto;
+    }
+
+    /* =========================
+       IDIOMA
+       ========================= */
+
+    .language-selector {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 12px;
+    }
+
+    .language-selector select {
+        border: 1px solid #d7dce2;
+        border-radius: 8px;
+        background: white;
+        padding: 7px 12px;
+        font-size: 13px;
+        color: #444;
+        cursor: pointer;
+        outline: none;
+    }
+
+    /* =========================
+       INSTRUCCIONES
+       ========================= */
+
+    .instructions-section {
+        background: white;
+        border: 1px solid #e2e6ea;
+        border-radius: 12px;
+        margin-bottom: 14px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        overflow: hidden;
+    }
+
+    .instructions-section summary {
+        cursor: pointer;
+        list-style: none;
+        padding: 13px 16px;
+        font-size: 15px;
+        font-weight: 700;
+        color: #444;
+        user-select: none;
+    }
+
+    .instructions-section summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .instructions-section summary::before {
+        content: "▸";
+        display: inline-block;
+        margin-right: 8px;
+        transition: transform 0.2s ease;
+    }
+
+    .instructions-section[open] summary::before {
+        transform: rotate(90deg);
+    }
+
+    .instructions-content {
+        padding: 0 18px 16px 18px;
+        border-top: 1px solid #eef0f2;
+    }
+
+    .instructions-content ol {
+        margin: 14px 0 0 20px;
+        padding: 0;
+    }
+
+    .instructions-content li {
+        margin-bottom: 9px;
+        line-height: 1.45;
+        font-size: 13px;
+        color: #555;
+    }
+
+    /* =========================
+       TOM
+       ========================= */
+
+    .tom-section {
+        background: white;
+        border-radius: 14px;
+        padding: 12px 16px;
+        margin-bottom: 16px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        border: 1px solid #e7e9ec;
+    }
+
+    .tom-header {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+    }
+
+    .tom-image {
+        width: 82px;
+        height: 82px;
+        object-fit: contain;
+        flex-shrink: 0;
+    }
+
+    .tom-info {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .tom-title-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 8px;
+    }
+
+    .tom-name {
+        font-size: 19px;
+        font-weight: 800;
+        color: #333;
+    }
+
+    .tom-status {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 9px;
+        border-radius: 999px;
+        background: #eaf7ed;
+        color: #27853d;
+        font-size: 11px;
+        font-weight: 700;
+    }
+
+    .tom-bars {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        width: 100%;
+    }
+
+    .tom-bar-item {
+        min-width: 0;
+    }
+
+    .tom-bar-label {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 11px;
+        font-weight: 600;
+        color: #555;
+        margin-bottom: 4px;
+    }
+
+    .tom-bar-value {
+        font-weight: 700;
+        color: #333;
+    }
+
+    .progress-track {
+        width: 100%;
+        height: 9px;
+        background: #eceff2;
+        border-radius: 999px;
+        overflow: hidden;
+    }
+
+    .progress-fill {
+        height: 100%;
+        border-radius: 999px;
+        transition: width 0.4s ease;
+    }
+
+    .nutrition-fill {
+        background: #e5a13a;
+    }
+
+    .happiness-fill {
+        background: #df7182;
+    }
+
+    .energy-fill {
+        background: #8a9f61;
+    }
+
+    .tom-footer {
+        margin-top: 8px;
+        font-size: 11px;
+        color: #777;
+        text-align: right;
+    }
+
+    /* =========================
+       CABECERA DEL MURO
+       ========================= */
+
+    .wall-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 12px;
+        flex-wrap: wrap;
+    }
+
+    .wall-title {
+        margin: 0;
+        font-size: 22px;
+        font-weight: 800;
+        color: #333;
+    }
+
+    .wall-subtitle {
+        margin: 2px 0 0;
+        font-size: 12px;
+        color: #777;
+    }
+
+    .gratitude-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 9px 14px;
+        border-radius: 8px;
+        background: #f0b429;
+        color: white;
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: 700;
+        white-space: nowrap;
+        transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+
+    .gratitude-button:hover {
+        opacity: 0.9;
+        transform: translateY(-1px);
+    }
+
+    /* =========================
+       BUSCADOR
+       ========================= */
+
+    .search-container {
+        margin-bottom: 14px;
+    }
+
+    .search-input {
+        width: 100%;
+        max-width: 380px;
+        padding: 9px 12px;
+        border: 1px solid #d9dde2;
+        border-radius: 8px;
+        background: white;
+        font-size: 12px;
+        outline: none;
+    }
+
+    .search-input:focus {
+        border-color: #b9c0c8;
+    }
+
+    /* =========================
+       MURO
+       ========================= */
+
+    .wall {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 14px;
+    }
+
+    /* =========================
+       TARJETAS
+       ========================= */
+
+    .gratitude-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid #e3e6e9;
+        box-shadow: 0 2px 7px rgba(0,0,0,0.05);
+        min-width: 0;
+    }
+
+    .card-background {
+        min-height: 250px;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .card-top {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .card-recipient {
+        font-size: 13px;
+        font-weight: 800;
+        color: #333;
+    }
+
+    .card-from {
+        font-size: 11px;
+        color: #666;
+    }
+
+    .card-message {
+        margin: 14px 0;
+        font-size: 13px;
+        line-height: 1.5;
+        color: #444;
+        word-break: break-word;
+    }
+
+    .card-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        font-size: 10px;
+        color: #777;
+    }
+
+    .card-category {
+        font-weight: 700;
+    }
+
+    /* =========================
+       FONDOS DE EJEMPLO
+       ========================= */
+
+    .fondo1 {
+        background: linear-gradient(135deg, #fff8e8, #fffdf7);
+    }
+
+    .fondo2 {
+        background: linear-gradient(135deg, #fff0f3, #fffafb);
+    }
+
+    .fondo3 {
+        background: linear-gradient(135deg, #eef6e8, #fbfdf9);
+    }
+
+    /* =========================
+       SIN RESULTADOS
+       ========================= */
+
+    .no-results {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 30px 15px;
+        background: white;
+        border-radius: 10px;
+        border: 1px solid #e5e7ea;
+        color: #777;
+        font-size: 13px;
+    }
+
+    /* =========================
+       RESPONSIVE
+       ========================= */
+
+    @media (max-width: 1100px) {
+        .wall {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+    }
+
+    @media (max-width: 850px) {
+        .wall {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
         }
 
+        .tom-bars {
+            gap: 10px;
+        }
+    }
+
+    @media (max-width: 650px) {
         body {
-            margin: 0;
-
-            font-family:
-                "Segoe UI",
-                Arial,
-                sans-serif;
-
-            background:
-                radial-gradient(
-                    circle at top,
-                    #fff8ed 0%,
-                    #f6ead8 45%,
-                    #ead4b8 100%
-                );
-
-            color: #4b2e1f;
-
-            min-height: 100vh;
+            padding: 12px;
         }
 
-
-        .container {
-
-            width: min(1250px, 95%);
-
-            margin: 0 auto;
-
-            padding: 18px 0 40px;
-
+        .wall {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
         }
 
-
-        /* =========================
-           SELECTOR DE IDIOMA
-        ========================= */
-
-        .language-bar {
-
-            display: flex;
-
-            justify-content: flex-end;
-
-            margin-bottom: 8px;
-
-        }
-
-        .language-select {
-
-            border: 1px solid #d8b28a;
-
-            background: rgba(
-                255,
-                250,
-                242,
-                0.95
-            );
-
-            color: #704225;
-
-            border-radius: 18px;
-
-            padding: 5px 10px;
-
-            font-size: 11px;
-
-            font-weight: 700;
-
-            cursor: pointer;
-
-            outline: none;
-
-        }
-
-        .language-select:hover {
-
-            border-color: #b97945;
-
-        }
-
-
-        /* =========================
-           TOM - CABECERA COMPACTA
-        ========================= */
-
-        .tom-section {
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 20px;
-
-            background:
-                rgba(
-                    255,
-                    250,
-                    242,
-                    0.88
-                );
-
-            border:
-                1px solid #d8b28a;
-
-            border-radius: 18px;
-
-            padding: 10px 18px;
-
-            box-shadow:
-                0 5px 16px
-                rgba(
-                    92,
-                    54,
-                    25,
-                    0.10
-                );
-
-        }
-
-
-        /* =========================
-           TOM
-        ========================= */
-
-        .tom-character {
-
-            flex: 0 0 90px;
-
-            text-align: center;
-
+        .tom-header {
+            align-items: flex-start;
         }
 
         .tom-image {
-
-            width: 82px;
-
-            height: auto;
-
-            display: block;
-
-            margin: 0 auto;
-
-            filter:
-                drop-shadow(
-                    0 5px 5px
-                    rgba(
-                        0,
-                        0,
-                        0,
-                        0.14
-                    )
-                );
-
+            width: 68px;
+            height: 68px;
         }
 
-        .tom-status {
-
-            display: inline-block;
-
-            margin-top: 2px;
-
-            padding: 3px 8px;
-
-            border-radius: 20px;
-
-            background: #f2dfc5;
-
-            color: #704225;
-
-            font-weight: 700;
-
-            font-size: 10px;
-
-            white-space: nowrap;
-
+        .tom-bars {
+            grid-template-columns: 1fr;
+            gap: 7px;
         }
 
-
-        /* =========================
-           INFORMACIÓN TOM
-        ========================= */
-
-        .tom-info {
-
-            flex: 1;
-
-            min-width: 0;
-
-        }
-
-
-        /* =========================
-           BARRAS
-        ========================= */
-
-        .bars {
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(3, 1fr);
-
-            gap: 18px;
-
-            width: 100%;
-
-        }
-
-        .bar-item {
-
-            margin: 0;
-
-            text-align: left;
-
-        }
-
-        .bar-header {
-
-            display: flex;
-
-            justify-content: space-between;
-
-            align-items: center;
-
-            margin-bottom: 4px;
-
-            font-weight: 700;
-
-            font-size: 12px;
-
-        }
-
-        .bar-value {
-
-            font-weight: 800;
-
-            color: #743d20;
-
-        }
-
-        .bar-background {
-
-            width: 100%;
-
-            height: 9px;
-
-            background: #eadbc8;
-
-            border-radius: 20px;
-
-            overflow: hidden;
-
-        }
-
-        .bar-fill {
-
-            height: 100%;
-
-            border-radius: 20px;
-
-            transition:
-                width 0.8s ease;
-
-        }
-
-        .nutrition {
-
-            background: #d59a55;
-
-        }
-
-        .happiness {
-
-            background: #d56f73;
-
-        }
-
-        .energy {
-
-            background: #9a8b61;
-
-        }
-
-
-        /* =========================
-           CONTADOR
-        ========================= */
-
-        .counter {
-
-            margin-top: 7px;
-
-            display: inline-flex;
-
-            align-items: center;
-
-            gap: 5px;
-
-            background: #fff;
-
-            border:
-                1px solid #dfc5a8;
-
-            padding: 4px 10px;
-
-            border-radius: 20px;
-
-            font-weight: 700;
-
-            font-size: 11px;
-
-        }
-
-        .counter-number {
-
-            font-size: 13px;
-
-            color: #8b4c25;
-
-        }
-
-
-        /* =========================
-           MURO
-        ========================= */
-
-        .wall-section {
-
-            margin-top: 20px;
-
-        }
-
-        .wall-title {
-
-            text-align: center;
-
-            margin-bottom: 10px;
-
-        }
-
-        .wall-title h2 {
-
-            margin: 0;
-
-            font-size: 28px;
-
-            color: #743d20;
-
-        }
-
-        .wall-title p {
-
-            margin: 3px 0 0;
-
-            color: #8a6248;
-
-            font-size: 13px;
-
-        }
-
-
-        /* =========================
-           BOTÓN AGRADECIMIENTO
-        ========================= */
-
-        .gratitude-action {
-
-            display: flex;
-
-            justify-content: center;
-
-            margin: 12px auto 14px;
-
+        .wall-header {
+            align-items: flex-start;
         }
 
         .gratitude-button {
-
-            display: inline-flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            gap: 7px;
-
-            padding: 8px 16px;
-
-            border: 1px solid #b97945;
-
-            border-radius: 22px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #c9783f,
-                    #a9572d
-                );
-
-            color: #ffffff;
-
-            font-size: 12px;
-
-            font-weight: 800;
-
-            text-decoration: none;
-
-            cursor: pointer;
-
-            box-shadow:
-                0 4px 10px
-                rgba(
-                    120,
-                    63,
-                    30,
-                    0.18
-                );
-
-            transition:
-                transform 0.2s ease,
-                box-shadow 0.2s ease;
-
-        }
-
-        .gratitude-button:hover {
-
-            transform:
-                translateY(-1px);
-
-            box-shadow:
-                0 6px 14px
-                rgba(
-                    120,
-                    63,
-                    30,
-                    0.25
-                );
-
-        }
-
-
-        /* =========================
-           BUSCADOR
-        ========================= */
-
-        .search-box {
-
-            max-width: 500px;
-
-            margin: 0 auto 16px;
-
-        }
-
-        .search-box input {
-
             width: 100%;
-
-            padding: 9px 15px;
-
-            border-radius: 22px;
-
-            border:
-                1px solid #d8b28a;
-
-            background: #fffaf3;
-
-            font-size: 13px;
-
-            outline: none;
-
         }
+    }
 
-        .search-box input:focus {
-
-            border-color: #b97945;
-
-            box-shadow:
-                0 0 0 3px
-                rgba(
-                    185,
-                    121,
-                    69,
-                    0.10
-                );
-
-        }
-
-
-        /* =========================
-           MURO DE TARJETAS
-        ========================= */
-
+    @media (max-width: 430px) {
         .wall {
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(
-                    5,
-                    minmax(0, 1fr)
-                );
-
-            gap: 14px;
-
+            grid-template-columns: 1fr;
         }
 
-
-        /* =========================
-           TARJETA
-        ========================= */
-
-        .card {
-
-            background:
-                rgba(
-                    255,
-                    250,
-                    242,
-                    0.96
-                );
-
-            border:
-                1px solid #ddc2a2;
-
-            border-radius: 15px;
-
-            padding: 13px;
-
-            box-shadow:
-                0 4px 11px
-                rgba(
-                    86,
-                    52,
-                    28,
-                    0.09
-                );
-
-            transition:
-                transform 0.2s ease,
-                box-shadow 0.2s ease;
-
-            min-width: 0;
-
+        .tom-header {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
 
-        .card:hover {
-
-            transform:
-                translateY(-2px);
-
-            box-shadow:
-                0 7px 16px
-                rgba(
-                    86,
-                    52,
-                    28,
-                    0.14
-                );
-
+        .tom-info {
+            width: 100%;
         }
 
-        .card-icon {
-
-            font-size: 23px;
-
-            margin-bottom: 5px;
-
+        .tom-title-row {
+            justify-content: center;
         }
 
-        .card-to {
-
-            font-weight: 800;
-
-            color: #743d20;
-
-            margin-bottom: 7px;
-
-            font-size: 13px;
-
+        .tom-footer {
+            text-align: center;
         }
-
-        .card-message {
-
-            background: #f6eadb;
-
-            border-radius: 10px;
-
-            padding: 10px;
-
-            line-height: 1.35;
-
-            min-height: 72px;
-
-            font-size: 12px;
-
-        }
-
-        .card-from {
-
-            margin-top: 8px;
-
-            font-size: 11px;
-
-            color: #765b48;
-
-            text-align: right;
-
-        }
-
-        .card-date {
-
-            margin-top: 2px;
-
-            font-size: 10px;
-
-            color: #9a7b63;
-
-            text-align: right;
-
-        }
-
-
-        /* =========================
-           INSTRUCCIONES
-        ========================= */
-
-        .instructions-section {
-
-            margin-top: 22px;
-
-            background:
-                rgba(
-                    255,
-                    250,
-                    242,
-                    0.82
-                );
-
-            border:
-                1px solid #ddc2a2;
-
-            border-radius: 14px;
-
-            overflow: hidden;
-
-        }
-
-        .instructions-summary {
-
-            cursor: pointer;
-
-            padding: 10px 14px;
-
-            font-size: 12px;
-
-            font-weight: 800;
-
-            color: #743d20;
-
-            user-select: none;
-
-        }
-
-        .instructions-summary:hover {
-
-            background:
-                rgba(
-                    246,
-                    234,
-                    219,
-                    0.65
-                );
-
-        }
-
-        .instructions-content {
-
-            padding:
-                0 16px
-                12px
-                16px;
-
-        }
-
-        .instructions-content ol {
-
-            margin:
-                5px 0 0
-                20px;
-
-            padding: 0;
-
-        }
-
-        .instructions-content li {
-
-            margin-bottom: 7px;
-
-            color: #765b48;
-
-            font-size: 11px;
-
-            line-height: 1.45;
-
-        }
-
-
-        /* =========================
-           4 TARJETAS
-        ========================= */
-
-        @media (max-width: 1100px) {
-
-            .wall {
-
-                grid-template-columns:
-                    repeat(
-                        4,
-                        minmax(0, 1fr)
-                    );
-
-            }
-
-        }
-
-
-        /* =========================
-           3 TARJETAS
-        ========================= */
-
-        @media (max-width: 850px) {
-
-            .wall {
-
-                grid-template-columns:
-                    repeat(
-                        3,
-                        minmax(0, 1fr)
-                    );
-
-            }
-
-            .bars {
-
-                gap: 10px;
-
-            }
-
-        }
-
-
-        /* =========================
-           TABLET
-        ========================= */
-
-        @media (max-width: 650px) {
-
-            .container {
-
-                width: 92%;
-
-                padding-top: 12px;
-
-            }
-
-            .tom-section {
-
-                gap: 12px;
-
-                padding: 8px 12px;
-
-            }
-
-            .tom-character {
-
-                flex: 0 0 75px;
-
-            }
-
-            .tom-image {
-
-                width: 68px;
-
-            }
-
-            .bars {
-
-                grid-template-columns: 1fr;
-
-                gap: 7px;
-
-            }
-
-            .bar-header {
-
-                font-size: 11px;
-
-            }
-
-            .wall {
-
-                grid-template-columns:
-                    repeat(
-                        2,
-                        minmax(0, 1fr)
-                    );
-
-                gap: 10px;
-
-            }
-
-            .wall-title h2 {
-
-                font-size: 25px;
-
-            }
-
-        }
-
-
-        /* =========================
-           TELÉFONO
-        ========================= */
-
-        @media (max-width: 430px) {
-
-            .tom-section {
-
-                flex-direction: column;
-
-                text-align: center;
-
-            }
-
-            .tom-character {
-
-                flex: none;
-
-            }
-
-            .tom-image {
-
-                width: 75px;
-
-            }
-
-            .tom-info {
-
-                width: 100%;
-
-            }
-
-            .wall {
-
-                grid-template-columns: 1fr;
-
-            }
-
-        }
-
-    </style>
-
+    }
+</style>
 </head>
-
 
 <body>
 
-
 <div class="container">
-
 
     <!-- =========================
          SELECTOR DE IDIOMA
-    ========================== -->
+         ========================= -->
 
-    <div class="language-bar">
-
-        <select
-            id="languageSelect"
-            class="language-select"
-            aria-label="Seleccionar idioma"
-        >
-
-            <option value="es">
-                🌐 ES
-            </option>
-
-            <option value="en">
-                🌐 EN
-            </option>
-
-            <option value="pt">
-                🌐 PT
-            </option>
-
+    <div class="language-selector">
+        <select id="languageSelector" aria-label="Language">
+            <option value="es">🌐 ES</option>
+            <option value="en">🌐 EN</option>
+            <option value="pt">🌐 PT</option>
         </select>
-
     </div>
 
+    <!-- =========================
+         COMO PARTICIPAR
+         ========================= -->
+
+    <details class="instructions-section">
+        <summary id="instructionsTitle">
+            ℹ️ ¿Cómo participar?
+        </summary>
+
+        <div class="instructions-content">
+            <ol id="instructionsList"></ol>
+        </div>
+    </details>
 
     <!-- =========================
          TOM
-    ========================== -->
+         ========================= -->
 
     <section class="tom-section">
 
-
-        <!-- TOM -->
-
-        <div class="tom-character">
+        <div class="tom-header">
 
             <img
                 src="Tom.png"
-                alt="Tom, el pavo de Acción de Gracias"
+                alt="Tom"
                 class="tom-image"
             >
 
-            <div
-                class="tom-status"
-                id="tomStatus"
-            >
-                😊 Tom está feliz
-            </div>
+            <div class="tom-info">
 
-        </div>
-
-
-        <!-- INFORMACIÓN TOM -->
-
-        <div class="tom-info">
-
-
-            <!-- BARRAS -->
-
-            <div class="bars">
-
-
-                <div class="bar-item">
-
-                    <div class="bar-header">
-
-                        <span id="nutritionLabel">
-                            🍗 Nutrición
-                        </span>
-
-                        <span class="bar-value">
-                            55%
-                        </span>
-
-                    </div>
-
-                    <div class="bar-background">
-
-                        <div
-                            class="bar-fill nutrition"
-                            style="width:55%;"
-                        >
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="bar-item">
-
-                    <div class="bar-header">
-
-                        <span id="happinessLabel">
-                            ❤️ Felicidad
-                        </span>
-
-                        <span class="bar-value">
-                            55%
-                        </span>
-
-                    </div>
-
-                    <div class="bar-background">
-
-                        <div
-                            class="bar-fill happiness"
-                            style="width:55%;"
-                        >
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="bar-item">
-
-                    <div class="bar-header">
-
-                        <span id="energyLabel">
-                            🪶 Energía
-                        </span>
-
-                        <span class="bar-value">
-                            50%
-                        </span>
-
-                    </div>
-
-                    <div class="bar-background">
-
-                        <div
-                            class="bar-fill energy"
-                            style="width:50%;"
-                        >
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-            </div>
-
-
-            <!-- CONTADOR -->
-
-            <div class="counter">
-
-                💌
-
-                <span>
-
-                    <span id="recognitionsLabel">
-                        Reconocimientos:
-                    </span>
+                <div class="tom-title-row">
+                    <span class="tom-name">🦃 Tom</span>
 
                     <span
-                        class="counter-number"
+                        class="tom-status"
+                        id="tomStatus"
                     >
-                        3
+                        😊 Tom está feliz
                     </span>
+                </div>
 
-                </span>
+                <div class="tom-bars">
+
+                    <div class="tom-bar-item">
+                        <div class="tom-bar-label">
+                            <span>🍗 Nutrición</span>
+                            <span class="tom-bar-value" id="nutritionValue">55%</span>
+                        </div>
+
+                        <div class="progress-track">
+                            <div
+                                class="progress-fill nutrition-fill"
+                                id="nutritionBar"
+                                style="width:55%;"
+                            ></div>
+                        </div>
+                    </div>
+
+                    <div class="tom-bar-item">
+                        <div class="tom-bar-label">
+                            <span>❤️ Felicidad</span>
+                            <span class="tom-bar-value" id="happinessValue">55%</span>
+                        </div>
+
+                        <div class="progress-track">
+                            <div
+                                class="progress-fill happiness-fill"
+                                id="happinessBar"
+                                style="width:55%;"
+                            ></div>
+                        </div>
+                    </div>
+
+                    <div class="tom-bar-item">
+                        <div class="tom-bar-label">
+                            <span>🪶 Energía</span>
+                            <span class="tom-bar-value" id="energyValue">55%</span>
+                        </div>
+
+                        <div class="progress-track">
+                            <div
+                                class="progress-fill energy-fill"
+                                id="energyBar"
+                                style="width:55%;"
+                            ></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="tom-footer">
+                    <span id="recognitionsLabel">Reconocimientos:</span>
+                    <strong id="recognitionsValue">0</strong>
+                </div>
 
             </div>
-
 
         </div>
 
     </section>
-
 
     <!-- =========================
          MURO
-    ========================== -->
+         ========================= -->
 
-    <section class="wall-section">
+    <div class="wall-header">
 
-
-        <div class="wall-title">
-
-            <h2 id="wallTitle">
+        <div>
+            <h1
+                class="wall-title"
+                id="wallTitle"
+            >
                 💌 Muro de Gratitud
-            </h2>
+            </h1>
 
-            <p id="wallSubtitle">
-                Cada reconocimiento ayuda a mantener a Tom fuerte y feliz.
+            <p
+                class="wall-subtitle"
+                id="wallSubtitle"
+            >
+                Un espacio para reconocer y agradecer.
             </p>
-
         </div>
 
+        <a
+            id="gratitudeButton"
+            class="gratitude-button"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            💛 Dejar un agradecimiento
+        </a>
 
-        <!-- =========================
-             BOTÓN AGRADECIMIENTO
-        ========================== -->
+    </div>
 
-        <div class="gratitude-action">
+    <!-- =========================
+         BUSCADOR
+         ========================= -->
 
-            <a
-                id="gratitudeButton"
-                class="gratitude-button"
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                💛 Dejar un agradecimiento
-            </a>
+    <div class="search-container">
 
-        </div>
-
-
-        <!-- =========================
-             BUSCADOR
-        ========================== -->
-
-        <div class="search-box">
-
-            <input
-                type="text"
-                id="searchInput"
-                placeholder="🔎 Buscar por nombre..."
-            >
-
-        </div>
-
-
-        <!-- =========================
-             TARJETAS
-        ========================== -->
-
-        <div
-            class="wall"
-            id="wall"
+        <input
+            type="text"
+            id="searchInput"
+            class="search-input"
+            placeholder="Buscar por nombre..."
         >
 
+    </div>
 
-            <article class="card">
+    <!-- =========================
+         TARJETAS
+         ========================= -->
 
-                <div class="card-icon">
-                    💛
-                </div>
+    <div
+        class="wall"
+        id="gratitudeWall"
+    >
 
-                <div class="card-to">
-                    <span class="label-to">
-                        Para:
-                    </span>
-                    Ana
-                </div>
+        <!-- TARJETA 1 -->
 
-                <div class="card-message">
+        <article
+            class="gratitude-card"
+            data-name="María González"
+        >
+            <div class="card-background fondo1">
 
-                    Gracias por tu apoyo y por estar
-                    siempre dispuesta a ayudar.
+                <div class="card-top">
 
-                </div>
+                    <div class="card-recipient">
+                        Para: María González
+                    </div>
 
-                <div class="card-from">
-
-                    <span class="label-from">
-                        De:
-                    </span>
-                    Pedro
-
-                </div>
-
-                <div class="card-date">
-                    Hoy
-                </div>
-
-            </article>
-
-
-            <article class="card">
-
-                <div class="card-icon">
-                    ❤️
-                </div>
-
-                <div class="card-to">
-
-                    <span class="label-to">
-                        Para:
-                    </span>
-                    Juan
+                    <div class="card-from">
+                        De: Carlos Pérez
+                    </div>
 
                 </div>
 
                 <div class="card-message">
-
-                    Gracias por compartir tus conocimientos
-                    y ayudar al equipo.
-
+                    Gracias por todo el apoyo y la buena energía
+                    durante este año. Tu compromiso hizo una gran
+                    diferencia para todos.
                 </div>
 
-                <div class="card-from">
+                <div class="card-bottom">
 
-                    <span class="label-from">
-                        De:
+                    <span class="card-category">
+                        💛 Agradecimiento
                     </span>
-                    María
 
-                </div>
-
-                <div class="card-date">
-                    Hoy
-                </div>
-
-            </article>
-
-
-            <article class="card">
-
-                <div class="card-icon">
-                    ✨
-                </div>
-
-                <div class="card-to">
-
-                    <span class="label-to">
-                        Para:
+                    <span>
+                        Hoy
                     </span>
-                    Camila
 
                 </div>
-
-                <div class="card-message">
-
-                    Gracias por tu excelente actitud
-                    y por hacer la diferencia.
-
-                </div>
-
-                <div class="card-from">
-
-                    <span class="label-from">
-                        De:
-                    </span>
-                    Luis
-
-                </div>
-
-                <div class="card-date">
-                    Ayer
-                </div>
-
-            </article>
-
-
-            <article class="card">
-
-                <div class="card-icon">
-                    💛
-                </div>
-
-                <div class="card-to">
-
-                    <span class="label-to">
-                        Para:
-                    </span>
-                    Sofía
-
-                </div>
-
-                <div class="card-message">
-
-                    Gracias por tu ayuda y disposición
-                    durante estos días.
-
-                </div>
-
-                <div class="card-from">
-
-                    <span class="label-from">
-                        De:
-                    </span>
-                    Carlos
-
-                </div>
-
-                <div class="card-date">
-                    Ayer
-                </div>
-
-            </article>
-
-
-            <article class="card">
-
-                <div class="card-icon">
-                    ✨
-                </div>
-
-                <div class="card-to">
-
-                    <span class="label-to">
-                        Para:
-                    </span>
-                    Diego
-
-                </div>
-
-                <div class="card-message">
-
-                    Gracias por siempre buscar una
-                    solución y apoyar al equipo.
-
-                </div>
-
-                <div class="card-from">
-
-                    <span class="label-from">
-                        De:
-                    </span>
-                    Laura
-
-                </div>
-
-                <div class="card-date">
-                    Ayer
-                </div>
-
-            </article>
-
-
-        </div>
-
-
-        <!-- =========================
-             INSTRUCCIONES
-        ========================== -->
-
-        <details class="instructions-section">
-
-            <summary
-                class="instructions-summary"
-                id="instructionsTitle"
-            >
-                ℹ️ ¿Cómo participar?
-            </summary>
-
-            <div class="instructions-content">
-
-                <ol id="instructionsList">
-
-                    <li>
-                        Puedes dejar un mensaje de agradecimiento
-                        para Veconinter y/o a un amigo al que quieras
-                        agradecer por este año 2025.
-                    </li>
-
-                    <li>
-                        Selecciona "Agregar nuevo elemento" >
-                        Se abrirá una pestaña nueva.
-                    </li>
-
-                    <li>
-                        Selecciona el idioma, fondo de tu tarjeta,
-                        el nombre del destinatario y escribe tu
-                        agradecimiento. Haz clic en "Guardar" y listo.
-                    </li>
-
-                    <li>
-                        El talento que seleccionaste recibirá una
-                        notificación con el enlace para buscar su
-                        agradecimiento en el muro interactivo.
-                    </li>
-
-                </ol>
 
             </div>
+        </article>
 
-        </details>
+        <!-- TARJETA 2 -->
 
+        <article
+            class="gratitude-card"
+            data-name="Carlos Pérez"
+        >
+            <div class="card-background fondo2">
 
-    </section>
+                <div class="card-top">
 
+                    <div class="card-recipient">
+                        Para: Carlos Pérez
+                    </div>
+
+                    <div class="card-from">
+                        De: Ana Rodríguez
+                    </div>
+
+                </div>
+
+                <div class="card-message">
+                    Gracias por siempre estar dispuesto a ayudar
+                    y compartir tus conocimientos con el equipo.
+                </div>
+
+                <div class="card-bottom">
+
+                    <span class="card-category">
+                        ❤️ Compañero
+                    </span>
+
+                    <span>
+                        Hoy
+                    </span>
+
+                </div>
+
+            </div>
+        </article>
+
+        <!-- TARJETA 3 -->
+
+        <article
+            class="gratitude-card"
+            data-name="Ana Rodríguez"
+        >
+            <div class="card-background fondo3">
+
+                <div class="card-top">
+
+                    <div class="card-recipient">
+                        Para: Ana Rodríguez
+                    </div>
+
+                    <div class="card-from">
+                        De: Luis Martínez
+                    </div>
+
+                </div>
+
+                <div class="card-message">
+                    Gracias por esa pequeña acción que ayudó a que
+                    el trabajo del equipo fuera mucho más sencillo.
+                </div>
+
+                <div class="card-bottom">
+
+                    <span class="card-category">
+                        ✨ Acción positiva
+                    </span>
+
+                    <span>
+                        Ayer
+                    </span>
+
+                </div>
+
+            </div>
+        </article>
+
+        <!-- TARJETA 4 -->
+
+        <article
+            class="gratitude-card"
+            data-name="Luis Martínez"
+        >
+            <div class="card-background fondo1">
+
+                <div class="card-top">
+
+                    <div class="card-recipient">
+                        Para: Luis Martínez
+                    </div>
+
+                    <div class="card-from">
+                        De: María González
+                    </div>
+
+                </div>
+
+                <div class="card-message">
+                    Gracias por tu disposición y por hacer que cada
+                    desafío se convierta en una oportunidad.
+                </div>
+
+                <div class="card-bottom">
+
+                    <span class="card-category">
+                        💛 Agradecimiento
+                    </span>
+
+                    <span>
+                        Ayer
+                    </span>
+
+                </div>
+
+            </div>
+        </article>
+
+        <!-- TARJETA 5 -->
+
+        <article
+            class="gratitude-card"
+            data-name="Pedro Silva"
+        >
+            <div class="card-background fondo2">
+
+                <div class="card-top">
+
+                    <div class="card-recipient">
+                        Para: Pedro Silva
+                    </div>
+
+                    <div class="card-from">
+                        De: Laura Gómez
+                    </div>
+
+                </div>
+
+                <div class="card-message">
+                    Gracias por tu colaboración y por mantener
+                    siempre una actitud positiva.
+                </div>
+
+                <div class="card-bottom">
+
+                    <span class="card-category">
+                        ❤️ Compañero
+                    </span>
+
+                    <span>
+                        Ayer
+                    </span>
+
+                </div>
+
+            </div>
+        </article>
+
+    </div>
 
 </div>
 
-
 <script>
-
 
     /* =========================
        URL DEL FORMULARIO
-    ========================= */
+       ========================= */
 
     const gratitudeFormUrl =
         "https://brematlocal.sharepoint.com/sites/GestinHumana/_layouts/15/listform.aspx?PageType=8&ListId=%7B52E9AFEA-9335-47FF-A7F4-68ED606F5536%7D&RootFolder=%2Fsites%2FGestinHumana%2FLists%2FDa%20de%20Accin%20de%20Gracias%2F&Source=https%3A%2F%2Fbrematlocal.sharepoint.com%2Fsites%2FGestinHumana%2FLists%2FDa%2520de%2520Accin%2520de%2520Gracias%2FAllItems.aspx%3Fviewid%3Dae346730%252Defdd%252D430e%252Dae03%252Deb2d4b079c6a%26env%3DWebViewList%26npsAction%3DcreateList&ContentTypeId=0x01001DF0FF2BD68D34478DC6B8F3A917880E";
 
+    document.getElementById("gratitudeButton").href = gratitudeFormUrl;
+
 
     /* =========================
        TRADUCCIONES
-    ========================= */
+       ========================= */
 
     const translations = {
 
         es: {
-
-            tomStatus:
-                "😊 Tom está feliz",
-
-            nutrition:
-                "🍗 Nutrición",
-
-            happiness:
-                "❤️ Felicidad",
-
-            energy:
-                "🪶 Energía",
-
-            recognitions:
-                "Reconocimientos:",
-
-            wallTitle:
-                "💌 Muro de Gratitud",
-
-            wallSubtitle:
-                "Cada reconocimiento ayuda a mantener a Tom fuerte y feliz.",
-
-            gratitudeButton:
-                "💛 Dejar un agradecimiento",
-
-            searchPlaceholder:
-                "🔎 Buscar por nombre...",
-
-            to:
-                "Para:",
-
-            from:
-                "De:",
-
-            today:
-                "Hoy",
-
-            yesterday:
-                "Ayer",
-
-            instructionsTitle:
-                "ℹ️ ¿Cómo participar?",
+            instructionsTitle: "ℹ️ ¿Cómo participar?",
 
             instructions: [
+                'Puedes dejar un mensaje de agradecimiento para Veconinter y/o a un amigo al que quieras agradecer por este año 2025.',
+                'Haz clic en "Dejar un agradecimiento" > Se abrirá el formulario en una nueva pestaña.',
+                'Selecciona el idioma, fondo de tu tarjeta, el nombre del destinatario y escribe tu agradecimiento. Luego haz clic en "Guardar" y listo.',
+                'El talento que seleccionaste recibirá una notificación con el enlace para buscar su agradecimiento en el muro interactivo.'
+            ],
 
-                "Puedes dejar un mensaje de agradecimiento para Veconinter y/o a un amigo al que quieras agradecer por este año 2025.",
-
-                "Selecciona \"Agregar nuevo elemento\" > Se abrirá una pestaña nueva.",
-
-                "Selecciona el idioma, fondo de tu tarjeta, el nombre del destinatario y escribe tu agradecimiento. Haz clic en \"Guardar\" y listo.",
-
-                "El talento que seleccionaste recibirá una notificación con el enlace para buscar su agradecimiento en el muro interactivo."
-
-            ]
-
+            wallTitle: "💌 Muro de Gratitud",
+            wallSubtitle: "Un espacio para reconocer y agradecer.",
+            gratitudeButton: "💛 Dejar un agradecimiento",
+            searchPlaceholder: "Buscar por nombre...",
+            to: "Para:",
+            from: "De:",
+            today: "Hoy",
+            yesterday: "Ayer",
+            tomHappy: "😊 Tom está feliz",
+            recognitions: "Reconocimientos:"
         },
-
 
         en: {
-
-            tomStatus:
-                "😊 Tom is happy",
-
-            nutrition:
-                "🍗 Nutrition",
-
-            happiness:
-                "❤️ Happiness",
-
-            energy:
-                "🪶 Energy",
-
-            recognitions:
-                "Recognitions:",
-
-            wallTitle:
-                "💌 Gratitude Wall",
-
-            wallSubtitle:
-                "Every recognition helps keep Tom strong and happy.",
-
-            gratitudeButton:
-                "💛 Leave a thank you",
-
-            searchPlaceholder:
-                "🔎 Search by name...",
-
-            to:
-                "To:",
-
-            from:
-                "From:",
-
-            today:
-                "Today",
-
-            yesterday:
-                "Yesterday",
-
-            instructionsTitle:
-                "ℹ️ How to participate?",
+            instructionsTitle: "ℹ️ How to participate?",
 
             instructions: [
+                'You can leave a thank you message for Veconinter and/or a friend you would like to thank for this year 2025.',
+                'Click "Leave a thank you" > The form will open in a new tab.',
+                'Select the language, background for your card, the recipient\'s name, and write your message of thanks. Then click "Save" and you\'re done.',
+                'The talent you selected will receive a notification with the link to search for your thank you note on the interactive wall.'
+            ],
 
-                "You can leave a thank you message for Veconinter and/or a friend you would like to thank for this year 2025.",
-
-                "Select \"Add new item\" > A new tab will open.",
-
-                "Select the language, background for your card, the recipient's name, and write your message of thanks. Then click \"Save\" and you're done.",
-
-                "The talent you selected will receive a notification with the link to search for your thank you note on the interactive wall."
-
-            ]
-
+            wallTitle: "💌 Gratitude Wall",
+            wallSubtitle: "A space to recognize and appreciate.",
+            gratitudeButton: "💛 Leave a thank you",
+            searchPlaceholder: "Search by name...",
+            to: "To:",
+            from: "From:",
+            today: "Today",
+            yesterday: "Yesterday",
+            tomHappy: "😊 Tom is happy",
+            recognitions: "Recognitions:"
         },
 
-
         pt: {
-
-            tomStatus:
-                "😊 Tom está feliz",
-
-            nutrition:
-                "🍗 Nutrição",
-
-            happiness:
-                "❤️ Felicidade",
-
-            energy:
-                "🪶 Energia",
-
-            recognitions:
-                "Reconhecimentos:",
-
-            wallTitle:
-                "💌 Mural de Gratidão",
-
-            wallSubtitle:
-                "Cada reconhecimento ajuda a manter Tom forte e feliz.",
-
-            gratitudeButton:
-                "💛 Deixar um agradecimento",
-
-            searchPlaceholder:
-                "🔎 Buscar por nome...",
-
-            to:
-                "Para:",
-
-            from:
-                "De:",
-
-            today:
-                "Hoje",
-
-            yesterday:
-                "Ontem",
-
-            instructionsTitle:
-                "ℹ️ Como participar?",
+            instructionsTitle: "ℹ️ Como participar?",
 
             instructions: [
+                'Você pode deixar uma mensagem de agradecimento para o Veconinter e/ou para um amigo que você queira agradecer por este ano de 2025.',
+                'Clique em "Deixar um agradecimento" > O formulário será aberto em uma nova aba.',
+                'Selecione o idioma, fundo do seu cartão, o nome do destinatário e escreva seu agradecimento, clique em "Salvar" e pronto.',
+                'O talento que você selecionou receberá uma notificação com o link para encontrar seu agradecimento no mural interativo.'
+            ],
 
-                "Você pode deixar uma mensagem de agradecimento para o Veconinter e/ou para um amigo que você queira agradecer por este ano de 2025.",
-
-                "Selecione \"Adicionar novo item\" > Uma nova aba será aberta.",
-
-                "Selecione o idioma, fundo do seu cartão, o nome do destinatário e escreva seu agradecimento. Clique em \"Salvar\" e pronto.",
-
-                "O talento que você selecionou receberá uma notificação com o link para encontrar seu agradecimento no mural interativo."
-
-            ]
-
+            wallTitle: "💌 Mural de Gratidão",
+            wallSubtitle: "Um espaço para reconhecer e agradecer.",
+            gratitudeButton: "💛 Deixar um agradecimento",
+            searchPlaceholder: "Buscar por nome...",
+            to: "Para:",
+            from: "De:",
+            today: "Hoje",
+            yesterday: "Ontem",
+            tomHappy: "😊 Tom está feliz",
+            recognitions: "Reconhecimentos:"
         }
 
     };
 
 
     /* =========================
-       ELEMENTOS
-    ========================= */
+       CAMBIO DE IDIOMA
+       ========================= */
 
-    const languageSelect =
-        document.getElementById(
-            "languageSelect"
-        );
+    const languageSelector =
+        document.getElementById("languageSelector");
 
-    const tomStatus =
-        document.getElementById(
-            "tomStatus"
-        );
+    function setLanguage(language) {
 
-    const nutritionLabel =
-        document.getElementById(
-            "nutritionLabel"
-        );
+        const t = translations[language];
 
-    const happinessLabel =
-        document.getElementById(
-            "happinessLabel"
-        );
+        document.documentElement.lang = language;
 
-    const energyLabel =
-        document.getElementById(
-            "energyLabel"
-        );
-
-    const recognitionsLabel =
-        document.getElementById(
-            "recognitionsLabel"
-        );
-
-    const wallTitle =
-        document.getElementById(
-            "wallTitle"
-        );
-
-    const wallSubtitle =
-        document.getElementById(
-            "wallSubtitle"
-        );
-
-    const gratitudeButton =
-        document.getElementById(
-            "gratitudeButton"
-        );
-
-    const searchInput =
-        document.getElementById(
-            "searchInput"
-        );
-
-    const instructionsTitle =
-        document.getElementById(
-            "instructionsTitle"
-        );
-
-    const instructionsList =
-        document.getElementById(
-            "instructionsList"
-        );
-
-
-    /* =========================
-       CONFIGURAR BOTÓN
-    ========================= */
-
-    gratitudeButton.href =
-        gratitudeFormUrl;
-
-
-    /* =========================
-       CAMBIAR IDIOMA
-    ========================= */
-
-    function changeLanguage(language) {
-
-        const t =
-            translations[language];
-
-
-        document.documentElement.lang =
-            language;
-
-
-        tomStatus.textContent =
-            t.tomStatus;
-
-
-        nutritionLabel.textContent =
-            t.nutrition;
-
-
-        happinessLabel.textContent =
-            t.happiness;
-
-
-        energyLabel.textContent =
-            t.energy;
-
-
-        recognitionsLabel.textContent =
-            t.recognitions;
-
-
-        wallTitle.textContent =
-            t.wallTitle;
-
-
-        wallSubtitle.textContent =
-            t.wallSubtitle;
-
-
-        gratitudeButton.textContent =
-            t.gratitudeButton;
-
-
-        searchInput.placeholder =
-            t.searchPlaceholder;
-
-
-        instructionsTitle.textContent =
+        document.getElementById("instructionsTitle").textContent =
             t.instructionsTitle;
 
+        document.getElementById("instructionsList").innerHTML =
+            t.instructions
+                .map(item => `<li>${item}</li>`)
+                .join("");
 
-        instructionsList.innerHTML =
-            "";
+        document.getElementById("wallTitle").textContent =
+            t.wallTitle;
 
+        document.getElementById("wallSubtitle").textContent =
+            t.wallSubtitle;
 
-        t.instructions.forEach(
-            function (instruction) {
+        document.getElementById("gratitudeButton").textContent =
+            t.gratitudeButton;
 
-                const li =
-                    document.createElement(
-                        "li"
-                    );
+        document.getElementById("searchInput").placeholder =
+            t.searchPlaceholder;
 
-                li.textContent =
-                    instruction;
+        document.getElementById("tomStatus").textContent =
+            t.tomHappy;
 
-                instructionsList.appendChild(
-                    li
-                );
+        document.getElementById("recognitionsLabel").textContent =
+            t.recognitions;
 
-            }
-        );
+        document.querySelectorAll(".card-recipient")
+            .forEach(element => {
 
+                const text = element.textContent;
 
-        /* =========================
-           ETIQUETAS DE TARJETAS
-        ========================= */
+                const name = text
+                    .replace(/^.*?:\s*/, "");
 
-        document
-            .querySelectorAll(".label-to")
-            .forEach(
-                function (element) {
+                element.textContent =
+                    `${t.to} ${name}`;
+            });
 
-                    element.textContent =
-                        t.to;
+        document.querySelectorAll(".card-from")
+            .forEach(element => {
 
-                }
-            );
+                const text = element.textContent;
 
+                const name = text
+                    .replace(/^.*?:\s*/, "");
 
-        document
-            .querySelectorAll(".label-from")
-            .forEach(
-                function (element) {
-
-                    element.textContent =
-                        t.from;
-
-                }
-            );
-
-
-        /* =========================
-           FECHAS
-        ========================= */
-
-        const dates =
-            document.querySelectorAll(
-                ".card-date"
-            );
-
-
-        dates.forEach(
-            function (dateElement) {
-
-                const value =
-                    dateElement.dataset.date;
-
-
-                if (value === "today") {
-
-                    dateElement.textContent =
-                        t.today;
-
-                }
-
-
-                if (value === "yesterday") {
-
-                    dateElement.textContent =
-                        t.yesterday;
-
-                }
-
-            }
-        );
-
-
-        /* =========================
-           GUARDAR IDIOMA
-        ========================= */
+                element.textContent =
+                    `${t.from} ${name}`;
+            });
 
         localStorage.setItem(
             "saveTheTurkeyLanguage",
             language
         );
-
     }
 
 
     /* =========================
-       ASIGNAR FECHAS
-    ========================= */
-
-    const cardDates =
-        document.querySelectorAll(
-            ".card-date"
-        );
-
-
-    cardDates.forEach(
-        function (dateElement) {
-
-            const currentText =
-                dateElement.textContent
-                    .trim()
-                    .toLowerCase();
-
-
-            if (
-                currentText === "hoy" ||
-                currentText === "today" ||
-                currentText === "hoje"
-            ) {
-
-                dateElement.dataset.date =
-                    "today";
-
-            }
-
-
-            if (
-                currentText === "ayer" ||
-                currentText === "yesterday" ||
-                currentText === "ontem"
-            ) {
-
-                dateElement.dataset.date =
-                    "yesterday";
-
-            }
-
-        }
-    );
-
-
-    /* =========================
-       RECUPERAR IDIOMA
-    ========================= */
+       IDIOMA INICIAL
+       ========================= */
 
     const savedLanguage =
         localStorage.getItem(
             "saveTheTurkeyLanguage"
-        );
+        ) || "es";
 
+    languageSelector.value = savedLanguage;
 
-    const initialLanguage =
-        translations[savedLanguage]
-            ? savedLanguage
-            : "es";
+    setLanguage(savedLanguage);
 
-
-    languageSelect.value =
-        initialLanguage;
-
-
-    changeLanguage(
-        initialLanguage
-    );
-
-
-    languageSelect.addEventListener(
+    languageSelector.addEventListener(
         "change",
-        function () {
-
-            changeLanguage(
-                this.value
-            );
-
+        function() {
+            setLanguage(this.value);
         }
     );
 
 
     /* =========================
        BUSCADOR
-    ========================= */
+       ========================= */
+
+    const searchInput =
+        document.getElementById("searchInput");
 
     const cards =
-        document.querySelectorAll(
-            ".card"
-        );
-
+        document.querySelectorAll(".gratitude-card");
 
     searchInput.addEventListener(
         "input",
-        function () {
+        function() {
 
-            const search =
+            const searchValue =
                 this.value
                     .toLowerCase()
                     .trim();
 
+            let visibleCards = 0;
 
-            cards.forEach(
-                function (card) {
+            cards.forEach(card => {
 
-                    const text =
-                        card.innerText
-                            .toLowerCase();
+                const name =
+                    card.dataset.name
+                        .toLowerCase();
 
-
-                    if (
-                        text.includes(search)
-                    ) {
-
-                        card.style.display =
-                            "";
-
-                    } else {
-
-                        card.style.display =
-                            "none";
-
-                    }
-
+                if (
+                    searchValue === "" ||
+                    name.includes(searchValue)
+                ) {
+                    card.style.display = "";
+                    visibleCards++;
+                } else {
+                    card.style.display = "none";
                 }
-            );
+
+            });
+
+            let noResults =
+                document.getElementById("noResults");
+
+            if (
+                visibleCards === 0 &&
+                searchValue !== ""
+            ) {
+
+                if (!noResults) {
+
+                    noResults =
+                        document.createElement("div");
+
+                    noResults.id = "noResults";
+                    noResults.className =
+                        "no-results";
+
+                    noResults.textContent =
+                        "No se encontraron reconocimientos.";
+
+                    document
+                        .getElementById("gratitudeWall")
+                        .appendChild(noResults);
+                }
+
+            } else if (noResults) {
+
+                noResults.remove();
+
+            }
 
         }
     );
 
 </script>
 
-
 </body>
 </html>
+```
