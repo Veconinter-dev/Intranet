@@ -309,8 +309,37 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+
+        /*
+         * El fondo se establece dinámicamente desde JavaScript.
+         * La imagen seleccionada se mantiene, pero se aclara
+         * mediante una capa blanca para evitar competencia
+         * visual con el contenido.
+         */
         background-size: cover;
         background-position: center;
+        background-repeat: no-repeat;
+        position: relative;
+        isolation: isolate;
+    }
+
+    /*
+     * Capa clara sobre la imagen.
+     * La imagen continúa siendo visible, pero con menor intensidad.
+     */
+    .card-background::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.62);
+        z-index: -1;
+    }
+
+    .card-top,
+    .card-message,
+    .card-bottom {
+        position: relative;
+        z-index: 1;
     }
 
     .card-top {
@@ -349,22 +378,6 @@
 
     .card-category {
         font-weight: 700;
-    }
-
-    /* =========================
-       FONDOS
-       ========================= */
-
-    .fondo1 {
-        background: linear-gradient(135deg, #fff8e8, #fffdf7);
-    }
-
-    .fondo2 {
-        background: linear-gradient(135deg, #fff0f3, #fffafb);
-    }
-
-    .fondo3 {
-        background: linear-gradient(135deg, #eef6e8, #fbfdf9);
     }
 
     /* =========================
@@ -1273,35 +1286,71 @@
 
 
     /* =====================================================
-       OBTENER FONDO
+       OBTENER URL DEL FONDO SEGÚN FONDOSELECCIONADO
        ===================================================== */
 
-    function getFallbackBackground(
+    function getCardBackgroundUrl(
         fondo
     ) {
 
         const value =
             String(
                 fondo || ""
-            ).toLowerCase();
+            ).trim();
+
+
+        /*
+         * Fondo1
+         * -------------------------
+         * otorno.png
+         */
 
         if (
-            value === "fondo2"
+            value === "Fondo1"
         ) {
 
-            return "fondo2";
+            return "https://brematlocal.sharepoint.com/sites/GestinHumana/Documentos%20compartidos/IMG/Feriados/otono.png";
 
         }
 
+
+        /*
+         * Fondo2
+         * -------------------------
+         * otorno1.png
+         */
+
         if (
-            value === "fondo3"
+            value === "Fondo2"
         ) {
 
-            return "fondo3";
+            return "https://brematlocal.sharepoint.com/sites/GestinHumana/Documentos%20compartidos/IMG/Feriados/otono1.png";
 
         }
 
-        return "fondo1";
+
+        /*
+         * Fondo3
+         * -------------------------
+         * otorno2.png
+         */
+
+        if (
+            value === "Fondo3"
+        ) {
+
+            return "https://brematlocal.sharepoint.com/sites/GestinHumana/Documentos%20compartidos/IMG/Feriados/otono2.png";
+
+        }
+
+
+        /*
+         * Si por alguna razón el campo
+         * viene vacío o contiene otro valor,
+         * no se coloca ninguna imagen.
+         */
+
+        return "";
 
     }
 
@@ -1351,14 +1400,24 @@
                 categoryValue
             );
 
+
+        /*
+         * IMPORTANTE:
+         * El fondo se determina exclusivamente
+         * mediante FondoSeleccionado.
+         */
+
         const fondo =
             getChoiceValue(
                 item.FondoSeleccionado
             );
 
+
         const backgroundUrl =
-            item.FondoTarjetaURL ||
-            "";
+            getCardBackgroundUrl(
+                fondo
+            );
+
 
         const recipientDisplay =
             recipient ||
@@ -1394,12 +1453,21 @@
                 "div"
             );
 
-        background.className =
-            "card-background " +
-            getFallbackBackground(
-                fondo
-            );
+        /*
+         * Ya no se agrega ninguna clase
+         * fondo1/fondo2/fondo3.
+         *
+         * El fondo real viene directamente
+         * de FondoSeleccionado.
+         */
 
+        background.className =
+            "card-background";
+
+
+        /*
+         * Aplicar imagen correspondiente.
+         */
 
         if (
             backgroundUrl
@@ -1407,10 +1475,7 @@
 
             background.style.backgroundImage =
                 "url('" +
-                backgroundUrl.replace(
-                    /'/g,
-                    "\\'"
-                ) +
+                backgroundUrl +
                 "')";
 
         }
@@ -1559,6 +1624,27 @@
 
         card.appendChild(
             background
+        );
+
+
+        /*
+         * Registro de diagnóstico en consola.
+         * Permite comprobar exactamente qué fondo
+         * seleccionó el registro y qué URL se utilizó.
+         */
+
+        console.log(
+            "Tarjeta:",
+            {
+                destinatario:
+                    recipientDisplay,
+
+                fondoSeleccionado:
+                    fondo,
+
+                fondoUrl:
+                    backgroundUrl
+            }
         );
 
 
