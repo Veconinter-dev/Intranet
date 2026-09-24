@@ -331,7 +331,7 @@
         content: "";
         position: absolute;
         inset: 0;
-        background: rgba(255, 255, 255, 0.62);
+        background: rgba(255, 255, 255, 0.86);
         z-index: -1;
     }
 
@@ -348,37 +348,42 @@
         gap: 4px;
     }
 
-    .card-recipient {
-        font-size: 13px;
-        font-weight: 800;
-        color: #333;
-    }
+   .card-recipient {
+    font-size: 14px;
+    font-weight: 800;
+    color: #222;
+    text-shadow: 0 1px 1px rgba(255,255,255,0.7);
+}
 
-    .card-from {
-        font-size: 11px;
-        color: #666;
-    }
+.card-from {
+    font-size: 11px;
+    color: #555;
+    font-weight: 500;
+}
 
-    .card-message {
-        margin: 14px 0;
-        font-size: 13px;
-        line-height: 1.5;
-        color: #444;
-        word-break: break-word;
-    }
+.card-message {
+    margin: 14px 0;
+    font-size: 13px;
+    line-height: 1.55;
+    color: #292929;
+    font-weight: 500;
+    word-break: break-word;
+    text-shadow: 0 1px 1px rgba(255,255,255,0.6);
+}
 
-    .card-bottom {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 8px;
-        font-size: 10px;
-        color: #777;
-    }
+.card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    color: #555;
+}
 
-    .card-category {
-        font-weight: 700;
-    }
+.card-category {
+    font-weight: 800;
+    color: #444;
+}
 
     /* =========================
        ESTADO DE CARGA
