@@ -166,15 +166,30 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        gap: 8px;
         font-size: 11px;
-        font-weight: 600;
-        color: #555;
+        font-weight: 700;
+        color: #444;
+        margin-bottom: 2px;
+    }
+
+    /*
+     * Asociación del tipo de agradecimiento.
+     * Se mantiene visualmente secundaria frente
+     * al nombre principal de la barra.
+     */
+    .tom-bar-description {
+        font-size: 9px;
+        font-weight: 400;
+        color: #888;
+        line-height: 1.25;
         margin-bottom: 4px;
     }
 
     .tom-bar-value {
         font-weight: 700;
         color: #333;
+        flex-shrink: 0;
     }
 
     .progress-track {
@@ -310,12 +325,6 @@
         flex-direction: column;
         justify-content: space-between;
 
-        /*
-         * El fondo se establece dinámicamente desde JavaScript.
-         * La imagen seleccionada se mantiene, pero se aclara
-         * mediante una capa blanca para evitar competencia
-         * visual con el contenido.
-         */
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -323,10 +332,6 @@
         isolation: isolate;
     }
 
-    /*
-     * Capa clara sobre la imagen.
-     * La imagen continúa siendo visible, pero con menor intensidad.
-     */
     .card-background::before {
         content: "";
         position: absolute;
@@ -348,42 +353,42 @@
         gap: 4px;
     }
 
-   .card-recipient {
-    font-size: 14px;
-    font-weight: 800;
-    color: #222;
-    text-shadow: 0 1px 1px rgba(255,255,255,0.7);
-}
+    .card-recipient {
+        font-size: 14px;
+        font-weight: 800;
+        color: #222;
+        text-shadow: 0 1px 1px rgba(255,255,255,0.7);
+    }
 
-.card-from {
-    font-size: 11px;
-    color: #555;
-    font-weight: 500;
-}
+    .card-from {
+        font-size: 11px;
+        color: #555;
+        font-weight: 500;
+    }
 
-.card-message {
-    margin: 14px 0;
-    font-size: 13px;
-    line-height: 1.55;
-    color: #292929;
-    font-weight: 500;
-    word-break: break-word;
-    text-shadow: 0 1px 1px rgba(255,255,255,0.6);
-}
+    .card-message {
+        margin: 14px 0;
+        font-size: 13px;
+        line-height: 1.55;
+        color: #292929;
+        font-weight: 500;
+        word-break: break-word;
+        text-shadow: 0 1px 1px rgba(255,255,255,0.6);
+    }
 
-.card-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 8px;
-    font-size: 10px;
-    color: #555;
-}
+    .card-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        font-size: 10px;
+        color: #555;
+    }
 
-.card-category {
-    font-weight: 800;
-    color: #444;
-}
+    .card-category {
+        font-weight: 800;
+        color: #444;
+    }
 
     /* =========================
        ESTADO DE CARGA
@@ -575,6 +580,10 @@
 
                 <div class="tom-bars">
 
+                    <!-- =====================
+                         NUTRICIÓN
+                         ===================== -->
+
                     <div class="tom-bar-item">
 
                         <div class="tom-bar-label">
@@ -592,6 +601,13 @@
 
                         </div>
 
+                        <div
+                            class="tom-bar-description"
+                            id="nutritionDescription"
+                        >
+                            Agradecimiento a la empresa
+                        </div>
+
                         <div class="progress-track">
 
                             <div
@@ -604,6 +620,10 @@
 
                     </div>
 
+
+                    <!-- =====================
+                         FELICIDAD
+                         ===================== -->
 
                     <div class="tom-bar-item">
 
@@ -622,6 +642,13 @@
 
                         </div>
 
+                        <div
+                            class="tom-bar-description"
+                            id="happinessDescription"
+                        >
+                            Agradecimiento a un compañero
+                        </div>
+
                         <div class="progress-track">
 
                             <div
@@ -634,6 +661,10 @@
 
                     </div>
 
+
+                    <!-- =====================
+                         ENERGÍA
+                         ===================== -->
 
                     <div class="tom-bar-item">
 
@@ -650,6 +681,13 @@
                                 55%
                             </span>
 
+                        </div>
+
+                        <div
+                            class="tom-bar-description"
+                            id="energyDescription"
+                        >
+                            Reconocimiento por una acción positiva
                         </div>
 
                         <div class="progress-track">
@@ -818,6 +856,15 @@
             energy:
                 "🪶 Energía",
 
+            nutritionDescription:
+                "Agradecimiento a la empresa",
+
+            happinessDescription:
+                "Agradecimiento a un compañero",
+
+            energyDescription:
+                "Reconocimiento por una acción positiva",
+
             wallTitle:
                 "💌 Muro de Gratitud",
 
@@ -868,6 +915,7 @@
 
         },
 
+
         en: {
 
             instructionsTitle:
@@ -888,6 +936,15 @@
 
             energy:
                 "🪶 Energy",
+
+            nutritionDescription:
+                "Appreciation for the company",
+
+            happinessDescription:
+                "Appreciation for a colleague",
+
+            energyDescription:
+                "Recognition for a positive action",
 
             wallTitle:
                 "💌 Gratitude Wall",
@@ -939,6 +996,7 @@
 
         },
 
+
         pt: {
 
             instructionsTitle:
@@ -959,6 +1017,15 @@
 
             energy:
                 "🪶 Energia",
+
+            nutritionDescription:
+                "Agradecimento à empresa",
+
+            happinessDescription:
+                "Agradecimento a um colega",
+
+            energyDescription:
+                "Reconhecimento por uma ação positiva",
 
             wallTitle:
                 "💌 Mural de Gratidão",
@@ -1304,12 +1371,6 @@
             ).trim();
 
 
-        /*
-         * Fondo1
-         * -------------------------
-         * otorno.png
-         */
-
         if (
             value === "Fondo1"
         ) {
@@ -1318,12 +1379,6 @@
 
         }
 
-
-        /*
-         * Fondo2
-         * -------------------------
-         * otorno1.png
-         */
 
         if (
             value === "Fondo2"
@@ -1334,12 +1389,6 @@
         }
 
 
-        /*
-         * Fondo3
-         * -------------------------
-         * otorno2.png
-         */
-
         if (
             value === "Fondo3"
         ) {
@@ -1348,12 +1397,6 @@
 
         }
 
-
-        /*
-         * Si por alguna razón el campo
-         * viene vacío o contiene otro valor,
-         * no se coloca ninguna imagen.
-         */
 
         return "";
 
@@ -1406,12 +1449,6 @@
             );
 
 
-        /*
-         * IMPORTANTE:
-         * El fondo se determina exclusivamente
-         * mediante FondoSeleccionado.
-         */
-
         const fondo =
             getChoiceValue(
                 item.FondoSeleccionado
@@ -1458,21 +1495,9 @@
                 "div"
             );
 
-        /*
-         * Ya no se agrega ninguna clase
-         * fondo1/fondo2/fondo3.
-         *
-         * El fondo real viene directamente
-         * de FondoSeleccionado.
-         */
-
         background.className =
             "card-background";
 
-
-        /*
-         * Aplicar imagen correspondiente.
-         */
 
         if (
             backgroundUrl
@@ -1632,12 +1657,6 @@
         );
 
 
-        /*
-         * Registro de diagnóstico en consola.
-         * Permite comprobar exactamente qué fondo
-         * seleccionó el registro y qué URL se utilizó.
-         */
-
         console.log(
             "Tarjeta:",
             {
@@ -1789,10 +1808,6 @@
                 data
             );
 
-
-            /* =================================================
-               DATOS PUEDE VENIR COMO ARRAY O COMO TEXTO JSON
-               ================================================= */
 
             let records =
                 data.datos;
@@ -1985,6 +2000,28 @@
             "energyLabel"
         ).textContent =
             t.energy;
+
+
+        /*
+         * Asociaciones de cada barra
+         */
+
+        document.getElementById(
+            "nutritionDescription"
+        ).textContent =
+            t.nutritionDescription;
+
+
+        document.getElementById(
+            "happinessDescription"
+        ).textContent =
+            t.happinessDescription;
+
+
+        document.getElementById(
+            "energyDescription"
+        ).textContent =
+            t.energyDescription;
 
 
         updateTomStatus();
