@@ -1858,7 +1858,17 @@
 
 
             gratitudeData =
-                records;
+    records.sort(function(a, b) {
+
+        const dateA =
+            new Date(a.Created).getTime();
+
+        const dateB =
+            new Date(b.Created).getTime();
+
+        return dateB - dateA;
+
+    });
 
 
             console.log(
